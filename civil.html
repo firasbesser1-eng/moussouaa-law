@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>القانون المدني | الموسوعة القانونية</title>
 
-<meta name="description" content="قسم القانون المدني في الموسوعة القانونية - مراجع وتشريعات وكتب وبحوث وأحكام قانونية.">
+<meta name="description"
+content="قسم القانون المدني في الموسوعة القانونية - التشريعات والكتب والمراجع والبحوث والأحكام والدروس.">
 
 <style>
+
+/* =========================
+   الإعدادات العامة
+========================= */
 
 *{
     box-sizing:border-box;
@@ -27,13 +35,20 @@ body{
     line-height:1.8;
 }
 
-/* HEADER */
+a{
+    text-decoration:none;
+}
+
+
+/* =========================
+   الرأس
+========================= */
 
 header{
     background:linear-gradient(135deg,#071a33,#123d6b,#1d5689);
     color:white;
-    padding:35px 18px 45px;
     text-align:center;
+    padding:38px 18px 45px;
 }
 
 .logo{
@@ -42,7 +57,7 @@ header{
     margin-bottom:8px;
 }
 
-.logo span{
+.logo-gold{
     color:#d8b45a;
 }
 
@@ -53,18 +68,21 @@ header{
 }
 
 .page-title{
-    font-size:34px;
+    font-size:35px;
     margin-bottom:8px;
 }
 
 .page-description{
+    max-width:700px;
+    margin:auto;
     font-size:15px;
     opacity:.9;
-    max-width:650px;
-    margin:auto;
 }
 
-/* NAVIGATION */
+
+/* =========================
+   القائمة
+========================= */
 
 .navbar{
     background:white;
@@ -80,12 +98,11 @@ header{
     margin:auto;
     display:flex;
     justify-content:center;
-    gap:10px;
+    gap:8px;
     flex-wrap:wrap;
 }
 
 .navbar a{
-    text-decoration:none;
     color:#163d68;
     font-weight:bold;
     padding:7px 12px;
@@ -97,7 +114,10 @@ header{
     background:#eef3f8;
 }
 
-/* MAIN */
+
+/* =========================
+   المحتوى
+========================= */
 
 .container{
     max-width:1100px;
@@ -105,13 +125,15 @@ header{
     padding:0 15px;
 }
 
-/* BACK BUTTON */
+
+/* =========================
+   زر العودة
+========================= */
 
 .back{
     display:inline-block;
     background:#0b1f3a;
     color:white;
-    text-decoration:none;
     padding:10px 18px;
     border-radius:10px;
     margin-bottom:30px;
@@ -122,18 +144,22 @@ header{
     transform:translateY(-2px);
 }
 
-/* SEARCH */
+
+/* =========================
+   البحث
+========================= */
 
 .search-box{
     background:white;
-    padding:22px;
+    padding:23px;
     border-radius:16px;
     box-shadow:0 5px 20px rgba(0,0,0,.07);
-    margin-bottom:35px;
+    margin-bottom:40px;
 }
 
-.search-box h2{
+.search-title{
     font-size:20px;
+    color:#163d68;
     margin-bottom:12px;
 }
 
@@ -150,16 +176,23 @@ header{
     border-color:#163d68;
 }
 
-/* SECTION */
+
+/* =========================
+   عناوين الأقسام
+========================= */
+
+.section{
+    margin-bottom:50px;
+}
 
 .section-title{
     text-align:center;
+    color:#0b1f3a;
     font-size:28px;
     margin-bottom:25px;
-    color:#0b1f3a;
 }
 
-.section-title span{
+.section-line{
     display:block;
     width:55px;
     height:3px;
@@ -168,11 +201,15 @@ header{
     border-radius:5px;
 }
 
-/* CARDS */
+
+/* =========================
+   البطاقات
+========================= */
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    grid-template-columns:
+    repeat(auto-fit,minmax(230px,1fr));
     gap:20px;
 }
 
@@ -215,14 +252,19 @@ header{
     margin-bottom:18px;
 }
 
+
+/* =========================
+   الأزرار
+========================= */
+
 .button{
     display:inline-block;
-    text-decoration:none;
     background:#163d68;
     color:white;
-    padding:9px 18px;
+    padding:9px 15px;
     border-radius:9px;
-    font-size:14px;
+    font-size:13px;
+    margin:3px;
     transition:.2s;
 }
 
@@ -230,38 +272,46 @@ header{
     background:#0b1f3a;
 }
 
-/* FEATURED */
+.button.download{
+    background:#667085;
+}
+
+
+/* =========================
+   المرجع الأساسي
+========================= */
 
 .featured{
-    margin-top:45px;
-}
-
-.featured-box{
-    background:linear-gradient(135deg,#fff,#f7f9fc);
+    background:white;
+    padding:28px;
+    border-radius:17px;
     border-right:5px solid #d8b45a;
-    padding:25px;
-    border-radius:14px;
-    box-shadow:0 5px 18px rgba(0,0,0,.06);
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
+    margin-bottom:50px;
 }
 
-.featured-box h3{
+.featured h3{
     color:#163d68;
+    font-size:21px;
     margin-bottom:10px;
 }
 
-.featured-box p{
+.featured p{
     color:#5d6879;
-    font-size:15px;
+    margin-bottom:15px;
 }
 
-/* INFO */
+
+/* =========================
+   المعلومات
+========================= */
 
 .info{
     background:white;
     padding:30px 25px;
     border-radius:17px;
-    margin-top:45px;
     box-shadow:0 5px 20px rgba(0,0,0,.07);
+    margin-bottom:30px;
 }
 
 .info h2{
@@ -273,7 +323,25 @@ header{
     color:#596577;
 }
 
-/* FOOTER */
+
+/* =========================
+   رسالة عدم وجود نتائج
+========================= */
+
+.no-results{
+    display:none;
+    text-align:center;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    color:#687386;
+    margin-top:20px;
+}
+
+
+/* =========================
+   التذييل
+========================= */
 
 footer{
     margin-top:55px;
@@ -292,7 +360,10 @@ footer strong{
     color:#d8b45a;
 }
 
-/* MOBILE */
+
+/* =========================
+   الهاتف
+========================= */
 
 @media(max-width:600px){
 
@@ -312,12 +383,8 @@ footer strong{
         font-size:14px;
     }
 
-    .nav-content{
-        gap:4px;
-    }
-
     .navbar a{
-        font-size:13px;
+        font-size:12px;
         padding:6px 8px;
     }
 
@@ -337,49 +404,86 @@ footer strong{
         padding:23px 15px;
     }
 
+    .featured{
+        padding:22px 18px;
+    }
+
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
+<!-- =========================
+     الرأس
+========================= -->
+
 <header>
 
 <div class="logo">
-⚖️ <span>الموسوعة القانونية</span>
+
+⚖️ <span class="logo-gold">
+الموسوعة القانونية
+</span>
+
 </div>
 
 <div class="subtitle">
+
 المكتبة القانونية الرقمية للمراجع والتشريعات والبحوث
+
 </div>
 
 <h1 class="page-title">
+
 القانون المدني
+
 </h1>
 
 <p class="page-description">
+
 بوابة متخصصة لجمع وتنظيم مصادر ومراجع القانون المدني
+
 </p>
 
 </header>
 
 
+<!-- =========================
+     القائمة
+========================= -->
+
 <nav class="navbar">
 
 <div class="nav-content">
 
-<a href="index.html">🏠 الرئيسية</a>
+<a href="index.html">
+🏠 الرئيسية
+</a>
 
-<a href="#library">📚 المكتبة</a>
+<a href="#legislation">
+📜 التشريعات
+</a>
 
-<a href="#research">📝 البحوث</a>
+<a href="#books">
+📚 الكتب والمراجع
+</a>
 
-<a href="#judgments">⚖️ الأحكام</a>
+<a href="#research">
+📝 البحوث والمذكرات
+</a>
 
-<a href="#about">ℹ️ عن القسم</a>
+<a href="#judgments">
+⚖️ الأحكام والقرارات
+</a>
+
+<a href="#lessons">
+📖 الدروس والمحاضرات
+</a>
 
 </div>
 
@@ -390,47 +494,82 @@ footer strong{
 
 
 <a class="back" href="index.html">
+
 ← العودة إلى الموسوعة القانونية
+
 </a>
 
 
-<section class="search-box">
+<!-- =========================
+     البحث
+========================= -->
 
-<h2>🔎 البحث في قسم القانون المدني</h2>
+<div class="search-box">
+
+<h2 class="search-title">
+
+🔎 البحث في قسم القانون المدني
+
+</h2>
 
 <input
 type="text"
 id="searchInput"
 class="search-input"
-placeholder="اكتب اسم المرجع أو الموضوع..."
+placeholder="ابحث عن تشريع، كتاب، بحث، حكم أو درس..."
 onkeyup="searchCards()">
 
-</section>
+</div>
 
 
-<section id="library">
+<!-- =========================
+     التشريعات
+========================= -->
+
+<section id="legislation" class="section">
 
 <h2 class="section-title">
-📚 مكتبة القانون المدني
-<span></span>
+
+📜 التشريعات
+
+<span class="section-line"></span>
+
 </h2>
 
 
-<div class="cards" id="cards">
+<div class="cards searchable">
 
 
 <div class="card">
 
-<div class="icon">📜</div>
+<div class="icon">
+📜
+</div>
 
-<h3>مجلة الالتزامات والعقود</h3>
+<h3>
+مجلّة الالتزامات والعقود
+</h3>
 
 <p>
-النصوص القانونية المتعلقة بالالتزامات والعقود.
+النص التشريعي الأساسي المنظم للالتزامات والعقود.
 </p>
 
-<a class="button" href="مجلّة الالتزامات والعقود.pdf" target="_blank">
+<a
+class="button"
+href="مجلّة الالتزامات والعقود.pdf"
+target="_blank">
+
 📄 قراءة PDF
+
+</a>
+
+<a
+class="button download"
+href="مجلّة الالتزامات والعقود.pdf"
+download>
+
+⬇️ تحميل PDF
+
 </a>
 
 </div>
@@ -438,84 +577,20 @@ onkeyup="searchCards()">
 
 <div class="card">
 
-<div class="icon">📚</div>
-
-<h3>الكتب والمراجع</h3>
-
-<p>
-كتب ومراجع أكاديمية متخصصة في القانون المدني.
-</p>
-
-<a class="button" href="#">
-استعراض المراجع
-</a>
-
+<div class="icon">
+📜
 </div>
 
-
-<div class="card">
-
-<div class="icon">📖</div>
-
-<h3>الدروس والمحاضرات</h3>
+<h3>
+النصوص المدنية
+</h3>
 
 <p>
-محاضرات ودروس موجهة للطلبة والباحثين.
+مجموعة النصوص والتشريعات ذات الصلة بالقانون المدني.
 </p>
 
 <a class="button" href="#">
-استعراض الدروس
-</a>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">📝</div>
-
-<h3>البحوث والمذكرات</h3>
-
-<p>
-بحوث ومذكرات جامعية في مختلف مواضيع القانون المدني.
-</p>
-
-<a class="button" href="#">
-استعراض البحوث
-</a>
-
-</div>
-
-
-<div class="card" id="judgments">
-
-<div class="icon">⚖️</div>
-
-<h3>الأحكام والقرارات</h3>
-
-<p>
-اجتهادات وقرارات قضائية متعلقة بالقانون المدني.
-</p>
-
-<a class="button" href="#">
-استعراض الأحكام
-</a>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">📑</div>
-
-<h3>المقالات القانونية</h3>
-
-<p>
-دراسات ومقالات متخصصة في المسائل المدنية.
-</p>
-
-<a class="button" href="#">
-استعراض المقالات
+📄 قريبًا
 </a>
 
 </div>
@@ -526,119 +601,186 @@ onkeyup="searchCards()">
 </section>
 
 
-<section class="featured">
+<!-- =========================
+     الكتب والمراجع
+========================= -->
+
+<section id="books" class="section">
 
 <h2 class="section-title">
-⭐ المرجع الأساسي
-<span></span>
+
+📚 الكتب والمراجع
+
+<span class="section-line"></span>
+
 </h2>
 
-<div class="featured-box">
 
-<h3>📜 مجلة الالتزامات والعقود</h3>
+<div class="cards searchable">
+
+
+<div class="card">
+
+<div class="icon">
+📚
+</div>
+
+<h3>
+كتب القانون المدني
+</h3>
 
 <p>
-سيتم هنا وضع النسخة الرقمية من مجلة الالتزامات والعقود
-مع إمكانية قراءة الملف مباشرة وتحميله بصيغة PDF.
+كتب ومؤلفات أكاديمية متخصصة في القانون المدني.
 </p>
 
-<br>
+<a class="button" href="#">
+📖 استعراض
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+📖
+</div>
+
+<h3>
+المراجع الجامعية
+</h3>
+
+<p>
+مراجع مفيدة للطلبة والباحثين في القانون المدني.
+</p>
 
 <a class="button" href="#">
-📄 فتح المرجع
+📖 استعراض
 </a>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🔎
+</div>
+
+<h3>
+المراجع المتخصصة
+</h3>
+
+<p>
+دراسات ومراجع متخصصة في المسائل المدنية.
+</p>
+
+<a class="button" href="#">
+📖 استعراض
+</a>
+
+</div>
+
 
 </div>
 
 </section>
 
 
-<section id="research" class="info">
+<!-- =========================
+     البحوث والمذكرات
+========================= -->
 
-<h2>📝 البحوث والمذكرات</h2>
+<section id="research" class="section">
+
+<h2 class="section-title">
+
+📝 البحوث والمذكرات
+
+<span class="section-line"></span>
+
+</h2>
+
+
+<div class="cards searchable">
+
+
+<div class="card">
+
+<div class="icon">
+🎓
+</div>
+
+<h3>
+مذكرات الماجستير
+</h3>
 
 <p>
-سيتم تخصيص هذا القسم للبحوث الجامعية ومذكرات الإجازة
-والماجستير والدراسات القانونية المتعلقة بالقانون المدني.
+مذكرات وبحوث أكاديمية في القانون المدني.
 </p>
+
+<a class="button" href="#">
+📄 استعراض
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🎓
+</div>
+
+<h3>
+بحوث الإجازة
+</h3>
+
+<p>
+بحوث جامعية في مختلف مسائل القانون المدني.
+</p>
+
+<a class="button" href="#">
+📄 استعراض
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+📝
+</div>
+
+<h3>
+الدراسات القانونية
+</h3>
+
+<p>
+دراسات وتحليلات قانونية متخصصة.
+</p>
+
+<a class="button" href="#">
+📄 استعراض
+</a>
+
+</div>
+
+
+</div>
 
 </section>
 
 
-<section id="about" class="info">
+<!-- =========================
+     الأحكام والقرارات
+========================= -->
 
-<h2>ℹ️ عن قسم القانون المدني</h2>
+<section id="judgments" class="section">
 
-<p>
-يهدف قسم القانون المدني في الموسوعة القانونية إلى توفير
-بيئة رقمية منظمة تساعد الطلبة والباحثين والمختصين على
-الوصول إلى التشريعات والكتب والمراجع والبحوث والأحكام
-ذات الصلة بالقانون المدني بسهولة وسرعة.
-</p>
+<h2 class="section-title">
 
-</section>
+⚖️ الأحكام والقرارات
 
-
-</main>
-
-
-<footer>
-
-<strong>
-⚖️ الموسوعة القانونية
-</strong>
-
-<br>
-
-<span class="footer-gold">
-قسم القانون المدني
-</span>
-
-<br>
-
-إدارة الموقع: فراس بسر
-
-<br>
-
-© 2026 جميع الحقوق محفوظة
-
-</footer>
-
-
-<script>
-
-function searchCards(){
-
-let input =
-document.getElementById("searchInput")
-.value
-.toLowerCase()
-.trim();
-
-let cards =
-document.querySelectorAll(".card");
-
-cards.forEach(function(card){
-
-let text =
-card.innerText.toLowerCase();
-
-if(text.includes(input)){
-
-card.style.display="block";
-
-}else{
-
-card.style.display="none";
-
-}
-
-});
-
-}
-
-</script>
-
-
-</body>
-</html>
+<span class="section-line"></
