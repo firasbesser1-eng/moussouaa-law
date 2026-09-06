@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>لوحة إدارة الموسوعة القانونية</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Tahoma, Arial, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, #0b1f3a, #173b68);
+    color: white;
+    padding: 22px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.logo small {
+    display: block;
+    font-size: 12px;
+    opacity: .8;
+    margin-top: 5px;
+}
+
+.logout {
+    background: #fff;
+    color: #0b1f3a;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 9px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MAIN */
+
+main {
+    width: 92%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+/* WELCOME */
+
+.welcome {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    margin-top: 0;
+}
+
+.welcome p {
+    color: #667085;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,.05);
+}
+
+.stat .number {
+    font-size: 30px;
+    font-weight: bold;
+    color: #173b68;
+}
+
+.stat p {
+    margin-bottom: 0;
+    color: #667085;
+}
+
+/* ACTIONS */
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.action {
+    background: white;
+    padding: 25px;
+    border-radius: 17px;
+    text-decoration: none;
+    color: #172033;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    transition: .2s;
+}
+
+.action:hover {
+    transform: translateY(-3px);
+}
+
+.action-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.action h2 {
+    margin: 5px 0;
+}
+
+.action p {
+    color: #667085;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 35px 10px;
+    color: #667085;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        ⚖️ الموسوعة القانونية
+        <small>لوحة إدارة الموقع</small>
+    </div>
+
+    <button class="logout" onclick="logout()">
+        🚪 تسجيل الخروج
+    </button>
+
+</header>
+
+<main>
+
+    <section class="welcome">
+
+        <h1>مرحبًا بك في لوحة الإدارة 👋</h1>
+
+        <p>
+            من هنا ستتمكن من إدارة جميع مراجع الموسوعة القانونية
+            وإضافة الكتب والتشريعات والبحوث والأحكام والدروس والمقالات.
+        </p>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div class="stat">
+            <div class="number" id="totalReferences">0</div>
+            <p>إجمالي المراجع</p>
+        </div>
+
+        <div class="stat">
+            <div class="number" id="totalBranches">0</div>
+            <p>الفروع</p>
+        </div>
+
+        <div class="stat">
+            <div class="number" id="totalCategories">0</div>
+            <p>أنواع المراجع</p>
+        </div>
+
+        <div class="stat">
+            <div class="number" id="totalPDF">0</div>
+            <p>ملفات PDF</p>
+        </div>
+
+    </section>
+
+
+    <section class="actions">
+
+        <a class="action" href="#" onclick="comingSoon(event)">
+
+            <div class="action-icon">➕</div>
+
+            <h2>إضافة مرجع جديد</h2>
+
+            <p>
+                إضافة كتاب أو تشريع أو بحث أو حكم أو أي مرجع قانوني.
+            </p>
+
+        </a>
+
+
+        <a class="action" href="#" onclick="comingSoon(event)">
+
+            <div class="action-icon">📚</div>
+
+            <h2>إدارة المراجع</h2>
+
+            <p>
+                عرض وتعديل وحذف جميع المراجع الموجودة.
+            </p>
+
+        </a>
+
+
+        <a class="action" href="index.html">
+
+            <div class="action-icon">🌐</div>
+
+            <h2>فتح الموقع</h2>
+
+            <p>
+                الانتقال إلى الصفحة الرئيسية للموسوعة.
+            </p>
+
+        </a>
+
+
+        <a class="action" href="#" onclick="comingSoon(event)">
+
+            <div class="action-icon">📊</div>
+
+            <h2>الإحصائيات</h2>
+
+            <p>
+                متابعة عدد المراجع والملفات والفروع.
+            </p>
+
+        </a>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    © 2026 الموسوعة القانونية
+    <br>
+    فراس بسر — مدير الموسوعة القانونية
+
+</footer>
+
+
+<script>
+
+const SUPABASE_URL = "https://yksrckzomkowjzmsafvm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =========================================
+   التأكد من تسجيل الدخول
+========================================= */
+
+async function checkUser() {
+
+    const { data } =
+        await supabaseClient.auth.getSession();
+
+    if (!data.session) {
+
+        window.location.href = "admin.html";
+
+        return false;
+    }
+
+    return true;
+}
+
+
+/* =========================================
+   تحميل الإحصائيات
+========================================= */
+
+async function loadStats() {
+
+    const references =
+        await supabaseClient
+        .from("references")
+        .select("id, file_path", { count: "exact" });
+
+    const branches =
+        await supabaseClient
+        .from("branches")
+        .select("id", { count: "exact" });
+
+    const categories =
+        await supabaseClient
+        .from("reference_categories")
+        .select("id", { count: "exact" });
+
+
+    document.getElementById("totalReferences")
+        .textContent = references.count || 0;
+
+    document.getElementById("totalBranches")
+        .textContent = branches.count || 0;
+
+    document.getElementById("totalCategories")
+        .textContent = categories.count || 0;
+
+
+    if (references.data) {
+
+        const pdfCount =
+            references.data.filter(
+                item => item.file_path
+            ).length;
+
+        document.getElementById("totalPDF")
+            .textContent = pdfCount;
+    }
+}
+
+
+/* =========================================
+   تسجيل الخروج
+========================================= */
+
+async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href = "admin.html";
+}
+
+
+/* =========================================
+   مؤقتًا
+========================================= */
+
+function comingSoon(event) {
+
+    event.preventDefault();
+
+    alert(
+        "هذه الوظيفة سنقوم بتفعيلها في الخطوة التالية."
+    );
+}
+
+
+/* =========================================
+   تشغيل الصفحة
+========================================= */
+
+(async function() {
+
+    const loggedIn = await checkUser();
+
+    if (loggedIn) {
+
+        await loadStats();
+
+    }
+
+})();
+
+</script>
+
+</body>
+</html>
