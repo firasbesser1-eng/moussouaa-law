@@ -1,87 +1,412 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>الموسوعة القانونية</title>
+<title>الموسوعة القانونية | المكتبة القانونية</title>
 
-  <meta
-    name="description"
-    content="الموسوعة القانونية - مكتبة قانونية رقمية للمراجع والنصوص القانونية"
-  >
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+body{
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f5f7fa;
+    color:#172033;
+}
+
+header{
+    background:linear-gradient(135deg,#0b1f3a,#163d68);
+    color:white;
+    padding:45px 20px;
+    text-align:center;
+}
+
+.logo{
+    font-size:42px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.subtitle{
+    font-size:18px;
+    opacity:.9;
+}
+
+.manager{
+    margin:25px auto 0;
+    max-width:300px;
+}
+
+.manager-photo{
+    width:120px;
+    height:120px;
+    margin:auto;
+    border-radius:50%;
+    background:#d9dee7;
+    border:4px solid white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:45px;
+}
+
+.manager h2{
+    margin-top:12px;
+    font-size:22px;
+}
+
+.manager p{
+    margin-top:5px;
+    opacity:.85;
+}
+
+.search{
+    padding:25px 15px;
+    background:white;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.search input{
+    width:100%;
+    max-width:700px;
+    display:block;
+    margin:auto;
+    padding:17px 20px;
+    border:1px solid #d8dee8;
+    border-radius:12px;
+    font-size:17px;
+    outline:none;
+}
+
+.container{
+    max-width:1100px;
+    margin:35px auto;
+    padding:0 15px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:white;
+    padding:25px 15px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    transition:.2s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.icon{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.card h3{
+    margin-bottom:8px;
+    font-size:19px;
+}
+
+.card p{
+    color:#687386;
+    font-size:14px;
+}
+
+.about{
+    background:white;
+    padding:30px 20px;
+    border-radius:15px;
+    margin-top:40px;
+    line-height:2;
+    box-shadow:0 5px 18px rgba(0,0,0,.07);
+}
+
+footer{
+    margin-top:50px;
+    background:#0b1f3a;
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+    line-height:2;
+}
+
+@media(max-width:600px){
+    .logo{
+        font-size:32px;
     }
 
-    body {
-      font-family: Arial, Tahoma, sans-serif;
-      background: #f5f6f8;
-      color: #20252b;
-      line-height: 1.7;
+    .subtitle{
+        font-size:15px;
     }
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 18px 6%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
+    .section-title{
+        font-size:24px;
     }
+}
+</style>
+</head>
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
+<body>
 
-    .logo span {
-      color: #d4af37;
-    }
+<header>
 
-    nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
+<div class="logo">⚖️ الموسوعة القانونية</div>
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 15px;
-    }
+<div class="subtitle">
+المكتبة القانونية الرقمية للمراجع والتشريعات والبحوث
+</div>
 
-    nav a:hover {
-      color: #d4af37;
-    }
+<div class="manager">
 
-    .hero {
-      background: linear-gradient(
-        135deg,
-        #111827,
-        #263449
-      );
-      color: white;
-      text-align: center;
-      padding: 75px 20px;
-    }
+<div class="manager-photo">
+👤
+</div>
 
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
+<h2>فراس بسر</h2>
 
-    .hero h1 span {
-      color: #d4af37;
-    }
+<p>مدير الموسوعة القانونية</p>
 
-    .hero p {
-      color: #d7dbe2;
-      font-size: 18px;
-     
+</div>
+
+</header>
+
+
+<div class="search">
+
+<input
+type="text"
+id="search"
+placeholder="🔎 ابحث عن قانون، كتاب، مرجع أو موضوع..."
+onkeyup="searchCards()">
+
+</div>
+
+
+<main class="container">
+
+<h2 class="section-title">
+📚 فروع القانون
+</h2>
+
+
+<div class="cards" id="cards">
+
+
+<div class="card">
+
+<div class="icon">⚖️</div>
+
+<h3>القانون المدني</h3>
+
+<p>مراجع وتشريعات القانون المدني</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🏢</div>
+
+<h3>القانون التجاري</h3>
+
+<p>الشركات والأعمال والمعاملات التجارية</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🏛️</div>
+
+<h3>القانون الإداري</h3>
+
+<p>القانون الإداري والوظيفة العمومية</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📜</div>
+
+<h3>القانون الدستوري</h3>
+
+<p>الدستور والمؤسسات والحقوق والحريات</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">👨‍⚖️</div>
+
+<h3>القانون الجزائي</h3>
+
+<p>القانون الجزائي والإجراءات الجزائية</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🌍</div>
+
+<h3>القانون الدولي الخاص</h3>
+
+<p>العلاقات الخاصة ذات العنصر الأجنبي</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🌐</div>
+
+<h3>القانون الدولي العام</h3>
+
+<p>العلاقات الدولية والمعاهدات</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">👷</div>
+
+<h3>قانون الشغل</h3>
+
+<p>علاقات العمل والحقوق الاجتماعية</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">💰</div>
+
+<h3>القانون الجبائي</h3>
+
+<p>الضرائب والتشريع الجبائي</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🤝</div>
+
+<h3>قانون التحكيم</h3>
+
+<p>التحكيم التجاري وتسوية النزاعات</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📖</div>
+
+<h3>المراجع والكتب</h3>
+
+<p>مكتبة رقمية للمراجع القانونية</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📝</div>
+
+<h3>البحوث والمذكرات</h3>
+
+<p>رسائل الماجستير والبحوث القانونية</p>
+
+</div>
+
+
+</div>
+
+
+<div class="about">
+
+<h2>عن الموسوعة القانونية</h2>
+
+<p>
+الموسوعة القانونية هي منصة رقمية تهدف إلى جمع وتنظيم المراجع
+والتشريعات والبحوث القانونية في مكان واحد، لتسهيل الوصول إليها
+من طرف الطلبة والباحثين والمختصين في المجال القانوني.
+</p>
+
+</div>
+
+</main>
+
+
+<footer>
+
+<strong>الموسوعة القانونية</strong>
+
+<br>
+
+جميع الحقوق محفوظة © 2026
+
+<br>
+
+إدارة الموقع: فراس بسر
+
+</footer>
+
+
+<script>
+
+function searchCards(){
+
+let input =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+let cards =
+document.querySelectorAll(".card");
+
+cards.forEach(function(card){
+
+let text =
+card.innerText.toLowerCase();
+
+if(text.includes(input)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
