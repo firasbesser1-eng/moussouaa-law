@@ -179,13 +179,13 @@ async function login() {
 
     if (error) {
 
-        message.textContent =
-            "تعذر تسجيل الدخول. تأكد من البيانات.";
+    message.textContent =
+        "خطأ: " + error.message;
 
-        console.error(error);
+    console.error(error);
 
-        return;
-    }
+    return;
+}
 
     message.textContent =
         "تم تسجيل الدخول بنجاح ✓";
