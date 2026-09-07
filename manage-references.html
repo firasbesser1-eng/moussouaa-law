@@ -703,43 +703,42 @@ function displayReferences(
 
                 <div class="card-actions">
 
+    ${
+        reference.file_path
+        ?
+        `
+        <a
+            href="${pdfUrl}"
+            target="_blank"
+            class="btn btn-primary">
 
-                    ${
-                        reference.file_path
-                        ?
-                        `
-                        <a
-                            href="${pdfUrl}"
-                            target="_blank"
-                            class="btn btn-primary">
+            📄 فتح PDF
 
-                            📄 فتح PDF
-
-                        </a>
-                        `
-                        :
-                        ""
-                    }
-
-                       <a
-                          href="edit-reference.html?id=${reference.id}"
-                         class="btn btn-success">
-
-                         ✏️ تعديل
-
-                      </a>
-                    <button
-                        class="btn btn-danger"
-                        onclick="deleteReference(${reference.id})">
-
-                        🗑️ حذف
-
-                    </button>
+        </a>
+        `
+        :
+        ""
+    }
 
 
-                </div>
+    <a
+        href="edit-reference.html?id=${reference.id}"
+        class="btn btn-success">
 
-                `;
+        ✏️ تعديل
+
+    </a>
+
+
+    <button
+        class="btn btn-danger"
+        onclick="deleteReference(${reference.id})">
+
+        🗑️ حذف
+
+    </button>
+
+</div>
 
 
             container.appendChild(
