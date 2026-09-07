@@ -2,956 +2,969 @@
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
 
-    <title>لوحة الإدارة | الموسوعة القانونية</title>
+<meta charset="UTF-8">
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>لوحة الإدارة | الموسوعة القانونية</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        body {
-            font-family:
-                "Tajawal",
-                "Cairo",
-                Arial,
-                sans-serif;
+<style>
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #eef3f8,
-                    #f8fafc
-                );
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-            color: #172033;
-            min-height: 100vh;
-        }
+body{
 
-        /* =========================
-           HEADER
-        ========================= */
+    font-family:Arial,
+    "Tahoma",
+    sans-serif;
 
-        header {
-            background:
-                linear-gradient(
-                    135deg,
-                    #071a35,
-                    #0d315c,
-                    #164d7c
-                );
+    background:
+    linear-gradient(
+        135deg,
+        #eef3f8,
+        #f8fafc
+    );
 
-            color: white;
+    color:#172033;
 
-            padding: 30px 20px;
+    min-height:100vh;
+}
 
-            box-shadow:
-                0 8px 25px rgba(0,0,0,.15);
-        }
 
-        .header-container {
-            max-width: 1150px;
-            margin: auto;
+/* =========================
+   HEADER
+========================= */
 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+header{
 
-            gap: 20px;
-        }
+    background:
+    linear-gradient(
+        135deg,
+        #071a35,
+        #0d315c,
+        #164d7c
+    );
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
+    color:white;
 
-        .logo-icon {
-            width: 55px;
-            height: 55px;
+    padding:28px 18px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.15);
+}
 
-            border-radius: 15px;
 
-            background:
-                rgba(255,255,255,.12);
+.header-container{
 
-            font-size: 30px;
-        }
+    max-width:1100px;
 
-        .logo h1 {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
+    margin:auto;
 
-        .logo p {
-            opacity: .8;
-            font-size: 14px;
-        }
+    display:flex;
 
-        .logout-btn {
-            border: none;
-            background: #b91c1c;
-            color: white;
+    justify-content:space-between;
 
-            padding: 11px 18px;
+    align-items:center;
 
-            border-radius: 10px;
+    gap:20px;
+}
 
-            font-size: 14px;
-            font-weight: bold;
 
-            cursor: pointer;
-        }
+.logo{
 
-        .logout-btn:hover {
-            background: #991b1b;
-        }
+    display:flex;
 
-        /* =========================
-           MAIN
-        ========================= */
+    align-items:center;
 
-        main {
-            max-width: 1150px;
-            margin: 35px auto;
+    gap:13px;
+}
 
-            padding: 0 18px;
-        }
 
-        .welcome {
-            background: white;
+.logo-icon{
 
-            padding: 25px;
+    width:55px;
 
-            border-radius: 18px;
+    height:55px;
 
-            margin-bottom: 25px;
+    border-radius:15px;
 
-            box-shadow:
-                0 5px 20px rgba(0,0,0,.06);
+    background:
+    rgba(255,255,255,.12);
 
-            border-right: 5px solid #164d7c;
-        }
+    display:flex;
 
-        .welcome h2 {
-            color: #0d315c;
-            margin-bottom: 8px;
-        }
+    align-items:center;
 
-        .welcome p {
-            color: #64748b;
-        }
+    justify-content:center;
 
-        /* =========================
-           STATS
-        ========================= */
+    font-size:30px;
+}
 
-        .stats {
-            display: grid;
 
-            grid-template-columns:
-                repeat(4, 1fr);
+.logo h1{
 
-            gap: 18px;
+    font-size:24px;
 
-            margin-bottom: 30px;
-        }
+    margin-bottom:5px;
+}
 
-        .stat {
-            background: white;
 
-            padding: 22px;
+.logo p{
 
-            border-radius: 16px;
+    font-size:13px;
 
-            text-align: center;
+    opacity:.8;
+}
 
-            box-shadow:
-                0 5px 18px rgba(0,0,0,.06);
-        }
 
-        .stat-icon {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
+.logout-btn{
 
-        .stat-number {
-            font-size: 30px;
-            font-weight: bold;
+    border:none;
 
-            color: #0d315c;
+    background:#b91c1c;
 
-            margin-bottom: 5px;
-        }
+    color:white;
 
-        .stat-label {
-            color: #64748b;
-            font-size: 14px;
-        }
+    padding:11px 18px;
 
-        /* =========================
-           ACTIONS
-        ========================= */
+    border-radius:10px;
 
-        .section-title {
-            color: #0d315c;
+    font-weight:bold;
 
-            font-size: 22px;
+    cursor:pointer;
+}
 
-            margin-bottom: 18px;
-        }
 
-        .actions {
-            display: grid;
+/* =========================
+   MAIN
+========================= */
 
-            grid-template-columns:
-                repeat(2, 1fr);
+main{
 
-            gap: 20px;
-        }
+    max-width:1100px;
 
-        .action {
-            text-decoration: none;
+    margin:30px auto;
 
-            background: white;
+    padding:0 18px;
+}
 
-            padding: 25px;
 
-            border-radius: 18px;
+.welcome{
 
-            display: flex;
+    background:white;
 
-            align-items: center;
+    padding:25px;
 
-            gap: 20px;
+    border-radius:18px;
 
-            color: inherit;
+    margin-bottom:25px;
 
-            box-shadow:
-                0 5px 20px rgba(0,0,0,.06);
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.06);
 
-            border: 1px solid #e5e7eb;
+    border-right:
+    5px solid #164d7c;
+}
 
-            transition:
-                transform .2s,
-                box-shadow .2s;
-        }
 
-        .action:hover {
-            transform: translateY(-3px);
+.welcome h2{
 
-            box-shadow:
-                0 10px 30px rgba(0,0,0,.1);
-        }
+    color:#0d315c;
 
-        .action-icon {
-            width: 60px;
-            height: 60px;
+    margin-bottom:8px;
+}
 
-            flex-shrink: 0;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.welcome p{
 
-            border-radius: 15px;
+    color:#64748b;
 
-            background: #eaf2f8;
+    line-height:1.7;
+}
 
-            font-size: 30px;
-        }
 
-        .action h3 {
-            color: #0d315c;
+/* =========================
+   STATS
+========================= */
 
-            font-size: 18px;
+.section-title{
 
-            margin-bottom: 7px;
-        }
+    color:#0d315c;
 
-        .action p {
-            color: #64748b;
+    font-size:21px;
 
-            font-size: 14px;
+    margin-bottom:18px;
+}
 
-            line-height: 1.6;
-        }
 
-        /* =========================
-           FOOTER
-        ========================= */
+.stats{
 
-        footer {
-            max-width: 1150px;
+    display:grid;
 
-            margin: 50px auto 25px;
+    grid-template-columns:
+    repeat(4,1fr);
 
-            padding: 20px;
+    gap:17px;
 
-            text-align: center;
+    margin-bottom:30px;
+}
 
-            color: #64748b;
 
-            font-size: 13px;
-        }
+.stat{
 
-        /* =========================
-           LOADING
-        ========================= */
+    background:white;
 
-        .loading {
-            text-align: center;
+    padding:22px 15px;
 
-            padding: 30px;
+    border-radius:16px;
 
-            color: #64748b;
-        }
+    text-align:center;
 
-        /* =========================
-           MOBILE
-        ========================= */
+    box-shadow:
+    0 5px 18px rgba(0,0,0,.06);
+}
 
-        @media (max-width: 800px) {
 
-            .stats {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+.stat-icon{
 
-            .actions {
-                grid-template-columns: 1fr;
-            }
+    font-size:28px;
 
-            .header-container {
-                flex-direction: column;
+    margin-bottom:9px;
+}
 
-                text-align: center;
-            }
 
-            .logo {
-                justify-content: center;
-            }
-        }
+.stat-number{
 
-        @media (max-width: 500px) {
+    font-size:30px;
 
-            header {
-                padding: 25px 15px;
-            }
+    font-weight:bold;
 
-            .logo h1 {
-                font-size: 20px;
-            }
+    color:#0d315c;
 
-            .logo p {
-                font-size: 12px;
-            }
+    margin-bottom:5px;
+}
 
-            main {
-                margin-top: 25px;
-            }
 
-            .stats {
-                gap: 12px;
-            }
+.stat-label{
 
-            .stat {
-                padding: 17px 10px;
-            }
+    color:#64748b;
 
-            .stat-number {
-                font-size: 25px;
-            }
+    font-size:13px;
+}
 
-            .action {
-                padding: 20px;
-            }
 
-            .action-icon {
-                width: 50px;
-                height: 50px;
+/* =========================
+   ACTIONS
+========================= */
 
-                font-size: 25px;
-            }
-        }
+.actions{
 
-    </style>
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:18px;
+}
+
+
+.action{
+
+    text-decoration:none;
+
+    color:inherit;
+
+    background:white;
+
+    padding:24px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    border:
+    1px solid #e5e7eb;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.06);
+
+    transition:.2s;
+}
+
+
+.action:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 10px 28px rgba(0,0,0,.10);
+}
+
+
+.action-icon{
+
+    width:60px;
+
+    height:60px;
+
+    flex-shrink:0;
+
+    border-radius:15px;
+
+    background:#eaf2f8;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:29px;
+}
+
+
+.action h3{
+
+    color:#0d315c;
+
+    font-size:18px;
+
+    margin-bottom:7px;
+}
+
+
+.action p{
+
+    color:#64748b;
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    max-width:1100px;
+
+    margin:45px auto 25px;
+
+    padding:20px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    font-size:13px;
+
+    line-height:2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    .stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .actions{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .header-container{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .logo h1{
+
+        font-size:20px;
+
+    }
+
+    .logo p{
+
+        font-size:12px;
+
+    }
+
+    .stat{
+
+        padding:18px 8px;
+
+    }
+
+    .stat-number{
+
+        font-size:25px;
+
+    }
+
+    .action{
+
+        padding:20px;
+
+    }
+
+    .action-icon{
+
+        width:50px;
+
+        height:50px;
+
+        font-size:25px;
+
+    }
+
+}
+
+</style>
+
 </head>
 
 
 <body>
 
+
 <header>
 
-    <div class="header-container">
-
-        <div class="logo">
-
-            <div class="logo-icon">
-                ⚖️
-            </div>
-
-            <div>
-
-                <h1>
-                    الموسوعة القانونية
-                </h1>
-
-                <p>
-                    لوحة إدارة المكتبة القانونية
-                </p>
-
-            </div>
-
-        </div>
+<div class="header-container">
 
 
-        <button
-            class="logout-btn"
-            onclick="logout()">
+<div class="logo">
 
-            🚪 تسجيل الخروج
+<div class="logo-icon">
+⚖️
+</div>
 
-        </button>
 
-    </div>
+<div>
+
+<h1>
+الموسوعة القانونية
+</h1>
+
+<p>
+لوحة إدارة المكتبة القانونية
+</p>
+
+</div>
+
+</div>
+
+
+<button
+class="logout-btn"
+onclick="logout()">
+
+🚪 تسجيل الخروج
+
+</button>
+
+
+</div>
 
 </header>
 
 
 <main>
 
-    <!-- =========================
-         WELCOME
-    ========================= -->
 
-    <section class="welcome">
+<section class="welcome">
 
-        <h2>
-            مرحبًا بك في لوحة الإدارة 👋
-        </h2>
+<h2>
+مرحبًا بك في لوحة الإدارة 👋
+</h2>
 
-        <p>
-            من هنا يمكنك إدارة المراجع والملفات
-            الموجودة في الموسوعة القانونية.
-        </p>
+<p>
+من هنا يمكنك إدارة المراجع والملفات
+والفروع والتصنيفات الخاصة بالموسوعة القانونية.
+</p>
 
-    </section>
+</section>
 
 
-    <!-- =========================
-         STATISTICS
-    ========================= -->
+<h2 class="section-title">
+📊 الإحصائيات
+</h2>
 
-    <section>
 
-        <h2 class="section-title">
-            📊 الإحصائيات
-        </h2>
+<div class="stats">
 
 
-        <div class="stats">
+<div class="stat">
 
+<div class="stat-icon">
+📚
+</div>
 
-            <div class="stat">
+<div
+id="referencesCount"
+class="stat-number">
 
-                <div class="stat-icon">
-                    📚
-                </div>
+...
 
-                <div
-                    id="referencesCount"
-                    class="stat-number">
+</div>
 
-                    ...
+<div class="stat-label">
+إجمالي المراجع
+</div>
 
-                </div>
+</div>
 
-                <div class="stat-label">
-                    عدد المراجع
-                </div>
 
-            </div>
+<div class="stat">
 
+<div class="stat-icon">
+⚖️
+</div>
 
-            <div class="stat">
+<div
+id="branchesCount"
+class="stat-number">
 
-                <div class="stat-icon">
-                    ⚖️
-                </div>
+...
 
-                <div
-                    id="branchesCount"
-                    class="stat-number">
+</div>
 
-                    ...
+<div class="stat-label">
+الفروع القانونية
+</div>
 
-                </div>
+</div>
 
-                <div class="stat-label">
-                    الفروع القانونية
-                </div>
 
-            </div>
+<div class="stat">
 
+<div class="stat-icon">
+🗂️
+</div>
 
-            <div class="stat">
+<div
+id="categoriesCount"
+class="stat-number">
 
-                <div class="stat-icon">
-                    🗂️
-                </div>
+...
 
-                <div
-                    id="categoriesCount"
-                    class="stat-number">
+</div>
 
-                    ...
+<div class="stat-label">
+التصنيفات
+</div>
 
-                </div>
+</div>
 
-                <div class="stat-label">
-                    التصنيفات
-                </div>
 
-            </div>
+<div class="stat">
 
+<div class="stat-icon">
+📄
+</div>
 
-            <div class="stat">
+<div
+id="pdfCount"
+class="stat-number">
 
-                <div class="stat-icon">
-                    📄
-                </div>
+...
 
-                <div
-                    id="pdfCount"
-                    class="stat-number">
+</div>
 
-                    ...
+<div class="stat-label">
+ملفات PDF
+</div>
 
-                </div>
+</div>
 
-                <div class="stat-label">
-                    ملفات PDF
-                </div>
 
-            </div>
+</div>
 
-        </div>
 
-    </section>
+<h2 class="section-title">
+🛠️ إدارة الموسوعة
+</h2>
 
 
-    <!-- =========================
-         MANAGEMENT
-    ========================= -->
+<div class="actions">
 
-    <section>
 
-        <h2 class="section-title">
-            🛠️ إدارة الموسوعة
-        </h2>
+<a
+class="action"
+href="add-reference.html">
 
+<div class="action-icon">
+➕
+</div>
 
-        <div class="actions">
+<div>
 
+<h3>
+إضافة مرجع
+</h3>
 
-            <!-- إضافة مرجع -->
+<p>
+إضافة كتاب أو تشريع أو بحث
+أو حكم أو درس بصيغة PDF.
+</p>
 
-            <a
-                class="action"
-                href="add-reference.html">
+</div>
 
-                <div class="action-icon">
-                    ➕
-                </div>
+</a>
 
-                <div>
 
-                    <h3>
-                        إضافة مرجع
-                    </h3>
+<a
+class="action"
+href="manage-references.html">
 
-                    <p>
-                        إضافة كتاب أو تشريع أو بحث
-                        أو حكم أو درس بصيغة PDF.
-                    </p>
+<div class="action-icon">
+📚
+</div>
 
-                </div>
+<div>
 
-            </a>
+<h3>
+إدارة المراجع
+</h3>
 
+<p>
+عرض وتعديل وحذف جميع المراجع
+الموجودة في الموسوعة.
+</p>
 
-            <!-- إدارة المراجع -->
+</div>
 
-            <a
-                class="action"
-                href="manage-references.html">
+</a>
 
-                <div class="action-icon">
-                    📚
-                </div>
 
-                <div>
+<a
+class="action"
+href="manage-categories.html">
 
-                    <h3>
-                        إدارة المراجع
-                    </h3>
+<div class="action-icon">
+⚖️
+</div>
 
-                    <p>
-                        عرض وتعديل وحذف جميع المراجع
-                        الموجودة في الموسوعة.
-                    </p>
+<div>
 
-                </div>
+<h3>
+الفروع والتصنيفات
+</h3>
 
-            </a>
+<p>
+إدارة الفروع القانونية
+وتصنيفات المراجع.
+</p>
 
+</div>
 
-            <!-- الموقع -->
+</a>
 
-            <a
-                class="action"
-                href="index.html">
 
-                <div class="action-icon">
-                    🌐
-                </div>
+<a
+class="action"
+href="index.html">
 
-                <div>
+<div class="action-icon">
+🌐
+</div>
 
-                    <h3>
-                        فتح الموقع
-                    </h3>
+<div>
 
-                    <p>
-                        الانتقال إلى الصفحة الرئيسية
-                        للموسوعة القانونية.
-                    </p>
+<h3>
+فتح الموقع
+</h3>
 
-                </div>
+<p>
+الانتقال إلى الصفحة الرئيسية
+للموسوعة القانونية.
+</p>
 
-            </a>
+</div>
 
+</a>
 
-            <!-- الإحصائيات -->
 
-            <a
-                class="action"
-                href="#"
-                onclick="showStatistics(event)">
-
-                <div class="action-icon">
-                    📈
-                </div>
-
-                <div>
-
-                    <h3>
-                        الإحصائيات التفصيلية
-                    </h3>
-
-                    <p>
-                        عرض معلومات وإحصائيات
-                        إضافية حول محتوى الموقع.
-                    </p>
-
-                </div>
-
-            </a>
-
-
-        </div>
-
-    </section>
+</div>
 
 </main>
 
 
 <footer>
 
-    <p>
-        ⚖️ الموسوعة القانونية
-    </p>
+⚖️ الموسوعة القانونية
 
-    <p>
-        جميع الحقوق محفوظة © 2026
-    </p>
+<br>
 
-    <p>
-        إدارة الموقع: فراس بسر
-    </p>
+إدارة الموقع: فراس بسر
+
+<br>
+
+جميع الحقوق محفوظة © 2026
 
 </footer>
 
 
 <script>
 
-    /* =====================================
-       SUPABASE
-    ===================================== */
 
-    const SUPABASE_URL =
-        "https://yksrckzomkowjzmsafvm.supabase.co";
+/* =================================
+   SUPABASE
+================================= */
 
-    const SUPABASE_KEY =
-        "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
 
+const SUPABASE_URL =
+"https://yksrckzomkowjzmsafvm.supabase.co";
 
-    const supabaseClient =
-        supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
 
+const SUPABASE_KEY =
+"sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
 
-    /* =====================================
-       CHECK LOGIN
-    ===================================== */
 
-    async function checkSession() {
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-            .auth
-            .getSession();
 
+/* =================================
+   CHECK SESSION
+================================= */
 
-        if (error) {
+async function checkSession(){
 
-            console.error(error);
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .auth
+    .getSession();
 
-            window.location.href =
-                "admin.html";
 
-            return;
+    if(error){
 
-        }
-
-
-        if (!data.session) {
-
-            window.location.href =
-                "admin.html";
-
-            return;
-
-        }
-
-
-        loadStatistics();
-
-    }
-
-
-    /* =====================================
-       LOAD STATISTICS
-    ===================================== */
-
-    async function loadStatistics() {
-
-        try {
-
-            /* المراجع */
-
-            const {
-                count: referencesCount,
-                error: referencesError
-            } =
-                await supabaseClient
-                .from("references")
-                .select("*", {
-                    count: "exact",
-                    head: true
-                });
-
-
-            if (!referencesError) {
-
-                document
-                    .getElementById(
-                        "referencesCount"
-                    )
-                    .textContent =
-                    referencesCount ?? 0;
-
-            }
-
-
-            /* الفروع */
-
-            const {
-                count: branchesCount,
-                error: branchesError
-            } =
-                await supabaseClient
-                .from("branches")
-                .select("*", {
-                    count: "exact",
-                    head: true
-                });
-
-
-            if (!branchesError) {
-
-                document
-                    .getElementById(
-                        "branchesCount"
-                    )
-                    .textContent =
-                    branchesCount ?? 0;
-
-            }
-
-
-            /* التصنيفات */
-
-            const {
-                count: categoriesCount,
-                error: categoriesError
-            } =
-                await supabaseClient
-                .from("reference_categories")
-                .select("*", {
-                    count: "exact",
-                    head: true
-                });
-
-
-            if (!categoriesError) {
-
-                document
-                    .getElementById(
-                        "categoriesCount"
-                    )
-                    .textContent =
-                    categoriesCount ?? 0;
-
-            }
-
-
-            /* ملفات PDF */
-
-            const {
-                data: pdfs,
-                error: pdfError
-            } =
-                await supabaseClient
-                .from("references")
-                .select("file_path");
-
-
-            if (!pdfError) {
-
-                const pdfCount =
-                    (pdfs || [])
-                    .filter(
-                        item =>
-                            item.file_path
-                    )
-                    .length;
-
-
-                document
-                    .getElementById(
-                        "pdfCount"
-                    )
-                    .textContent =
-                    pdfCount;
-
-            }
-
-
-        } catch (error) {
-
-            console.error(
-                "Statistics error:",
-                error
-            );
-
-        }
-
-    }
-
-
-    /* =====================================
-       LOGOUT
-    ===================================== */
-
-    async function logout() {
-
-        const {
-            error
-        } =
-            await supabaseClient
-            .auth
-            .signOut();
-
-
-        if (error) {
-
-            alert(
-                "حدث خطأ أثناء تسجيل الخروج."
-            );
-
-            console.error(error);
-
-            return;
-
-        }
-
+        console.error(error);
 
         window.location.href =
-            "admin.html";
+        "admin.html";
+
+        return;
 
     }
 
 
-    /* =====================================
-       STATISTICS BUTTON
-    ===================================== */
+    if(!data.session){
 
-    function showStatistics(event) {
+        window.location.href =
+        "admin.html";
 
-        event.preventDefault();
-
-        alert(
-            "الإحصائيات التفصيلية ستكون متاحة في المرحلة القادمة."
-        );
+        return;
 
     }
 
 
-    /* =====================================
-       START
-    ===================================== */
+    loadStatistics();
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
+}
 
-            checkSession();
 
+/* =================================
+   STATISTICS
+================================= */
+
+async function loadStatistics(){
+
+
+    /* المراجع */
+
+    const {
+        count: referencesCount,
+        error: referencesError
+    } =
+    await supabaseClient
+    .from("references")
+    .select(
+        "*",
+        {
+            count:"exact",
+            head:true
         }
     );
+
+
+    if(!referencesError){
+
+        document
+        .getElementById(
+            "referencesCount"
+        )
+        .textContent =
+        referencesCount ?? 0;
+
+    }
+
+
+    /* الفروع */
+
+    const {
+        count: branchesCount,
+        error: branchesError
+    } =
+    await supabaseClient
+    .from("branches")
+    .select(
+        "*",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    if(!branchesError){
+
+        document
+        .getElementById(
+            "branchesCount"
+        )
+        .textContent =
+        branchesCount ?? 0;
+
+    }
+
+
+    /* التصنيفات */
+
+    const {
+        count: categoriesCount,
+        error: categoriesError
+    } =
+    await supabaseClient
+    .from("reference_categories")
+    .select(
+        "*",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    if(!categoriesError){
+
+        document
+        .getElementById(
+            "categoriesCount"
+        )
+        .textContent =
+        categoriesCount ?? 0;
+
+    }
+
+
+    /* ملفات PDF */
+
+    const {
+        data: pdfs,
+        error: pdfError
+    } =
+    await supabaseClient
+    .from("references")
+    .select(
+        "file_path"
+    );
+
+
+    if(!pdfError){
+
+        const pdfCount =
+        (pdfs || [])
+        .filter(
+            item =>
+            item.file_path
+        )
+        .length;
+
+
+        document
+        .getElementById(
+            "pdfCount"
+        )
+        .textContent =
+        pdfCount;
+
+    }
+
+}
+
+
+/* =================================
+   LOGOUT
+================================= */
+
+async function logout(){
+
+    await supabaseClient
+    .auth
+    .signOut();
+
+
+    window.location.href =
+    "admin.html";
+
+}
+
+
+/* =================================
+   START
+================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        checkSession();
+
+    }
+);
+
 
 </script>
 
 
 </body>
+
 </html>
