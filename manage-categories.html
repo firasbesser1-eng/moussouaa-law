@@ -6,187 +6,407 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
-<title>الفروع والتصنيفات | الموسوعة القانونية</title>
+<title>إدارة الفروع والتصنيفات | الموسوعة القانونية</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+    box-sizing:border-box;
 }
 
 body{
-font-family:Arial,sans-serif;
-background:#f3f6fa;
-color:#172033;
-min-height:100vh;
+    margin:0;
+    font-family:Tahoma,Arial,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 header{
-background:linear-gradient(
-135deg,
-#071a35,
-#0d315c,
-#164d7c
-);
-color:white;
-padding:25px 18px;
-}
 
-.header{
-max-width:1100px;
-margin:auto;
-display:flex;
-align-items:center;
-gap:15px;
-}
+    background:
+    linear-gradient(
+        135deg,
+        #071a35,
+        #123e69
+    );
 
-.logo{
-font-size:28px;
+    color:white;
+
+    padding:30px 20px;
+
+    text-align:center;
+
+    box-shadow:
+    0 4px 20px
+    rgba(0,0,0,.15);
 }
 
 header h1{
-font-size:22px;
+    margin:0 0 10px;
+    font-size:27px;
 }
 
 header p{
-font-size:13px;
-opacity:.8;
-margin-top:5px;
+    margin:5px;
+    color:#dbeafe;
 }
 
-main{
-max-width:1100px;
-margin:30px auto;
-padding:0 18px;
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    width:min(1100px,94%);
+
+    margin:30px auto;
 }
 
-.top{
-display:flex;
-justify-content:space-between;
-gap:10px;
-margin-bottom:25px;
-flex-wrap:wrap;
+/* =========================
+   TOP BUTTONS
+========================= */
+
+.top-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
 }
 
-.btn{
-display:inline-block;
-padding:11px 17px;
-border-radius:9px;
-text-decoration:none;
-border:none;
-cursor:pointer;
-font-weight:bold;
-font-size:14px;
+.top-actions a{
+
+    text-decoration:none;
+
+    background:#123e69;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    font-weight:bold;
 }
 
-.back{
-background:#0d315c;
-color:white;
+/* =========================
+   PANELS
+========================= */
+
+.panel{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 5px 20px
+    rgba(0,0,0,.07);
 }
 
-.section{
-background:white;
-border-radius:16px;
-padding:22px;
-margin-bottom:25px;
-box-shadow:0 5px 20px rgba(0,0,0,.06);
+.panel h2{
+
+    margin-top:0;
+
+    color:#123e69;
+
+    border-bottom:
+    1px solid #edf0f5;
+
+    padding-bottom:15px;
 }
 
-.section h2{
-color:#0d315c;
-margin-bottom:18px;
+/* =========================
+   FORM
+========================= */
+
+.form-row{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr auto;
+
+    gap:10px;
+
+    align-items:end;
 }
 
-.add-form{
-display:grid;
-grid-template-columns:1fr 1fr auto;
-gap:10px;
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+}
+
+.form-group label{
+
+    font-weight:bold;
+
+    color:#344054;
+
+    font-size:14px;
 }
 
 input{
-width:100%;
-padding:12px;
-border:1px solid #d1d5db;
-border-radius:9px;
-font-size:14px;
+
+    width:100%;
+
+    padding:13px;
+
+    border:
+    1px solid #d6dce5;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
 }
 
 input:focus{
-outline:none;
-border-color:#164d7c;
+
+    border-color:#123e69;
+
+    box-shadow:
+    0 0 0 3px
+    rgba(18,62,105,.1);
 }
 
-.add{
-background:#15803d;
-color:white;
+button{
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:13px 18px;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    font-weight:bold;
 }
+
+.btn-primary{
+
+    background:#123e69;
+
+    color:white;
+}
+
+.btn-danger{
+
+    background:#b42318;
+
+    color:white;
+}
+
+.btn-secondary{
+
+    background:#edf4fb;
+
+    color:#123e69;
+}
+
+/* =========================
+   LIST
+========================= */
 
 .list{
-display:grid;
-gap:10px;
+
+    display:grid;
+
+    gap:12px;
+
+    margin-top:20px;
 }
 
 .item{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-padding:15px;
-border:1px solid #e5e7eb;
-border-radius:12px;
-background:#fafcff;
+
+    border:
+    1px solid #e4e7ec;
+
+    border-radius:13px;
+
+    padding:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    background:#fafbfc;
+}
+
+.item-info{
+
+    flex:1;
 }
 
 .item-name{
-font-weight:bold;
-color:#0d315c;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    color:#123e69;
+
+    margin-bottom:6px;
 }
 
 .item-slug{
-font-size:12px;
-color:#64748b;
-margin-top:4px;
-direction:ltr;
-text-align:right;
+
+    color:#667085;
+
+    font-size:13px;
+
+    direction:ltr;
+
+    text-align:right;
 }
 
-.delete{
-background:#b91c1c;
-color:white;
+.item-actions{
+
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
 }
 
-.loading,
-.empty{
-padding:25px;
-text-align:center;
-color:#64748b;
-}
+/* =========================
+   MESSAGE
+========================= */
 
 .message{
-margin-top:12px;
-font-size:14px;
+
+    display:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    margin-top:15px;
+
+    line-height:1.7;
 }
+
+.message.success{
+
+    display:block;
+
+    background:#ecfdf3;
+
+    color:#027a48;
+}
+
+.message.error{
+
+    display:block;
+
+    background:#fff1f2;
+
+    color:#b42318;
+}
+
+.loading{
+
+    text-align:center;
+
+    padding:20px;
+
+    color:#667085;
+}
+
+.empty{
+
+    text-align:center;
+
+    padding:25px;
+
+    color:#667085;
+
+    background:#f8fafc;
+
+    border-radius:10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    margin-top:40px;
+
+    background:#071a35;
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+}
+
+footer p{
+    margin:6px;
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px){
 
-.add-form{
-grid-template-columns:1fr;
-}
+    .form-row{
 
-.item{
-align-items:flex-start;
-flex-direction:column;
-}
+        grid-template-columns:1fr;
+    }
 
-.delete{
-width:100%;
-}
+    .item{
+
+        align-items:stretch;
+
+        flex-direction:column;
+    }
+
+    .item-actions{
+
+        width:100%;
+    }
+
+    .item-actions button{
+
+        flex:1;
+    }
+
+    .top-actions a{
+
+        flex:1;
+
+        text-align:center;
+    }
 
 }
 
@@ -194,625 +414,1151 @@ width:100%;
 
 </head>
 
+
 <body>
 
 
 <header>
 
-<div class="header">
+    <h1>
+        ⚙️ إدارة الفروع والتصنيفات
+    </h1>
 
-<div class="logo">
-⚖️
-</div>
+    <p>
+        الموسوعة القانونية
+    </p>
 
-<div>
-
-<h1>
-الفروع والتصنيفات
-</h1>
-
-<p>
-الموسوعة القانونية
-</p>
-
-</div>
-
-</div>
+    <p>
+        لوحة المدير
+    </p>
 
 </header>
 
 
-<main>
+<div class="container">
 
 
-<div class="top">
+    <!-- =========================
+         ACTIONS
+    ========================= -->
 
-<a
-href="dashboard.html"
-class="btn back">
+    <div class="top-actions">
 
-← لوحة التحكم
+        <a href="dashboard.html">
+            ← لوحة التحكم
+        </a>
 
-</a>
+        <a href="add-reference.html">
+            ➕ إضافة مرجع
+        </a>
 
-<a
-href="manage-references.html"
-class="btn back">
+        <a href="manage-references.html">
+            📚 إدارة المراجع
+        </a>
 
-📚 إدارة المراجع
+        <a href="index.html">
+            🏠 الموقع
+        </a>
 
-</a>
+    </div>
+
+
+
+    <!-- =========================
+         BRANCHES
+    ========================= -->
+
+    <section class="panel">
+
+        <h2>
+            ⚖️ فروع القانون
+        </h2>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>
+                    اسم الفرع
+                </label>
+
+                <input
+                    type="text"
+                    id="branchName"
+                    placeholder="مثال: القانون البحري"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Slug
+                </label>
+
+                <input
+                    type="text"
+                    id="branchSlug"
+                    placeholder="مثال: maritime"
+                    dir="ltr"
+                >
+
+            </div>
+
+
+            <button
+                class="btn-primary"
+                onclick="addBranch()"
+            >
+
+                ➕ إضافة الفرع
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="branchMessage"
+            class="message"
+        ></div>
+
+
+        <div
+            id="branchesList"
+            class="list"
+        >
+
+            <div class="loading">
+                ⏳ جاري تحميل الفروع...
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================= -->
+
+    <section class="panel">
+
+        <h2>
+            🗂️ تصنيفات المراجع
+        </h2>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>
+                    اسم التصنيف
+                </label>
+
+                <input
+                    type="text"
+                    id="categoryName"
+                    placeholder="مثال: القوانين"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Slug
+                </label>
+
+                <input
+                    type="text"
+                    id="categorySlug"
+                    placeholder="مثال: laws"
+                    dir="ltr"
+                >
+
+            </div>
+
+
+            <button
+                class="btn-primary"
+                onclick="addCategory()"
+            >
+
+                ➕ إضافة التصنيف
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="categoryMessage"
+            class="message"
+        ></div>
+
+
+        <div
+            id="categoriesList"
+            class="list"
+        >
+
+            <div class="loading">
+                ⏳ جاري تحميل التصنيفات...
+            </div>
+
+        </div>
+
+    </section>
 
 </div>
 
 
-<!-- الفروع -->
 
-<section class="section">
+<footer>
 
-<h2>
-⚖️ الفروع القانونية
-</h2>
+    <p>
+        ⚖️ الموسوعة القانونية
+    </p>
 
-<form
-id="branchForm"
-class="add-form">
+    <p>
+        فراس بسر — مدير الموسوعة القانونية
+    </p>
 
-<input
-id="branchName"
-type="text"
-placeholder="اسم الفرع القانوني"
-required>
+</footer>
 
-<input
-id="branchSlug"
-type="text"
-placeholder="slug مثل civil"
-required>
-
-<button
-class="btn add"
-type="submit">
-
-➕ إضافة
-
-</button>
-
-</form>
-
-<div
-id="branchMessage"
-class="message">
-</div>
-
-<br>
-
-<div
-id="branchesList"
-class="list">
-
-<div class="loading">
-⏳ جاري التحميل...
-</div>
-
-</div>
-
-</section>
-
-
-<!-- التصنيفات -->
-
-<section class="section">
-
-<h2>
-🗂️ تصنيفات المراجع
-</h2>
-
-<form
-id="categoryForm"
-class="add-form">
-
-<input
-id="categoryName"
-type="text"
-placeholder="اسم التصنيف"
-required>
-
-<input
-id="categorySlug"
-type="text"
-placeholder="slug مثل legislation"
-required>
-
-<button
-class="btn add"
-type="submit">
-
-➕ إضافة
-
-</button>
-
-</form>
-
-<div
-id="categoryMessage"
-class="message">
-</div>
-
-<br>
-
-<div
-id="categoriesList"
-class="list">
-
-<div class="loading">
-⏳ جاري التحميل...
-</div>
-
-</div>
-
-</section>
-
-
-</main>
 
 
 <script>
 
-
-/* =====================================
-SUPABASE
-===================================== */
+/* =========================================
+   SUPABASE
+========================================= */
 
 const SUPABASE_URL =
-"ضع_API_URL_هنا";
+"https://yksrckzomkowjzmsafvm.supabase.co";
 
 const SUPABASE_KEY =
-"ضع_Publishable_Key_هنا";
+"sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
 
 
 const supabaseClient =
 supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
-/* =====================================
-SESSION
-===================================== */
+/* =========================================
+   CHECK LOGIN
+========================================= */
 
 async function checkSession(){
 
-const {
-data,
-error
-}=await supabaseClient
-.auth
-.getSession();
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.auth.getSession();
 
-if(error || !data.session){
 
-window.location.href=
-"admin.html";
+    if(
+        error ||
+        !data.session
+    ){
 
-return;
+        window.location.href =
+            "admin.html";
 
+        return false;
+    }
+
+
+    return true;
 }
 
-loadBranches();
 
-loadCategories();
+/* =========================================
+   MESSAGE
+========================================= */
 
+function showMessage(
+    elementId,
+    text,
+    type
+){
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+
+    element.textContent =
+        text;
+
+
+    element.className =
+        "message " + type;
+
+
+    setTimeout(
+        () => {
+
+            element.className =
+                "message";
+
+        },
+        5000
+    );
 }
 
 
-/* =====================================
-BRANCHES
-===================================== */
+/* =========================================
+   LOAD BRANCHES
+========================================= */
 
 async function loadBranches(){
 
-const {
-data,
-error
-}=await supabaseClient
-.from("branches")
-.select("*")
-.order("id");
-
-const container=
-document.getElementById(
-"branchesList"
-);
-
-if(error){
-
-container.innerHTML=
-'<div class="empty">❌ تعذر تحميل الفروع</div>';
-
-console.error(error);
-
-return;
-
-}
-
-if(!data.length){
-
-container.innerHTML=
-'<div class="empty">لا توجد فروع.</div>';
-
-return;
-
-}
-
-container.innerHTML="";
-
-data.forEach(branch=>{
-
-const item=
-document.createElement("div");
-
-item.className="item";
-
-item.innerHTML=`
-
-<div>
-
-<div class="item-name">
-⚖️ ${escapeHTML(branch.name)}
-</div>
-
-<div class="item-slug">
-${escapeHTML(branch.slug)}
-</div>
-
-</div>
-
-<button
-class="btn delete"
-onclick="deleteBranch(${branch.id})">
-
-🗑️ حذف
-
-</button>
-
-`;
-
-container.appendChild(item);
-
-});
-
-}
+    const container =
+        document.getElementById(
+            "branchesList"
+        );
 
 
-/* =====================================
-ADD BRANCH
-===================================== */
-
-document
-.getElementById("branchForm")
-.addEventListener(
-"submit",
-async function(event){
-
-event.preventDefault();
-
-const name=
-document
-.getElementById("branchName")
-.value
-.trim();
-
-const slug=
-document
-.getElementById("branchSlug")
-.value
-.trim();
-
-if(!name || !slug){
-
-return;
-
-}
-
-const {
-error
-}=await supabaseClient
-.from("branches")
-.insert({
-name:name,
-slug:slug
-});
-
-if(error){
-
-document
-.getElementById("branchMessage")
-textContent=
-"❌ "+error.message;
-
-return;
-
-}
-
-document
-.getElementById("branchName")
-.value="";
-
-document
-.getElementById("branchSlug")
-.value="";
-
-document
-.getElementById("branchMessage")
-textContent=
-"✅ تمت إضافة الفرع بنجاح.";
-
-loadBranches();
-
-});
+    container.innerHTML =
+        `
+        <div class="loading">
+            ⏳ جاري تحميل الفروع...
+        </div>
+        `;
 
 
-/* =====================================
-DELETE BRANCH
-===================================== */
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
 
-async function deleteBranch(id){
+        .from("branches")
 
-const confirmDelete=
-confirm(
-"هل أنت متأكد من حذف هذا الفرع؟"
-);
+        .select(
+            "id,name,slug"
+        )
 
-if(!confirmDelete){
+        .order(
+            "id",
+            {
+                ascending:true
+            }
+        );
 
-return;
 
-}
+    if(error){
 
-const {
-error
-}=await supabaseClient
-.from("branches")
-.delete()
-.eq("id",id);
+        console.error(error);
 
-if(error){
+        container.innerHTML =
+        `
+        <div class="message error">
 
-alert(
-"لا يمكن حذف الفرع إذا كانت هناك مراجع مرتبطة به."
-);
+            ❌ تعذر تحميل الفروع.
 
-console.error(error);
+            <br>
 
-return;
+            ${escapeHTML(error.message)}
 
-}
+        </div>
+        `;
 
-loadBranches();
+        return;
+    }
+
+
+    if(
+        !data ||
+        data.length === 0
+    ){
+
+        container.innerHTML =
+        `
+        <div class="empty">
+
+            لا توجد فروع.
+
+        </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        "";
+
+
+    data.forEach(
+        branch => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "item";
+
+
+            item.innerHTML = `
+
+                <div class="item-info">
+
+                    <div class="item-name">
+
+                        ⚖️
+                        ${escapeHTML(
+                            branch.name
+                        )}
+
+                    </div>
+
+                    <div class="item-slug">
+
+                        ${escapeHTML(
+                            branch.slug
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="item-actions">
+
+                    <button
+                        class="btn-secondary"
+                        onclick="copyBranchLink('${escapeJS(branch.slug)}')"
+                    >
+
+                        🔗 الرابط
+
+                    </button>
+
+
+                    <button
+                        class="btn-danger"
+                        onclick="deleteBranch(${branch.id})"
+                    >
+
+                        🗑️ حذف
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                item
+            );
+
+        }
+    );
 
 }
 
 
-/* =====================================
-CATEGORIES
-===================================== */
+/* =========================================
+   ADD BRANCH
+========================================= */
+
+async function addBranch(){
+
+    const nameInput =
+        document.getElementById(
+            "branchName"
+        );
+
+
+    const slugInput =
+        document.getElementById(
+            "branchSlug"
+        );
+
+
+    const name =
+        nameInput.value.trim();
+
+
+    const slug =
+        slugInput.value
+            .trim()
+            .toLowerCase();
+
+
+    if(!name){
+
+        showMessage(
+            "branchMessage",
+            "⚠️ اكتب اسم الفرع.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!slug){
+
+        showMessage(
+            "branchMessage",
+            "⚠️ اكتب Slug للفرع.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(
+        !/^[a-z0-9-]+$/.test(slug)
+    ){
+
+        showMessage(
+            "branchMessage",
+            "⚠️ الـ Slug يجب أن يحتوي على حروف إنجليزية صغيرة وأرقام وشرطة فقط.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+
+        .from("branches")
+
+        .insert({
+
+            name:name,
+
+            slug:slug
+
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+
+        if(
+            error.code === "23505"
+        ){
+
+            showMessage(
+                "branchMessage",
+                "❌ يوجد فرع بنفس الاسم أو الـ Slug.",
+                "error"
+            );
+
+        }else{
+
+            showMessage(
+                "branchMessage",
+                "❌ تعذر إضافة الفرع: "
+                +
+                error.message,
+                "error"
+            );
+
+        }
+
+        return;
+    }
+
+
+    nameInput.value =
+        "";
+
+    slugInput.value =
+        "";
+
+
+    showMessage(
+        "branchMessage",
+        "✅ تمت إضافة الفرع بنجاح.",
+        "success"
+    );
+
+
+    await loadBranches();
+
+}
+
+
+/* =========================================
+   DELETE BRANCH
+========================================= */
+
+async function deleteBranch(
+    id
+){
+
+    const confirmed =
+        confirm(
+            "هل أنت متأكد من حذف هذا الفرع؟\n\nإذا كانت هناك مراجع مرتبطة به فلن يسمح النظام بالحذف."
+        );
+
+
+    if(!confirmed){
+
+        return;
+    }
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+
+        .from("branches")
+
+        .delete()
+
+        .eq(
+            "id",
+            id
+        );
+
+
+    if(error){
+
+        console.error(error);
+
+
+        showMessage(
+            "branchMessage",
+            "❌ تعذر حذف الفرع. قد تكون هناك مراجع مرتبطة به.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "branchMessage",
+        "✅ تم حذف الفرع.",
+        "success"
+    );
+
+
+    await loadBranches();
+
+}
+
+
+/* =========================================
+   COPY BRANCH LINK
+========================================= */
+
+async function copyBranchLink(
+    slug
+){
+
+    const link =
+        window.location.origin
+        +
+        window.location.pathname
+            .replace(
+                "manage-categories.html",
+                "branch.html"
+            )
+        +
+        "?branch="
+        +
+        encodeURIComponent(
+            slug
+        );
+
+
+    try{
+
+        await navigator.clipboard.writeText(
+            link
+        );
+
+
+        showMessage(
+            "branchMessage",
+            "✅ تم نسخ رابط الفرع.",
+            "success"
+        );
+
+    }catch(error){
+
+        prompt(
+            "انسخ الرابط:",
+            link
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   LOAD CATEGORIES
+========================================= */
 
 async function loadCategories(){
 
-const {
-data,
-error
-}=await supabaseClient
-.from("reference_categories")
-.select("*")
-.order("id");
-
-const container=
-document.getElementById(
-"categoriesList"
-);
-
-if(error){
-
-container.innerHTML=
-'<div class="empty">❌ تعذر تحميل التصنيفات</div>';
-
-console.error(error);
-
-return;
-
-}
-
-if(!data.length){
-
-container.innerHTML=
-'<div class="empty">لا توجد تصنيفات.</div>';
-
-return;
-
-}
-
-container.innerHTML="";
-
-data.forEach(category=>{
-
-const item=
-document.createElement("div");
-
-item.className="item";
-
-item.innerHTML=`
-
-<div>
-
-<div class="item-name">
-🗂️ ${escapeHTML(category.name)}
-</div>
-
-<div class="item-slug">
-${escapeHTML(category.slug)}
-</div>
-
-</div>
-
-<button
-class="btn delete"
-onclick="deleteCategory(${category.id})">
-
-🗑️ حذف
-
-</button>
-
-`;
-
-container.appendChild(item);
-
-});
-
-}
+    const container =
+        document.getElementById(
+            "categoriesList"
+        );
 
 
-/* =====================================
-ADD CATEGORY
-===================================== */
-
-document
-.getElementById("categoryForm")
-.addEventListener(
-"submit",
-async function(event){
-
-event.preventDefault();
-
-const name=
-document
-.getElementById("categoryName")
-.value
-.trim();
-
-const slug=
-document
-.getElementById("categorySlug")
-.value
-.trim();
-
-if(!name || !slug){
-
-return;
-
-}
-
-const {
-error
-}=await supabaseClient
-.from("reference_categories")
-.insert({
-name:name,
-slug:slug
-});
-
-if(error){
-
-document
-.getElementById("categoryMessage")
-textContent=
-"❌ "+error.message;
-
-return;
-
-}
-
-document
-.getElementById("categoryName")
-.value="";
-
-document
-.getElementById("categorySlug")
-.value="";
-
-document
-.getElementById("categoryMessage")
-textContent=
-"✅ تمت إضافة التصنيف بنجاح.";
-
-loadCategories();
-
-});
+    container.innerHTML =
+        `
+        <div class="loading">
+            ⏳ جاري تحميل التصنيفات...
+        </div>
+        `;
 
 
-/* =====================================
-DELETE CATEGORY
-===================================== */
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
 
-async function deleteCategory(id){
+        .from(
+            "reference_categories"
+        )
 
-const confirmDelete=
-confirm(
-"هل أنت متأكد من حذف هذا التصنيف؟"
-);
+        .select(
+            "id,name,slug"
+        )
 
-if(!confirmDelete){
+        .order(
+            "id",
+            {
+                ascending:true
+            }
+        );
 
-return;
 
-}
+    if(error){
 
-const {
-error
-}=await supabaseClient
-.from("reference_categories")
-.delete()
-.eq("id",id);
+        console.error(error);
 
-if(error){
+        container.innerHTML =
+        `
+        <div class="message error">
 
-alert(
-"لا يمكن حذف التصنيف إذا كانت هناك مراجع مرتبطة به."
-);
+            ❌ تعذر تحميل التصنيفات.
 
-console.error(error);
+            <br>
 
-return;
+            ${escapeHTML(error.message)}
 
-}
+        </div>
+        `;
 
-loadCategories();
+        return;
+    }
+
+
+    if(
+        !data ||
+        data.length === 0
+    ){
+
+        container.innerHTML =
+        `
+        <div class="empty">
+
+            لا توجد تصنيفات.
+
+        </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        "";
+
+
+    data.forEach(
+        category => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "item";
+
+
+            item.innerHTML = `
+
+                <div class="item-info">
+
+                    <div class="item-name">
+
+                        🗂️
+                        ${escapeHTML(
+                            category.name
+                        )}
+
+                    </div>
+
+                    <div class="item-slug">
+
+                        ${escapeHTML(
+                            category.slug
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="item-actions">
+
+                    <button
+                        class="btn-danger"
+                        onclick="deleteCategory(${category.id})"
+                    >
+
+                        🗑️ حذف
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                item
+            );
+
+        }
+    );
 
 }
 
 
-/* =====================================
-ESCAPE HTML
-===================================== */
+/* =========================================
+   ADD CATEGORY
+========================================= */
 
-function escapeHTML(value){
+async function addCategory(){
 
-if(!value){
+    const nameInput =
+        document.getElementById(
+            "categoryName"
+        );
 
-return "";
+
+    const slugInput =
+        document.getElementById(
+            "categorySlug"
+        );
+
+
+    const name =
+        nameInput.value.trim();
+
+
+    const slug =
+        slugInput.value
+            .trim()
+            .toLowerCase();
+
+
+    if(!name){
+
+        showMessage(
+            "categoryMessage",
+            "⚠️ اكتب اسم التصنيف.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!slug){
+
+        showMessage(
+            "categoryMessage",
+            "⚠️ اكتب Slug للتصنيف.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(
+        !/^[a-z0-9-]+$/.test(slug)
+    ){
+
+        showMessage(
+            "categoryMessage",
+            "⚠️ الـ Slug يجب أن يحتوي على حروف إنجليزية صغيرة وأرقام وشرطة فقط.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+
+        .from(
+            "reference_categories"
+        )
+
+        .insert({
+
+            name:name,
+
+            slug:slug
+
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+
+        if(
+            error.code === "23505"
+        ){
+
+            showMessage(
+                "categoryMessage",
+                "❌ يوجد تصنيف بنفس الاسم أو الـ Slug.",
+                "error"
+            );
+
+        }else{
+
+            showMessage(
+                "categoryMessage",
+                "❌ تعذر إضافة التصنيف: "
+                +
+                error.message,
+                "error"
+            );
+
+        }
+
+        return;
+    }
+
+
+    nameInput.value =
+        "";
+
+    slugInput.value =
+        "";
+
+
+    showMessage(
+        "categoryMessage",
+        "✅ تمت إضافة التصنيف بنجاح.",
+        "success"
+    );
+
+
+    await loadCategories();
 
 }
 
-return String(value)
 
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+/* =========================================
+   DELETE CATEGORY
+========================================= */
+
+async function deleteCategory(
+    id
+){
+
+    const confirmed =
+        confirm(
+            "هل أنت متأكد من حذف هذا التصنيف؟\n\nإذا كانت هناك مراجع مرتبطة به فلن يسمح النظام بالحذف."
+        );
+
+
+    if(!confirmed){
+
+        return;
+    }
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+
+        .from(
+            "reference_categories"
+        )
+
+        .delete()
+
+        .eq(
+            "id",
+            id
+        );
+
+
+    if(error){
+
+        console.error(error);
+
+
+        showMessage(
+            "categoryMessage",
+            "❌ تعذر حذف التصنيف. قد تكون هناك مراجع مرتبطة به.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "categoryMessage",
+        "✅ تم حذف التصنيف.",
+        "success"
+    );
+
+
+    await loadCategories();
 
 }
 
 
-/* =====================================
-START
-===================================== */
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(
+    value
+){
+
+    if(!value){
+
+        return "";
+    }
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================
+   ESCAPE JAVASCRIPT
+========================================= */
+
+function escapeJS(
+    value
+){
+
+    return String(value)
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+        .replace(
+            /'/g,
+            "\\'"
+        );
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+async function start(){
+
+    const loggedIn =
+        await checkSession();
+
+
+    if(!loggedIn){
+
+        return;
+    }
+
+
+    await Promise.all([
+
+        loadBranches(),
+
+        loadCategories()
+
+    ]);
+
+}
+
 
 document.addEventListener(
-"DOMContentLoaded",
-checkSession
+    "DOMContentLoaded",
+    start
 );
 
 </script>
