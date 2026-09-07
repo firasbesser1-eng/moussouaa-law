@@ -10,866 +10,848 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root {
-      --navy: #0b1f33;
-      --navy-2: #102b46;
-      --navy-3: #173b5e;
-      --gold: #c8a45d;
-      --gold-light: #e0c889;
-      --ivory: #f7f3ea;
-      --white: #ffffff;
-      --text: #1d2935;
-      --muted: #718096;
-      --border: #e4e8ed;
-      --success: #19734a;
-      --success-bg: #eaf7f0;
-      --danger: #b42318;
-      --danger-bg: #fff1f0;
-      --warning: #946200;
-      --warning-bg: #fff8e6;
-      --shadow: 0 12px 35px rgba(11, 31, 51, 0.08);
-      --radius: 18px;
+      --navy:#0b1f33;
+      --navy-2:#102b46;
+      --navy-3:#173b5e;
+      --gold:#c8a45d;
+      --gold-light:#e0c889;
+      --ivory:#f7f3ea;
+      --white:#ffffff;
+      --text:#1d2935;
+      --muted:#718096;
+      --border:#e4e8ed;
+      --success:#19734a;
+      --success-bg:#eaf7f0;
+      --danger:#b42318;
+      --danger-bg:#fff1f0;
+      --warning:#946200;
+      --warning-bg:#fff8e6;
+      --shadow:0 12px 35px rgba(11,31,51,.08);
+      --radius:18px;
     }
 
     * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior:smooth;
     }
 
     body {
-      font-family: "Cairo", sans-serif;
-      background: #f5f6f8;
-      color: var(--text);
-      line-height: 1.8;
+      font-family:"Cairo",sans-serif;
+      background:#f5f6f8;
+      color:var(--text);
+      line-height:1.8;
     }
 
-    button,
-    input,
-    select,
-    textarea {
-      font-family: inherit;
+    button,input,select,textarea {
+      font-family:inherit;
     }
 
     a {
-      text-decoration: none;
-      color: inherit;
+      text-decoration:none;
+      color:inherit;
     }
 
     .container {
-      width: min(1180px, calc(100% - 30px));
-      margin: auto;
+      width:min(1180px,calc(100% - 30px));
+      margin:auto;
     }
 
-    /* ================= HEADER ================= */
-
     header {
-      background: linear-gradient(135deg, var(--navy), var(--navy-2));
-      color: white;
-      border-bottom: 1px solid rgba(200, 164, 93, 0.25);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      background:linear-gradient(135deg,var(--navy),var(--navy-2));
+      color:white;
+      border-bottom:1px solid rgba(200,164,93,.25);
+      position:sticky;
+      top:0;
+      z-index:100;
     }
 
     .header-inner {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 13px;
+      display:flex;
+      align-items:center;
+      gap:13px;
     }
 
     .brand-icon {
-      width: 46px;
-      height: 46px;
-      border: 1px solid rgba(224, 200, 137, 0.55);
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      color: var(--gold-light);
-      flex-shrink: 0;
+      width:46px;
+      height:46px;
+      border:1px solid rgba(224,200,137,.55);
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      color:var(--gold-light);
+      flex-shrink:0;
     }
 
     .brand-icon svg {
-      width: 25px;
-      height: 25px;
+      width:25px;
+      height:25px;
     }
 
     .brand-title {
-      font-family: "Amiri", serif;
-      font-size: 23px;
-      font-weight: 700;
-      line-height: 1.2;
+      font-family:"Amiri",serif;
+      font-size:23px;
+      font-weight:700;
+      line-height:1.2;
     }
 
     .brand-subtitle {
-      color: #b7c3cf;
-      font-size: 11px;
-      margin-top: 2px;
+      color:#b7c3cf;
+      font-size:11px;
+      margin-top:2px;
     }
 
     .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
     .header-btn {
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.05);
-      color: white;
-      padding: 9px 13px;
-      border-radius: 10px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: 0.2s;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.05);
+      color:white;
+      padding:9px 13px;
+      border-radius:10px;
+      font-size:13px;
+      cursor:pointer;
+      transition:.2s;
     }
 
     .header-btn:hover {
-      background: rgba(255,255,255,0.11);
+      background:rgba(255,255,255,.11);
     }
-
-    /* ================= HERO ================= */
 
     .page-hero {
       background:
-        radial-gradient(circle at 10% 20%, rgba(200,164,93,0.12), transparent 25%),
-        linear-gradient(135deg, var(--navy), var(--navy-2));
-      color: white;
-      padding: 42px 0;
+        radial-gradient(circle at 10% 20%,rgba(200,164,93,.12),transparent 25%),
+        linear-gradient(135deg,var(--navy),var(--navy-2));
+      color:white;
+      padding:42px 0;
     }
 
     .hero-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 25px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:25px;
     }
 
     .hero-text h1 {
-      font-family: "Amiri", serif;
-      font-size: clamp(30px, 5vw, 44px);
-      margin-bottom: 8px;
+      font-family:"Amiri",serif;
+      font-size:clamp(30px,5vw,44px);
+      margin-bottom:8px;
     }
 
     .hero-text p {
-      color: #c4ced8;
-      font-size: 14px;
-      max-width: 700px;
+      color:#c4ced8;
+      font-size:14px;
+      max-width:700px;
     }
 
     .hero-badge {
-      border: 1px solid rgba(224,200,137,0.45);
-      color: var(--gold-light);
-      border-radius: 50%;
-      width: 86px;
-      height: 86px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
+      border:1px solid rgba(224,200,137,.45);
+      color:var(--gold-light);
+      border-radius:50%;
+      width:86px;
+      height:86px;
+      display:grid;
+      place-items:center;
+      flex-shrink:0;
     }
 
     .hero-badge svg {
-      width: 43px;
-      height: 43px;
+      width:43px;
+      height:43px;
     }
-
-    /* ================= MAIN ================= */
 
     main {
-      padding: 30px 0 60px;
+      padding:30px 0 60px;
     }
 
-    /* ================= STATS ================= */
-
     .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 25px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-bottom:25px;
     }
 
     .stat-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      gap: 15px;
+      background:white;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      gap:15px;
     }
 
     .stat-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 13px;
-      background: var(--ivory);
-      color: var(--gold);
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
+      width:48px;
+      height:48px;
+      border-radius:13px;
+      background:var(--ivory);
+      color:var(--gold);
+      display:grid;
+      place-items:center;
+      flex-shrink:0;
     }
 
     .stat-icon svg {
-      width: 23px;
-      height: 23px;
+      width:23px;
+      height:23px;
     }
 
     .stat-label {
-      color: var(--muted);
-      font-size: 12px;
+      color:var(--muted);
+      font-size:12px;
     }
 
     .stat-value {
-      font-size: 25px;
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1.2;
+      font-size:25px;
+      font-weight:800;
+      color:var(--navy);
+      line-height:1.2;
     }
 
-    /* ================= PANEL ================= */
-
     .panel {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 25px;
-      overflow: hidden;
+      background:white;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      margin-bottom:25px;
+      overflow:hidden;
     }
 
     .panel-header {
-      padding: 20px 22px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
+      padding:20px 22px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px;
     }
 
     .panel-title {
-      font-family: "Amiri", serif;
-      color: var(--navy);
-      font-size: 24px;
+      font-family:"Amiri",serif;
+      color:var(--navy);
+      font-size:24px;
     }
 
     .panel-subtitle {
-      color: var(--muted);
-      font-size: 12px;
+      color:var(--muted);
+      font-size:12px;
     }
 
     .panel-body {
-      padding: 22px;
+      padding:22px;
     }
 
-    /* ================= FILTERS ================= */
-
     .filters {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr auto;
-      gap: 12px;
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr auto;
+      gap:12px;
     }
 
     .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
     }
 
     .field label {
-      font-size: 12px;
-      color: #526170;
-      font-weight: 700;
+      font-size:12px;
+      color:#526170;
+      font-weight:700;
     }
 
     .input,
     .select,
     .textarea {
-      width: 100%;
-      border: 1px solid #d8dee5;
-      background: #fff;
-      border-radius: 11px;
-      padding: 11px 13px;
-      outline: none;
-      color: var(--text);
-      font-size: 13px;
-      transition: 0.2s;
+      width:100%;
+      border:1px solid #d8dee5;
+      background:#fff;
+      border-radius:11px;
+      padding:11px 13px;
+      outline:none;
+      color:var(--text);
+      font-size:13px;
+      transition:.2s;
     }
 
     .input:focus,
     .select:focus,
     .textarea:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(200,164,93,0.12);
+      border-color:var(--gold);
+      box-shadow:0 0 0 3px rgba(200,164,93,.12);
+    }
+
+    .select:disabled {
+      background:#f1f3f5;
+      color:#9aa5b1;
+      cursor:not-allowed;
     }
 
     .textarea {
-      min-height: 105px;
-      resize: vertical;
+      min-height:105px;
+      resize:vertical;
     }
 
     .btn {
-      border: 0;
-      border-radius: 11px;
-      padding: 11px 16px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 700;
-      transition: 0.2s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      white-space: nowrap;
+      border:0;
+      border-radius:11px;
+      padding:11px 16px;
+      cursor:pointer;
+      font-size:13px;
+      font-weight:700;
+      transition:.2s;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+      white-space:nowrap;
     }
 
     .btn svg {
-      width: 17px;
-      height: 17px;
+      width:17px;
+      height:17px;
     }
 
     .btn-primary {
-      background: var(--navy);
-      color: white;
+      background:var(--navy);
+      color:white;
     }
 
     .btn-primary:hover {
-      background: var(--navy-3);
+      background:var(--navy-3);
     }
 
     .btn-gold {
-      background: var(--gold);
-      color: var(--navy);
+      background:var(--gold);
+      color:var(--navy);
     }
 
     .btn-gold:hover {
-      background: var(--gold-light);
+      background:var(--gold-light);
     }
 
     .btn-light {
-      background: #f1f3f5;
-      color: var(--navy);
+      background:#f1f3f5;
+      color:var(--navy);
     }
 
     .btn-danger {
-      background: var(--danger-bg);
-      color: var(--danger);
-      border: 1px solid #ffd1cd;
+      background:var(--danger-bg);
+      color:var(--danger);
+      border:1px solid #ffd1cd;
     }
 
     .btn-success {
-      background: var(--success-bg);
-      color: var(--success);
-      border: 1px solid #c6ead7;
+      background:var(--success-bg);
+      color:var(--success);
+      border:1px solid #c6ead7;
     }
 
     .btn:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
+      opacity:.55;
+      cursor:not-allowed;
     }
 
     .filter-actions {
-      display: flex;
-      align-items: end;
-      gap: 8px;
+      display:flex;
+      align-items:end;
+      gap:8px;
     }
 
-    /* ================= RESULTS ================= */
-
     .results-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      margin-bottom:18px;
     }
 
     .results-count {
-      color: var(--muted);
-      font-size: 13px;
+      color:var(--muted);
+      font-size:13px;
     }
 
     .results-count strong {
-      color: var(--navy);
+      color:var(--navy);
     }
 
     .references-list {
-      display: grid;
-      gap: 13px;
+      display:grid;
+      gap:13px;
     }
 
     .reference-card {
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 18px;
-      background: #fff;
-      transition: 0.2s;
+      border:1px solid var(--border);
+      border-radius:15px;
+      padding:18px;
+      background:#fff;
+      transition:.2s;
     }
 
     .reference-card:hover {
-      border-color: rgba(200,164,93,0.55);
-      box-shadow: 0 8px 24px rgba(11,31,51,0.06);
+      border-color:rgba(200,164,93,.55);
+      box-shadow:0 8px 24px rgba(11,31,51,.06);
     }
 
     .reference-main {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
     }
 
     .reference-info {
-      min-width: 0;
-      flex: 1;
+      min-width:0;
+      flex:1;
     }
 
     .reference-title {
-      color: var(--navy);
-      font-family: "Amiri", serif;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 5px;
-      word-break: break-word;
+      color:var(--navy);
+      font-family:"Amiri",serif;
+      font-size:22px;
+      font-weight:700;
+      margin-bottom:5px;
+      word-break:break-word;
     }
 
     .reference-author {
-      color: #596979;
-      font-size: 12px;
-      margin-bottom: 8px;
+      color:#596979;
+      font-size:12px;
+      margin-bottom:8px;
     }
 
     .reference-description {
-      color: #667585;
-      font-size: 12px;
-      line-height: 1.9;
-      margin-bottom: 12px;
+      color:#667585;
+      font-size:12px;
+      line-height:1.9;
+      margin-bottom:12px;
     }
 
     .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
     }
 
     .badge {
-      background: var(--ivory);
-      color: #745b24;
-      border: 1px solid #ead9ad;
-      padding: 4px 9px;
-      border-radius: 20px;
-      font-size: 10px;
-      font-weight: 700;
+      background:var(--ivory);
+      color:#745b24;
+      border:1px solid #ead9ad;
+      padding:4px 9px;
+      border-radius:20px;
+      font-size:10px;
+      font-weight:700;
     }
 
     .badge.branch {
-      background: #edf3f8;
-      color: #274966;
-      border-color: #d5e2ed;
+      background:#edf3f8;
+      color:#274966;
+      border-color:#d5e2ed;
     }
 
     .reference-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      width: 145px;
-      flex-shrink: 0;
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+      width:145px;
+      flex-shrink:0;
     }
 
     .reference-actions .btn {
-      width: 100%;
+      width:100%;
     }
 
     .empty-state {
-      text-align: center;
-      padding: 55px 20px;
-      color: var(--muted);
+      text-align:center;
+      padding:55px 20px;
+      color:var(--muted);
     }
 
     .empty-icon {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      background: var(--ivory);
-      color: var(--gold);
-      margin: 0 auto 14px;
-      display: grid;
-      place-items: center;
+      width:65px;
+      height:65px;
+      border-radius:50%;
+      background:var(--ivory);
+      color:var(--gold);
+      margin:0 auto 14px;
+      display:grid;
+      place-items:center;
     }
 
     .empty-icon svg {
-      width: 29px;
-      height: 29px;
+      width:29px;
+      height:29px;
     }
 
     .empty-state h3 {
-      color: var(--navy);
-      font-family: "Amiri", serif;
-      font-size: 23px;
-      margin-bottom: 4px;
+      color:var(--navy);
+      font-family:"Amiri",serif;
+      font-size:23px;
+      margin-bottom:4px;
     }
 
-    /* ================= STATUS ================= */
-
     .status {
-      display: none;
-      margin-bottom: 20px;
-      padding: 13px 15px;
-      border-radius: 11px;
-      font-size: 13px;
-      border: 1px solid transparent;
+      display:none;
+      margin-bottom:20px;
+      padding:13px 15px;
+      border-radius:11px;
+      font-size:13px;
+      border:1px solid transparent;
     }
 
     .status.show {
-      display: block;
+      display:block;
     }
 
     .status.success {
-      background: var(--success-bg);
-      color: var(--success);
-      border-color: #c6ead7;
+      background:var(--success-bg);
+      color:var(--success);
+      border-color:#c6ead7;
     }
 
     .status.error {
-      background: var(--danger-bg);
-      color: var(--danger);
-      border-color: #ffd1cd;
+      background:var(--danger-bg);
+      color:var(--danger);
+      border-color:#ffd1cd;
     }
 
     .status.warning {
-      background: var(--warning-bg);
-      color: var(--warning);
-      border-color: #f2dda7;
+      background:var(--warning-bg);
+      color:var(--warning);
+      border-color:#f2dda7;
     }
 
-    /* ================= MODAL ================= */
-
     .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(4, 14, 24, 0.65);
-      z-index: 500;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 15px;
+      position:fixed;
+      inset:0;
+      background:rgba(4,14,24,.65);
+      z-index:500;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:15px;
     }
 
     .modal-overlay.show {
-      display: flex;
+      display:flex;
     }
 
     .modal {
-      width: min(700px, 100%);
-      max-height: 92vh;
-      overflow-y: auto;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+      width:min(700px,100%);
+      max-height:92vh;
+      overflow-y:auto;
+      background:white;
+      border-radius:20px;
+      box-shadow:0 25px 70px rgba(0,0,0,.25);
     }
 
     .modal-header {
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      position: sticky;
-      top: 0;
-      background: white;
-      z-index: 2;
+      padding:20px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      position:sticky;
+      top:0;
+      background:white;
+      z-index:2;
     }
 
     .modal-header h2 {
-      color: var(--navy);
-      font-family: "Amiri", serif;
-      font-size: 25px;
+      color:var(--navy);
+      font-family:"Amiri",serif;
+      font-size:25px;
     }
 
     .close-btn {
-      width: 38px;
-      height: 38px;
-      border: 0;
-      border-radius: 10px;
-      background: #f1f3f5;
-      color: #526170;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
+      width:38px;
+      height:38px;
+      border:0;
+      border-radius:10px;
+      background:#f1f3f5;
+      color:#526170;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
     }
 
     .close-btn svg {
-      width: 20px;
-      height: 20px;
+      width:20px;
+      height:20px;
     }
 
     .modal-body {
-      padding: 22px;
+      padding:22px;
     }
 
     .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
     }
 
     .full {
-      grid-column: 1 / -1;
+      grid-column:1 / -1;
     }
 
     .file-box {
-      border: 1px dashed #cfd6dd;
-      border-radius: 12px;
-      padding: 15px;
-      background: #fafbfc;
+      border:1px dashed #cfd6dd;
+      border-radius:12px;
+      padding:15px;
+      background:#fafbfc;
     }
 
     .file-box input {
-      width: 100%;
-      font-size: 12px;
+      width:100%;
+      font-size:12px;
     }
 
     .file-note {
-      color: var(--muted);
-      font-size: 11px;
-      margin-top: 6px;
+      color:var(--muted);
+      font-size:11px;
+      margin-top:6px;
     }
 
     .modal-footer {
-      padding: 18px 22px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: flex-start;
-      gap: 8px;
-      position: sticky;
-      bottom: 0;
-      background: white;
+      padding:18px 22px;
+      border-top:1px solid var(--border);
+      display:flex;
+      justify-content:flex-start;
+      gap:8px;
+      position:sticky;
+      bottom:0;
+      background:white;
     }
 
-    /* ================= CONFIRM ================= */
-
     .confirm-content {
-      text-align: center;
-      padding: 10px;
+      text-align:center;
+      padding:10px;
     }
 
     .confirm-icon {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      background: var(--danger-bg);
-      color: var(--danger);
-      display: grid;
-      place-items: center;
-      margin: 0 auto 15px;
+      width:65px;
+      height:65px;
+      border-radius:50%;
+      background:var(--danger-bg);
+      color:var(--danger);
+      display:grid;
+      place-items:center;
+      margin:0 auto 15px;
     }
 
     .confirm-icon svg {
-      width: 29px;
-      height: 29px;
+      width:29px;
+      height:29px;
     }
 
     .confirm-content h3 {
-      font-family: "Amiri", serif;
-      font-size: 24px;
-      color: var(--navy);
-      margin-bottom: 5px;
+      font-family:"Amiri",serif;
+      font-size:24px;
+      color:var(--navy);
+      margin-bottom:5px;
     }
 
     .confirm-content p {
-      color: var(--muted);
-      font-size: 13px;
+      color:var(--muted);
+      font-size:13px;
     }
 
-    /* ================= FOOTER ================= */
-
     footer {
-      background: var(--navy);
-      color: white;
-      padding: 28px 0;
-      border-top: 1px solid rgba(200,164,93,0.25);
+      background:var(--navy);
+      color:white;
+      padding:28px 0;
+      border-top:1px solid rgba(200,164,93,.25);
     }
 
     .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px;
     }
 
     .footer-title {
-      font-family: "Amiri", serif;
-      font-size: 19px;
-      color: var(--gold-light);
+      font-family:"Amiri",serif;
+      font-size:19px;
+      color:var(--gold-light);
     }
 
     .footer-text {
-      color: #aebbc7;
-      font-size: 11px;
+      color:#aebbc7;
+      font-size:11px;
     }
 
-    /* ================= RESPONSIVE ================= */
+    @media(max-width:900px) {
 
-    @media (max-width: 900px) {
       .filters {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:1fr 1fr;
       }
 
       .filter-actions {
-        align-items: stretch;
+        align-items:stretch;
       }
 
       .filter-actions .btn {
-        flex: 1;
+        flex:1;
       }
 
       .reference-main {
-        flex-direction: column;
+        flex-direction:column;
       }
 
       .reference-actions {
-        width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
+        width:100%;
+        flex-direction:row;
+        flex-wrap:wrap;
       }
 
       .reference-actions .btn {
-        width: auto;
-        flex: 1;
-        min-width: 120px;
+        width:auto;
+        flex:1;
+        min-width:120px;
       }
     }
 
-    @media (max-width: 650px) {
+    @media(max-width:650px) {
+
       .container {
-        width: min(100% - 20px, 1180px);
+        width:min(100% - 20px,1180px);
       }
 
       .header-inner {
-        min-height: 68px;
+        min-height:68px;
       }
 
       .brand-title {
-        font-size: 19px;
+        font-size:19px;
       }
 
       .brand-subtitle {
-        font-size: 9px;
+        font-size:9px;
       }
 
       .brand-icon {
-        width: 40px;
-        height: 40px;
+        width:40px;
+        height:40px;
       }
 
       .header-btn {
-        padding: 8px 9px;
-        font-size: 11px;
+        padding:8px 9px;
+        font-size:11px;
       }
 
       .header-btn span {
-        display: none;
+        display:none;
       }
 
       .page-hero {
-        padding: 30px 0;
+        padding:30px 0;
       }
 
       .hero-content {
-        align-items: flex-start;
+        align-items:flex-start;
       }
 
       .hero-badge {
-        width: 62px;
-        height: 62px;
+        width:62px;
+        height:62px;
       }
 
       .hero-badge svg {
-        width: 31px;
-        height: 31px;
+        width:31px;
+        height:31px;
       }
 
       main {
-        padding-top: 18px;
+        padding-top:18px;
       }
 
       .stats {
-        grid-template-columns: 1fr;
-        gap: 10px;
+        grid-template-columns:1fr;
+        gap:10px;
       }
 
       .stat-card {
-        padding: 14px;
+        padding:14px;
       }
 
       .filters {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
       }
 
       .filter-actions {
-        flex-direction: column;
+        flex-direction:column;
       }
 
       .panel-header {
-        padding: 16px;
+        padding:16px;
       }
 
       .panel-body {
-        padding: 15px;
+        padding:15px;
       }
 
       .reference-card {
-        padding: 14px;
+        padding:14px;
       }
 
       .reference-title {
-        font-size: 20px;
+        font-size:20px;
       }
 
       .reference-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display:grid;
+        grid-template-columns:1fr 1fr;
       }
 
       .reference-actions .btn {
-        min-width: 0;
+        min-width:0;
       }
 
       .form-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
       }
 
       .full {
-        grid-column: auto;
+        grid-column:auto;
       }
 
       .modal-body {
-        padding: 15px;
+        padding:15px;
       }
 
       .modal-footer {
-        padding: 14px 15px;
+        padding:14px 15px;
       }
 
       .footer-inner {
-        flex-direction: column;
-        text-align: center;
+        flex-direction:column;
+        text-align:center;
       }
     }
   </style>
@@ -899,6 +881,7 @@
     </a>
 
     <div class="header-actions">
+
       <a href="dashboard.html" class="header-btn">
         <span>لوحة التحكم</span>
       </a>
@@ -906,6 +889,7 @@
       <button class="header-btn" onclick="logout()">
         <span>تسجيل الخروج</span>
       </button>
+
     </div>
 
   </div>
@@ -913,10 +897,12 @@
 
 
 <section class="page-hero">
+
   <div class="container hero-content">
 
     <div class="hero-text">
       <h1>إدارة المراجع</h1>
+
       <p>
         إدارة الكتب والمراجع والبحوث والمذكرات والمجلات،
         وتنظيمها داخل فروع القانون والأقسام المناسبة.
@@ -934,32 +920,38 @@
     </div>
 
   </div>
+
 </section>
 
 
 <main>
+
   <div class="container">
 
     <div id="status" class="status"></div>
 
-    <!-- STATS -->
+
     <section class="stats">
 
       <div class="stat-card">
+
         <div class="stat-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
             <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
             <path d="M4 5.5V21"/>
           </svg>
         </div>
+
         <div>
           <div class="stat-label">إجمالي المراجع</div>
           <div class="stat-value" id="totalReferences">—</div>
         </div>
+
       </div>
 
 
       <div class="stat-card">
+
         <div class="stat-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
             <path d="M4 19V5"/>
@@ -969,14 +961,17 @@
             <path d="M8 17h5"/>
           </svg>
         </div>
+
         <div>
           <div class="stat-label">المراجع التي تحتوي PDF</div>
           <div class="stat-value" id="pdfReferences">—</div>
         </div>
+
       </div>
 
 
       <div class="stat-card">
+
         <div class="stat-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
             <circle cx="12" cy="12" r="8"/>
@@ -984,126 +979,210 @@
             <path d="M8 12h8"/>
           </svg>
         </div>
+
         <div>
+
           <div class="stat-label">إضافة مرجع جديد</div>
+
           <div style="margin-top:4px;">
-            <a href="add-reference.html" class="btn btn-gold" style="padding:6px 10px;font-size:11px;">
+            <a href="add-reference.html"
+               class="btn btn-gold"
+               style="padding:6px 10px;font-size:11px;">
               إضافة مرجع
             </a>
           </div>
+
         </div>
+
       </div>
 
     </section>
 
 
     <!-- FILTERS -->
+
     <section class="panel">
 
       <div class="panel-header">
+
         <div>
-          <div class="panel-title">البحث والتصفية</div>
+
+          <div class="panel-title">
+            البحث والتصفية
+          </div>
+
           <div class="panel-subtitle">
             ابحث عن المرجع ثم اختر الفرع والقسم
           </div>
+
         </div>
+
       </div>
+
 
       <div class="panel-body">
 
         <div class="filters">
 
           <div class="field">
-            <label for="searchInput">البحث</label>
+
+            <label for="searchInput">
+              البحث
+            </label>
+
             <input
               id="searchInput"
               class="input"
               type="search"
               placeholder="عنوان المرجع، المؤلف، الوصف..."
             >
+
           </div>
 
 
           <div class="field">
-            <label for="branchFilter">فرع القانون</label>
-            <select id="branchFilter" class="select">
-              <option value="">كل الفروع</option>
+
+            <label for="branchFilter">
+              فرع القانون
+            </label>
+
+            <select
+              id="branchFilter"
+              class="select">
+
+              <option value="">
+                كل الفروع
+              </option>
+
             </select>
+
           </div>
 
 
           <div class="field">
-            <label for="categoryFilter">القسم</label>
-            <select id="categoryFilter" class="select">
-              <option value="">كل الأقسام</option>
+
+            <label for="categoryFilter">
+              القسم
+            </label>
+
+            <select
+              id="categoryFilter"
+              class="select"
+              disabled>
+
+              <option value="">
+                كل الأقسام
+              </option>
+
             </select>
+
           </div>
 
 
           <div class="filter-actions">
-            <button class="btn btn-primary" onclick="applyFilters()">
+
+            <button
+              class="btn btn-primary"
+              onclick="applyFilters()">
+
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
                 <circle cx="11" cy="11" r="6.5"/>
                 <path d="m16 16 4 4"/>
               </svg>
+
               بحث
+
             </button>
 
-            <button class="btn btn-light" onclick="resetFilters()">
+
+            <button
+              class="btn btn-light"
+              onclick="resetFilters()">
+
               إعادة ضبط
+
             </button>
+
           </div>
 
         </div>
 
       </div>
+
     </section>
 
 
     <!-- REFERENCES -->
+
     <section class="panel">
 
       <div class="panel-header">
+
         <div>
-          <div class="panel-title">قائمة المراجع</div>
-          <div class="panel-subtitle">
-            المرجع مرتبط بفرع وقسم، وليس فرعًا مستقلًا
+
+          <div class="panel-title">
+            قائمة المراجع
           </div>
+
+          <div class="panel-subtitle">
+            كل مرجع مرتبط بفرع قانوني وقسم تابع لذلك الفرع
+          </div>
+
         </div>
 
-        <a href="add-reference.html" class="btn btn-gold">
+        <a
+          href="add-reference.html"
+          class="btn btn-gold">
+
           + إضافة مرجع
+
         </a>
+
       </div>
 
 
       <div class="panel-body">
 
         <div class="results-top">
+
           <div class="results-count">
+
             عدد النتائج:
             <strong id="resultsCount">0</strong>
+
           </div>
+
         </div>
 
-        <div id="referencesList" class="references-list"></div>
+
+        <div
+          id="referencesList"
+          class="references-list">
+        </div>
 
       </div>
 
     </section>
 
   </div>
+
 </main>
 
 
 <footer>
+
   <div class="container footer-inner">
 
     <div>
-      <div class="footer-title">الموسوعة القانونية</div>
+
+      <div class="footer-title">
+        الموسوعة القانونية
+      </div>
+
       <div class="footer-text">
         مكتبة قانونية أكاديمية رقمية
       </div>
+
     </div>
 
     <div class="footer-text">
@@ -1111,6 +1190,7 @@
     </div>
 
   </div>
+
 </footer>
 
 
@@ -1124,11 +1204,15 @@
 
       <h2>تعديل المرجع</h2>
 
-      <button class="close-btn" onclick="closeEditModal()">
+      <button
+        class="close-btn"
+        onclick="closeEditModal()">
+
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
           <path d="m6 6 12 12"/>
           <path d="m18 6-12 12"/>
         </svg>
+
       </button>
 
     </div>
@@ -1136,61 +1220,120 @@
 
     <div class="modal-body">
 
-      <div id="editStatus" class="status"></div>
+      <div
+        id="editStatus"
+        class="status">
+      </div>
 
-      <input type="hidden" id="editId">
-      <input type="hidden" id="oldFilePath">
+
+      <input
+        type="hidden"
+        id="editId">
+
+
+      <input
+        type="hidden"
+        id="oldFilePath">
+
 
       <div class="form-grid">
 
         <div class="field full">
-          <label for="editTitle">عنوان المرجع *</label>
-          <input id="editTitle" class="input" type="text" placeholder="عنوان المرجع">
+
+          <label for="editTitle">
+            عنوان المرجع *
+          </label>
+
+          <input
+            id="editTitle"
+            class="input"
+            type="text"
+            placeholder="عنوان المرجع">
+
         </div>
 
 
         <div class="field">
-          <label for="editAuthor">المؤلف</label>
-          <input id="editAuthor" class="input" type="text" placeholder="اسم المؤلف">
+
+          <label for="editAuthor">
+            المؤلف
+          </label>
+
+          <input
+            id="editAuthor"
+            class="input"
+            type="text"
+            placeholder="اسم المؤلف">
+
         </div>
 
 
         <div class="field">
-          <label for="editBranch">فرع القانون *</label>
-          <select id="editBranch" class="select">
-            <option value="">اختر الفرع</option>
+
+          <label for="editBranch">
+            فرع القانون *
+          </label>
+
+          <select
+            id="editBranch"
+            class="select">
+
+            <option value="">
+              اختر الفرع
+            </option>
+
           </select>
+
         </div>
 
 
         <div class="field">
-          <label for="editCategory">القسم *</label>
-          <select id="editCategory" class="select">
-            <option value="">اختر القسم</option>
+
+          <label for="editCategory">
+            القسم *
+          </label>
+
+          <select
+            id="editCategory"
+            class="select"
+            disabled>
+
+            <option value="">
+              اختر الفرع أولًا
+            </option>
+
           </select>
+
         </div>
 
 
         <div class="field full">
-          <label for="editDescription">الوصف</label>
+
+          <label for="editDescription">
+            الوصف
+          </label>
+
           <textarea
             id="editDescription"
             class="textarea"
-            placeholder="وصف مختصر للمرجع..."
-          ></textarea>
+            placeholder="وصف مختصر للمرجع...">
+          </textarea>
+
         </div>
 
 
         <div class="field full">
-          <label for="replaceFile">استبدال ملف PDF</label>
+
+          <label for="replaceFile">
+            استبدال ملف PDF
+          </label>
 
           <div class="file-box">
 
             <input
               id="replaceFile"
               type="file"
-              accept="application/pdf,.pdf"
-            >
+              accept="application/pdf,.pdf">
 
             <div class="file-note">
               اترك الخانة فارغة إذا كنت لا تريد تغيير الملف.
@@ -1198,6 +1341,7 @@
             </div>
 
           </div>
+
         </div>
 
       </div>
@@ -1207,12 +1351,22 @@
 
     <div class="modal-footer">
 
-      <button id="saveEditBtn" class="btn btn-primary" onclick="saveEdit()">
+      <button
+        id="saveEditBtn"
+        class="btn btn-primary"
+        onclick="saveEdit()">
+
         حفظ التعديلات
+
       </button>
 
-      <button class="btn btn-light" onclick="closeEditModal()">
+
+      <button
+        class="btn btn-light"
+        onclick="closeEditModal()">
+
         إلغاء
+
       </button>
 
     </div>
@@ -1226,17 +1380,25 @@
 
 <div id="deleteModal" class="modal-overlay">
 
-  <div class="modal" style="max-width:480px;">
+  <div
+    class="modal"
+    style="max-width:480px;">
 
     <div class="modal-header">
+
       <h2>حذف المرجع</h2>
 
-      <button class="close-btn" onclick="closeDeleteModal()">
+      <button
+        class="close-btn"
+        onclick="closeDeleteModal()">
+
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
           <path d="m6 6 12 12"/>
           <path d="m18 6-12 12"/>
         </svg>
+
       </button>
+
     </div>
 
 
@@ -1245,6 +1407,7 @@
       <div class="confirm-content">
 
         <div class="confirm-icon">
+
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
             <path d="M5 7h14"/>
             <path d="M9 7V4h6v3"/>
@@ -1252,9 +1415,12 @@
             <path d="M10 11v5"/>
             <path d="M14 11v5"/>
           </svg>
+
         </div>
 
-        <h3>هل تريد حذف هذا المرجع؟</h3>
+        <h3>
+          هل تريد حذف هذا المرجع؟
+        </h3>
 
         <p id="deleteReferenceTitle">
           سيتم حذف بيانات المرجع من قاعدة البيانات.
@@ -1267,12 +1433,22 @@
 
     <div class="modal-footer">
 
-      <button id="confirmDeleteBtn" class="btn btn-danger" onclick="confirmDelete()">
+      <button
+        id="confirmDeleteBtn"
+        class="btn btn-danger"
+        onclick="confirmDelete()">
+
         نعم، حذف المرجع
+
       </button>
 
-      <button class="btn btn-light" onclick="closeDeleteModal()">
+
+      <button
+        class="btn btn-light"
+        onclick="closeDeleteModal()">
+
         إلغاء
+
       </button>
 
     </div>
@@ -1284,343 +1460,706 @@
 
 <script>
 
-  /* =========================================================
-     SUPABASE
-  ========================================================= */
+/* =========================================================
+   SUPABASE
+========================================================= */
 
-  const SUPABASE_URL = "https://yksrckzomkowjzmsafvm.supabase.co";
+const SUPABASE_URL =
+  "https://yksrckzomkowjzmsafvm.supabase.co";
 
-  const SUPABASE_KEY = "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
+const SUPABASE_KEY =
+  "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
 
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
+
+let allReferences = [];
+
+let branches = [];
+
+let categories = [];
+
+let deleteTarget = null;
+
+
+/* =========================================================
+   CATEGORY ORDER
+========================================================= */
+
+const CATEGORY_ORDER = [
+  "التشريع",
+  "المراجع والكتب",
+  "البحوث والمذكرات",
+  "الأحكام والقرارات القضائية",
+  "المجلات والدوريات"
+];
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function escapeHTML(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+    return "";
+  }
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function showStatus(
+  message,
+  type = "success",
+  targetId = "status"
+) {
+
+  const box =
+    document.getElementById(targetId);
+
+  if (!box) return;
+
+  box.textContent =
+    message;
+
+  box.className =
+    "status show " + type;
+
+  if (targetId === "status") {
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }
+
+}
+
+
+function hideStatus(targetId = "status") {
+
+  const box =
+    document.getElementById(targetId);
+
+  if (!box) return;
+
+  box.className =
+    "status";
+
+}
+
+
+function getPDFUrl(filePath) {
+
+  if (!filePath) {
+    return "";
+  }
+
+  if (
+    filePath.startsWith("http://") ||
+    filePath.startsWith("https://")
+  ) {
+    return filePath;
+  }
+
+  return (
+    SUPABASE_URL +
+    "/storage/v1/object/public/legal-pdfs/" +
+    filePath
+  );
+}
+
+
+function formatDate(dateValue) {
+
+  if (!dateValue) {
+    return "";
+  }
+
+  try {
+
+    return new Intl.DateTimeFormat(
+      "ar-TN",
+      {
+        year:"numeric",
+        month:"long",
+        day:"numeric"
+      }
+    ).format(
+      new Date(dateValue)
     );
 
+  } catch(error) {
 
-  /* =========================================================
-     GLOBAL DATA
-  ========================================================= */
-
-  let allReferences = [];
-  let branches = [];
-  let categories = [];
-
-  let deleteTarget = null;
-
-
-  /* =========================================================
-     HELPERS
-  ========================================================= */
-
-  function escapeHTML(value) {
-
-    if (value === null || value === undefined) {
-      return "";
-    }
-
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-
-  function showStatus(message, type = "success", targetId = "status") {
-
-    const box = document.getElementById(targetId);
-
-    if (!box) return;
-
-    box.textContent = message;
-
-    box.className = "status show " + type;
-
-    if (targetId === "status") {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
+    return "";
 
   }
 
+}
 
-  function hideStatus(targetId = "status") {
 
-    const box = document.getElementById(targetId);
+/* =========================================================
+   ADMIN AUTHORIZATION
+========================================================= */
 
-    if (!box) return;
+async function checkAdmin() {
 
-    box.className = "status";
+  const {
+    data:{session},
+    error
+  } =
+    await supabaseClient.auth.getSession();
 
+
+  if (
+    error ||
+    !session
+  ) {
+
+    window.location.href =
+      "admin.html";
+
+    return false;
   }
 
 
-  function getPDFUrl(filePath) {
-
-    if (!filePath) {
-      return "";
-    }
-
-    if (
-      filePath.startsWith("http://") ||
-      filePath.startsWith("https://")
-    ) {
-      return filePath;
-    }
-
-    return (
-      SUPABASE_URL +
-      "/storage/v1/object/public/legal-pdfs/" +
-      filePath
-    );
-
-  }
-
-
-  function formatDate(dateValue) {
-
-    if (!dateValue) {
-      return "";
-    }
-
-    try {
-
-      return new Intl.DateTimeFormat(
-        "ar-TN",
-        {
-          year: "numeric",
-          month: "long",
-          day: "numeric"
-        }
-      ).format(new Date(dateValue));
-
-    } catch (error) {
-
-      return "";
-
-    }
-
-  }
-
-
-  /* =========================================================
-     ADMIN AUTHORIZATION
-  ========================================================= */
-
-  async function checkAdmin() {
-
-    const {
-      data: { session },
-      error
-    } = await supabaseClient.auth.getSession();
-
-    if (error || !session) {
-
-      window.location.href = "admin.html";
-
-      return false;
-    }
-
-
-    const {
-      data: admin,
-      error: adminError
-    } = await supabaseClient
+  const {
+    data:admin,
+    error:adminError
+  } =
+    await supabaseClient
       .from("admins")
       .select("user_id")
-      .eq("user_id", session.user.id)
+      .eq(
+        "user_id",
+        session.user.id
+      )
       .maybeSingle();
 
 
-    if (
-      adminError ||
-      !admin
-    ) {
+  if (
+    adminError ||
+    !admin
+  ) {
 
-      await supabaseClient.auth.signOut();
+    await supabaseClient.auth.signOut();
 
-      window.location.href = "admin.html";
+    window.location.href =
+      "admin.html";
 
-      return false;
-    }
-
-
-    return true;
+    return false;
   }
 
 
-  /* =========================================================
-     LOAD BRANCHES
-  ========================================================= */
+  return true;
 
-  async function loadBranches() {
+}
 
-    const {
-      data,
-      error
-    } = await supabaseClient
+
+/* =========================================================
+   LOAD BRANCHES
+========================================================= */
+
+async function loadBranches() {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
       .from("branches")
       .select("id,name,slug")
-      .order("name", { ascending: true });
-
-
-    if (error) {
-
-      console.error(error);
-
-      showStatus(
-        "تعذر تحميل فروع القانون.",
-        "error"
+      .order(
+        "name",
+        {
+          ascending:true
+        }
       );
 
-      return;
-    }
 
+  if (error) {
 
-    branches = data || [];
+    console.error(error);
 
+    showStatus(
+      "تعذر تحميل فروع القانون.",
+      "error"
+    );
 
-    const filter = document.getElementById("branchFilter");
-    const editBranch = document.getElementById("editBranch");
-
-
-    filter.innerHTML =
-      '<option value="">كل الفروع</option>';
-
-
-    editBranch.innerHTML =
-      '<option value="">اختر الفرع</option>';
-
-
-    branches.forEach(branch => {
-
-      const option1 = document.createElement("option");
-
-      option1.value = branch.id;
-
-      option1.textContent = branch.name;
-
-      filter.appendChild(option1);
-
-
-      const option2 = document.createElement("option");
-
-      option2.value = branch.id;
-
-      option2.textContent = branch.name;
-
-      editBranch.appendChild(option2);
-
-    });
+    return;
 
   }
 
 
-  /* =========================================================
-     LOAD CATEGORIES
-  ========================================================= */
+  branches =
+    data || [];
 
-  async function loadCategories() {
 
-    const {
-      data,
-      error
-    } = await supabaseClient
+  const branchFilter =
+    document.getElementById(
+      "branchFilter"
+    );
+
+
+  const editBranch =
+    document.getElementById(
+      "editBranch"
+    );
+
+
+  branchFilter.innerHTML =
+    '<option value="">كل الفروع</option>';
+
+
+  editBranch.innerHTML =
+    '<option value="">اختر الفرع</option>';
+
+
+  branches.forEach(
+    branch => {
+
+      const filterOption =
+        document.createElement(
+          "option"
+        );
+
+      filterOption.value =
+        branch.id;
+
+      filterOption.textContent =
+        branch.name;
+
+      branchFilter.appendChild(
+        filterOption
+      );
+
+
+      const editOption =
+        document.createElement(
+          "option"
+        );
+
+      editOption.value =
+        branch.id;
+
+      editOption.textContent =
+        branch.name;
+
+      editBranch.appendChild(
+        editOption
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LOAD CATEGORIES
+========================================================= */
+
+async function loadCategories() {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
       .from("reference_categories")
-      .select("id,name,slug")
-      .order("name", { ascending: true });
-
-
-    if (error) {
-
-      console.error(error);
-
-      showStatus(
-        "تعذر تحميل أقسام المراجع.",
-        "error"
+      .select(
+        "id,name,slug,branch_id"
+      )
+      .not(
+        "branch_id",
+        "is",
+        null
+      )
+      .order(
+        "id",
+        {
+          ascending:true
+        }
       );
 
-      return;
-    }
 
+  if (error) {
 
-    categories = data || [];
+    console.error(error);
 
+    showStatus(
+      "تعذر تحميل أقسام المراجع.",
+      "error"
+    );
 
-    const filter =
-      document.getElementById("categoryFilter");
-
-    const editCategory =
-      document.getElementById("editCategory");
-
-
-    filter.innerHTML =
-      '<option value="">كل الأقسام</option>';
-
-
-    editCategory.innerHTML =
-      '<option value="">اختر القسم</option>';
-
-
-    categories.forEach(category => {
-
-      const option1 =
-        document.createElement("option");
-
-      option1.value = category.id;
-
-      option1.textContent = category.name;
-
-      filter.appendChild(option1);
-
-
-      const option2 =
-        document.createElement("option");
-
-      option2.value = category.id;
-
-      option2.textContent = category.name;
-
-      editCategory.appendChild(option2);
-
-    });
+    return;
 
   }
 
 
-  /* =========================================================
-     LOAD REFERENCES
-  ========================================================= */
-
-  async function loadReferences() {
-
-    const list =
-      document.getElementById("referencesList");
+  categories =
+    data || [];
 
 
-    list.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
-            <path d="M4 5.5V21"/>
-          </svg>
-        </div>
-        <h3>جاري تحميل المراجع</h3>
-        <p>يرجى الانتظار...</p>
+  /*
+     قائمة التصفية لا تعرض الأقسام
+     إلا بعد اختيار فرع.
+  */
+
+  const categoryFilter =
+    document.getElementById(
+      "categoryFilter"
+    );
+
+
+  categoryFilter.innerHTML =
+    '<option value="">كل الأقسام</option>';
+
+}
+
+
+/* =========================================================
+   GET CATEGORIES FOR BRANCH
+========================================================= */
+
+function getCategoriesForBranch(
+  branchId
+) {
+
+  if (!branchId) {
+    return [];
+  }
+
+
+  const result =
+    categories.filter(
+      category =>
+        String(category.branch_id) ===
+        String(branchId)
+    );
+
+
+  result.sort(
+    (a,b) => {
+
+      const aIndex =
+        CATEGORY_ORDER.indexOf(
+          a.name
+        );
+
+      const bIndex =
+        CATEGORY_ORDER.indexOf(
+          b.name
+        );
+
+
+      if (aIndex === -1) {
+        return 1;
+      }
+
+      if (bIndex === -1) {
+        return -1;
+      }
+
+      return aIndex - bIndex;
+
+    }
+  );
+
+
+  return result;
+
+}
+
+
+/* =========================================================
+   LOAD FILTER CATEGORIES
+========================================================= */
+
+function loadFilterCategories(
+  branchId,
+  selectedCategoryId = ""
+) {
+
+  const select =
+    document.getElementById(
+      "categoryFilter"
+    );
+
+
+  select.innerHTML =
+    '<option value="">كل الأقسام</option>';
+
+
+  if (!branchId) {
+
+    select.disabled =
+      true;
+
+    return;
+
+  }
+
+
+  const branchCategories =
+    getCategoriesForBranch(
+      branchId
+    );
+
+
+  if (!branchCategories.length) {
+
+    select.disabled =
+      true;
+
+    select.innerHTML =
+      '<option value="">لا توجد أقسام لهذا الفرع</option>';
+
+    return;
+
+  }
+
+
+  select.disabled =
+    false;
+
+
+  branchCategories.forEach(
+    category => {
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+      option.value =
+        category.id;
+
+      option.textContent =
+        category.name;
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+
+  if (
+    branchCategories.some(
+      category =>
+        String(category.id) ===
+        String(selectedCategoryId)
+    )
+  ) {
+
+    select.value =
+      selectedCategoryId;
+
+  }
+
+}
+
+
+/* =========================================================
+   LOAD EDIT CATEGORIES
+========================================================= */
+
+function loadEditCategories(
+  branchId,
+  selectedCategoryId = ""
+) {
+
+  const select =
+    document.getElementById(
+      "editCategory"
+    );
+
+
+  select.innerHTML =
+    '<option value="">اختر القسم</option>';
+
+
+  if (!branchId) {
+
+    select.disabled =
+      true;
+
+    select.innerHTML =
+      '<option value="">اختر الفرع أولًا</option>';
+
+    return;
+
+  }
+
+
+  const branchCategories =
+    getCategoriesForBranch(
+      branchId
+    );
+
+
+  if (!branchCategories.length) {
+
+    select.disabled =
+      true;
+
+    select.innerHTML =
+      '<option value="">لا توجد أقسام لهذا الفرع</option>';
+
+    return;
+
+  }
+
+
+  select.disabled =
+    false;
+
+
+  branchCategories.forEach(
+    category => {
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+      option.value =
+        category.id;
+
+      option.textContent =
+        category.name;
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+
+  if (
+    branchCategories.some(
+      category =>
+        String(category.id) ===
+        String(selectedCategoryId)
+    )
+  ) {
+
+    select.value =
+      selectedCategoryId;
+
+  }
+
+}
+
+
+/* =========================================================
+   BRANCH FILTER CHANGE
+========================================================= */
+
+document
+  .getElementById("branchFilter")
+  .addEventListener(
+    "change",
+    function() {
+
+      /*
+       * عند اختيار فرع:
+       * نعرض أقسام ذلك الفرع فقط.
+       */
+
+      loadFilterCategories(
+        this.value
+      );
+
+      /*
+       * إعادة البحث تلقائيًا.
+       */
+
+      applyFilters();
+
+    }
+  );
+
+
+/* =========================================================
+   EDIT BRANCH CHANGE
+========================================================= */
+
+document
+  .getElementById("editBranch")
+  .addEventListener(
+    "change",
+    function() {
+
+      /*
+       * تغيير الفرع يمسح القسم القديم
+       * ويعرض الأقسام التابعة للفرع الجديد.
+       */
+
+      loadEditCategories(
+        this.value
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   LOAD REFERENCES
+========================================================= */
+
+async function loadReferences() {
+
+  const list =
+    document.getElementById(
+      "referencesList"
+    );
+
+
+  list.innerHTML = `
+    <div class="empty-state">
+
+      <div class="empty-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+          <path d="M4 5.5V21"/>
+        </svg>
       </div>
-    `;
+
+      <h3>جاري تحميل المراجع</h3>
+
+      <p>يرجى الانتظار...</p>
+
+    </div>
+  `;
 
 
-    const {
-      data,
-      error
-    } = await supabaseClient
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
       .from("references")
       .select(`
         id,
@@ -1641,282 +2180,385 @@
         reference_categories (
           id,
           name,
-          slug
+          slug,
+          branch_id
         )
       `)
-      .order("created_at", {
-        ascending: false
-      });
-
-
-    if (error) {
-
-      console.error(error);
-
-      showStatus(
-        "تعذر تحميل المراجع: " + error.message,
-        "error"
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
       );
 
-      list.innerHTML = `
-        <div class="empty-state">
-          <h3>حدث خطأ</h3>
-          <p>تعذر الاتصال بقاعدة البيانات.</p>
-        </div>
-      `;
 
-      return;
-    }
+  if (error) {
 
+    console.error(error);
 
-    allReferences = data || [];
+    showStatus(
+      "تعذر تحميل المراجع: " +
+      error.message,
+      "error"
+    );
 
 
-    updateStatistics();
+    list.innerHTML = `
+      <div class="empty-state">
 
-    renderReferences(allReferences);
+        <h3>حدث خطأ</h3>
 
-  }
+        <p>
+          تعذر الاتصال بقاعدة البيانات.
+        </p>
 
+      </div>
+    `;
 
-  /* =========================================================
-     STATISTICS
-  ========================================================= */
-
-  function updateStatistics() {
-
-    const total =
-      allReferences.length;
-
-
-    const withPDF =
-      allReferences.filter(
-        item => item.file_path
-      ).length;
-
-
-    document.getElementById(
-      "totalReferences"
-    ).textContent = total;
-
-
-    document.getElementById(
-      "pdfReferences"
-    ).textContent = withPDF;
+    return;
 
   }
 
 
-  /* =========================================================
-     RENDER REFERENCES
-  ========================================================= */
-
-  function renderReferences(references) {
-
-    const list =
-      document.getElementById("referencesList");
-
-    const count =
-      document.getElementById("resultsCount");
+  allReferences =
+    data || [];
 
 
-    count.textContent =
-      references.length;
+  updateStatistics();
+
+  renderReferences(
+    allReferences
+  );
+
+}
 
 
-    if (!references.length) {
+/* =========================================================
+   STATISTICS
+========================================================= */
 
-      list.innerHTML = `
-        <div class="empty-state">
+function updateStatistics() {
 
-          <div class="empty-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="11" cy="11" r="6.5"/>
-              <path d="m16 16 4 4"/>
-            </svg>
+  const total =
+    allReferences.length;
+
+
+  const withPDF =
+    allReferences.filter(
+      item => item.file_path
+    ).length;
+
+
+  document.getElementById(
+    "totalReferences"
+  ).textContent =
+    total;
+
+
+  document.getElementById(
+    "pdfReferences"
+  ).textContent =
+    withPDF;
+
+}
+
+
+/* =========================================================
+   CREATE CARD
+========================================================= */
+
+function createReferenceCard(
+  reference
+) {
+
+  const branchName =
+    reference.branches?.name ||
+    reference.branch ||
+    "غير محدد";
+
+
+  const categoryName =
+    reference.reference_categories?.name ||
+    reference.category ||
+    "غير محدد";
+
+
+  const author =
+    reference.author
+      ? "المؤلف: " +
+        escapeHTML(reference.author)
+      : "المؤلف: غير محدد";
+
+
+  const description =
+    reference.description
+      ? escapeHTML(
+          reference.description
+        )
+      : "لا يوجد وصف لهذا المرجع.";
+
+
+  const date =
+    formatDate(
+      reference.created_at
+    );
+
+
+  const pdfUrl =
+    getPDFUrl(
+      reference.file_path
+    );
+
+
+  return `
+
+    <article class="reference-card">
+
+      <div class="reference-main">
+
+        <div class="reference-info">
+
+          <h3 class="reference-title">
+            ${escapeHTML(reference.title)}
+          </h3>
+
+          <div class="reference-author">
+            ${author}
           </div>
 
-          <h3>لا توجد نتائج</h3>
-
-          <p>
-            لم يتم العثور على مراجع مطابقة للبحث أو التصفية.
-          </p>
-
-        </div>
-      `;
-
-      return;
-    }
-
-
-    list.innerHTML =
-      references.map(
-        reference => createReferenceCard(reference)
-      ).join("");
-
-  }
-
-
-  /* =========================================================
-     CREATE REFERENCE CARD
-  ========================================================= */
-
-  function createReferenceCard(reference) {
-
-    const branchName =
-      reference.branches?.name ||
-      reference.branch ||
-      "غير محدد";
-
-
-    const categoryName =
-      reference.reference_categories?.name ||
-      reference.category ||
-      "غير محدد";
-
-
-    const author =
-      reference.author
-        ? "المؤلف: " + escapeHTML(reference.author)
-        : "المؤلف: غير محدد";
-
-
-    const description =
-      reference.description
-        ? escapeHTML(reference.description)
-        : "لا يوجد وصف لهذا المرجع.";
-
-
-    const date =
-      formatDate(reference.created_at);
-
-
-    const pdfUrl =
-      getPDFUrl(reference.file_path);
-
-
-    return `
-
-      <article class="reference-card">
-
-        <div class="reference-main">
-
-          <div class="reference-info">
-
-            <h3 class="reference-title">
-              ${escapeHTML(reference.title)}
-            </h3>
-
-            <div class="reference-author">
-              ${author}
-            </div>
-
-            <div class="reference-description">
-              ${description}
-            </div>
-
-            <div class="badges">
-
-              <span class="badge branch">
-                ${escapeHTML(branchName)}
-              </span>
-
-              <span class="badge">
-                ${escapeHTML(categoryName)}
-              </span>
-
-              ${
-                date
-                  ? `<span class="badge">${escapeHTML(date)}</span>`
-                  : ""
-              }
-
-            </div>
-
+          <div class="reference-description">
+            ${description}
           </div>
 
+          <div class="badges">
 
-          <div class="reference-actions">
+            <span class="badge branch">
+              ${escapeHTML(branchName)}
+            </span>
+
+            <span class="badge">
+              ${escapeHTML(categoryName)}
+            </span>
 
             ${
-              pdfUrl
+              date
                 ? `
-                  <a
-                    href="${escapeHTML(pdfUrl)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn-success"
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-                      <path d="M12 4v11"/>
-                      <path d="m8 11 4 4 4-4"/>
-                      <path d="M5 20h14"/>
-                    </svg>
-                    فتح PDF
-                  </a>
+                  <span class="badge">
+                    ${escapeHTML(date)}
+                  </span>
                 `
-                : `
-                  <button class="btn btn-light" disabled>
-                    لا يوجد PDF
-                  </button>
-                `
+                : ""
             }
-
-
-            <button
-              class="btn btn-primary"
-              onclick="openEditModal(${Number(reference.id)})"
-            >
-              تعديل
-            </button>
-
-
-            <button
-              class="btn btn-danger"
-              onclick="openDeleteModal(${Number(reference.id)})"
-            >
-              حذف
-            </button>
 
           </div>
 
         </div>
 
-      </article>
+
+        <div class="reference-actions">
+
+          ${
+            pdfUrl
+              ? `
+                <a
+                  href="${escapeHTML(pdfUrl)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-success">
+
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                    <path d="M12 4v11"/>
+                    <path d="m8 11 4 4 4-4"/>
+                    <path d="M5 20h14"/>
+                  </svg>
+
+                  فتح PDF
+
+                </a>
+              `
+              : `
+                <button
+                  class="btn btn-light"
+                  disabled>
+
+                  لا يوجد PDF
+
+                </button>
+              `
+          }
+
+
+          <button
+            class="btn btn-primary"
+            onclick="openEditModal(${Number(reference.id)})">
+
+            تعديل
+
+          </button>
+
+
+          <button
+            class="btn btn-danger"
+            onclick="openDeleteModal(${Number(reference.id)})">
+
+            حذف
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function renderReferences(
+  references
+) {
+
+  const list =
+    document.getElementById(
+      "referencesList"
+    );
+
+
+  const count =
+    document.getElementById(
+      "resultsCount"
+    );
+
+
+  count.textContent =
+    references.length;
+
+
+  if (!references.length) {
+
+    list.innerHTML = `
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="6.5"/>
+            <path d="m16 16 4 4"/>
+          </svg>
+
+        </div>
+
+        <h3>لا توجد نتائج</h3>
+
+        <p>
+          لم يتم العثور على مراجع مطابقة للبحث أو التصفية.
+        </p>
+
+      </div>
 
     `;
 
+    return;
+
   }
 
 
-  /* =========================================================
-     FILTERS
-  ========================================================= */
+  list.innerHTML =
+    references
+      .map(
+        reference =>
+          createReferenceCard(
+            reference
+          )
+      )
+      .join("");
 
-  function applyFilters() {
-
-    const search =
-      document
-        .getElementById("searchInput")
-        .value
-        .trim()
-        .toLowerCase();
+}
 
 
-    const branchId =
-      document.getElementById(
+/* =========================================================
+   APPLY FILTERS
+========================================================= */
+
+function applyFilters() {
+
+  const search =
+    document
+      .getElementById(
+        "searchInput"
+      )
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const branchId =
+    document
+      .getElementById(
         "branchFilter"
-      ).value;
+      )
+      .value;
 
 
-    const categoryId =
+  const categoryId =
+    document
+      .getElementById(
+        "categoryFilter"
+      )
+      .value;
+
+
+  /*
+   * إذا تم اختيار قسم لا ينتمي للفرع
+   * نرفضه منطقيًا.
+   */
+
+  if (
+    branchId &&
+    categoryId
+  ) {
+
+    const category =
+      categories.find(
+        item =>
+          String(item.id) ===
+          String(categoryId)
+      );
+
+
+    if (
+      category &&
+      String(category.branch_id) !==
+      String(branchId)
+    ) {
+
       document.getElementById(
         "categoryFilter"
-      ).value;
+      ).value = "";
 
 
-    const filtered =
-      allReferences.filter(reference => {
+      showStatus(
+        "القسم المختار لا ينتمي إلى الفرع المحدد.",
+        "warning"
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  const filtered =
+    allReferences.filter(
+      reference => {
 
         const branchName =
           reference.branches?.name ||
@@ -1954,12 +2596,16 @@
 
         const matchesBranch =
           !branchId ||
-          String(reference.branch_id) === String(branchId);
+          String(
+            reference.branch_id
+          ) === String(branchId);
 
 
         const matchesCategory =
           !categoryId ||
-          String(reference.category_id) === String(categoryId);
+          String(
+            reference.category_id
+          ) === String(categoryId);
 
 
         return (
@@ -1968,546 +2614,740 @@
           matchesCategory
         );
 
-      });
+      }
+    );
 
 
-    renderReferences(filtered);
+  renderReferences(
+    filtered
+  );
 
-  }
-
-
-  function resetFilters() {
-
-    document.getElementById(
-      "searchInput"
-    ).value = "";
+}
 
 
-    document.getElementById(
-      "branchFilter"
-    ).value = "";
+/* =========================================================
+   RESET FILTERS
+========================================================= */
+
+function resetFilters() {
+
+  document.getElementById(
+    "searchInput"
+  ).value = "";
 
 
+  document.getElementById(
+    "branchFilter"
+  ).value = "";
+
+
+  const categoryFilter =
     document.getElementById(
       "categoryFilter"
-    ).value = "";
+    );
 
 
-    renderReferences(allReferences);
+  categoryFilter.innerHTML =
+    '<option value="">كل الأقسام</option>';
+
+
+  categoryFilter.disabled =
+    true;
+
+
+  renderReferences(
+    allReferences
+  );
+
+}
+
+
+/* =========================================================
+   OPEN EDIT
+========================================================= */
+
+function openEditModal(id) {
+
+  const reference =
+    allReferences.find(
+      item =>
+        Number(item.id) ===
+        Number(id)
+    );
+
+
+  if (!reference) {
+
+    showStatus(
+      "تعذر العثور على المرجع.",
+      "error"
+    );
+
+    return;
 
   }
 
 
-  /* =========================================================
-     EDIT MODAL
-  ========================================================= */
-
-  function openEditModal(id) {
-
-    const reference =
-      allReferences.find(
-        item => Number(item.id) === Number(id)
-      );
+  hideStatus(
+    "editStatus"
+  );
 
 
-    if (!reference) {
-
-      showStatus(
-        "تعذر العثور على المرجع.",
-        "error"
-      );
-
-      return;
-    }
+  document.getElementById(
+    "editId"
+  ).value =
+    reference.id;
 
 
-    hideStatus("editStatus");
+  document.getElementById(
+    "oldFilePath"
+  ).value =
+    reference.file_path || "";
 
 
+  document.getElementById(
+    "editTitle"
+  ).value =
+    reference.title || "";
+
+
+  document.getElementById(
+    "editAuthor"
+  ).value =
+    reference.author || "";
+
+
+  document.getElementById(
+    "editDescription"
+  ).value =
+    reference.description || "";
+
+
+  document.getElementById(
+    "editBranch"
+  ).value =
+    reference.branch_id || "";
+
+
+  /*
+   * هنا يتم تحميل أقسام الفرع
+   * ثم اختيار القسم الحالي فقط إذا
+   * كان تابعًا فعلًا لهذا الفرع.
+   */
+
+  loadEditCategories(
+    reference.branch_id,
+    reference.category_id
+  );
+
+
+  document.getElementById(
+    "replaceFile"
+  ).value = "";
+
+
+  document.getElementById(
+    "editModal"
+  ).classList.add(
+    "show"
+  );
+
+}
+
+
+/* =========================================================
+   CLOSE EDIT
+========================================================= */
+
+function closeEditModal() {
+
+  document.getElementById(
+    "editModal"
+  ).classList.remove(
+    "show"
+  );
+
+
+  hideStatus(
+    "editStatus"
+  );
+
+}
+
+
+/* =========================================================
+   VERIFY CATEGORY / BRANCH
+========================================================= */
+
+async function verifyCategoryBelongsToBranch(
+  branchId,
+  categoryId
+) {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("reference_categories")
+      .select(
+        "id,branch_id"
+      )
+      .eq(
+        "id",
+        Number(categoryId)
+      )
+      .eq(
+        "branch_id",
+        Number(branchId)
+      )
+      .maybeSingle();
+
+
+  if (error) {
+    throw error;
+  }
+
+
+  return !!data;
+
+}
+
+
+/* =========================================================
+   SAVE EDIT
+========================================================= */
+
+async function saveEdit() {
+
+  const saveButton =
+    document.getElementById(
+      "saveEditBtn"
+    );
+
+
+  const id =
     document.getElementById(
       "editId"
-    ).value = reference.id;
+    ).value;
 
 
+  const oldFilePath =
     document.getElementById(
       "oldFilePath"
-    ).value = reference.file_path || "";
+    ).value;
 
 
+  const title =
     document.getElementById(
       "editTitle"
-    ).value = reference.title || "";
+    ).value
+    .trim();
 
 
+  const author =
     document.getElementById(
       "editAuthor"
-    ).value = reference.author || "";
+    ).value
+    .trim();
 
 
+  const description =
     document.getElementById(
       "editDescription"
-    ).value = reference.description || "";
+    ).value
+    .trim();
 
 
+  const branchId =
     document.getElementById(
       "editBranch"
-    ).value =
-      reference.branch_id || "";
+    ).value;
 
 
+  const categoryId =
     document.getElementById(
       "editCategory"
-    ).value =
-      reference.category_id || "";
+    ).value;
 
 
+  const fileInput =
     document.getElementById(
       "replaceFile"
-    ).value = "";
+    );
 
 
-    document.getElementById(
-      "editModal"
-    ).classList.add("show");
+  const newFile =
+    fileInput.files[0] || null;
+
+
+  if (!title) {
+
+    showStatus(
+      "يرجى إدخال عنوان المرجع.",
+      "error",
+      "editStatus"
+    );
+
+    return;
 
   }
 
 
-  function closeEditModal() {
+  if (!branchId) {
 
-    document.getElementById(
-      "editModal"
-    ).classList.remove("show");
+    showStatus(
+      "يرجى اختيار فرع القانون.",
+      "error",
+      "editStatus"
+    );
 
-    hideStatus("editStatus");
+    return;
 
   }
 
 
-  /* =========================================================
-     SAVE EDIT
-  ========================================================= */
+  if (!categoryId) {
 
-  async function saveEdit() {
+    showStatus(
+      "يرجى اختيار القسم.",
+      "error",
+      "editStatus"
+    );
 
-    const saveButton =
-      document.getElementById("saveEditBtn");
+    return;
 
-
-    const id =
-      document.getElementById("editId").value;
-
-
-    const oldFilePath =
-      document.getElementById("oldFilePath").value;
+  }
 
 
-    const title =
-      document.getElementById("editTitle").value.trim();
+  /*
+   * تحقق إضافي من قاعدة البيانات:
+   * القسم يجب أن يكون تابعًا للفرع.
+   */
+
+  try {
+
+    const validRelation =
+      await verifyCategoryBelongsToBranch(
+        branchId,
+        categoryId
+      );
 
 
-    const author =
-      document.getElementById("editAuthor").value.trim();
-
-
-    const description =
-      document.getElementById("editDescription").value.trim();
-
-
-    const branchId =
-      document.getElementById("editBranch").value;
-
-
-    const categoryId =
-      document.getElementById("editCategory").value;
-
-
-    const fileInput =
-      document.getElementById("replaceFile");
-
-
-    const newFile =
-      fileInput.files[0] || null;
-
-
-    if (!title) {
+    if (!validRelation) {
 
       showStatus(
-        "يرجى إدخال عنوان المرجع.",
+        "القسم المختار لا ينتمي إلى الفرع القانوني المحدد.",
         "error",
         "editStatus"
       );
 
       return;
+
     }
 
+  } catch(error) {
 
-    if (!branchId) {
+    console.error(error);
+
+    showStatus(
+      "تعذر التحقق من توافق الفرع والقسم.",
+      "error",
+      "editStatus"
+    );
+
+    return;
+
+  }
+
+
+  if (newFile) {
+
+    if (
+      newFile.type !==
+        "application/pdf" &&
+      !newFile.name
+        .toLowerCase()
+        .endsWith(".pdf")
+    ) {
 
       showStatus(
-        "يرجى اختيار فرع القانون.",
+        "الملف الجديد يجب أن يكون PDF.",
         "error",
         "editStatus"
       );
 
       return;
+
     }
 
 
-    if (!categoryId) {
+    if (
+      newFile.size >
+      50 * 1024 * 1024
+    ) {
 
       showStatus(
-        "يرجى اختيار القسم.",
+        "حجم الملف يتجاوز 50 MB.",
         "error",
         "editStatus"
       );
 
       return;
+
     }
 
+  }
+
+
+  saveButton.disabled =
+    true;
+
+
+  saveButton.textContent =
+    "جاري الحفظ...";
+
+
+  hideStatus(
+    "editStatus"
+  );
+
+
+  let newFilePath =
+    null;
+
+
+  try {
+
+    /*
+     * رفع PDF الجديد إذا اختاره المستخدم.
+     */
 
     if (newFile) {
 
-      if (
-        newFile.type !== "application/pdf" &&
-        !newFile.name.toLowerCase().endsWith(".pdf")
-      ) {
-
-        showStatus(
-          "الملف الجديد يجب أن يكون PDF.",
-          "error",
-          "editStatus"
-        );
-
-        return;
-      }
+      newFilePath =
+        "references/" +
+        crypto.randomUUID() +
+        ".pdf";
 
 
-      if (
-        newFile.size >
-        50 * 1024 * 1024
-      ) {
-
-        showStatus(
-          "حجم الملف يتجاوز 50 MB.",
-          "error",
-          "editStatus"
-        );
-
-        return;
-      }
-
-    }
-
-
-    saveButton.disabled = true;
-
-    saveButton.textContent =
-      "جاري الحفظ...";
-
-
-    hideStatus("editStatus");
-
-
-    let newFilePath = null;
-
-
-    try {
-
-      /*
-       * إذا اختار المستخدم PDF جديدًا:
-       * نرفعه أولًا إلى مسار جديد.
-       */
-
-      if (newFile) {
-
-        newFilePath =
-          "references/" +
-          crypto.randomUUID() +
-          ".pdf";
-
-
-        const {
-          error: uploadError
-        } = await supabaseClient
+      const {
+        error:uploadError
+      } =
+        await supabaseClient
           .storage
           .from("legal-pdfs")
           .upload(
             newFilePath,
             newFile,
             {
-              cacheControl: "3600",
-              upsert: false,
-              contentType: "application/pdf"
+              cacheControl:"3600",
+              upsert:false,
+              contentType:"application/pdf"
             }
           );
 
 
-        if (uploadError) {
+      if (uploadError) {
 
-          throw new Error(
-            "فشل رفع ملف PDF الجديد: " +
-            uploadError.message
-          );
-
-        }
+        throw new Error(
+          "فشل رفع ملف PDF الجديد: " +
+          uploadError.message
+        );
 
       }
 
+    }
 
-      const updateData = {
 
-        title: title,
+    const selectedBranch =
+      branches.find(
+        branch =>
+          String(branch.id) ===
+          String(branchId)
+      );
 
-        author: author || null,
 
-        description: description || null,
+    const selectedCategory =
+      categories.find(
+        category =>
+          String(category.id) ===
+          String(categoryId)
+      );
 
-        branch_id: Number(branchId),
 
-        category_id: Number(categoryId),
+    const updateData = {
 
-        branch:
-          branches.find(
-            item =>
-              String(item.id) === String(branchId)
-          )?.name || null,
+      title:title,
 
-        category:
-          categories.find(
-            item =>
-              String(item.id) === String(categoryId)
-          )?.name || null
+      author:
+        author || null,
 
-      };
+      description:
+        description || null,
 
+      branch_id:
+        Number(branchId),
+
+      category_id:
+        Number(categoryId),
+
+      branch:
+        selectedBranch?.name ||
+        null,
+
+      category:
+        selectedCategory?.name ||
+        null
+
+    };
+
+
+    if (newFilePath) {
+
+      updateData.file_path =
+        newFilePath;
+
+    }
+
+
+    /*
+     * تحديث المرجع.
+     */
+
+    const {
+      error:updateError
+    } =
+      await supabaseClient
+        .from("references")
+        .update(
+          updateData
+        )
+        .eq(
+          "id",
+          id
+        );
+
+
+    if (updateError) {
+
+      /*
+       * إذا فشل التحديث نحذف الملف
+       * الجديد الذي رفعناه.
+       */
 
       if (newFilePath) {
 
-        updateData.file_path =
-          newFilePath;
-
-      }
-
-
-      /*
-       * تحديث قاعدة البيانات
-       */
-
-      const {
-        error: updateError
-      } = await supabaseClient
-        .from("references")
-        .update(updateData)
-        .eq("id", id);
-
-
-      if (updateError) {
-
-        /*
-         * إذا فشل تحديث قاعدة البيانات
-         * نحذف الملف الجديد حتى لا يبقى ملفًا يتيمًا.
-         */
-
-        if (newFilePath) {
-
-          await supabaseClient
-            .storage
-            .from("legal-pdfs")
-            .remove([newFilePath]);
-
-        }
-
-
-        throw new Error(
-          "فشل تحديث المرجع: " +
-          updateError.message
-        );
-
-      }
-
-
-      /*
-       * إذا نجح التحديث وكان هناك ملف قديم
-       * نحذف الملف القديم.
-       */
-
-      if (
-        newFilePath &&
-        oldFilePath
-      ) {
-
-        const {
-          error: oldFileError
-        } = await supabaseClient
+        await supabaseClient
           .storage
           .from("legal-pdfs")
-          .remove([oldFilePath]);
-
-
-        if (oldFileError) {
-
-          console.warn(
-            "تعذر حذف الملف القديم:",
-            oldFileError
-          );
-
-        }
+          .remove([
+            newFilePath
+          ]);
 
       }
 
 
-      showStatus(
-        "تم تحديث المرجع بنجاح.",
-        "success"
+      throw new Error(
+        "فشل تحديث المرجع: " +
+        updateError.message
       );
-
-
-      closeEditModal();
-
-
-      await loadReferences();
-
-    } catch (error) {
-
-      console.error(error);
-
-
-      showStatus(
-        error.message ||
-        "حدث خطأ أثناء تحديث المرجع.",
-        "error",
-        "editStatus"
-      );
-
-    } finally {
-
-      saveButton.disabled = false;
-
-      saveButton.textContent =
-        "حفظ التعديلات";
 
     }
 
-  }
 
+    /*
+     * حذف الملف القديم بعد نجاح التحديث.
+     */
 
-  /* =========================================================
-     DELETE MODAL
-  ========================================================= */
-
-  function openDeleteModal(id) {
-
-    const reference =
-      allReferences.find(
-        item => Number(item.id) === Number(id)
-      );
-
-
-    if (!reference) {
-
-      showStatus(
-        "تعذر العثور على المرجع.",
-        "error"
-      );
-
-      return;
-    }
-
-
-    deleteTarget = reference;
-
-
-    document.getElementById(
-      "deleteReferenceTitle"
-    ).textContent =
-      "سيتم حذف «" +
-      reference.title +
-      "» من قاعدة البيانات.";
-
-
-    document.getElementById(
-      "deleteModal"
-    ).classList.add("show");
-
-  }
-
-
-  function closeDeleteModal() {
-
-    document.getElementById(
-      "deleteModal"
-    ).classList.remove("show");
-
-    deleteTarget = null;
-
-  }
-
-
-  /* =========================================================
-     CONFIRM DELETE
-  ========================================================= */
-
-  async function confirmDelete() {
-
-    if (!deleteTarget) {
-      return;
-    }
-
-
-    const button =
-      document.getElementById(
-        "confirmDeleteBtn"
-      );
-
-
-    const reference =
-      deleteTarget;
-
-
-    button.disabled = true;
-
-    button.textContent =
-      "جاري الحذف...";
-
-
-    try {
-
-      /*
-       * نحذف سجل قاعدة البيانات أولًا.
-       * إذا نجح، نحاول حذف PDF من Storage.
-       */
+    if (
+      newFilePath &&
+      oldFilePath
+    ) {
 
       const {
-        error: deleteError
-      } = await supabaseClient
-        .from("references")
-        .delete()
-        .eq("id", reference.id);
+        error:oldFileError
+      } =
+        await supabaseClient
+          .storage
+          .from("legal-pdfs")
+          .remove([
+            oldFilePath
+          ]);
 
 
-      if (deleteError) {
+      if (oldFileError) {
 
-        throw new Error(
-          "فشل حذف المرجع: " +
-          deleteError.message
+        console.warn(
+          "تعذر حذف الملف القديم:",
+          oldFileError
         );
 
       }
 
+    }
 
-      let storageWarning = "";
+
+    showStatus(
+      "تم تحديث المرجع بنجاح.",
+      "success"
+    );
 
 
-      /*
-       * حذف ملف PDF المرتبط
-       */
+    closeEditModal();
 
-      if (reference.file_path) {
 
-        const {
-          error: storageError
-        } = await supabaseClient
+    await loadReferences();
+
+  } catch(error) {
+
+    console.error(error);
+
+    showStatus(
+      error.message ||
+      "حدث خطأ أثناء تحديث المرجع.",
+      "error",
+      "editStatus"
+    );
+
+  } finally {
+
+    saveButton.disabled =
+      false;
+
+    saveButton.textContent =
+      "حفظ التعديلات";
+
+  }
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+function openDeleteModal(id) {
+
+  const reference =
+    allReferences.find(
+      item =>
+        Number(item.id) ===
+        Number(id)
+    );
+
+
+  if (!reference) {
+
+    showStatus(
+      "تعذر العثور على المرجع.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  deleteTarget =
+    reference;
+
+
+  document.getElementById(
+    "deleteReferenceTitle"
+  ).textContent =
+    "سيتم حذف «" +
+    reference.title +
+    "» من قاعدة البيانات.";
+
+
+  document.getElementById(
+    "deleteModal"
+  ).classList.add(
+    "show"
+  );
+
+}
+
+
+function closeDeleteModal() {
+
+  document.getElementById(
+    "deleteModal"
+  ).classList.remove(
+    "show"
+  );
+
+
+  deleteTarget =
+    null;
+
+}
+
+
+/* =========================================================
+   CONFIRM DELETE
+========================================================= */
+
+async function confirmDelete() {
+
+  if (!deleteTarget) {
+    return;
+  }
+
+
+  const button =
+    document.getElementById(
+      "confirmDeleteBtn"
+    );
+
+
+  const reference =
+    deleteTarget;
+
+
+  button.disabled =
+    true;
+
+
+  button.textContent =
+    "جاري الحذف...";
+
+
+  try {
+
+    const {
+      error:deleteError
+    } =
+      await supabaseClient
+        .from("references")
+        .delete()
+        .eq(
+          "id",
+          reference.id
+        );
+
+
+    if (deleteError) {
+
+      throw new Error(
+        "فشل حذف المرجع: " +
+        deleteError.message
+      );
+
+    }
+
+
+    let storageWarning =
+      "";
+
+
+    if (reference.file_path) {
+
+      const {
+        error:storageError
+      } =
+        await supabaseClient
           .storage
           .from("legal-pdfs")
           .remove([
@@ -2515,146 +3355,125 @@
           ]);
 
 
-        if (storageError) {
+      if (storageError) {
 
-          console.warn(
-            "تعذر حذف ملف PDF:",
-            storageError
-          );
+        console.warn(
+          "تعذر حذف ملف PDF:",
+          storageError
+        );
 
-          storageWarning =
-            " تم حذف المرجع، لكن تعذر حذف ملف PDF القديم من التخزين.";
-        }
+        storageWarning =
+          " تم حذف المرجع، لكن تعذر حذف ملف PDF القديم من التخزين.";
 
       }
-
-
-      closeDeleteModal();
-
-
-      showStatus(
-        "تم حذف المرجع بنجاح." +
-        storageWarning,
-        storageWarning
-          ? "warning"
-          : "success"
-      );
-
-
-      await loadReferences();
-
-    } catch (error) {
-
-      console.error(error);
-
-
-      showStatus(
-        error.message ||
-        "حدث خطأ أثناء الحذف.",
-        "error"
-      );
-
-    } finally {
-
-      button.disabled = false;
-
-      button.textContent =
-        "نعم، حذف المرجع";
 
     }
 
+
+    closeDeleteModal();
+
+
+    showStatus(
+      "تم حذف المرجع بنجاح." +
+      storageWarning,
+      storageWarning
+        ? "warning"
+        : "success"
+    );
+
+
+    await loadReferences();
+
+  } catch(error) {
+
+    console.error(error);
+
+    showStatus(
+      error.message ||
+      "حدث خطأ أثناء الحذف.",
+      "error"
+    );
+
+  } finally {
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "نعم، حذف المرجع";
+
   }
 
-
-  /* =========================================================
-     LOGOUT
-  ========================================================= */
-
-  async function logout() {
-
-    await supabaseClient.auth.signOut();
-
-    window.location.href =
-      "admin.html";
-
-  }
+}
 
 
-  /* =========================================================
-     EVENTS
-  ========================================================= */
+/* =========================================================
+   LOGOUT
+========================================================= */
 
-  document
-    .getElementById("searchInput")
-    .addEventListener(
-      "keydown",
-      function(event) {
+async function logout() {
 
-        if (event.key === "Enter") {
+  await supabaseClient.auth.signOut();
 
-          applyFilters();
+  window.location.href =
+    "admin.html";
 
-        }
-
-      }
-    );
+}
 
 
-  document
-    .getElementById("branchFilter")
-    .addEventListener(
-      "change",
-      applyFilters
-    );
+/* =========================================================
+   SEARCH ENTER
+========================================================= */
 
-
-  document
-    .getElementById("categoryFilter")
-    .addEventListener(
-      "change",
-      applyFilters
-    );
-
-
-  document
-    .getElementById("editModal")
-    .addEventListener(
-      "click",
-      function(event) {
-
-        if (event.target === this) {
-
-          closeEditModal();
-
-        }
-
-      }
-    );
-
-
-  document
-    .getElementById("deleteModal")
-    .addEventListener(
-      "click",
-      function(event) {
-
-        if (event.target === this) {
-
-          closeDeleteModal();
-
-        }
-
-      }
-    );
-
-
-  document.addEventListener(
+document
+  .getElementById("searchInput")
+  .addEventListener(
     "keydown",
     function(event) {
 
-      if (event.key === "Escape") {
+      if (
+        event.key === "Enter"
+      ) {
+
+        applyFilters();
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   MODAL CLICK
+========================================================= */
+
+document
+  .getElementById("editModal")
+  .addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target === this
+      ) {
 
         closeEditModal();
+
+      }
+
+    }
+  );
+
+
+document
+  .getElementById("deleteModal")
+  .addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target === this
+      ) {
 
         closeDeleteModal();
 
@@ -2664,33 +3483,55 @@
   );
 
 
-  /* =========================================================
-     INITIALIZATION
-  ========================================================= */
+/* =========================================================
+   ESCAPE
+========================================================= */
 
-  async function init() {
+document.addEventListener(
+  "keydown",
+  function(event) {
 
-    const isAdmin =
-      await checkAdmin();
+    if (
+      event.key === "Escape"
+    ) {
 
+      closeEditModal();
 
-    if (!isAdmin) {
-      return;
+      closeDeleteModal();
+
     }
 
-
-    await Promise.all([
-      loadBranches(),
-      loadCategories()
-    ]);
+  }
+);
 
 
-    await loadReferences();
+/* =========================================================
+   INITIALIZATION
+========================================================= */
 
+async function init() {
+
+  const isAdmin =
+    await checkAdmin();
+
+
+  if (!isAdmin) {
+    return;
   }
 
 
-  init();
+  await Promise.all([
+    loadBranches(),
+    loadCategories()
+  ]);
+
+
+  await loadReferences();
+
+}
+
+
+init();
 
 </script>
 
