@@ -1,412 +1,1118 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>الموسوعة القانونية | المكتبة القانونية</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>الموسوعة القانونية</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
     box-sizing:border-box;
-    margin:0;
-    padding:0;
 }
 
 body{
-    font-family:Arial,Tahoma,sans-serif;
-    background:#f5f7fa;
+    margin:0;
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    background:#f4f7fb;
     color:#172033;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 header{
-    background:linear-gradient(135deg,#0b1f3a,#163d68);
+
+    background:
+        linear-gradient(
+            135deg,
+            #071a35,
+            #123e69
+        );
+
     color:white;
-    padding:45px 20px;
+
+    padding:
+        45px
+        20px;
+
     text-align:center;
+
+    box-shadow:
+        0 5px 25px
+        rgba(0,0,0,.18);
 }
 
 .logo{
-    font-size:42px;
+
+    font-size:34px;
+
     font-weight:bold;
+
     margin-bottom:12px;
 }
 
 .subtitle{
-    font-size:18px;
-    opacity:.9;
+
+    font-size:16px;
+
+    opacity:.92;
 }
 
 .manager{
-    margin:25px auto 0;
-    max-width:300px;
-}
 
-.manager-photo{
-    width:120px;
-    height:120px;
-    margin:auto;
-    border-radius:50%;
-    background:#d9dee7;
-    border:4px solid white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:45px;
-}
+    margin-top:15px;
 
-.manager h2{
-    margin-top:12px;
-    font-size:22px;
-}
+    color:#dbeafe;
 
-.manager p{
-    margin-top:5px;
-    opacity:.85;
-}
-
-.search{
-    padding:25px 15px;
-    background:white;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-.search input{
-    width:100%;
-    max-width:700px;
-    display:block;
-    margin:auto;
-    padding:17px 20px;
-    border:1px solid #d8dee8;
-    border-radius:12px;
-    font-size:17px;
-    outline:none;
-}
-
-.container{
-    max-width:1100px;
-    margin:35px auto;
-    padding:0 15px;
-}
-
-.section-title{
-    text-align:center;
-    font-size:28px;
-    margin-bottom:25px;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-    gap:18px;
-}
-
-.card{
-    background:white;
-    padding:25px 15px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 5px 18px rgba(0,0,0,.08);
-    transition:.2s;
-    cursor:pointer;
-}
-
-.card:hover{
-    transform:translateY(-5px);
-}
-
-.icon{
-    font-size:38px;
-    margin-bottom:12px;
-}
-
-.card h3{
-    margin-bottom:8px;
-    font-size:19px;
-}
-
-.card p{
-    color:#687386;
     font-size:14px;
 }
 
-.about{
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+
     background:white;
-    padding:30px 20px;
-    border-radius:15px;
-    margin-top:40px;
-    line-height:2;
-    box-shadow:0 5px 18px rgba(0,0,0,.07);
+
+    padding:14px;
+
+    text-align:center;
+
+    box-shadow:
+        0 2px 10px
+        rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
 }
+
+nav a{
+
+    text-decoration:none;
+
+    color:#123e69;
+
+    font-weight:bold;
+
+    margin:
+        0
+        12px;
+
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    width:
+        min(
+            1150px,
+            94%
+        );
+
+    margin:
+        35px
+        auto;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:
+        40px
+        25px;
+
+    text-align:center;
+
+    box-shadow:
+        0 5px 25px
+        rgba(0,0,0,.07);
+
+    margin-bottom:35px;
+}
+
+.hero h1{
+
+    color:#123e69;
+
+    font-size:32px;
+
+    margin:
+        0
+        0
+        12px;
+}
+
+.hero p{
+
+    color:#667085;
+
+    line-height:1.8;
+
+    margin:0;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+
+    max-width:700px;
+
+    margin:
+        25px
+        auto
+        0;
+}
+
+.search-box input{
+
+    width:100%;
+
+    padding:
+        17px
+        20px;
+
+    border:
+        1px
+        solid
+        #d6dce5;
+
+    border-radius:13px;
+
+    font-size:16px;
+
+    outline:none;
+}
+
+.search-box input:focus{
+
+    border-color:#123e69;
+
+    box-shadow:
+        0
+        0
+        0
+        3px
+        rgba(
+            18,
+            62,
+            105,
+            .1
+        );
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title{
+
+    text-align:center;
+
+    margin:
+        0
+        0
+        25px;
+
+    color:#123e69;
+
+    font-size:25px;
+}
+
+/* =========================
+   BRANCHES
+========================= */
+
+.branches{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                250px,
+                1fr
+            )
+        );
+
+    gap:20px;
+}
+
+/* =========================
+   BRANCH CARD
+========================= */
+
+.branch-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-decoration:none;
+
+    color:#172033;
+
+    border:
+        1px
+        solid
+        #edf0f5;
+
+    box-shadow:
+        0
+        5px
+        20px
+        rgba(
+            0,
+            0,
+            0,
+            .06
+        );
+
+    transition:
+        transform
+        .2s,
+        box-shadow
+        .2s;
+
+    display:block;
+}
+
+.branch-card:hover{
+
+    transform:
+        translateY(
+            -5px
+        );
+
+    box-shadow:
+        0
+        10px
+        30px
+        rgba(
+            0,
+            0,
+            0,
+            .12
+        );
+}
+
+.branch-icon{
+
+    width:60px;
+
+    height:60px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#eaf2fb;
+
+    border-radius:15px;
+
+    font-size:30px;
+
+    margin-bottom:17px;
+}
+
+.branch-card h3{
+
+    margin:
+        0
+        0
+        10px;
+
+    color:#123e69;
+
+    font-size:19px;
+}
+
+.branch-card p{
+
+    margin:0;
+
+    color:#667085;
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+
+    text-align:center;
+
+    padding:25px;
+
+    color:#667085;
+}
+
+.error{
+
+    background:#fff1f2;
+
+    color:#b42318;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    text-align:center;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+
+    background:white;
+
+    margin-top:40px;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:
+        0
+        5px
+        20px
+        rgba(
+            0,
+            0,
+            0,
+            .06
+        );
+
+    line-height:2;
+
+    text-align:center;
+}
+
+.about h2{
+
+    color:#123e69;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
+
     margin-top:50px;
-    background:#0b1f3a;
+
+    background:#071a35;
+
     color:white;
+
     text-align:center;
-    padding:30px 15px;
-    line-height:2;
+
+    padding:
+        35px
+        20px;
 }
+
+footer p{
+
+    margin:
+        7px;
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
+
     .logo{
-        font-size:32px;
+
+        font-size:26px;
     }
 
-    .subtitle{
-        font-size:15px;
+    .hero{
+
+        padding:30px 18px;
     }
 
-    .section-title{
-        font-size:24px;
+    .hero h1{
+
+        font-size:25px;
     }
+
+    .branches{
+
+        grid-template-columns:1fr;
+    }
+
+    nav a{
+
+        display:inline-block;
+
+        margin:
+            5px
+            7px;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-<div class="logo">⚖️ الموسوعة القانونية</div>
+    <div class="logo">
 
-<div class="subtitle">
-المكتبة القانونية الرقمية للمراجع والتشريعات والبحوث
-</div>
+        ⚖️ الموسوعة القانونية
 
-<div class="manager">
+    </div>
 
-<div class="manager-photo">
-👤
-</div>
 
-<h2>فراس بسر</h2>
+    <div class="subtitle">
 
-<p>مدير الموسوعة القانونية</p>
+        المكتبة القانونية الرقمية
+        للمراجع والتشريعات والبحوث
 
-</div>
+    </div>
+
+
+    <div class="manager">
+
+        إعداد وإشراف:
+        فراس بسر — مدير الموسوعة القانونية
+
+    </div>
 
 </header>
 
 
-<div class="search">
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-<input
-type="text"
-id="search"
-placeholder="🔎 ابحث عن قانون، كتاب، مرجع أو موضوع..."
-onkeyup="searchCards()">
+<nav>
 
-</div>
+    <a href="index.html">
+        الرئيسية
+    </a>
 
+    <a href="admin.html">
+        لوحة الإدارة
+    </a>
 
-<main class="container">
+</nav>
 
-<h2 class="section-title">
-📚 فروع القانون
-</h2>
 
+<!-- =========================
+     MAIN
+========================= -->
 
-<div class="cards" id="cards">
+<div class="container">
 
 
-<a href="civil.html" class="card">
+    <section class="hero">
 
-<div class="icon">⚖️</div>
+        <h1>
+            مرحبًا بكم في الموسوعة القانونية
+        </h1>
 
-<h3>القانون المدني</h3>
 
-<p>مراجع وتشريعات القانون المدني</p>
+        <p>
 
-</a>
+            منصة قانونية رقمية تجمع
+            التشريعات والمراجع والكتب
+            والبحوث والأحكام والدروس
+            في مكان واحد.
 
+        </p>
 
-<div class="card">
 
-<div class="icon">🏢</div>
+        <div class="search-box">
 
-<h3>القانون التجاري</h3>
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="🔎 ابحث عن فرع قانوني..."
+            >
 
-<p>الشركات والأعمال والمعاملات التجارية</p>
+        </div>
 
-</div>
+    </section>
 
 
-<div class="card">
 
-<div class="icon">🏛️</div>
+    <!-- =========================
+         BRANCHES
+    ========================= -->
 
-<h3>القانون الإداري</h3>
+    <section>
 
-<p>القانون الإداري والوظيفة العمومية</p>
+        <h2 class="section-title">
 
-</div>
+            📚 فروع القانون
 
+        </h2>
 
-<div class="card">
 
-<div class="icon">📜</div>
+        <div
+            id="status"
+            class="status"
+        >
 
-<h3>القانون الدستوري</h3>
+            ⏳ جاري تحميل الفروع...
 
-<p>الدستور والمؤسسات والحقوق والحريات</p>
+        </div>
 
-</div>
 
+        <div
+            id="branches"
+            class="branches"
+        ></div>
 
-<div class="card">
+    </section>
 
-<div class="icon">👨‍⚖️</div>
 
-<h3>القانون الجزائي</h3>
 
-<p>القانون الجزائي والإجراءات الجزائية</p>
+    <!-- =========================
+         ABOUT
+    ========================= -->
 
-</div>
+    <section class="about">
 
+        <h2>
+            ⚖️ عن الموسوعة القانونية
+        </h2>
 
-<div class="card">
 
-<div class="icon">🌍</div>
+        <p>
 
-<h3>القانون الدولي الخاص</h3>
+            الموسوعة القانونية هي مكتبة
+            قانونية رقمية تهدف إلى تسهيل
+            الوصول إلى المراجع والتشريعات
+            والبحوث القانونية للطلبة
+            والباحثين والمختصين في القانون.
 
-<p>العلاقات الخاصة ذات العنصر الأجنبي</p>
+        </p>
 
-</div>
 
+        <p>
 
-<div class="card">
+            يتم تحديث المحتوى وإضافة
+            المراجع تدريجيًا من خلال
+            لوحة الإدارة.
 
-<div class="icon">🌐</div>
+        </p>
 
-<h3>القانون الدولي العام</h3>
-
-<p>العلاقات الدولية والمعاهدات</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">👷</div>
-
-<h3>قانون الشغل</h3>
-
-<p>علاقات العمل والحقوق الاجتماعية</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">💰</div>
-
-<h3>القانون الجبائي</h3>
-
-<p>الضرائب والتشريع الجبائي</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">🤝</div>
-
-<h3>قانون التحكيم</h3>
-
-<p>التحكيم التجاري وتسوية النزاعات</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">📖</div>
-
-<h3>المراجع والكتب</h3>
-
-<p>مكتبة رقمية للمراجع القانونية</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">📝</div>
-
-<h3>البحوث والمذكرات</h3>
-
-<p>رسائل الماجستير والبحوث القانونية</p>
-
-</div>
+    </section>
 
 
 </div>
 
 
-<div class="about">
 
-<h2>عن الموسوعة القانونية</h2>
-
-<p>
-الموسوعة القانونية هي منصة رقمية تهدف إلى جمع وتنظيم المراجع
-والتشريعات والبحوث القانونية في مكان واحد، لتسهيل الوصول إليها
-من طرف الطلبة والباحثين والمختصين في المجال القانوني.
-</p>
-
-</div>
-
-</main>
-
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-<strong>الموسوعة القانونية</strong>
+    <p>
+        ⚖️ الموسوعة القانونية
+    </p>
 
-<br>
 
-جميع الحقوق محفوظة © 2026
+    <p>
+        فراس بسر — مدير الموسوعة القانونية
+    </p>
 
-<br>
 
-إدارة الموقع: فراس بسر
+    <p>
+        جميع الحقوق محفوظة © 2026
+    </p>
 
 </footer>
 
 
+
 <script>
 
-function searchCards(){
+/* =====================================
+   SUPABASE
+===================================== */
 
-let input =
-document.getElementById("search")
-.value
-.toLowerCase();
+const SUPABASE_URL =
+"https://yksrckzomkowjzmsafvm.supabase.co";
 
-let cards =
-document.querySelectorAll(".card");
 
-cards.forEach(function(card){
+const SUPABASE_KEY =
+"sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
 
-let text =
-card.innerText.toLowerCase();
 
-if(text.includes(input)){
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-card.style.display="block";
 
-}else{
+/* =====================================
+   ELEMENTS
+===================================== */
 
-card.style.display="none";
+const branchesContainer =
+document.getElementById(
+    "branches"
+);
+
+
+const status =
+document.getElementById(
+    "status"
+);
+
+
+const searchInput =
+document.getElementById(
+    "searchInput"
+);
+
+
+/* =====================================
+   ALL BRANCHES
+===================================== */
+
+let allBranches = [];
+
+
+/* =====================================
+   LOAD BRANCHES
+===================================== */
+
+async function loadBranches(){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+
+        .from("branches")
+
+        .select(
+            "id,name,slug"
+        )
+
+        .order(
+            "id",
+            {
+                ascending:true
+            }
+        );
+
+
+    if(error){
+
+        console.error(error);
+
+        status.innerHTML = `
+
+            <div class="error">
+
+                ❌ تعذر تحميل فروع القانون.
+
+                <br><br>
+
+                يرجى التحقق من اتصال
+                الموقع بقاعدة البيانات.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    allBranches =
+        data || [];
+
+
+    status.textContent =
+        "📚 عدد الفروع: "
+        +
+        allBranches.length;
+
+
+    renderBranches(
+        allBranches
+    );
 
 }
 
-});
+
+/* =====================================
+   ICONS
+===================================== */
+
+function getBranchIcon(slug){
+
+    const icons = {
+
+        civil:"⚖️",
+
+        commercial:"🏢",
+
+        administrative:"🏛️",
+
+        constitutional:"📜",
+
+        criminal:"⚔️",
+
+        "private-international":"🌍",
+
+        "public-international":"🌐",
+
+        labor:"👔",
+
+        tax:"💼",
+
+        arbitration:"🤝",
+
+        books:"📚",
+
+        research:"🎓"
+
+    };
+
+
+    return icons[slug]
+        || "⚖️";
 
 }
+
+
+/* =====================================
+   DESCRIPTION
+===================================== */
+
+function getBranchDescription(slug){
+
+    const descriptions = {
+
+        civil:
+        "المعاملات المدنية والالتزامات والعقود والمسؤولية المدنية.",
+
+        commercial:
+        "القانون التجاري والشركات والأعمال والمعاملات التجارية.",
+
+        administrative:
+        "القانون الإداري والمرفق العام والقرارات الإدارية.",
+
+        constitutional:
+        "الدستور والمؤسسات والحقوق والحريات والنظام السياسي.",
+
+        criminal:
+        "القانون الجزائي والجرائم والعقوبات والإجراءات الجزائية.",
+
+        "private-international":
+        "العلاقات الخاصة ذات العنصر الأجنبي وتنازع القوانين والاختصاص.",
+
+        "public-international":
+        "العلاقات الدولية والمعاهدات والمنظمات والقانون الدولي.",
+
+        labor:
+        "علاقات الشغل وعقود العمل والنزاعات والضمانات الاجتماعية.",
+
+        tax:
+        "القانون الجبائي والضرائب والإجراءات والمنازعات الجبائية.",
+
+        arbitration:
+        "التحكيم الوطني والدولي وتسوية المنازعات التجارية.",
+
+        books:
+        "مجموعة من الكتب والمراجع القانونية المتخصصة.",
+
+        research:
+        "البحوث والمذكرات والأعمال الأكاديمية القانونية."
+
+    };
+
+
+    return descriptions[slug]
+        ||
+        "المراجع والمواد القانونية الخاصة بهذا المجال.";
+
+}
+
+
+/* =====================================
+   RENDER
+===================================== */
+
+function renderBranches(
+    branches
+){
+
+    branchesContainer.innerHTML =
+        "";
+
+
+    if(
+        !branches ||
+        branches.length === 0
+    ){
+
+        branchesContainer.innerHTML = `
+
+            <div class="error">
+
+                لا توجد فروع قانونية
+                مضافة حاليًا.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    branches.forEach(
+        branch => {
+
+
+            const card =
+                document.createElement(
+                    "a"
+                );
+
+
+            card.className =
+                "branch-card";
+
+
+            card.href =
+                "branch.html?branch="
+                +
+                encodeURIComponent(
+                    branch.slug
+                );
+
+
+            card.innerHTML = `
+
+                <div class="branch-icon">
+
+                    ${getBranchIcon(
+                        branch.slug
+                    )}
+
+                </div>
+
+
+                <h3>
+
+                    ${escapeHTML(
+                        branch.name
+                    )}
+
+                </h3>
+
+
+                <p>
+
+                    ${escapeHTML(
+                        getBranchDescription(
+                            branch.slug
+                        )
+                    )}
+
+                </p>
+
+            `;
+
+
+            branchesContainer.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   SEARCH
+===================================== */
+
+searchInput.addEventListener(
+    "input",
+    function(){
+
+        const query =
+            this.value
+                .trim()
+                .toLowerCase();
+
+
+        if(!query){
+
+            renderBranches(
+                allBranches
+            );
+
+            return;
+        }
+
+
+        const filtered =
+            allBranches.filter(
+                branch => {
+
+                    const name =
+                        branch.name
+                        || "";
+
+                    const slug =
+                        branch.slug
+                        || "";
+
+
+                    return (
+
+                        name
+                            .toLowerCase()
+                            .includes(
+                                query
+                            )
+
+                        ||
+
+                        slug
+                            .toLowerCase()
+                            .includes(
+                                query
+                            )
+
+                    );
+
+                }
+            );
+
+
+        renderBranches(
+            filtered
+        );
+
+    }
+);
+
+
+/* =====================================
+   ESCAPE HTML
+===================================== */
+
+function escapeHTML(
+    value
+){
+
+    if(!value){
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================
+   START
+===================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadBranches
+);
 
 </script>
 
+
 </body>
+
 </html>
