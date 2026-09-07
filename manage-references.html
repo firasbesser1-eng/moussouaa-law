@@ -6,36 +6,33 @@
 
   <title>إدارة المراجع | الموسوعة القانونية</title>
 
+  <meta name="description" content="إدارة المراجع والكتب والبحوث والمذكرات في الموسوعة القانونية">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root {
-      --navy: #0b1f3a;
-      --navy-2: #102b4d;
-      --navy-3: #16385f;
-
-      --gold: #c9a227;
-      --gold-light: #e2c45b;
-
-      --ivory: #f7f3e8;
+      --navy: #0b1f33;
+      --navy-2: #102b46;
+      --navy-3: #173b5e;
+      --gold: #c8a45d;
+      --gold-light: #e0c889;
+      --ivory: #f7f3ea;
       --white: #ffffff;
-
-      --text: #182536;
-      --muted: #687588;
-
-      --border: #e3e7ed;
-
-      --success: #1f7a4d;
-      --danger: #b23a48;
-      --danger-dark: #922d3a;
-
-      --shadow: 0 10px 30px rgba(11, 31, 58, 0.08);
-      --shadow-lg: 0 20px 50px rgba(11, 31, 58, 0.12);
-
+      --text: #1d2935;
+      --muted: #718096;
+      --border: #e4e8ed;
+      --success: #19734a;
+      --success-bg: #eaf7f0;
+      --danger: #b42318;
+      --danger-bg: #fff1f0;
+      --warning: #946200;
+      --warning-bg: #fff8e6;
+      --shadow: 0 12px 35px rgba(11, 31, 51, 0.08);
       --radius: 18px;
     }
 
@@ -45,13 +42,22 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: "Cairo", sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(201, 162, 39, 0.08), transparent 28%),
-        var(--ivory);
+      background: #f5f6f8;
       color: var(--text);
-      min-height: 100vh;
+      line-height: 1.8;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
     }
 
     a {
@@ -59,35 +65,24 @@
       color: inherit;
     }
 
-    button,
-    input,
-    select {
-      font-family: inherit;
+    .container {
+      width: min(1180px, calc(100% - 30px));
+      margin: auto;
     }
 
-    button {
-      cursor: pointer;
-    }
+    /* ================= HEADER ================= */
 
-    /* =========================
-       HEADER
-    ========================== */
-
-    .topbar {
+    header {
       background: linear-gradient(135deg, var(--navy), var(--navy-2));
       color: white;
+      border-bottom: 1px solid rgba(200, 164, 93, 0.25);
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 20px rgba(0,0,0,.15);
     }
 
-    .topbar-inner {
-      max-width: 1250px;
-      margin: auto;
-      min-height: 78px;
-      padding: 12px 20px;
-
+    .header-inner {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -98,167 +93,116 @@
       display: flex;
       align-items: center;
       gap: 13px;
-      min-width: 0;
     }
 
     .brand-icon {
-      width: 48px;
-      height: 48px;
-      border: 1px solid rgba(226,196,91,.5);
-      border-radius: 14px;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(224, 200, 137, 0.55);
+      border-radius: 12px;
       display: grid;
       place-items: center;
       color: var(--gold-light);
-      background: rgba(255,255,255,.05);
       flex-shrink: 0;
     }
 
     .brand-icon svg {
-      width: 28px;
-      height: 28px;
-    }
-
-    .brand-text {
-      min-width: 0;
+      width: 25px;
+      height: 25px;
     }
 
     .brand-title {
       font-family: "Amiri", serif;
-      font-size: 25px;
+      font-size: 23px;
       font-weight: 700;
       line-height: 1.2;
-      color: white;
     }
 
     .brand-subtitle {
-      color: rgba(255,255,255,.68);
+      color: #b7c3cf;
       font-size: 11px;
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .header-btn {
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
       color: white;
-      padding: 10px 15px;
-      border-radius: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
+      padding: 9px 13px;
+      border-radius: 10px;
       font-size: 13px;
-      transition: .2s;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
     .header-btn:hover {
-      background: rgba(255,255,255,.12);
-      border-color: rgba(226,196,91,.5);
+      background: rgba(255,255,255,0.11);
     }
 
-    .header-btn svg {
-      width: 17px;
-      height: 17px;
-    }
+    /* ================= HERO ================= */
 
-    /* =========================
-       PAGE
-    ========================== */
-
-    .container {
-      width: min(1250px, calc(100% - 32px));
-      margin: auto;
-    }
-
-    .breadcrumb {
-      padding: 25px 0 10px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .breadcrumb a {
-      color: var(--navy-3);
-      font-weight: 600;
-    }
-
-    .page-heading {
-      padding: 10px 0 25px;
-    }
-
-    .heading-inner {
+    .page-hero {
       background:
-        linear-gradient(135deg, rgba(11,31,58,.98), rgba(22,56,95,.96));
+        radial-gradient(circle at 10% 20%, rgba(200,164,93,0.12), transparent 25%),
+        linear-gradient(135deg, var(--navy), var(--navy-2));
       color: white;
-      border-radius: 24px;
-      padding: 32px;
-
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
+      padding: 42px 0;
     }
 
-    .heading-inner::before {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      border: 1px solid rgba(226,196,91,.18);
-      border-radius: 50%;
-      left: -100px;
-      top: -120px;
+    .hero-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
     }
 
-    .heading-inner::after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border: 1px solid rgba(226,196,91,.13);
-      border-radius: 50%;
-      right: -70px;
-      bottom: -100px;
-    }
-
-    .heading-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .eyebrow {
-      color: var(--gold-light);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .5px;
-      margin-bottom: 7px;
-    }
-
-    .heading-title {
+    .hero-text h1 {
       font-family: "Amiri", serif;
-      font-size: clamp(30px, 5vw, 42px);
-      line-height: 1.2;
+      font-size: clamp(30px, 5vw, 44px);
       margin-bottom: 8px;
     }
 
-    .heading-description {
-      color: rgba(255,255,255,.75);
+    .hero-text p {
+      color: #c4ced8;
       font-size: 14px;
       max-width: 700px;
-      line-height: 1.9;
     }
 
-    /* =========================
-       STATS
-    ========================== */
+    .hero-badge {
+      border: 1px solid rgba(224,200,137,0.45);
+      color: var(--gold-light);
+      border-radius: 50%;
+      width: 86px;
+      height: 86px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .hero-badge svg {
+      width: 43px;
+      height: 43px;
+    }
+
+    /* ================= MAIN ================= */
+
+    main {
+      padding: 30px 0 60px;
+    }
+
+    /* ================= STATS ================= */
 
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin: 5px 0 22px;
+      gap: 16px;
+      margin-bottom: 25px;
     }
 
     .stat-card {
@@ -266,19 +210,17 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 20px;
-
+      box-shadow: var(--shadow);
       display: flex;
       align-items: center;
-      gap: 14px;
-
-      box-shadow: var(--shadow);
+      gap: 15px;
     }
 
     .stat-icon {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 13px;
-      background: rgba(201,162,39,.12);
+      background: var(--ivory);
       color: var(--gold);
       display: grid;
       place-items: center;
@@ -286,179 +228,236 @@
     }
 
     .stat-icon svg {
-      width: 24px;
-      height: 24px;
+      width: 23px;
+      height: 23px;
     }
 
-    .stat-number {
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .stat-value {
       font-size: 25px;
       font-weight: 800;
       color: var(--navy);
       line-height: 1.2;
     }
 
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    /* =========================
-       TOOLBAR
-    ========================== */
+    /* ================= PANEL ================= */
 
     .panel {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 22px;
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
-      margin-bottom: 22px;
+      margin-bottom: 25px;
+      overflow: hidden;
     }
 
-    .toolbar {
-      padding: 20px;
+    .panel-header {
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
     }
 
-    .toolbar-title {
-      font-size: 16px;
-      font-weight: 800;
+    .panel-title {
+      font-family: "Amiri", serif;
       color: var(--navy);
-      margin-bottom: 15px;
+      font-size: 24px;
     }
+
+    .panel-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .panel-body {
+      padding: 22px;
+    }
+
+    /* ================= FILTERS ================= */
 
     .filters {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr auto;
-      gap: 10px;
+      gap: 12px;
     }
 
-    .input-wrap {
-      position: relative;
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
-    .input-wrap svg {
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 18px;
-      height: 18px;
-      color: var(--muted);
-      pointer-events: none;
-    }
-
-    .form-control {
-      width: 100%;
-      min-height: 46px;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      padding: 10px 14px;
-      background: #fff;
-      color: var(--text);
-      outline: none;
-      font-size: 13px;
-      transition: .2s;
-    }
-
-    .search-input {
-      padding-right: 43px;
-    }
-
-    .form-control:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201,162,39,.10);
-    }
-
-    .btn-reset {
-      min-height: 46px;
-      border: 1px solid var(--border);
-      background: #f8fafc;
-      color: var(--navy);
-      border-radius: 11px;
-      padding: 0 17px;
-      font-size: 13px;
+    .field label {
+      font-size: 12px;
+      color: #526170;
       font-weight: 700;
     }
 
-    .btn-reset:hover {
-      background: var(--ivory);
+    .input,
+    .select,
+    .textarea {
+      width: 100%;
+      border: 1px solid #d8dee5;
+      background: #fff;
+      border-radius: 11px;
+      padding: 11px 13px;
+      outline: none;
+      color: var(--text);
+      font-size: 13px;
+      transition: 0.2s;
     }
 
-    /* =========================
-       RESULTS
-    ========================== */
+    .input:focus,
+    .select:focus,
+    .textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200,164,93,0.12);
+    }
 
-    .results-header {
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--border);
+    .textarea {
+      min-height: 105px;
+      resize: vertical;
+    }
 
+    .btn {
+      border: 0;
+      border-radius: 11px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    .btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-3);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-light {
+      background: #f1f3f5;
+      color: var(--navy);
+    }
+
+    .btn-danger {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border: 1px solid #ffd1cd;
+    }
+
+    .btn-success {
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid #c6ead7;
+    }
+
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .filter-actions {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+    }
+
+    /* ================= RESULTS ================= */
+
+    .results-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 15px;
-    }
-
-    .results-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--navy);
+      margin-bottom: 18px;
     }
 
     .results-count {
-      font-size: 12px;
       color: var(--muted);
-      background: #f4f6f8;
-      padding: 6px 11px;
-      border-radius: 30px;
+      font-size: 13px;
+    }
+
+    .results-count strong {
+      color: var(--navy);
     }
 
     .references-list {
-      padding: 20px;
       display: grid;
-      gap: 14px;
+      gap: 13px;
     }
 
     .reference-card {
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 15px;
       padding: 18px;
-
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-
-      transition: .2s;
       background: #fff;
+      transition: 0.2s;
     }
 
     .reference-card:hover {
-      border-color: rgba(201,162,39,.55);
-      box-shadow: 0 8px 25px rgba(11,31,58,.06);
-      transform: translateY(-1px);
+      border-color: rgba(200,164,93,0.55);
+      box-shadow: 0 8px 24px rgba(11,31,51,0.06);
     }
 
     .reference-main {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .reference-info {
       min-width: 0;
+      flex: 1;
     }
 
     .reference-title {
+      color: var(--navy);
       font-family: "Amiri", serif;
       font-size: 22px;
-      color: var(--navy);
-      line-height: 1.5;
-      margin-bottom: 8px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      word-break: break-word;
     }
 
     .reference-author {
-      color: var(--muted);
+      color: #596979;
       font-size: 12px;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
     }
 
     .reference-description {
-      color: #5e6b7a;
+      color: #667585;
       font-size: 12px;
-      line-height: 1.8;
+      line-height: 1.9;
       margin-bottom: 12px;
     }
 
@@ -469,290 +468,374 @@
     }
 
     .badge {
-      padding: 5px 9px;
-      border-radius: 7px;
+      background: var(--ivory);
+      color: #745b24;
+      border: 1px solid #ead9ad;
+      padding: 4px 9px;
+      border-radius: 20px;
       font-size: 10px;
       font-weight: 700;
     }
 
-    .badge-branch {
-      background: rgba(11,31,58,.07);
-      color: var(--navy-2);
-    }
-
-    .badge-category {
-      background: rgba(201,162,39,.13);
-      color: #846914;
+    .badge.branch {
+      background: #edf3f8;
+      color: #274966;
+      border-color: #d5e2ed;
     }
 
     .reference-actions {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      min-width: 130px;
-    }
-
-    .action-btn {
-      border-radius: 10px;
-      min-height: 40px;
-      padding: 8px 12px;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       gap: 7px;
-
-      font-size: 12px;
-      font-weight: 700;
-      border: 1px solid transparent;
-      transition: .2s;
+      width: 145px;
+      flex-shrink: 0;
     }
 
-    .action-btn svg {
-      width: 16px;
-      height: 16px;
+    .reference-actions .btn {
+      width: 100%;
     }
 
-    .btn-open {
-      background: rgba(31,122,77,.09);
-      color: var(--success);
-      border-color: rgba(31,122,77,.18);
-    }
-
-    .btn-open:hover {
-      background: rgba(31,122,77,.15);
-    }
-
-    .btn-edit {
-      background: rgba(11,31,58,.07);
-      color: var(--navy);
-      border-color: rgba(11,31,58,.12);
-    }
-
-    .btn-edit:hover {
-      background: rgba(11,31,58,.12);
-    }
-
-    .btn-delete {
-      background: rgba(178,58,72,.08);
-      color: var(--danger);
-      border-color: rgba(178,58,72,.16);
-    }
-
-    .btn-delete:hover {
-      background: rgba(178,58,72,.14);
-    }
-
-    /* =========================
-       STATES
-    ========================== */
-
-    .state {
-      padding: 55px 20px;
+    .empty-state {
       text-align: center;
+      padding: 55px 20px;
       color: var(--muted);
     }
 
-    .state-icon {
-      width: 58px;
-      height: 58px;
-      margin: 0 auto 14px;
+    .empty-icon {
+      width: 65px;
+      height: 65px;
       border-radius: 50%;
-      background: #f2f4f7;
+      background: var(--ivory);
+      color: var(--gold);
+      margin: 0 auto 14px;
       display: grid;
       place-items: center;
-      color: var(--muted);
     }
 
-    .state-icon svg {
-      width: 27px;
-      height: 27px;
+    .empty-icon svg {
+      width: 29px;
+      height: 29px;
     }
 
-    .state-title {
-      font-size: 16px;
+    .empty-state h3 {
       color: var(--navy);
-      font-weight: 800;
-      margin-bottom: 5px;
+      font-family: "Amiri", serif;
+      font-size: 23px;
+      margin-bottom: 4px;
     }
 
-    .state-text {
-      font-size: 12px;
-    }
+    /* ================= STATUS ================= */
 
-    .spinner {
-      width: 25px;
-      height: 25px;
-      border: 3px solid #e5e8ed;
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
-      margin: auto;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .message {
+    .status {
       display: none;
-      margin: 0 20px 20px;
+      margin-bottom: 20px;
       padding: 13px 15px;
       border-radius: 11px;
-      font-size: 12px;
-      line-height: 1.7;
+      font-size: 13px;
+      border: 1px solid transparent;
     }
 
-    .message.show {
+    .status.show {
       display: block;
     }
 
-    .message.success {
-      background: rgba(31,122,77,.09);
-      border: 1px solid rgba(31,122,77,.18);
+    .status.success {
+      background: var(--success-bg);
       color: var(--success);
+      border-color: #c6ead7;
     }
 
-    .message.error {
-      background: rgba(178,58,72,.08);
-      border: 1px solid rgba(178,58,72,.17);
+    .status.error {
+      background: var(--danger-bg);
       color: var(--danger);
+      border-color: #ffd1cd;
     }
 
-    /* =========================
-       FOOTER
-    ========================== */
-
-    footer {
-      margin-top: 40px;
-      background: var(--navy);
-      color: rgba(255,255,255,.7);
-      padding: 30px 20px;
+    .status.warning {
+      background: var(--warning-bg);
+      color: var(--warning);
+      border-color: #f2dda7;
     }
 
-    .footer-inner {
-      max-width: 1250px;
-      margin: auto;
+    /* ================= MODAL ================= */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 14, 24, 0.65);
+      z-index: 500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      width: min(700px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+    }
+
+    .modal-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 2;
+    }
+
+    .modal-header h2 {
+      color: var(--navy);
+      font-family: "Amiri", serif;
+      font-size: 25px;
+    }
+
+    .close-btn {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 10px;
+      background: #f1f3f5;
+      color: #526170;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .close-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .modal-body {
+      padding: 22px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .file-box {
+      border: 1px dashed #cfd6dd;
+      border-radius: 12px;
+      padding: 15px;
+      background: #fafbfc;
+    }
+
+    .file-box input {
+      width: 100%;
+      font-size: 12px;
+    }
+
+    .file-note {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 6px;
+    }
+
+    .modal-footer {
+      padding: 18px 22px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-start;
+      gap: 8px;
+      position: sticky;
+      bottom: 0;
+      background: white;
+    }
+
+    /* ================= CONFIRM ================= */
+
+    .confirm-content {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .confirm-icon {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: var(--danger-bg);
+      color: var(--danger);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 15px;
+    }
+
+    .confirm-icon svg {
+      width: 29px;
+      height: 29px;
+    }
+
+    .confirm-content h3 {
+      font-family: "Amiri", serif;
+      font-size: 24px;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .confirm-content p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 28px 0;
+      border-top: 1px solid rgba(200,164,93,0.25);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
     }
 
     .footer-title {
-      color: white;
       font-family: "Amiri", serif;
-      font-size: 20px;
+      font-size: 19px;
+      color: var(--gold-light);
     }
 
     .footer-text {
+      color: #aebbc7;
       font-size: 11px;
-      margin-top: 3px;
     }
 
-    .footer-manager {
-      color: var(--gold-light);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================== */
+    /* ================= RESPONSIVE ================= */
 
     @media (max-width: 900px) {
       .filters {
         grid-template-columns: 1fr 1fr;
       }
 
-      .filters .search-box {
-        grid-column: 1 / -1;
+      .filter-actions {
+        align-items: stretch;
       }
 
-      .reference-card {
-        grid-template-columns: 1fr;
+      .filter-actions .btn {
+        flex: 1;
+      }
+
+      .reference-main {
+        flex-direction: column;
       }
 
       .reference-actions {
+        width: 100%;
         flex-direction: row;
         flex-wrap: wrap;
       }
 
-      .action-btn {
+      .reference-actions .btn {
+        width: auto;
         flex: 1;
-        min-width: 110px;
+        min-width: 120px;
       }
     }
 
     @media (max-width: 650px) {
       .container {
-        width: min(100% - 20px, 1250px);
+        width: min(100% - 20px, 1180px);
       }
 
-      .topbar-inner {
+      .header-inner {
         min-height: 68px;
-        padding: 10px;
-      }
-
-      .brand-icon {
-        width: 42px;
-        height: 42px;
       }
 
       .brand-title {
-        font-size: 21px;
+        font-size: 19px;
       }
 
       .brand-subtitle {
         font-size: 9px;
       }
 
+      .brand-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .header-btn {
+        padding: 8px 9px;
+        font-size: 11px;
+      }
+
       .header-btn span {
         display: none;
       }
 
-      .header-btn {
-        width: 40px;
-        height: 40px;
-        padding: 0;
-        justify-content: center;
+      .page-hero {
+        padding: 30px 0;
       }
 
-      .heading-inner {
-        padding: 25px 20px;
-        border-radius: 19px;
+      .hero-content {
+        align-items: flex-start;
       }
 
-      .heading-title {
-        font-size: 31px;
+      .hero-badge {
+        width: 62px;
+        height: 62px;
+      }
+
+      .hero-badge svg {
+        width: 31px;
+        height: 31px;
+      }
+
+      main {
+        padding-top: 18px;
       }
 
       .stats {
         grid-template-columns: 1fr;
+        gap: 10px;
       }
 
-      .toolbar {
-        padding: 15px;
+      .stat-card {
+        padding: 14px;
       }
 
       .filters {
         grid-template-columns: 1fr;
       }
 
-      .filters .search-box {
-        grid-column: auto;
+      .filter-actions {
+        flex-direction: column;
       }
 
-      .results-header {
+      .panel-header {
+        padding: 16px;
+      }
+
+      .panel-body {
         padding: 15px;
-      }
-
-      .references-list {
-        padding: 12px;
       }
 
       .reference-card {
-        padding: 15px;
+        padding: 14px;
       }
 
       .reference-title {
@@ -764,8 +847,24 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .btn-delete {
-        grid-column: 1 / -1;
+      .reference-actions .btn {
+        min-width: 0;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .modal-body {
+        padding: 15px;
+      }
+
+      .modal-footer {
+        padding: 14px 15px;
       }
 
       .footer-inner {
@@ -778,140 +877,121 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="topbar-inner">
+<header>
+  <div class="container header-inner">
 
-      <a href="index.html" class="brand">
+    <a href="index.html" class="brand">
 
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
-            <path d="M8 6h8"/>
-            <path d="M8 10h8"/>
-          </svg>
-        </div>
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+          <path d="M4 5.5V21"/>
+          <path d="M8 7h8"/>
+          <path d="M8 11h8"/>
+        </svg>
+      </div>
 
-        <div class="brand-text">
-          <div class="brand-title">الموسوعة القانونية</div>
-          <div class="brand-subtitle">فراس بسر — مدير الموسوعة القانونية</div>
-        </div>
+      <div>
+        <div class="brand-title">الموسوعة القانونية</div>
+        <div class="brand-subtitle">فراس بسر — مدير الموسوعة القانونية</div>
+      </div>
 
+    </a>
+
+    <div class="header-actions">
+      <a href="dashboard.html" class="header-btn">
+        <span>لوحة التحكم</span>
       </a>
 
-      <div class="header-actions">
-
-        <a href="dashboard.html" class="header-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 10.5 12 3l9 7.5"/>
-            <path d="M5 9.5V21h14V9.5"/>
-            <path d="M9 21v-7h6v7"/>
-          </svg>
-          <span>لوحة الإدارة</span>
-        </a>
-
-        <button class="header-btn" onclick="logout()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M10 17l5-5-5-5"/>
-            <path d="M15 12H3"/>
-            <path d="M21 3v18"/>
-          </svg>
-          <span>خروج</span>
-        </button>
-
-      </div>
-
-    </div>
-  </header>
-
-
-  <main class="container">
-
-    <!-- BREADCRUMB -->
-    <div class="breadcrumb">
-      <a href="dashboard.html">لوحة الإدارة</a>
-      <span> / إدارة المراجع</span>
+      <button class="header-btn" onclick="logout()">
+        <span>تسجيل الخروج</span>
+      </button>
     </div>
 
+  </div>
+</header>
 
-    <!-- PAGE HEADING -->
-    <section class="page-heading">
 
-      <div class="heading-inner">
+<section class="page-hero">
+  <div class="container hero-content">
 
-        <div class="heading-content">
-          <div class="eyebrow">إدارة المحتوى القانوني</div>
+    <div class="hero-text">
+      <h1>إدارة المراجع</h1>
+      <p>
+        إدارة الكتب والمراجع والبحوث والمذكرات والمجلات،
+        وتنظيمها داخل فروع القانون والأقسام المناسبة.
+      </p>
+    </div>
 
-          <h1 class="heading-title">
-            إدارة المراجع
-          </h1>
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+        <path d="M4 5.5V21"/>
+        <path d="M8 7h8"/>
+        <path d="M8 11h8"/>
+        <path d="M8 15h5"/>
+      </svg>
+    </div>
 
-          <p class="heading-description">
-            من هنا يمكنك استعراض جميع المراجع القانونية المضافة إلى الموسوعة،
-            البحث فيها، فتح ملفات PDF، تعديل بياناتها أو حذفها.
-          </p>
-        </div>
+  </div>
+</section>
 
-      </div>
 
-    </section>
+<main>
+  <div class="container">
 
+    <div id="status" class="status"></div>
 
     <!-- STATS -->
     <section class="stats">
 
       <div class="stat-card">
-
         <div class="stat-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+            <path d="M4 5.5V21"/>
           </svg>
         </div>
-
         <div>
-          <div class="stat-number" id="totalReferences">0</div>
           <div class="stat-label">إجمالي المراجع</div>
+          <div class="stat-value" id="totalReferences">—</div>
         </div>
-
       </div>
 
 
       <div class="stat-card">
-
         <div class="stat-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M3 10.5 12 4l9 6.5"/>
-            <path d="M5 10v9h14v-9"/>
-            <path d="M9 19v-5h6v5"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M4 19V5"/>
+            <path d="M4 5h14l2 2v12H4"/>
+            <path d="M8 9h8"/>
+            <path d="M8 13h8"/>
+            <path d="M8 17h5"/>
           </svg>
         </div>
-
         <div>
-          <div class="stat-number" id="totalBranches">0</div>
-          <div class="stat-label">فروع القانون</div>
+          <div class="stat-label">المراجع التي تحتوي PDF</div>
+          <div class="stat-value" id="pdfReferences">—</div>
         </div>
-
       </div>
 
 
       <div class="stat-card">
-
         <div class="stat-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="4" y="3" width="16" height="18" rx="2"/>
-            <path d="M8 8h8"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <circle cx="12" cy="12" r="8"/>
+            <path d="M12 8v8"/>
             <path d="M8 12h8"/>
-            <path d="M8 16h5"/>
           </svg>
         </div>
-
         <div>
-          <div class="stat-number" id="totalCategories">0</div>
-          <div class="stat-label">الأقسام</div>
+          <div class="stat-label">إضافة مرجع جديد</div>
+          <div style="margin-top:4px;">
+            <a href="add-reference.html" class="btn btn-gold" style="padding:6px 10px;font-size:11px;">
+              إضافة مرجع
+            </a>
+          </div>
         </div>
-
       </div>
 
     </section>
@@ -920,557 +1000,836 @@
     <!-- FILTERS -->
     <section class="panel">
 
-      <div class="toolbar">
-
-        <div class="toolbar-title">
-          البحث والتصفية
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">البحث والتصفية</div>
+          <div class="panel-subtitle">
+            ابحث عن المرجع ثم اختر الفرع والقسم
+          </div>
         </div>
+      </div>
+
+      <div class="panel-body">
 
         <div class="filters">
 
-          <div class="input-wrap search-box">
-
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="7"/>
-              <path d="m20 20-4-4"/>
-            </svg>
-
+          <div class="field">
+            <label for="searchInput">البحث</label>
             <input
               id="searchInput"
-              class="form-control search-input"
+              class="input"
               type="search"
-              placeholder="ابحث بعنوان المرجع أو المؤلف..."
-              autocomplete="off"
+              placeholder="عنوان المرجع، المؤلف، الوصف..."
             >
-
           </div>
 
 
-          <select id="branchFilter" class="form-control">
-            <option value="">جميع فروع القانون</option>
-          </select>
+          <div class="field">
+            <label for="branchFilter">فرع القانون</label>
+            <select id="branchFilter" class="select">
+              <option value="">كل الفروع</option>
+            </select>
+          </div>
 
 
-          <select id="categoryFilter" class="form-control">
-            <option value="">جميع الأقسام</option>
-          </select>
+          <div class="field">
+            <label for="categoryFilter">القسم</label>
+            <select id="categoryFilter" class="select">
+              <option value="">كل الأقسام</option>
+            </select>
+          </div>
 
 
-          <button class="btn-reset" onclick="resetFilters()">
-            إعادة ضبط
-          </button>
+          <div class="filter-actions">
+            <button class="btn btn-primary" onclick="applyFilters()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                <circle cx="11" cy="11" r="6.5"/>
+                <path d="m16 16 4 4"/>
+              </svg>
+              بحث
+            </button>
+
+            <button class="btn btn-light" onclick="resetFilters()">
+              إعادة ضبط
+            </button>
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- RESULTS -->
+    <!-- REFERENCES -->
     <section class="panel">
 
-      <div class="results-header">
-
-        <div class="results-title">
-          قائمة المراجع
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">قائمة المراجع</div>
+          <div class="panel-subtitle">
+            المرجع مرتبط بفرع وقسم، وليس فرعًا مستقلًا
+          </div>
         </div>
 
-        <div class="results-count" id="resultsCount">
-          0 مرجع
-        </div>
-
+        <a href="add-reference.html" class="btn btn-gold">
+          + إضافة مرجع
+        </a>
       </div>
 
 
-      <div id="message" class="message"></div>
+      <div class="panel-body">
 
-
-      <div id="loadingState" class="state">
-        <div class="spinner"></div>
-        <div style="margin-top:12px;font-size:12px;">
-          جارٍ تحميل المراجع...
-        </div>
-      </div>
-
-
-      <div id="referencesList" class="references-list" style="display:none;"></div>
-
-
-      <div id="emptyState" class="state" style="display:none;">
-
-        <div class="state-icon">
-
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-            <circle cx="11" cy="11" r="7"/>
-            <path d="m20 20-4-4"/>
-            <path d="M8.5 8.5 13.5 13.5"/>
-            <path d="M13.5 8.5 8.5 13.5"/>
-          </svg>
-
+        <div class="results-top">
+          <div class="results-count">
+            عدد النتائج:
+            <strong id="resultsCount">0</strong>
+          </div>
         </div>
 
-        <div class="state-title">
-          لم يتم العثور على مراجع
-        </div>
-
-        <div class="state-text">
-          جرّب تغيير كلمات البحث أو خيارات التصفية.
-        </div>
+        <div id="referencesList" class="references-list"></div>
 
       </div>
 
     </section>
 
-  </main>
+  </div>
+</main>
 
 
-  <!-- FOOTER -->
-  <footer>
+<footer>
+  <div class="container footer-inner">
 
-    <div class="footer-inner">
-
-      <div>
-        <div class="footer-title">الموسوعة القانونية</div>
-        <div class="footer-text">
-          مكتبة قانونية رقمية مجانية لخدمة الطلبة والباحثين.
-        </div>
+    <div>
+      <div class="footer-title">الموسوعة القانونية</div>
+      <div class="footer-text">
+        مكتبة قانونية أكاديمية رقمية
       </div>
+    </div>
 
-      <div class="footer-manager">
-        فراس بسر — مدير الموسوعة القانونية
+    <div class="footer-text">
+      © 2026 جميع الحقوق محفوظة
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- EDIT MODAL -->
+
+<div id="editModal" class="modal-overlay">
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <h2>تعديل المرجع</h2>
+
+      <button class="close-btn" onclick="closeEditModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="m6 6 12 12"/>
+          <path d="m18 6-12 12"/>
+        </svg>
+      </button>
+
+    </div>
+
+
+    <div class="modal-body">
+
+      <div id="editStatus" class="status"></div>
+
+      <input type="hidden" id="editId">
+      <input type="hidden" id="oldFilePath">
+
+      <div class="form-grid">
+
+        <div class="field full">
+          <label for="editTitle">عنوان المرجع *</label>
+          <input id="editTitle" class="input" type="text" placeholder="عنوان المرجع">
+        </div>
+
+
+        <div class="field">
+          <label for="editAuthor">المؤلف</label>
+          <input id="editAuthor" class="input" type="text" placeholder="اسم المؤلف">
+        </div>
+
+
+        <div class="field">
+          <label for="editBranch">فرع القانون *</label>
+          <select id="editBranch" class="select">
+            <option value="">اختر الفرع</option>
+          </select>
+        </div>
+
+
+        <div class="field">
+          <label for="editCategory">القسم *</label>
+          <select id="editCategory" class="select">
+            <option value="">اختر القسم</option>
+          </select>
+        </div>
+
+
+        <div class="field full">
+          <label for="editDescription">الوصف</label>
+          <textarea
+            id="editDescription"
+            class="textarea"
+            placeholder="وصف مختصر للمرجع..."
+          ></textarea>
+        </div>
+
+
+        <div class="field full">
+          <label for="replaceFile">استبدال ملف PDF</label>
+
+          <div class="file-box">
+
+            <input
+              id="replaceFile"
+              type="file"
+              accept="application/pdf,.pdf"
+            >
+
+            <div class="file-note">
+              اترك الخانة فارغة إذا كنت لا تريد تغيير الملف.
+              الحد الأقصى 50 MB.
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
     </div>
 
-  </footer>
+
+    <div class="modal-footer">
+
+      <button id="saveEditBtn" class="btn btn-primary" onclick="saveEdit()">
+        حفظ التعديلات
+      </button>
+
+      <button class="btn btn-light" onclick="closeEditModal()">
+        إلغاء
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
 
-  <script>
+<!-- DELETE MODAL -->
 
-    /* ==========================================
-       SUPABASE
-    ========================================== */
+<div id="deleteModal" class="modal-overlay">
 
-    const SUPABASE_URL =
-      "https://yksrckzomkowjzmsafvm.supabase.co";
+  <div class="modal" style="max-width:480px;">
 
-    const SUPABASE_KEY =
-      "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
+    <div class="modal-header">
+      <h2>حذف المرجع</h2>
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
+      <button class="close-btn" onclick="closeDeleteModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="m6 6 12 12"/>
+          <path d="m18 6-12 12"/>
+        </svg>
+      </button>
+    </div>
+
+
+    <div class="modal-body">
+
+      <div class="confirm-content">
+
+        <div class="confirm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M5 7h14"/>
+            <path d="M9 7V4h6v3"/>
+            <path d="M7 7l1 13h8l1-13"/>
+            <path d="M10 11v5"/>
+            <path d="M14 11v5"/>
+          </svg>
+        </div>
+
+        <h3>هل تريد حذف هذا المرجع؟</h3>
+
+        <p id="deleteReferenceTitle">
+          سيتم حذف بيانات المرجع من قاعدة البيانات.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="modal-footer">
+
+      <button id="confirmDeleteBtn" class="btn btn-danger" onclick="confirmDelete()">
+        نعم، حذف المرجع
+      </button>
+
+      <button class="btn btn-light" onclick="closeDeleteModal()">
+        إلغاء
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* =========================================================
+     SUPABASE
+  ========================================================= */
+
+  const SUPABASE_URL = "https://yksrckzomkowjzmsafvm.supabase.co";
+
+  const SUPABASE_KEY = "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  /* =========================================================
+     GLOBAL DATA
+  ========================================================= */
+
+  let allReferences = [];
+  let branches = [];
+  let categories = [];
+
+  let deleteTarget = null;
+
+
+  /* =========================================================
+     HELPERS
+  ========================================================= */
+
+  function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+      return "";
+    }
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  function showStatus(message, type = "success", targetId = "status") {
+
+    const box = document.getElementById(targetId);
+
+    if (!box) return;
+
+    box.textContent = message;
+
+    box.className = "status show " + type;
+
+    if (targetId === "status") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+  }
+
+
+  function hideStatus(targetId = "status") {
+
+    const box = document.getElementById(targetId);
+
+    if (!box) return;
+
+    box.className = "status";
+
+  }
+
+
+  function getPDFUrl(filePath) {
+
+    if (!filePath) {
+      return "";
+    }
+
+    if (
+      filePath.startsWith("http://") ||
+      filePath.startsWith("https://")
+    ) {
+      return filePath;
+    }
+
+    return (
+      SUPABASE_URL +
+      "/storage/v1/object/public/legal-pdfs/" +
+      filePath
+    );
+
+  }
+
+
+  function formatDate(dateValue) {
+
+    if (!dateValue) {
+      return "";
+    }
+
+    try {
+
+      return new Intl.DateTimeFormat(
+        "ar-TN",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        }
+      ).format(new Date(dateValue));
+
+    } catch (error) {
+
+      return "";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     ADMIN AUTHORIZATION
+  ========================================================= */
+
+  async function checkAdmin() {
+
+    const {
+      data: { session },
+      error
+    } = await supabaseClient.auth.getSession();
+
+    if (error || !session) {
+
+      window.location.href = "admin.html";
+
+      return false;
+    }
+
+
+    const {
+      data: admin,
+      error: adminError
+    } = await supabaseClient
+      .from("admins")
+      .select("user_id")
+      .eq("user_id", session.user.id)
+      .maybeSingle();
+
+
+    if (
+      adminError ||
+      !admin
+    ) {
+
+      await supabaseClient.auth.signOut();
+
+      window.location.href = "admin.html";
+
+      return false;
+    }
+
+
+    return true;
+  }
+
+
+  /* =========================================================
+     LOAD BRANCHES
+  ========================================================= */
+
+  async function loadBranches() {
+
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from("branches")
+      .select("id,name,slug")
+      .order("name", { ascending: true });
+
+
+    if (error) {
+
+      console.error(error);
+
+      showStatus(
+        "تعذر تحميل فروع القانون.",
+        "error"
       );
 
+      return;
+    }
 
-    /* ==========================================
-       ELEMENTS
-    ========================================== */
 
-    const searchInput =
-      document.getElementById("searchInput");
+    branches = data || [];
 
-    const branchFilter =
-      document.getElementById("branchFilter");
 
-    const categoryFilter =
+    const filter = document.getElementById("branchFilter");
+    const editBranch = document.getElementById("editBranch");
+
+
+    filter.innerHTML =
+      '<option value="">كل الفروع</option>';
+
+
+    editBranch.innerHTML =
+      '<option value="">اختر الفرع</option>';
+
+
+    branches.forEach(branch => {
+
+      const option1 = document.createElement("option");
+
+      option1.value = branch.id;
+
+      option1.textContent = branch.name;
+
+      filter.appendChild(option1);
+
+
+      const option2 = document.createElement("option");
+
+      option2.value = branch.id;
+
+      option2.textContent = branch.name;
+
+      editBranch.appendChild(option2);
+
+    });
+
+  }
+
+
+  /* =========================================================
+     LOAD CATEGORIES
+  ========================================================= */
+
+  async function loadCategories() {
+
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from("reference_categories")
+      .select("id,name,slug")
+      .order("name", { ascending: true });
+
+
+    if (error) {
+
+      console.error(error);
+
+      showStatus(
+        "تعذر تحميل أقسام المراجع.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    categories = data || [];
+
+
+    const filter =
       document.getElementById("categoryFilter");
 
-    const referencesList =
+    const editCategory =
+      document.getElementById("editCategory");
+
+
+    filter.innerHTML =
+      '<option value="">كل الأقسام</option>';
+
+
+    editCategory.innerHTML =
+      '<option value="">اختر القسم</option>';
+
+
+    categories.forEach(category => {
+
+      const option1 =
+        document.createElement("option");
+
+      option1.value = category.id;
+
+      option1.textContent = category.name;
+
+      filter.appendChild(option1);
+
+
+      const option2 =
+        document.createElement("option");
+
+      option2.value = category.id;
+
+      option2.textContent = category.name;
+
+      editCategory.appendChild(option2);
+
+    });
+
+  }
+
+
+  /* =========================================================
+     LOAD REFERENCES
+  ========================================================= */
+
+  async function loadReferences() {
+
+    const list =
       document.getElementById("referencesList");
 
-    const loadingState =
-      document.getElementById("loadingState");
 
-    const emptyState =
-      document.getElementById("emptyState");
+    list.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+            <path d="M4 5.5V21"/>
+          </svg>
+        </div>
+        <h3>جاري تحميل المراجع</h3>
+        <p>يرجى الانتظار...</p>
+      </div>
+    `;
 
-    const resultsCount =
+
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from("references")
+      .select(`
+        id,
+        title,
+        author,
+        description,
+        branch,
+        category,
+        file_path,
+        created_at,
+        branch_id,
+        category_id,
+        branches (
+          id,
+          name,
+          slug
+        ),
+        reference_categories (
+          id,
+          name,
+          slug
+        )
+      `)
+      .order("created_at", {
+        ascending: false
+      });
+
+
+    if (error) {
+
+      console.error(error);
+
+      showStatus(
+        "تعذر تحميل المراجع: " + error.message,
+        "error"
+      );
+
+      list.innerHTML = `
+        <div class="empty-state">
+          <h3>حدث خطأ</h3>
+          <p>تعذر الاتصال بقاعدة البيانات.</p>
+        </div>
+      `;
+
+      return;
+    }
+
+
+    allReferences = data || [];
+
+
+    updateStatistics();
+
+    renderReferences(allReferences);
+
+  }
+
+
+  /* =========================================================
+     STATISTICS
+  ========================================================= */
+
+  function updateStatistics() {
+
+    const total =
+      allReferences.length;
+
+
+    const withPDF =
+      allReferences.filter(
+        item => item.file_path
+      ).length;
+
+
+    document.getElementById(
+      "totalReferences"
+    ).textContent = total;
+
+
+    document.getElementById(
+      "pdfReferences"
+    ).textContent = withPDF;
+
+  }
+
+
+  /* =========================================================
+     RENDER REFERENCES
+  ========================================================= */
+
+  function renderReferences(references) {
+
+    const list =
+      document.getElementById("referencesList");
+
+    const count =
       document.getElementById("resultsCount");
 
-    const message =
-      document.getElementById("message");
 
-    const totalReferences =
-      document.getElementById("totalReferences");
-
-    const totalBranches =
-      document.getElementById("totalBranches");
-
-    const totalCategories =
-      document.getElementById("totalCategories");
+    count.textContent =
+      references.length;
 
 
-    /* ==========================================
-       DATA
-    ========================================== */
+    if (!references.length) {
 
-    let allReferences = [];
-    let branches = [];
-    let categories = [];
+      list.innerHTML = `
+        <div class="empty-state">
 
+          <div class="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="6.5"/>
+              <path d="m16 16 4 4"/>
+            </svg>
+          </div>
 
-    /* ==========================================
-       AUTHORIZATION
-    ========================================== */
+          <h3>لا توجد نتائج</h3>
 
-    async function checkAdmin() {
+          <p>
+            لم يتم العثور على مراجع مطابقة للبحث أو التصفية.
+          </p>
 
-      const {
-        data: sessionData,
-        error: sessionError
-      } = await supabaseClient.auth.getSession();
+        </div>
+      `;
 
-      if (
-        sessionError ||
-        !sessionData.session
-      ) {
-        window.location.href = "admin.html";
-        return false;
-      }
-
-      const userId =
-        sessionData.session.user.id;
-
-      const {
-        data: adminData,
-        error: adminError
-      } = await supabaseClient
-        .from("admins")
-        .select("user_id")
-        .eq("user_id", userId)
-        .maybeSingle();
-
-      if (
-        adminError ||
-        !adminData
-      ) {
-        await supabaseClient.auth.signOut();
-
-        window.location.href = "admin.html";
-
-        return false;
-      }
-
-      return true;
+      return;
     }
 
 
-    /* ==========================================
-       LOAD BRANCHES
-    ========================================== */
+    list.innerHTML =
+      references.map(
+        reference => createReferenceCard(reference)
+      ).join("");
 
-    async function loadBranches() {
+  }
 
-      const {
-        data,
-        error
-      } = await supabaseClient
-        .from("branches")
-        .select("id,name,slug")
-        .order("name");
 
-      if (error) {
-        showMessage(
-          "تعذر تحميل فروع القانون.",
-          "error"
-        );
+  /* =========================================================
+     CREATE REFERENCE CARD
+  ========================================================= */
 
-        return;
-      }
+  function createReferenceCard(reference) {
 
-      branches = data || [];
+    const branchName =
+      reference.branches?.name ||
+      reference.branch ||
+      "غير محدد";
 
-      branchFilter.innerHTML =
-        '<option value="">جميع فروع القانون</option>';
-
-      branches.forEach(branch => {
-
-        const option =
-          document.createElement("option");
 
-        option.value = branch.id;
-        option.textContent = branch.name;
+    const categoryName =
+      reference.reference_categories?.name ||
+      reference.category ||
+      "غير محدد";
 
-        branchFilter.appendChild(option);
-
-      });
 
-      totalBranches.textContent =
-        branches.length;
-    }
+    const author =
+      reference.author
+        ? "المؤلف: " + escapeHTML(reference.author)
+        : "المؤلف: غير محدد";
 
 
-    /* ==========================================
-       LOAD CATEGORIES
-    ========================================== */
+    const description =
+      reference.description
+        ? escapeHTML(reference.description)
+        : "لا يوجد وصف لهذا المرجع.";
 
-    async function loadCategories() {
 
-      const {
-        data,
-        error
-      } = await supabaseClient
-        .from("reference_categories")
-        .select("id,name,slug")
-        .order("name");
+    const date =
+      formatDate(reference.created_at);
 
-      if (error) {
-        showMessage(
-          "تعذر تحميل أقسام المراجع.",
-          "error"
-        );
 
-        return;
-      }
+    const pdfUrl =
+      getPDFUrl(reference.file_path);
 
-      categories = data || [];
 
-      categoryFilter.innerHTML =
-        '<option value="">جميع الأقسام</option>';
+    return `
 
-      categories.forEach(category => {
+      <article class="reference-card">
 
-        const option =
-          document.createElement("option");
+        <div class="reference-main">
 
-        option.value = category.id;
-        option.textContent = category.name;
+          <div class="reference-info">
 
-        categoryFilter.appendChild(option);
-
-      });
-
-      totalCategories.textContent =
-        categories.length;
-    }
-
-
-    /* ==========================================
-       LOAD REFERENCES
-    ========================================== */
-
-    async function loadReferences() {
-
-      loadingState.style.display = "block";
-      referencesList.style.display = "none";
-      emptyState.style.display = "none";
-
-      const {
-        data,
-        error
-      } = await supabaseClient
-        .from("references")
-        .select(`
-          id,
-          title,
-          author,
-          description,
-          file_path,
-          created_at,
-          branch_id,
-          category_id,
-          branches (
-            id,
-            name,
-            slug
-          ),
-          reference_categories (
-            id,
-            name,
-            slug
-          )
-        `)
-        .order("created_at", {
-          ascending: false
-        });
-
-      loadingState.style.display = "none";
-
-      if (error) {
-
-        showMessage(
-          "حدث خطأ أثناء تحميل المراجع: " +
-          error.message,
-          "error"
-        );
-
-        emptyState.style.display = "block";
-
-        return;
-      }
-
-      allReferences = data || [];
-
-      totalReferences.textContent =
-        allReferences.length;
-
-      applyFilters();
-    }
-
-
-    /* ==========================================
-       FILTERS
-    ========================================== */
-
-    function applyFilters() {
-
-      const search =
-        searchInput.value
-          .trim()
-          .toLowerCase();
-
-      const selectedBranch =
-        branchFilter.value;
-
-      const selectedCategory =
-        categoryFilter.value;
-
-
-      const filtered =
-        allReferences.filter(reference => {
-
-          const title =
-            reference.title || "";
-
-          const author =
-            reference.author || "";
-
-          const description =
-            reference.description || "";
-
-          const branchName =
-            reference.branches?.name || "";
-
-          const categoryName =
-            reference.reference_categories?.name || "";
-
-
-          const searchableText =
-            (
-              title + " " +
-              author + " " +
-              description + " " +
-              branchName + " " +
-              categoryName
-            ).toLowerCase();
-
-
-          const matchesSearch =
-            !search ||
-            searchableText.includes(search);
-
-
-          const matchesBranch =
-            !selectedBranch ||
-            String(reference.branch_id) ===
-            String(selectedBranch);
-
-
-          const matchesCategory =
-            !selectedCategory ||
-            String(reference.category_id) ===
-            String(selectedCategory);
-
-
-          return (
-            matchesSearch &&
-            matchesBranch &&
-            matchesCategory
-          );
-
-        });
-
-
-      renderReferences(filtered);
-    }
-
-
-    /* ==========================================
-       RENDER
-    ========================================== */
-
-    function renderReferences(references) {
-
-      referencesList.innerHTML = "";
-
-      resultsCount.textContent =
-        `${references.length} مرجع`;
-
-
-      if (!references.length) {
-
-        referencesList.style.display = "none";
-        emptyState.style.display = "block";
-
-        return;
-      }
-
-
-      emptyState.style.display = "none";
-      referencesList.style.display = "grid";
-
-
-      references.forEach(reference => {
-
-        const card =
-          document.createElement("article");
-
-        card.className =
-          "reference-card";
-
-
-        const branchName =
-          reference.branches?.name ||
-          "غير محدد";
-
-
-        const categoryName =
-          reference.reference_categories?.name ||
-          "غير محدد";
-
-
-        const author =
-          reference.author ||
-          "المؤلف غير محدد";
-
-
-        const description =
-          reference.description ||
-          "لا يوجد وصف لهذا المرجع.";
-
-
-        const fileURL =
-          getPDFUrl(reference.file_path);
-
-
-        card.innerHTML = `
-
-          <div class="reference-main">
-
-            <h2 class="reference-title">
-              ${escapeHTML(reference.title || "بدون عنوان")}
-            </h2>
+            <h3 class="reference-title">
+              ${escapeHTML(reference.title)}
+            </h3>
 
             <div class="reference-author">
-              المؤلف: ${escapeHTML(author)}
+              ${author}
             </div>
 
             <div class="reference-description">
-              ${escapeHTML(description)}
+              ${description}
             </div>
 
             <div class="badges">
 
-              <span class="badge badge-branch">
+              <span class="badge branch">
                 ${escapeHTML(branchName)}
               </span>
 
-              <span class="badge badge-category">
+              <span class="badge">
                 ${escapeHTML(categoryName)}
               </span>
+
+              ${
+                date
+                  ? `<span class="badge">${escapeHTML(date)}</span>`
+                  : ""
+              }
 
             </div>
 
@@ -1479,422 +1838,861 @@
 
           <div class="reference-actions">
 
-            <a
-              class="action-btn btn-open"
-              href="${escapeAttribute(fileURL)}"
-              target="_blank"
-              rel="noopener"
-            >
-
-              <svg viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2">
-
-                <path d="M14 3h7v7"/>
-                <path d="M10 14 21 3"/>
-                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
-
-              </svg>
-
-              فتح PDF
-
-            </a>
+            ${
+              pdfUrl
+                ? `
+                  <a
+                    href="${escapeHTML(pdfUrl)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-success"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                      <path d="M12 4v11"/>
+                      <path d="m8 11 4 4 4-4"/>
+                      <path d="M5 20h14"/>
+                    </svg>
+                    فتح PDF
+                  </a>
+                `
+                : `
+                  <button class="btn btn-light" disabled>
+                    لا يوجد PDF
+                  </button>
+                `
+            }
 
 
             <button
-              class="action-btn btn-edit"
-              onclick="editReference(${reference.id})"
+              class="btn btn-primary"
+              onclick="openEditModal(${Number(reference.id)})"
             >
-
-              <svg viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2">
-
-                <path d="M12 20h9"/>
-                <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/>
-
-              </svg>
-
               تعديل
-
             </button>
 
 
             <button
-              class="action-btn btn-delete"
-              onclick="deleteReference(${reference.id})"
+              class="btn btn-danger"
+              onclick="openDeleteModal(${Number(reference.id)})"
             >
-
-              <svg viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2">
-
-                <polyline points="3 6 5 6 21 6"/>
-                <path d="M19 6l-1 14H6L5 6"/>
-                <path d="M10 11v5"/>
-                <path d="M14 11v5"/>
-                <path d="M9 6V4h6v2"/>
-
-              </svg>
-
               حذف
-
             </button>
 
           </div>
 
-        `;
+        </div>
+
+      </article>
+
+    `;
+
+  }
 
 
-        referencesList.appendChild(card);
+  /* =========================================================
+     FILTERS
+  ========================================================= */
+
+  function applyFilters() {
+
+    const search =
+      document
+        .getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const branchId =
+      document.getElementById(
+        "branchFilter"
+      ).value;
+
+
+    const categoryId =
+      document.getElementById(
+        "categoryFilter"
+      ).value;
+
+
+    const filtered =
+      allReferences.filter(reference => {
+
+        const branchName =
+          reference.branches?.name ||
+          reference.branch ||
+          "";
+
+
+        const categoryName =
+          reference.reference_categories?.name ||
+          reference.category ||
+          "";
+
+
+        const searchable = [
+
+          reference.title || "",
+
+          reference.author || "",
+
+          reference.description || "",
+
+          branchName,
+
+          categoryName
+
+        ]
+          .join(" ")
+          .toLowerCase();
+
+
+        const matchesSearch =
+          !search ||
+          searchable.includes(search);
+
+
+        const matchesBranch =
+          !branchId ||
+          String(reference.branch_id) === String(branchId);
+
+
+        const matchesCategory =
+          !categoryId ||
+          String(reference.category_id) === String(categoryId);
+
+
+        return (
+          matchesSearch &&
+          matchesBranch &&
+          matchesCategory
+        );
 
       });
 
+
+    renderReferences(filtered);
+
+  }
+
+
+  function resetFilters() {
+
+    document.getElementById(
+      "searchInput"
+    ).value = "";
+
+
+    document.getElementById(
+      "branchFilter"
+    ).value = "";
+
+
+    document.getElementById(
+      "categoryFilter"
+    ).value = "";
+
+
+    renderReferences(allReferences);
+
+  }
+
+
+  /* =========================================================
+     EDIT MODAL
+  ========================================================= */
+
+  function openEditModal(id) {
+
+    const reference =
+      allReferences.find(
+        item => Number(item.id) === Number(id)
+      );
+
+
+    if (!reference) {
+
+      showStatus(
+        "تعذر العثور على المرجع.",
+        "error"
+      );
+
+      return;
     }
 
 
-    /* ==========================================
-       PDF URL
-    ========================================== */
+    hideStatus("editStatus");
 
-    function getPDFUrl(filePath) {
 
-      if (!filePath) {
-        return "#";
-      }
+    document.getElementById(
+      "editId"
+    ).value = reference.id;
+
+
+    document.getElementById(
+      "oldFilePath"
+    ).value = reference.file_path || "";
+
+
+    document.getElementById(
+      "editTitle"
+    ).value = reference.title || "";
+
+
+    document.getElementById(
+      "editAuthor"
+    ).value = reference.author || "";
+
+
+    document.getElementById(
+      "editDescription"
+    ).value = reference.description || "";
+
+
+    document.getElementById(
+      "editBranch"
+    ).value =
+      reference.branch_id || "";
+
+
+    document.getElementById(
+      "editCategory"
+    ).value =
+      reference.category_id || "";
+
+
+    document.getElementById(
+      "replaceFile"
+    ).value = "";
+
+
+    document.getElementById(
+      "editModal"
+    ).classList.add("show");
+
+  }
+
+
+  function closeEditModal() {
+
+    document.getElementById(
+      "editModal"
+    ).classList.remove("show");
+
+    hideStatus("editStatus");
+
+  }
+
+
+  /* =========================================================
+     SAVE EDIT
+  ========================================================= */
+
+  async function saveEdit() {
+
+    const saveButton =
+      document.getElementById("saveEditBtn");
+
+
+    const id =
+      document.getElementById("editId").value;
+
+
+    const oldFilePath =
+      document.getElementById("oldFilePath").value;
+
+
+    const title =
+      document.getElementById("editTitle").value.trim();
+
+
+    const author =
+      document.getElementById("editAuthor").value.trim();
+
+
+    const description =
+      document.getElementById("editDescription").value.trim();
+
+
+    const branchId =
+      document.getElementById("editBranch").value;
+
+
+    const categoryId =
+      document.getElementById("editCategory").value;
+
+
+    const fileInput =
+      document.getElementById("replaceFile");
+
+
+    const newFile =
+      fileInput.files[0] || null;
+
+
+    if (!title) {
+
+      showStatus(
+        "يرجى إدخال عنوان المرجع.",
+        "error",
+        "editStatus"
+      );
+
+      return;
+    }
+
+
+    if (!branchId) {
+
+      showStatus(
+        "يرجى اختيار فرع القانون.",
+        "error",
+        "editStatus"
+      );
+
+      return;
+    }
+
+
+    if (!categoryId) {
+
+      showStatus(
+        "يرجى اختيار القسم.",
+        "error",
+        "editStatus"
+      );
+
+      return;
+    }
+
+
+    if (newFile) {
 
       if (
-        filePath.startsWith("http://") ||
-        filePath.startsWith("https://")
+        newFile.type !== "application/pdf" &&
+        !newFile.name.toLowerCase().endsWith(".pdf")
       ) {
-        return filePath;
-      }
 
-      return (
-        SUPABASE_URL +
-        "/storage/v1/object/public/legal-pdfs/" +
-        filePath
-      );
-    }
-
-
-    /* ==========================================
-       EDIT
-    ========================================== */
-
-    function editReference(id) {
-
-      window.location.href =
-        "edit-reference.html?id=" +
-        encodeURIComponent(id);
-    }
-
-
-    /* ==========================================
-       DELETE
-    ========================================== */
-
-    async function deleteReference(id) {
-
-      const reference =
-        allReferences.find(
-          item => String(item.id) === String(id)
-        );
-
-
-      if (!reference) {
-
-        showMessage(
-          "تعذر العثور على المرجع.",
-          "error"
+        showStatus(
+          "الملف الجديد يجب أن يكون PDF.",
+          "error",
+          "editStatus"
         );
 
         return;
       }
 
 
-      const title =
-        reference.title ||
-        "هذا المرجع";
+      if (
+        newFile.size >
+        50 * 1024 * 1024
+      ) {
 
-
-      const confirmed =
-        confirm(
-          "هل أنت متأكد من حذف المرجع:\n\n" +
-          title +
-          "\n\nسيتم حذف بيانات المرجع وملف PDF المرتبط به."
+        showStatus(
+          "حجم الملف يتجاوز 50 MB.",
+          "error",
+          "editStatus"
         );
 
-
-      if (!confirmed) {
         return;
       }
 
-
-      try {
-
-        showMessage(
-          "جارٍ حذف المرجع وملف PDF...",
-          "success"
-        );
+    }
 
 
-        /* حذف ملف PDF */
+    saveButton.disabled = true;
 
-        if (reference.file_path) {
-
-          const filePath =
-            getStoragePath(
-              reference.file_path
-            );
-
-          if (filePath) {
-
-            const {
-              error: storageError
-            } = await supabaseClient
-              .storage
-              .from("legal-pdfs")
-              .remove([filePath]);
+    saveButton.textContent =
+      "جاري الحفظ...";
 
 
-            if (storageError) {
-
-              console.warn(
-                "Storage deletion warning:",
-                storageError
-              );
-
-            }
-
-          }
-
-        }
+    hideStatus("editStatus");
 
 
-        /* حذف المرجع */
+    let newFilePath = null;
+
+
+    try {
+
+      /*
+       * إذا اختار المستخدم PDF جديدًا:
+       * نرفعه أولًا إلى مسار جديد.
+       */
+
+      if (newFile) {
+
+        newFilePath =
+          "references/" +
+          crypto.randomUUID() +
+          ".pdf";
+
 
         const {
-          error: deleteError
+          error: uploadError
         } = await supabaseClient
-          .from("references")
-          .delete()
-          .eq("id", id);
-
-
-        if (deleteError) {
-
-          throw deleteError;
-        }
-
-
-        allReferences =
-          allReferences.filter(
-            item =>
-              String(item.id) !==
-              String(id)
+          .storage
+          .from("legal-pdfs")
+          .upload(
+            newFilePath,
+            newFile,
+            {
+              cacheControl: "3600",
+              upsert: false,
+              contentType: "application/pdf"
+            }
           );
 
 
-        totalReferences.textContent =
-          allReferences.length;
+        if (uploadError) {
+
+          throw new Error(
+            "فشل رفع ملف PDF الجديد: " +
+            uploadError.message
+          );
+
+        }
+
+      }
 
 
-        applyFilters();
+      const updateData = {
+
+        title: title,
+
+        author: author || null,
+
+        description: description || null,
+
+        branch_id: Number(branchId),
+
+        category_id: Number(categoryId),
+
+        branch:
+          branches.find(
+            item =>
+              String(item.id) === String(branchId)
+          )?.name || null,
+
+        category:
+          categories.find(
+            item =>
+              String(item.id) === String(categoryId)
+          )?.name || null
+
+      };
 
 
-        showMessage(
-          "تم حذف المرجع بنجاح.",
-          "success"
+      if (newFilePath) {
+
+        updateData.file_path =
+          newFilePath;
+
+      }
+
+
+      /*
+       * تحديث قاعدة البيانات
+       */
+
+      const {
+        error: updateError
+      } = await supabaseClient
+        .from("references")
+        .update(updateData)
+        .eq("id", id);
+
+
+      if (updateError) {
+
+        /*
+         * إذا فشل تحديث قاعدة البيانات
+         * نحذف الملف الجديد حتى لا يبقى ملفًا يتيمًا.
+         */
+
+        if (newFilePath) {
+
+          await supabaseClient
+            .storage
+            .from("legal-pdfs")
+            .remove([newFilePath]);
+
+        }
+
+
+        throw new Error(
+          "فشل تحديث المرجع: " +
+          updateError.message
         );
 
       }
 
-      catch (error) {
 
-        console.error(error);
-
-        showMessage(
-          "تعذر حذف المرجع: " +
-          error.message,
-          "error"
-        );
-
-      }
-
-    }
-
-
-    /* ==========================================
-       STORAGE PATH
-    ========================================== */
-
-    function getStoragePath(filePath) {
-
-      if (!filePath) {
-        return null;
-      }
-
+      /*
+       * إذا نجح التحديث وكان هناك ملف قديم
+       * نحذف الملف القديم.
+       */
 
       if (
-        filePath.startsWith("http://") ||
-        filePath.startsWith("https://")
+        newFilePath &&
+        oldFilePath
       ) {
 
-        const marker =
-          "/storage/v1/object/public/legal-pdfs/";
+        const {
+          error: oldFileError
+        } = await supabaseClient
+          .storage
+          .from("legal-pdfs")
+          .remove([oldFilePath]);
 
-        const index =
-          filePath.indexOf(marker);
 
+        if (oldFileError) {
 
-        if (index !== -1) {
-
-          return filePath.substring(
-            index + marker.length
+          console.warn(
+            "تعذر حذف الملف القديم:",
+            oldFileError
           );
 
         }
 
-
-        return null;
       }
 
 
-      return filePath;
-    }
+      showStatus(
+        "تم تحديث المرجع بنجاح.",
+        "success"
+      );
 
 
-    /* ==========================================
-       RESET FILTERS
-    ========================================== */
-
-    function resetFilters() {
-
-      searchInput.value = "";
-      branchFilter.value = "";
-      categoryFilter.value = "";
-
-      applyFilters();
-    }
-
-
-    /* ==========================================
-       MESSAGE
-    ========================================== */
-
-    function showMessage(text, type) {
-
-      message.textContent = text;
-
-      message.className =
-        "message show " +
-        type;
-
-
-      if (type === "success") {
-
-        setTimeout(() => {
-
-          message.className =
-            "message";
-
-        }, 4000);
-
-      }
-
-    }
-
-
-    /* ==========================================
-       ESCAPE HTML
-    ========================================== */
-
-    function escapeHTML(value) {
-
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-
-    function escapeAttribute(value) {
-
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/"/g, "&quot;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
-    }
-
-
-    /* ==========================================
-       EVENTS
-    ========================================== */
-
-    searchInput.addEventListener(
-      "input",
-      applyFilters
-    );
-
-    branchFilter.addEventListener(
-      "change",
-      applyFilters
-    );
-
-    categoryFilter.addEventListener(
-      "change",
-      applyFilters
-    );
-
-
-    /* ==========================================
-       LOGOUT
-    ========================================== */
-
-    async function logout() {
-
-      await supabaseClient.auth.signOut();
-
-      window.location.href =
-        "admin.html";
-    }
-
-
-    /* ==========================================
-       INIT
-    ========================================== */
-
-    async function init() {
-
-      const isAdmin =
-        await checkAdmin();
-
-      if (!isAdmin) {
-        return;
-      }
-
-
-      await Promise.all([
-        loadBranches(),
-        loadCategories()
-      ]);
+      closeEditModal();
 
 
       await loadReferences();
 
+    } catch (error) {
+
+      console.error(error);
+
+
+      showStatus(
+        error.message ||
+        "حدث خطأ أثناء تحديث المرجع.",
+        "error",
+        "editStatus"
+      );
+
+    } finally {
+
+      saveButton.disabled = false;
+
+      saveButton.textContent =
+        "حفظ التعديلات";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     DELETE MODAL
+  ========================================================= */
+
+  function openDeleteModal(id) {
+
+    const reference =
+      allReferences.find(
+        item => Number(item.id) === Number(id)
+      );
+
+
+    if (!reference) {
+
+      showStatus(
+        "تعذر العثور على المرجع.",
+        "error"
+      );
+
+      return;
     }
 
 
-    init();
+    deleteTarget = reference;
 
-  </script>
+
+    document.getElementById(
+      "deleteReferenceTitle"
+    ).textContent =
+      "سيتم حذف «" +
+      reference.title +
+      "» من قاعدة البيانات.";
+
+
+    document.getElementById(
+      "deleteModal"
+    ).classList.add("show");
+
+  }
+
+
+  function closeDeleteModal() {
+
+    document.getElementById(
+      "deleteModal"
+    ).classList.remove("show");
+
+    deleteTarget = null;
+
+  }
+
+
+  /* =========================================================
+     CONFIRM DELETE
+  ========================================================= */
+
+  async function confirmDelete() {
+
+    if (!deleteTarget) {
+      return;
+    }
+
+
+    const button =
+      document.getElementById(
+        "confirmDeleteBtn"
+      );
+
+
+    const reference =
+      deleteTarget;
+
+
+    button.disabled = true;
+
+    button.textContent =
+      "جاري الحذف...";
+
+
+    try {
+
+      /*
+       * نحذف سجل قاعدة البيانات أولًا.
+       * إذا نجح، نحاول حذف PDF من Storage.
+       */
+
+      const {
+        error: deleteError
+      } = await supabaseClient
+        .from("references")
+        .delete()
+        .eq("id", reference.id);
+
+
+      if (deleteError) {
+
+        throw new Error(
+          "فشل حذف المرجع: " +
+          deleteError.message
+        );
+
+      }
+
+
+      let storageWarning = "";
+
+
+      /*
+       * حذف ملف PDF المرتبط
+       */
+
+      if (reference.file_path) {
+
+        const {
+          error: storageError
+        } = await supabaseClient
+          .storage
+          .from("legal-pdfs")
+          .remove([
+            reference.file_path
+          ]);
+
+
+        if (storageError) {
+
+          console.warn(
+            "تعذر حذف ملف PDF:",
+            storageError
+          );
+
+          storageWarning =
+            " تم حذف المرجع، لكن تعذر حذف ملف PDF القديم من التخزين.";
+        }
+
+      }
+
+
+      closeDeleteModal();
+
+
+      showStatus(
+        "تم حذف المرجع بنجاح." +
+        storageWarning,
+        storageWarning
+          ? "warning"
+          : "success"
+      );
+
+
+      await loadReferences();
+
+    } catch (error) {
+
+      console.error(error);
+
+
+      showStatus(
+        error.message ||
+        "حدث خطأ أثناء الحذف.",
+        "error"
+      );
+
+    } finally {
+
+      button.disabled = false;
+
+      button.textContent =
+        "نعم، حذف المرجع";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     LOGOUT
+  ========================================================= */
+
+  async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href =
+      "admin.html";
+
+  }
+
+
+  /* =========================================================
+     EVENTS
+  ========================================================= */
+
+  document
+    .getElementById("searchInput")
+    .addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Enter") {
+
+          applyFilters();
+
+        }
+
+      }
+    );
+
+
+  document
+    .getElementById("branchFilter")
+    .addEventListener(
+      "change",
+      applyFilters
+    );
+
+
+  document
+    .getElementById("categoryFilter")
+    .addEventListener(
+      "change",
+      applyFilters
+    );
+
+
+  document
+    .getElementById("editModal")
+    .addEventListener(
+      "click",
+      function(event) {
+
+        if (event.target === this) {
+
+          closeEditModal();
+
+        }
+
+      }
+    );
+
+
+  document
+    .getElementById("deleteModal")
+    .addEventListener(
+      "click",
+      function(event) {
+
+        if (event.target === this) {
+
+          closeDeleteModal();
+
+        }
+
+      }
+    );
+
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Escape") {
+
+        closeEditModal();
+
+        closeDeleteModal();
+
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     INITIALIZATION
+  ========================================================= */
+
+  async function init() {
+
+    const isAdmin =
+      await checkAdmin();
+
+
+    if (!isAdmin) {
+      return;
+    }
+
+
+    await Promise.all([
+      loadBranches(),
+      loadCategories()
+    ]);
+
+
+    await loadReferences();
+
+  }
+
+
+  init();
+
+</script>
 
 </body>
 </html>
