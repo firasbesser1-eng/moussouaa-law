@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>الفروع والتصنيفات | الموسوعة القانونية</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f3f6fa;
+color:#172033;
+min-height:100vh;
+}
+
+header{
+background:linear-gradient(
+135deg,
+#071a35,
+#0d315c,
+#164d7c
+);
+color:white;
+padding:25px 18px;
+}
+
+.header{
+max-width:1100px;
+margin:auto;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo{
+font-size:28px;
+}
+
+header h1{
+font-size:22px;
+}
+
+header p{
+font-size:13px;
+opacity:.8;
+margin-top:5px;
+}
+
+main{
+max-width:1100px;
+margin:30px auto;
+padding:0 18px;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
+
+.btn{
+display:inline-block;
+padding:11px 17px;
+border-radius:9px;
+text-decoration:none;
+border:none;
+cursor:pointer;
+font-weight:bold;
+font-size:14px;
+}
+
+.back{
+background:#0d315c;
+color:white;
+}
+
+.section{
+background:white;
+border-radius:16px;
+padding:22px;
+margin-bottom:25px;
+box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.section h2{
+color:#0d315c;
+margin-bottom:18px;
+}
+
+.add-form{
+display:grid;
+grid-template-columns:1fr 1fr auto;
+gap:10px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:9px;
+font-size:14px;
+}
+
+input:focus{
+outline:none;
+border-color:#164d7c;
+}
+
+.add{
+background:#15803d;
+color:white;
+}
+
+.list{
+display:grid;
+gap:10px;
+}
+
+.item{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+padding:15px;
+border:1px solid #e5e7eb;
+border-radius:12px;
+background:#fafcff;
+}
+
+.item-name{
+font-weight:bold;
+color:#0d315c;
+}
+
+.item-slug{
+font-size:12px;
+color:#64748b;
+margin-top:4px;
+direction:ltr;
+text-align:right;
+}
+
+.delete{
+background:#b91c1c;
+color:white;
+}
+
+.loading,
+.empty{
+padding:25px;
+text-align:center;
+color:#64748b;
+}
+
+.message{
+margin-top:12px;
+font-size:14px;
+}
+
+@media(max-width:700px){
+
+.add-form{
+grid-template-columns:1fr;
+}
+
+.item{
+align-items:flex-start;
+flex-direction:column;
+}
+
+.delete{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<div class="header">
+
+<div class="logo">
+⚖️
+</div>
+
+<div>
+
+<h1>
+الفروع والتصنيفات
+</h1>
+
+<p>
+الموسوعة القانونية
+</p>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<div class="top">
+
+<a
+href="dashboard.html"
+class="btn back">
+
+← لوحة التحكم
+
+</a>
+
+<a
+href="manage-references.html"
+class="btn back">
+
+📚 إدارة المراجع
+
+</a>
+
+</div>
+
+
+<!-- الفروع -->
+
+<section class="section">
+
+<h2>
+⚖️ الفروع القانونية
+</h2>
+
+<form
+id="branchForm"
+class="add-form">
+
+<input
+id="branchName"
+type="text"
+placeholder="اسم الفرع القانوني"
+required>
+
+<input
+id="branchSlug"
+type="text"
+placeholder="slug مثل civil"
+required>
+
+<button
+class="btn add"
+type="submit">
+
+➕ إضافة
+
+</button>
+
+</form>
+
+<div
+id="branchMessage"
+class="message">
+</div>
+
+<br>
+
+<div
+id="branchesList"
+class="list">
+
+<div class="loading">
+⏳ جاري التحميل...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- التصنيفات -->
+
+<section class="section">
+
+<h2>
+🗂️ تصنيفات المراجع
+</h2>
+
+<form
+id="categoryForm"
+class="add-form">
+
+<input
+id="categoryName"
+type="text"
+placeholder="اسم التصنيف"
+required>
+
+<input
+id="categorySlug"
+type="text"
+placeholder="slug مثل legislation"
+required>
+
+<button
+class="btn add"
+type="submit">
+
+➕ إضافة
+
+</button>
+
+</form>
+
+<div
+id="categoryMessage"
+class="message">
+</div>
+
+<br>
+
+<div
+id="categoriesList"
+class="list">
+
+<div class="loading">
+⏳ جاري التحميل...
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+/* =====================================
+SUPABASE
+===================================== */
+
+const SUPABASE_URL =
+"ضع_API_URL_هنا";
+
+const SUPABASE_KEY =
+"ضع_Publishable_Key_هنا";
+
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+/* =====================================
+SESSION
+===================================== */
+
+async function checkSession(){
+
+const {
+data,
+error
+}=await supabaseClient
+.auth
+.getSession();
+
+if(error || !data.session){
+
+window.location.href=
+"admin.html";
+
+return;
+
+}
+
+loadBranches();
+
+loadCategories();
+
+}
+
+
+/* =====================================
+BRANCHES
+===================================== */
+
+async function loadBranches(){
+
+const {
+data,
+error
+}=await supabaseClient
+.from("branches")
+.select("*")
+.order("id");
+
+const container=
+document.getElementById(
+"branchesList"
+);
+
+if(error){
+
+container.innerHTML=
+'<div class="empty">❌ تعذر تحميل الفروع</div>';
+
+console.error(error);
+
+return;
+
+}
+
+if(!data.length){
+
+container.innerHTML=
+'<div class="empty">لا توجد فروع.</div>';
+
+return;
+
+}
+
+container.innerHTML="";
+
+data.forEach(branch=>{
+
+const item=
+document.createElement("div");
+
+item.className="item";
+
+item.innerHTML=`
+
+<div>
+
+<div class="item-name">
+⚖️ ${escapeHTML(branch.name)}
+</div>
+
+<div class="item-slug">
+${escapeHTML(branch.slug)}
+</div>
+
+</div>
+
+<button
+class="btn delete"
+onclick="deleteBranch(${branch.id})">
+
+🗑️ حذف
+
+</button>
+
+`;
+
+container.appendChild(item);
+
+});
+
+}
+
+
+/* =====================================
+ADD BRANCH
+===================================== */
+
+document
+.getElementById("branchForm")
+.addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+const name=
+document
+.getElementById("branchName")
+.value
+.trim();
+
+const slug=
+document
+.getElementById("branchSlug")
+.value
+.trim();
+
+if(!name || !slug){
+
+return;
+
+}
+
+const {
+error
+}=await supabaseClient
+.from("branches")
+.insert({
+name:name,
+slug:slug
+});
+
+if(error){
+
+document
+.getElementById("branchMessage")
+textContent=
+"❌ "+error.message;
+
+return;
+
+}
+
+document
+.getElementById("branchName")
+.value="";
+
+document
+.getElementById("branchSlug")
+.value="";
+
+document
+.getElementById("branchMessage")
+textContent=
+"✅ تمت إضافة الفرع بنجاح.";
+
+loadBranches();
+
+});
+
+
+/* =====================================
+DELETE BRANCH
+===================================== */
+
+async function deleteBranch(id){
+
+const confirmDelete=
+confirm(
+"هل أنت متأكد من حذف هذا الفرع؟"
+);
+
+if(!confirmDelete){
+
+return;
+
+}
+
+const {
+error
+}=await supabaseClient
+.from("branches")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(
+"لا يمكن حذف الفرع إذا كانت هناك مراجع مرتبطة به."
+);
+
+console.error(error);
+
+return;
+
+}
+
+loadBranches();
+
+}
+
+
+/* =====================================
+CATEGORIES
+===================================== */
+
+async function loadCategories(){
+
+const {
+data,
+error
+}=await supabaseClient
+.from("reference_categories")
+.select("*")
+.order("id");
+
+const container=
+document.getElementById(
+"categoriesList"
+);
+
+if(error){
+
+container.innerHTML=
+'<div class="empty">❌ تعذر تحميل التصنيفات</div>';
+
+console.error(error);
+
+return;
+
+}
+
+if(!data.length){
+
+container.innerHTML=
+'<div class="empty">لا توجد تصنيفات.</div>';
+
+return;
+
+}
+
+container.innerHTML="";
+
+data.forEach(category=>{
+
+const item=
+document.createElement("div");
+
+item.className="item";
+
+item.innerHTML=`
+
+<div>
+
+<div class="item-name">
+🗂️ ${escapeHTML(category.name)}
+</div>
+
+<div class="item-slug">
+${escapeHTML(category.slug)}
+</div>
+
+</div>
+
+<button
+class="btn delete"
+onclick="deleteCategory(${category.id})">
+
+🗑️ حذف
+
+</button>
+
+`;
+
+container.appendChild(item);
+
+});
+
+}
+
+
+/* =====================================
+ADD CATEGORY
+===================================== */
+
+document
+.getElementById("categoryForm")
+.addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+const name=
+document
+.getElementById("categoryName")
+.value
+.trim();
+
+const slug=
+document
+.getElementById("categorySlug")
+.value
+.trim();
+
+if(!name || !slug){
+
+return;
+
+}
+
+const {
+error
+}=await supabaseClient
+.from("reference_categories")
+.insert({
+name:name,
+slug:slug
+});
+
+if(error){
+
+document
+.getElementById("categoryMessage")
+textContent=
+"❌ "+error.message;
+
+return;
+
+}
+
+document
+.getElementById("categoryName")
+.value="";
+
+document
+.getElementById("categorySlug")
+.value="";
+
+document
+.getElementById("categoryMessage")
+textContent=
+"✅ تمت إضافة التصنيف بنجاح.";
+
+loadCategories();
+
+});
+
+
+/* =====================================
+DELETE CATEGORY
+===================================== */
+
+async function deleteCategory(id){
+
+const confirmDelete=
+confirm(
+"هل أنت متأكد من حذف هذا التصنيف؟"
+);
+
+if(!confirmDelete){
+
+return;
+
+}
+
+const {
+error
+}=await supabaseClient
+.from("reference_categories")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(
+"لا يمكن حذف التصنيف إذا كانت هناك مراجع مرتبطة به."
+);
+
+console.error(error);
+
+return;
+
+}
+
+loadCategories();
+
+}
+
+
+/* =====================================
+ESCAPE HTML
+===================================== */
+
+function escapeHTML(value){
+
+if(!value){
+
+return "";
+
+}
+
+return String(value)
+
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================
+START
+===================================== */
+
+document.addEventListener(
+"DOMContentLoaded",
+checkSession
+);
+
+</script>
+
+</body>
+
+</html>
