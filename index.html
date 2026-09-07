@@ -56,7 +56,29 @@ content="الموسوعة القانونية - مكتبة قانونية رقم�
 html {
     scroll-behavior: smooth;
 }
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const viewport = document.documentElement.clientWidth;
 
+    const elements = document.querySelectorAll("*");
+
+    elements.forEach(function (el) {
+        const rect = el.getBoundingClientRect();
+
+        if (rect.right > viewport + 5 || rect.left < -5) {
+            console.log(
+                "OVERFLOW:",
+                el.tagName,
+                el.className,
+                el.id,
+                "left:", rect.left,
+                "right:", rect.right,
+                "width:", rect.width
+            );
+        }
+    });
+});
+</script>
 body {
     margin: 0;
     background: var(--ivory);
