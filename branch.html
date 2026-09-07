@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الموسوعة القانونية</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Tahoma,Arial,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+header{
+    background:linear-gradient(135deg,#071a35,#123e69);
+    color:white;
+    padding:35px 20px;
+    text-align:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    font-size:15px;
+    opacity:.9;
+}
+
+.manager{
+    margin-top:12px;
+    font-size:14px;
+    color:#dbeafe;
+}
+
+nav{
+    background:white;
+    padding:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    text-align:center;
+}
+
+nav a{
+    color:#123e69;
+    text-decoration:none;
+    font-weight:bold;
+    margin:0 10px;
+}
+
+.container{
+    width:min(1100px,94%);
+    margin:30px auto;
+}
+
+.back{
+    display:inline-block;
+    margin-bottom:20px;
+    color:#123e69;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.hero{
+    background:white;
+    padding:30px 20px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+    margin-bottom:25px;
+}
+
+.hero h1{
+    margin:0 0 10px;
+    color:#123e69;
+    font-size:30px;
+}
+
+.hero p{
+    color:#667085;
+    margin:0;
+}
+
+.search-box{
+    margin:25px auto 0;
+    max-width:700px;
+}
+
+.search-box input{
+    width:100%;
+    padding:16px 20px;
+    border:1px solid #d6dce5;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#123e69;
+    box-shadow:0 0 0 3px rgba(18,62,105,.1);
+}
+
+.status{
+    text-align:center;
+    padding:20px;
+    color:#667085;
+}
+
+.references{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.reference-card{
+    background:white;
+    border-radius:16px;
+    padding:22px;
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
+    border:1px solid #edf0f5;
+    transition:.2s;
+}
+
+.reference-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(0,0,0,.11);
+}
+
+.icon{
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    background:#eaf2fb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    margin-bottom:15px;
+}
+
+.reference-card h3{
+    margin:0 0 10px;
+    color:#123e69;
+    font-size:19px;
+}
+
+.author{
+    color:#667085;
+    font-size:14px;
+    margin:7px 0;
+}
+
+.category{
+    display:inline-block;
+    background:#eef4fa;
+    color:#123e69;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    margin:8px 0;
+}
+
+.description{
+    color:#555;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.buttons{
+    display:flex;
+    gap:8px;
+    margin-top:18px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:10px 14px;
+    border-radius:9px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.read{
+    background:#123e69;
+    color:white;
+}
+
+.download{
+    background:#edf4fb;
+    color:#123e69;
+}
+
+.empty{
+    background:white;
+    padding:35px;
+    text-align:center;
+    border-radius:15px;
+    color:#667085;
+}
+
+.error{
+    background:#fff1f2;
+    color:#b42318;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+}
+
+footer{
+    margin-top:50px;
+    background:#071a35;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+}
+
+footer p{
+    margin:7px;
+}
+
+@media(max-width:600px){
+
+    .logo{
+        font-size:24px;
+    }
+
+    .hero h1{
+        font-size:24px;
+    }
+
+    .references{
+        grid-template-columns:1fr;
+    }
+
+    nav a{
+        display:inline-block;
+        margin:5px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        ⚖️ الموسوعة القانونية
+    </div>
+
+    <div class="subtitle">
+        المكتبة القانونية الرقمية للمراجع والتشريعات والبحوث
+    </div>
+
+    <div class="manager">
+        إعداد وإشراف: فراس بسر — مدير الموسوعة القانونية
+    </div>
+
+</header>
+
+<nav>
+
+    <a href="index.html">الرئيسية</a>
+
+    <a href="admin.html">لوحة الإدارة</a>
+
+</nav>
+
+
+<div class="container">
+
+    <a href="index.html" class="back">
+        ← العودة إلى الرئيسية
+    </a>
+
+    <section class="hero">
+
+        <h1 id="branchTitle">
+            جاري تحميل الفرع...
+        </h1>
+
+        <p id="branchDescription">
+            المراجع القانونية المتاحة في هذا الفرع
+        </p>
+
+        <div class="search-box">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="🔎 ابحث داخل مراجع هذا الفرع..."
+            >
+
+        </div>
+
+    </section>
+
+
+    <section>
+
+        <div id="status" class="status">
+            ⏳ جاري تحميل المراجع...
+        </div>
+
+        <div
+            id="references"
+            class="references"
+        ></div>
+
+    </section>
+
+</div>
+
+
+<footer>
+
+    <p>⚖️ الموسوعة القانونية</p>
+
+    <p>
+        فراس بسر — مدير الموسوعة القانونية
+    </p>
+
+    <p>
+        جميع الحقوق محفوظة © 2026
+    </p>
+
+</footer>
+
+
+<script>
+
+/* ==============================
+   SUPABASE
+============================== */
+
+const SUPABASE_URL =
+"https://yksrckzomkowjzmsafvm.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ==============================
+   قراءة الفرع من الرابط
+============================== */
+
+const params =
+new URLSearchParams(window.location.search);
+
+const branchSlug =
+params.get("branch");
+
+
+/* ==============================
+   عناصر الصفحة
+============================== */
+
+const branchTitle =
+document.getElementById("branchTitle");
+
+const branchDescription =
+document.getElementById("branchDescription");
+
+const referencesContainer =
+document.getElementById("references");
+
+const status =
+document.getElementById("status");
+
+const searchInput =
+document.getElementById("searchInput");
+
+
+let allReferences = [];
+
+
+/* ==============================
+   تحميل الفرع
+============================== */
+
+async function loadBranch(){
+
+    if(!branchSlug){
+
+        branchTitle.textContent =
+        "فرع غير محدد";
+
+        status.innerHTML =
+        '<div class="error">لم يتم تحديد الفرع.</div>';
+
+        return;
+    }
+
+
+    const { data: branch, error } =
+    await supabaseClient
+        .from("branches")
+        .select("id,name,slug")
+        .eq("slug", branchSlug)
+        .single();
+
+
+    if(error || !branch){
+
+        console.error(error);
+
+        branchTitle.textContent =
+        "الفرع غير موجود";
+
+        status.innerHTML =
+        '<div class="error">تعذر العثور على هذا الفرع.</div>';
+
+        return;
+    }
+
+
+    branchTitle.textContent =
+    "📚 " + branch.name;
+
+
+    document.title =
+    branch.name + " | الموسوعة القانونية";
+
+
+    await loadReferences(branch.id);
+
+}
+
+
+/* ==============================
+   تحميل المراجع
+============================== */
+
+async function loadReferences(branchId){
+
+    const { data: references, error } =
+    await supabaseClient
+        .from("references")
+        .select(`
+            id,
+            title,
+            author,
+            description,
+            file_path,
+            created_at,
+            category_id
+        `)
+        .eq("branch_id", branchId)
+        .order("created_at", {
+            ascending:false
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        status.innerHTML =
+        '<div class="error">تعذر تحميل المراجع.</div>';
+
+        return;
+    }
+
+
+    allReferences =
+    references || [];
+
+
+    if(allReferences.length === 0){
+
+        status.innerHTML =
+        '<div class="empty">📚 لا توجد مراجع مضافة إلى هذا الفرع حاليًا.</div>';
+
+        return;
+    }
+
+
+    status.textContent =
+    "📚 عدد المراجع: " +
+    allReferences.length;
+
+
+    await renderReferences(
+        allReferences
+    );
+
+}
+
+
+/* ==============================
+   عرض المراجع
+============================== */
+
+async function renderReferences(list){
+
+    referencesContainer.innerHTML = "";
+
+
+    if(list.length === 0){
+
+        referencesContainer.innerHTML =
+        '<div class="empty">🔎 لا توجد نتائج مطابقة لبحثك.</div>';
+
+        return;
+    }
+
+
+    /*
+       جلب جميع التصنيفات مرة واحدة
+       بدل تنفيذ استعلام لكل مرجع
+    */
+
+    const { data: categories } =
+    await supabaseClient
+        .from("reference_categories")
+        .select("id,name");
+
+
+    const categoryMap = {};
+
+
+    if(categories){
+
+        categories.forEach(category => {
+
+            categoryMap[category.id] =
+            category.name;
+
+        });
+
+    }
+
+
+    list.forEach(reference => {
+
+        let pdfUrl = "#";
+
+
+        if(reference.file_path){
+
+            const { data } =
+            supabaseClient
+                .storage
+                .from("legal-pdfs")
+                .getPublicUrl(
+                    reference.file_path
+                );
+
+            pdfUrl =
+            data.publicUrl;
+
+        }
+
+
+        const card =
+        document.createElement("article");
+
+        card.className =
+        "reference-card";
+
+
+        const categoryName =
+        reference.category_id
+        ? categoryMap[reference.category_id] || ""
+        : "";
+
+
+        card.innerHTML = `
+
+            <div class="icon">
+                📚
+            </div>
+
+            <h3>
+                ${escapeHTML(reference.title)}
+            </h3>
+
+            ${
+                reference.author
+                ?
+                `
+                <div class="author">
+                    ✍️ ${escapeHTML(reference.author)}
+                </div>
+                `
+                :
+                ""
+            }
+
+            ${
+                categoryName
+                ?
+                `
+                <span class="category">
+                    ${escapeHTML(categoryName)}
+                </span>
+                `
+                :
+                ""
+            }
+
+            ${
+                reference.description
+                ?
+                `
+                <p class="description">
+                    ${escapeHTML(reference.description)}
+                </p>
+                `
+                :
+                ""
+            }
+
+            ${
+                reference.file_path
+                ?
+                `
+                <div class="buttons">
+
+                    <a
+                        href="${pdfUrl}"
+                        target="_blank"
+                        class="btn read"
+                    >
+                        📄 قراءة PDF
+                    </a>
+
+                    <a
+                        href="${pdfUrl}"
+                        download
+                        class="btn download"
+                    >
+                        ⬇️ تحميل
+                    </a>
+
+                </div>
+                `
+                :
+                ""
+            }
+
+        `;
+
+
+        referencesContainer.appendChild(card);
+
+    });
+
+}
+
+
+/* ==============================
+   البحث
+============================== */
+
+searchInput.addEventListener(
+    "input",
+    function(){
+
+        const query =
+        this.value
+            .trim()
+            .toLowerCase();
+
+
+        if(!query){
+
+            renderReferences(
+                allReferences
+            );
+
+            return;
+        }
+
+
+        const filtered =
+        allReferences.filter(reference => {
+
+            const title =
+            reference.title || "";
+
+            const author =
+            reference.author || "";
+
+            const description =
+            reference.description || "";
+
+
+            return (
+
+                title
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                author
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                description
+                    .toLowerCase()
+                    .includes(query)
+
+            );
+
+        });
+
+
+        renderReferences(filtered);
+
+    }
+);
+
+
+/* ==============================
+   حماية HTML
+============================== */
+
+function escapeHTML(value){
+
+    if(!value)
+        return "";
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ==============================
+   تشغيل الصفحة
+============================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadBranch
+);
+
+</script>
+
+</body>
+</html>
