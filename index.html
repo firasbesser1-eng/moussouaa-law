@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,19 +17,17 @@ content="الموسوعة القانونية - مكتبة قانونية رقم�
 
 <style>
 
-/* =========================================================
-   1. VARIABLES
-========================================================= */
+/* =====================================================
+   VARIABLES
+===================================================== */
 
 :root {
-    --navy-950: #071525;
-    --navy-900: #0b1d33;
-    --navy-850: #102640;
-    --navy-800: #153252;
+    --navy: #071525;
+    --navy-2: #0b1d33;
+    --navy-3: #153252;
 
-    --gold-500: #c9a45c;
-    --gold-400: #d8b875;
-    --gold-300: #ead29b;
+    --gold: #c9a45c;
+    --gold-light: #d8b875;
 
     --ivory: #f7f4ed;
     --white: #ffffff;
@@ -37,54 +36,44 @@ content="الموسوعة القانونية - مكتبة قانونية رقم�
     --muted: #687386;
 
     --border: #e7e2d7;
-    --shadow: 0 18px 45px rgba(7, 21, 37, .09);
 
-    --radius-lg: 24px;
-    --radius-md: 16px;
+    --shadow: 0 18px 45px rgba(7,21,37,.09);
 
     --container: 1180px;
 }
 
-/* =========================================================
-   2. RESET
-========================================================= */
+/* =====================================================
+   RESET
+===================================================== */
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
 html {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
     scroll-behavior: smooth;
 }
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const viewport = document.documentElement.clientWidth;
 
-    const elements = document.querySelectorAll("*");
-
-    elements.forEach(function (el) {
-        const rect = el.getBoundingClientRect();
-
-        if (rect.right > viewport + 5 || rect.left < -5) {
-            console.log(
-                "OVERFLOW:",
-                el.tagName,
-                el.className,
-                el.id,
-                "left:", rect.left,
-                "right:", rect.right,
-                "width:", rect.width
-            );
-        }
-    });
-});
-</script>
 body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
     margin: 0;
+    padding: 0;
+
     background: var(--ivory);
     color: var(--text);
+
     font-family: "Cairo", sans-serif;
     line-height: 1.8;
+
     overflow-x: hidden;
 }
 
@@ -102,25 +91,42 @@ button {
     cursor: pointer;
 }
 
-.container {
-    width: min(calc(100% - 40px), var(--container));
-    margin-inline: auto;
+img,
+svg {
+    max-width: 100%;
 }
 
-/* =========================================================
-   3. HEADER
-========================================================= */
+svg {
+    display: block;
+}
+
+.container {
+    width: calc(100% - 40px);
+    max-width: var(--container);
+
+    margin-inline: auto;
+
+    min-width: 0;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .site-header {
     position: sticky;
     top: 0;
     z-index: 1000;
 
-    background: rgba(7, 21, 37, .96);
-    border-bottom: 1px solid rgba(201, 164, 92, .22);
+    width: 100%;
+    max-width: 100%;
 
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(7,21,37,.97);
+
+    border-bottom: 1px solid rgba(201,164,92,.22);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
 .header-inner {
@@ -129,81 +135,83 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-}
 
-/* Brand */
+    gap: 20px;
+
+    min-width: 0;
+}
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 13px;
 
-    flex-shrink: 0;
+    gap: 12px;
+
+    min-width: 0;
+    flex-shrink: 1;
 }
 
 .brand-mark {
     width: 46px;
     height: 46px;
 
+    flex: 0 0 46px;
+
     display: grid;
     place-items: center;
 
-    border: 1px solid rgba(216, 184, 117, .55);
+    border: 1px solid rgba(216,184,117,.55);
     border-radius: 13px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(216,184,117,.18),
-            rgba(216,184,117,.04)
-        );
+    color: var(--gold-light);
 
-    color: var(--gold-400);
-
-    box-shadow:
-        inset 0 0 20px rgba(216,184,117,.04);
+    background: rgba(216,184,117,.08);
 }
 
 .brand-mark svg {
     width: 27px;
     height: 27px;
-
-    display: block;
-    overflow: visible;
 }
 
 .brand-text {
     display: flex;
     flex-direction: column;
+
+    min-width: 0;
+
     line-height: 1.3;
 }
 
 .brand-title {
-    color: var(--white);
+    color: white;
+
     font-size: 17px;
     font-weight: 800;
+
+    white-space: nowrap;
 }
 
 .brand-subtitle {
-    color: rgba(255,255,255,.56);
-    font-size: 10px;
-    letter-spacing: .5px;
-}
+    color: rgba(255,255,255,.55);
 
-/* Navigation */
+    font-size: 10px;
+
+    white-space: nowrap;
+}
 
 .main-nav {
     display: flex;
     align-items: center;
-    gap: 4px;
+
+    gap: 3px;
+
+    min-width: 0;
 }
 
 .main-nav a {
-    position: relative;
-
     min-height: 44px;
-    padding: 8px 13px;
+
+    padding: 8px 12px;
 
     display: flex;
     align-items: center;
@@ -217,50 +225,24 @@ button {
     white-space: nowrap;
 
     border-radius: 10px;
-
-    transition:
-        color .2s ease,
-        background .2s ease;
 }
 
 .main-nav a:hover {
-    color: var(--gold-300);
+    color: var(--gold-light);
     background: rgba(255,255,255,.06);
 }
 
-.main-nav a::after {
-    content: "";
-
-    position: absolute;
-
-    right: 50%;
-    bottom: 3px;
-
-    width: 0;
-    height: 2px;
-
-    background: var(--gold-400);
-
-    transform: translateX(50%);
-
-    transition: width .2s ease;
-}
-
-.main-nav a:hover::after {
-    width: 25px;
-}
-
-/* =========================================================
-   4. HERO
-========================================================= */
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero {
     position: relative;
 
-    min-height: 620px;
+    width: 100%;
+    max-width: 100%;
 
-    display: flex;
-    align-items: center;
+    overflow: hidden;
 
     background:
         radial-gradient(
@@ -275,19 +257,13 @@ button {
         ),
         linear-gradient(
             135deg,
-            var(--navy-950),
-            var(--navy-900) 48%,
-            var(--navy-850)
+            var(--navy),
+            var(--navy-2) 48%,
+            var(--navy-3)
         );
 
     color: white;
-
-    isolation: isolate;
-
-    overflow: visible;
 }
-
-/* Decorative lines */
 
 .hero::before {
     content: "";
@@ -309,73 +285,55 @@ button {
     background-size: 48px 48px;
 
     pointer-events: none;
-    z-index: -1;
 }
-
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 460px;
-    height: 460px;
-
-    left: -180px;
-    bottom: -250px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(201,164,92,.14);
-
-    box-shadow:
-        0 0 0 45px rgba(201,164,92,.025),
-        0 0 0 90px rgba(201,164,92,.018);
-
-    pointer-events: none;
-}
-
-/* Hero content */
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 1;
 
     width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
 
     padding: 75px 0 85px;
 
     display: grid;
-    grid-template-columns: 1.2fr .8fr;
+
+    grid-template-columns:
+        minmax(0, 1.2fr)
+        minmax(0, .8fr);
+
     align-items: center;
 
-    gap: 70px;
+    gap: 60px;
 }
 
-/* Eyebrow */
+.hero-content > * {
+    min-width: 0;
+    max-width: 100%;
+}
 
 .eyebrow {
     display: inline-flex;
     align-items: center;
+
     gap: 9px;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 
-    color: var(--gold-300);
+    color: var(--gold-light);
 
     font-size: 12px;
     font-weight: 700;
-
-    letter-spacing: .4px;
 }
 
 .eyebrow-line {
     width: 35px;
     height: 1px;
 
-    background: var(--gold-400);
+    background: var(--gold-light);
 }
-
-/* Hero title */
 
 .hero h1 {
     margin: 0 0 20px;
@@ -384,53 +342,49 @@ button {
 
     font-size: clamp(46px, 6vw, 76px);
 
-    font-weight: 700;
-
     line-height: 1.1;
-
-    letter-spacing: -.8px;
 }
 
 .hero h1 span {
-    color: var(--gold-400);
+    color: var(--gold-light);
 }
 
 .hero-description {
+    width: 100%;
     max-width: 650px;
 
-    margin: 0 0 32px;
+    margin: 0 0 30px;
 
     color: rgba(255,255,255,.72);
 
     font-size: 16px;
     line-height: 2;
+
+    overflow-wrap: anywhere;
 }
 
-/* Search */
-
 .hero-search {
-    width: min(100%, 650px);
+    width: 100%;
+    max-width: 650px;
+
+    min-width: 0;
+
+    padding: 6px;
 
     display: flex;
     align-items: center;
-
-    padding: 6px;
 
     background: rgba(255,255,255,.08);
 
     border: 1px solid rgba(255,255,255,.14);
 
     border-radius: 15px;
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.16);
-
-    backdrop-filter: blur(12px);
 }
 
 .hero-search input {
-    flex: 1;
+    flex: 1 1 auto;
 
+    width: 1px;
     min-width: 0;
 
     height: 52px;
@@ -452,7 +406,11 @@ button {
 }
 
 .hero-search button {
+    flex: 0 0 118px;
+
+    width: 118px;
     min-width: 118px;
+
     height: 52px;
 
     border: 0;
@@ -461,45 +419,36 @@ button {
     background:
         linear-gradient(
             135deg,
-            var(--gold-400),
-            var(--gold-500)
+            var(--gold-light),
+            var(--gold)
         );
 
-    color: var(--navy-950);
+    color: var(--navy);
 
     font-weight: 800;
-
-    box-shadow:
-        0 8px 20px rgba(201,164,92,.18);
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease;
 }
 
-.hero-search button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 12px 25px rgba(201,164,92,.28);
-}
-
-/* =========================================================
-   5. HERO BOOK ILLUSTRATION
-========================================================= */
+/* =====================================================
+   HERO EMBLEM
+===================================================== */
 
 .hero-visual {
+    min-width: 0;
+    max-width: 100%;
+
+    min-height: 330px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-
-    min-height: 330px;
 }
 
 .library-emblem {
     position: relative;
 
     width: min(320px, 75vw);
+    max-width: 100%;
+
     aspect-ratio: 1;
 
     display: grid;
@@ -513,7 +462,6 @@ button {
         radial-gradient(
             circle,
             rgba(216,184,117,.10),
-            rgba(216,184,117,.025) 55%,
             transparent 70%
         );
 
@@ -522,23 +470,28 @@ button {
         0 0 0 45px rgba(216,184,117,.015);
 }
 
-.library-emblem::before,
+.library-emblem::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 22px;
+
+    border: 1px solid rgba(216,184,117,.18);
+
+    border-radius: 50%;
+}
+
 .library-emblem::after {
     content: "";
 
     position: absolute;
 
-    border-radius: 50%;
+    inset: 45px;
 
     border: 1px solid rgba(216,184,117,.18);
-}
 
-.library-emblem::before {
-    inset: 22px;
-}
-
-.library-emblem::after {
-    inset: 45px;
+    border-radius: 50%;
 }
 
 .emblem-content {
@@ -546,123 +499,104 @@ button {
     z-index: 2;
 
     width: 130px;
-    height: 150px;
+    max-width: 100%;
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
     gap: 10px;
 
-    color: var(--gold-300);
+    color: var(--gold-light);
 }
 
 .emblem-content svg {
     width: 72px;
     height: 72px;
-
-    display: block;
-
-    overflow: visible;
 }
 
 .emblem-content strong {
     font-family: "Amiri", serif;
-
     font-size: 21px;
-    font-weight: 700;
 }
 
-/* =========================================================
-   6. STATISTICS
-========================================================= */
+/* =====================================================
+   STATISTICS
+===================================================== */
 
 .stats-section {
     position: relative;
+    z-index: 5;
 
     margin-top: -45px;
 
-    z-index: 10;
+    width: 100%;
+    max-width: 100%;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
     gap: 18px;
+
+    min-width: 0;
 }
 
 .stat-card {
     min-width: 0;
+    max-width: 100%;
+
     min-height: 150px;
 
-    padding: 28px 22px;
+    padding: 28px 20px;
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
     text-align: center;
 
-    background: rgba(255,255,255,.98);
+    background: white;
 
     border: 1px solid var(--border);
 
-    border-radius: var(--radius-md);
+    border-radius: 16px;
 
     box-shadow: var(--shadow);
-
-    overflow: visible;
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 22px 50px rgba(7,21,37,.13);
 }
 
 .stat-icon {
     width: 48px;
     height: 48px;
 
+    flex: 0 0 48px;
+
     margin-bottom: 10px;
 
     display: grid;
     place-items: center;
-
-    flex: 0 0 48px;
 
     border-radius: 14px;
 
     background: #f5efe2;
 
     color: #9b783d;
-
-    overflow: visible;
 }
 
 .stat-icon svg {
     width: 25px;
     height: 25px;
-
-    display: block;
-
-    overflow: visible;
 }
 
 .stat-number {
-    display: block;
-
-    margin: 0;
-
-    color: var(--navy-900);
+    color: var(--navy-2);
 
     font-size: 29px;
     font-weight: 800;
@@ -671,23 +605,20 @@ button {
 }
 
 .stat-label {
-    display: block;
-
-    margin-top: 2px;
-
     color: var(--muted);
 
     font-size: 12px;
     font-weight: 600;
-
-    line-height: 1.7;
 }
 
-/* =========================================================
-   7. SECTION HEADER
-========================================================= */
+/* =====================================================
+   SECTIONS
+===================================================== */
 
 .section {
+    width: 100%;
+    max-width: 100%;
+
     padding: 90px 0;
 }
 
@@ -711,7 +642,7 @@ button {
 .section-title {
     margin: 0;
 
-    color: var(--navy-900);
+    color: var(--navy-2);
 
     font-family: "Amiri", serif;
 
@@ -721,6 +652,7 @@ button {
 }
 
 .section-description {
+    width: 100%;
     max-width: 650px;
 
     margin: 10px auto 0;
@@ -730,9 +662,9 @@ button {
     font-size: 14px;
 }
 
-/* =========================================================
-   8. BRANCHES
-========================================================= */
+/* =====================================================
+   BRANCHES
+===================================================== */
 
 .branches-section {
     background: var(--ivory);
@@ -745,12 +677,16 @@ button {
         repeat(4, minmax(0, 1fr));
 
     gap: 18px;
+
+    min-width: 0;
 }
 
 .branch-card {
     position: relative;
 
     min-width: 0;
+    max-width: 100%;
+
     min-height: 190px;
 
     padding: 24px 20px;
@@ -763,56 +699,29 @@ button {
 
     border: 1px solid var(--border);
 
-    border-radius: var(--radius-md);
+    border-radius: 16px;
 
     overflow: hidden;
 
     transition:
-        transform .25s ease,
-        border-color .25s ease,
-        box-shadow .25s ease;
-}
-
-.branch-card::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    right: 0;
-
-    width: 100%;
-    height: 3px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--gold-400),
-            transparent
-        );
-
-    transform: scaleX(.4);
-
-    transition: transform .25s ease;
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
 }
 
 .branch-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
 
     border-color: rgba(201,164,92,.45);
 
-    box-shadow:
-        0 18px 40px rgba(7,21,37,.09);
-}
-
-.branch-card:hover::before {
-    transform: scaleX(1);
+    box-shadow: var(--shadow);
 }
 
 .branch-icon {
     width: 50px;
     height: 50px;
+
+    flex: 0 0 50px;
 
     margin-bottom: 17px;
 
@@ -829,22 +738,26 @@ button {
 .branch-icon svg {
     width: 27px;
     height: 27px;
-
-    display: block;
-
-    overflow: visible;
 }
 
 .branch-name {
+    width: 100%;
+    max-width: 100%;
+
     margin: 0 0 5px;
 
-    color: var(--navy-900);
+    color: var(--navy-2);
 
     font-size: 15px;
     font-weight: 800;
+
+    overflow-wrap: anywhere;
 }
 
 .branch-description {
+    width: 100%;
+    max-width: 100%;
+
     margin: 0;
 
     color: var(--muted);
@@ -852,6 +765,8 @@ button {
     font-size: 11px;
 
     line-height: 1.8;
+
+    overflow-wrap: anywhere;
 }
 
 .branch-count {
@@ -864,9 +779,9 @@ button {
     font-weight: 700;
 }
 
-/* =========================================================
-   9. LATEST REFERENCES
-========================================================= */
+/* =====================================================
+   LATEST REFERENCES
+===================================================== */
 
 .latest-section {
     background: white;
@@ -882,27 +797,21 @@ button {
         repeat(3, minmax(0, 1fr));
 
     gap: 20px;
+
+    min-width: 0;
 }
 
 .reference-card {
+    min-width: 0;
+    max-width: 100%;
+
     padding: 24px;
 
-    background: #fff;
+    background: white;
 
     border: 1px solid var(--border);
 
-    border-radius: var(--radius-md);
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-}
-
-.reference-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 18px 40px rgba(7,21,37,.09);
+    border-radius: 16px;
 }
 
 .reference-meta {
@@ -912,9 +821,13 @@ button {
     gap: 7px;
 
     margin-bottom: 15px;
+
+    min-width: 0;
 }
 
 .reference-tag {
+    max-width: 100%;
+
     padding: 4px 9px;
 
     border-radius: 20px;
@@ -925,18 +838,32 @@ button {
 
     font-size: 9px;
     font-weight: 700;
+
+    overflow-wrap: anywhere;
 }
 
 .reference-title {
+    width: 100%;
+    max-width: 100%;
+
     margin: 0 0 8px;
 
-    color: var(--navy-900);
+    color: var(--navy-2);
 
     font-family: "Amiri", serif;
 
     font-size: 21px;
 
     line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.reference-author,
+.reference-description {
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
 }
 
 .reference-author {
@@ -959,7 +886,6 @@ button {
 
 .reference-action {
     display: inline-flex;
-    align-items: center;
 
     margin-top: 18px;
 
@@ -969,27 +895,35 @@ button {
     font-weight: 800;
 }
 
-/* =========================================================
-   10. ABOUT
-========================================================= */
+/* =====================================================
+   ABOUT
+===================================================== */
 
 .about-section {
-    background:
-        linear-gradient(
-            135deg,
-            #f7f4ed,
-            #eee9dd
-        );
+    background: linear-gradient(
+        135deg,
+        #f7f4ed,
+        #eee9dd
+    );
 }
 
 .about-box {
     display: grid;
 
-    grid-template-columns: .8fr 1.2fr;
+    grid-template-columns:
+        minmax(0, .8fr)
+        minmax(0, 1.2fr);
 
     gap: 55px;
 
     align-items: center;
+
+    min-width: 0;
+}
+
+.about-box > * {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .about-seal {
@@ -1001,7 +935,9 @@ button {
 
 .about-seal-inner {
     width: 230px;
-    height: 230px;
+    max-width: 80vw;
+
+    aspect-ratio: 1;
 
     display: grid;
     place-items: center;
@@ -1027,11 +963,13 @@ button {
 .about-content h2 {
     margin: 0 0 18px;
 
-    color: var(--navy-900);
+    color: var(--navy-2);
 
     font-family: "Amiri", serif;
 
     font-size: 38px;
+
+    overflow-wrap: anywhere;
 }
 
 .about-content p {
@@ -1042,19 +980,26 @@ button {
     font-size: 14px;
 
     line-height: 2.1;
+
+    overflow-wrap: anywhere;
 }
 
 .about-points {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 12px;
 
     margin-top: 25px;
+
+    min-width: 0;
 }
 
 .about-point {
+    min-width: 0;
+
     padding: 15px;
 
     background: rgba(255,255,255,.7);
@@ -1063,23 +1008,29 @@ button {
 
     border-radius: 12px;
 
-    color: var(--navy-900);
+    color: var(--navy-2);
 
     font-size: 11px;
     font-weight: 700;
 }
 
-/* =========================================================
-   11. CTA
-========================================================= */
+/* =====================================================
+   CTA
+===================================================== */
 
 .cta-section {
+    width: 100%;
+    max-width: 100%;
+
     padding: 70px 0;
 
-    background: var(--navy-900);
+    background: var(--navy-2);
 }
 
 .cta-box {
+    min-width: 0;
+    max-width: 100%;
+
     padding: 45px;
 
     display: flex;
@@ -1092,13 +1043,12 @@ button {
 
     border-radius: 22px;
 
-    background:
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(201,164,92,.12),
-            transparent 35%
-        ),
-        rgba(255,255,255,.025);
+    background: rgba(255,255,255,.025);
+}
+
+.cta-box > * {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .cta-box h2 {
@@ -1109,6 +1059,8 @@ button {
     font-family: "Amiri", serif;
 
     font-size: 32px;
+
+    overflow-wrap: anywhere;
 }
 
 .cta-box p {
@@ -1120,25 +1072,28 @@ button {
 }
 
 .cta-button {
-    flex-shrink: 0;
+    flex: 0 0 auto;
 
     padding: 13px 23px;
 
     border-radius: 10px;
 
-    background: var(--gold-400);
+    background: var(--gold-light);
 
-    color: var(--navy-950);
+    color: var(--navy);
 
     font-size: 12px;
     font-weight: 800;
 }
 
-/* =========================================================
-   12. FOOTER
-========================================================= */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 .footer {
+    width: 100%;
+    max-width: 100%;
+
     padding: 40px 0 25px;
 
     background: #061321;
@@ -1153,9 +1108,16 @@ button {
 
     gap: 30px;
 
+    min-width: 0;
+
     padding-bottom: 25px;
 
     border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.footer-top > * {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .footer-brand {
@@ -1174,6 +1136,8 @@ button {
     font-size: 10px;
 
     line-height: 1.9;
+
+    overflow-wrap: anywhere;
 }
 
 .footer-bottom {
@@ -1186,12 +1150,15 @@ button {
     color: rgba(255,255,255,.35);
 }
 
-/* =========================================================
-   13. LOADING
-========================================================= */
+/* =====================================================
+   LOADING
+===================================================== */
 
 .loading {
     grid-column: 1 / -1;
+
+    width: 100%;
+    max-width: 100%;
 
     padding: 35px;
 
@@ -1202,15 +1169,15 @@ button {
     font-size: 12px;
 }
 
-/* =========================================================
-   14. MOBILE
-========================================================= */
+/* =====================================================
+   TABLET
+===================================================== */
 
 @media (max-width: 1050px) {
 
     .main-nav a {
-        padding-inline: 8px;
-        font-size: 11px;
+        padding-inline: 7px;
+        font-size: 10px;
     }
 
     .hero-content {
@@ -1223,7 +1190,15 @@ button {
     }
 }
 
+/* =====================================================
+   MOBILE
+===================================================== */
+
 @media (max-width: 820px) {
+
+    .container {
+        width: calc(100% - 28px);
+    }
 
     .header-inner {
         min-height: 70px;
@@ -1233,16 +1208,15 @@ button {
         display: none;
     }
 
-    .hero {
-        min-height: auto;
-    }
-
     .hero-content {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            minmax(0, 1fr);
 
         text-align: center;
 
-        padding: 60px 0 75px;
+        padding: 55px 0 70px;
+
+        gap: 35px;
     }
 
     .hero-description {
@@ -1276,7 +1250,8 @@ button {
     }
 
     .about-box {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            minmax(0, 1fr);
 
         gap: 25px;
     }
@@ -1287,15 +1262,18 @@ button {
 
     .cta-box {
         flex-direction: column;
-
         align-items: flex-start;
     }
 }
 
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
 @media (max-width: 560px) {
 
     .container {
-        width: min(calc(100% - 26px), var(--container));
+        width: calc(100% - 24px);
     }
 
     .brand-title {
@@ -1309,6 +1287,8 @@ button {
     .brand-mark {
         width: 42px;
         height: 42px;
+
+        flex-basis: 42px;
     }
 
     .hero-content {
@@ -1324,49 +1304,49 @@ button {
     }
 
     .hero-search {
-        padding: 5px;
+        width: 100%;
+        max-width: 100%;
+
+        overflow: hidden;
     }
 
     .hero-search input {
+        width: 1px;
+        min-width: 0;
+
         height: 48px;
 
-        padding-inline: 11px;
+        padding-inline: 10px;
 
         font-size: 11px;
     }
 
     .hero-search button {
+        flex: 0 0 92px;
+
+        width: 92px;
         min-width: 92px;
+
         height: 48px;
 
         font-size: 11px;
     }
 
     .stats-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            minmax(0, 1fr);
 
         gap: 10px;
     }
 
     .stat-card {
-        min-height: 125px;
-
-        padding: 22px 15px;
-    }
-
-    .stat-icon {
-        width: 44px;
-        height: 44px;
-        flex-basis: 44px;
-    }
-
-    .stat-number {
-        font-size: 26px;
+        min-height: 120px;
     }
 
     .branches-grid,
     .references-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            minmax(0, 1fr);
     }
 
     .section {
@@ -1382,7 +1362,8 @@ button {
     }
 
     .about-points {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            minmax(0, 1fr);
     }
 
     .cta-box {
@@ -1395,369 +1376,13 @@ button {
 
     .footer-top {
         flex-direction: column;
-
         align-items: flex-start;
     }
 }
 
-/* =========================================================
-   15. ACCESSIBILITY / SAFETY
-========================================================= */
-
-svg {
-    overflow: visible;
-}
-
-img,
-svg {
-    max-width: 100%;
-}
-
-:focus-visible {
-    outline: 3px solid rgba(216,184,117,.65);
-    outline-offset: 3px;
-}
-
-::selection {
-    background: rgba(201,164,92,.28);
-}
-/* =========================================================
-   FINAL MOBILE WIDTH / HORIZONTAL OVERFLOW FIX
-   الموسوعة القانونية
-========================================================= */
-
-/* 1. اجعل الصفحة لا تتجاوز عرض الجهاز */
-html {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: clip;
-}
-
-/* دعم المتصفحات التي لا تعتمد clip */
-@supports not (overflow-x: clip) {
-    body {
-        overflow-x: hidden;
-    }
-}
-
-/* 2. لا تسمح لأي عنصر رئيسي بفرض عرض أكبر */
-header,
-main,
-footer,
-section,
-.container,
-.hero,
-.hero-content,
-.stats-section,
-.stats-grid,
-.branches-section,
-.branches-grid,
-.latest-section,
-.references-grid,
-.about-section,
-.about-box,
-.cta-section,
-.cta-box {
-    max-width: 100%;
-    min-width: 0;
-}
-
-/* 3. الـ Grid يجب أن يكون قابلًا للانكماش */
-.hero-content {
-    grid-template-columns:
-        minmax(0, 1.2fr)
-        minmax(0, .8fr);
-}
-
-.stats-grid {
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-}
-
-.branches-grid {
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-}
-
-.references-grid {
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-}
-
-/* 4. عناصر الـGrid لا تتمسك بعرض المحتوى الداخلي */
-.hero-content > *,
-.stats-grid > *,
-.branches-grid > *,
-.references-grid > *,
-.about-box > * {
-    min-width: 0;
-    max-width: 100%;
-}
-
-/* 5. الحاوية نفسها */
-.container {
-    width: min(
-        calc(100% - 40px),
-        var(--container)
-    );
-
-    max-width: var(--container);
-
-    min-width: 0;
-}
-
-/* 6. النصوص الطويلة لا تدفع الصفحة إلى الخارج */
-.hero h1,
-.hero-description,
-.section-title,
-.section-description,
-.branch-name,
-.branch-description,
-.reference-title,
-.reference-author,
-.reference-description,
-.about-content,
-.cta-box,
-.footer-text {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: normal;
-}
-
-/* 7. الـSVG لا يستطيع توسيع الصفحة */
-svg {
-    max-width: 100%;
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 820px) {
-
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .container {
-        width: calc(100% - 28px);
-        max-width: none;
-        margin-inline: auto;
-    }
-
-    /* Hero يصبح عمودًا واحدًا */
-    .hero-content {
-        width: 100%;
-        max-width: 100%;
-
-        grid-template-columns:
-            minmax(0, 1fr);
-
-        gap: 35px;
-    }
-
-    .hero-content > * {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    /* الإحصائيات */
-    .stats-grid {
-        width: 100%;
-        max-width: 100%;
-
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-
-        gap: 10px;
-    }
-
-    .stat-card {
-        min-width: 0;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* الفروع */
-    .branches-grid {
-        width: 100%;
-        max-width: 100%;
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 12px;
-    }
-
-    .branch-card {
-        min-width: 0;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* المراجع */
-    .references-grid {
-        width: 100%;
-        max-width: 100%;
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 12px;
-    }
-
-    .reference-card {
-        min-width: 0;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* صندوق البحث */
-    .hero-search {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .hero-search input {
-        min-width: 0;
-        width: 100%;
-    }
-
-    /* الـ CTA */
-    .cta-box {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    /* الـ About */
-    .about-box {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-
-        grid-template-columns:
-            minmax(0, 1fr);
-    }
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 560px) {
-
-    .container {
-        width: calc(100% - 24px);
-        max-width: none;
-    }
-
-    .hero {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .hero-content {
-        width: 100%;
-        max-width: 100%;
-
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    /* الإحصائيات تصبح عمودية */
-    .stats-grid {
-        grid-template-columns:
-            minmax(0, 1fr);
-
-        width: 100%;
-    }
-
-    .stat-card {
-        width: 100%;
-        max-width: 100%;
-
-        min-height: 120px;
-    }
-
-    /* فرع واحد في كل صف */
-    .branches-grid {
-        grid-template-columns:
-            minmax(0, 1fr);
-
-        width: 100%;
-    }
-
-    .branch-card {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* مرجع واحد في كل صف */
-    .references-grid {
-        grid-template-columns:
-            minmax(0, 1fr);
-
-        width: 100%;
-    }
-
-    .reference-card {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* منع البحث من دفع الصفحة */
-    .hero-search {
-        display: flex;
-        width: 100%;
-        max-width: 100%;
-
-        overflow: hidden;
-    }
-
-    .hero-search input {
-        flex: 1 1 auto;
-        width: 1px;
-        min-width: 0;
-    }
-
-    .hero-search button {
-        flex: 0 0 92px;
-        width: 92px;
-        min-width: 92px;
-    }
-
-    /* الشعار الدائري */
-    .library-emblem {
-        max-width: 245px;
-        width: min(245px, 72vw);
-    }
-
-    /* CTA */
-    .cta-box {
-        width: 100%;
-        max-width: 100%;
-    }
-}
-
-
-/* =========================================================
+/* =====================================================
    VERY SMALL PHONES
-========================================================= */
+===================================================== */
 
 @media (max-width: 380px) {
 
@@ -1771,6 +1396,7 @@ svg {
 
     .hero-search button {
         flex-basis: 82px;
+
         width: 82px;
         min-width: 82px;
 
@@ -1786,1090 +1412,1122 @@ svg {
         padding: 20px 17px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- ======================================================
+<!-- =====================================================
      HEADER
-====================================================== -->
+===================================================== -->
 
 <header class="site-header">
 
-    <div class="container header-inner">
+<div class="container header-inner">
 
-        <a href="index.html" class="brand">
+<a href="index.html" class="brand">
 
-            <span class="brand-mark" aria-hidden="true">
+<span class="brand-mark">
 
-                <svg viewBox="0 0 48 48" fill="none">
-                    <path
-                        d="M8 10h13c5 0 8 3 8 8v22c-2-3-5-5-9-5H8V10Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    />
-                    <path
-                        d="M40 10H27c-5 0-8 3-8 8v22c2-3 5-5 9-5h12V10Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    />
-                    <path
-                        d="M24 18h3M24 23h3"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
-                </svg>
+<svg viewBox="0 0 48 48" fill="none">
+<path
+d="M8 10h13c5 0 8 3 8 8v22c-2-3-5-5-9-5H8V10Z"
+stroke="currentColor"
+stroke-width="2"
+/>
 
-            </span>
+<path
+d="M40 10H27c-5 0-8 3-8 8v22c2-3 5-5 9-5h12V10Z"
+stroke="currentColor"
+stroke-width="2"
+/>
 
-            <span class="brand-text">
-                <span class="brand-title">الموسوعة القانونية</span>
-                <span class="brand-subtitle">المكتبة القانونية الرقمية</span>
-            </span>
+<path
+d="M24 18h3M24 23h3"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+/>
+</svg>
 
-        </a>
+</span>
 
-        <nav class="main-nav">
+<span class="brand-text">
 
-            <a href="index.html">الرئيسية</a>
+<span class="brand-title">
+الموسوعة القانونية
+</span>
 
-            <a href="#branches">فروع القانون</a>
+<span class="brand-subtitle">
+المكتبة القانونية الرقمية
+</span>
 
-            <a href="#latest">أحدث المراجع</a>
+</span>
 
-            <a href="search.html">البحث المتقدم</a>
+</a>
 
-            <a href="#about">عن الموسوعة</a>
+<nav class="main-nav">
 
-            <a href="admin.html">لوحة الإدارة</a>
+<a href="index.html">الرئيسية</a>
+<a href="#branches">فروع القانون</a>
+<a href="#latest">أحدث المراجع</a>
+<a href="search.html">البحث المتقدم</a>
+<a href="#about">عن الموسوعة</a>
+<a href="admin.html">لوحة الإدارة</a>
 
-        </nav>
+</nav>
 
-    </div>
+</div>
 
 </header>
 
 
-<!-- ======================================================
-     HERO
-====================================================== -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main>
 
+<!-- HERO -->
+
 <section class="hero">
 
-    <div class="container hero-content">
+<div class="container hero-content">
 
-        <div>
+<div>
 
-            <div class="eyebrow">
-                <span class="eyebrow-line"></span>
-                منصة المعرفة القانونية الرقمية
-            </div>
+<div class="eyebrow">
+<span class="eyebrow-line"></span>
+منصة المعرفة القانونية الرقمية
+</div>
 
-            <h1>
-                الموسوعة
-                <span>القانونية</span>
-            </h1>
+<h1>
+الموسوعة
+<span>القانونية</span>
+</h1>
 
-            <p class="hero-description">
-                مكتبة قانونية رقمية تجمع المراجع والكتب والبحوث
-                في مختلف فروع القانون، في فضاء أكاديمي واحد،
-                منظم وسهل الوصول.
-            </p>
+<p class="hero-description">
+مكتبة قانونية رقمية تجمع المراجع والكتب والبحوث
+في مختلف فروع القانون، في فضاء أكاديمي واحد،
+منظم وسهل الوصول.
+</p>
 
-            <form class="hero-search" id="homeSearch">
+<form class="hero-search" id="homeSearch">
 
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="ابحث عن كتاب، مرجع، مؤلف أو موضوع قانوني..."
-                    autocomplete="off"
-                >
+<input
+type="search"
+id="searchInput"
+placeholder="ابحث عن كتاب، مرجع، مؤلف أو موضوع قانوني..."
+autocomplete="off"
+>
 
-                <button type="submit">
-                    بحث متقدم
-                </button>
+<button type="submit">
+بحث متقدم
+</button>
 
-            </form>
+</form>
 
-        </div>
+</div>
 
 
-        <div class="hero-visual">
+<div class="hero-visual">
 
-            <div class="library-emblem">
+<div class="library-emblem">
 
-                <div class="emblem-content">
+<div class="emblem-content">
 
-                    <svg viewBox="0 0 100 100" fill="none">
+<svg viewBox="0 0 100 100" fill="none">
 
-                        <path
-                            d="M15 25h27c10 0 18 7 18 17v38c-5-7-11-10-20-10H15V25Z"
-                            stroke="currentColor"
-                            stroke-width="3"
-                        />
+<path
+d="M15 25h27c10 0 18 7 18 17v38c-5-7-11-10-20-10H15V25Z"
+stroke="currentColor"
+stroke-width="3"
+/>
 
-                        <path
-                            d="M85 25H58c-10 0-18 7-18 17v38c5-7 11-10 20-10h25V25Z"
-                            stroke="currentColor"
-                            stroke-width="3"
-                        />
+<path
+d="M85 25H58c-10 0-18 7-18 17v38c5-7 11-10 20-10h25V25Z"
+stroke="currentColor"
+stroke-width="3"
+/>
 
-                        <path
-                            d="M50 42v39"
-                            stroke="currentColor"
-                            stroke-width="3"
-                        />
+<path
+d="M50 42v39"
+stroke="currentColor"
+stroke-width="3"
+/>
 
-                    </svg>
+</svg>
 
-                    <strong>المعرفة</strong>
+<strong>المعرفة</strong>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     STATISTICS
-====================================================== -->
+<!-- STATISTICS -->
 
 <section class="stats-section">
 
-    <div class="container">
+<div class="container">
 
-        <div class="stats-grid">
+<div class="stats-grid">
 
-            <article class="stat-card">
+<article class="stat-card">
 
-                <div class="stat-icon">
+<div class="stat-icon">
 
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <rect
-                            x="7"
-                            y="8"
-                            width="34"
-                            height="32"
-                            rx="5"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                        />
-                        <path
-                            d="M16 17h16M16 24h16M16 31h10"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                            stroke-linecap="round"
-                        />
-                    </svg>
+<svg viewBox="0 0 48 48" fill="none">
+<rect
+x="7"
+y="8"
+width="34"
+height="32"
+rx="5"
+stroke="currentColor"
+stroke-width="2.5"
+/>
 
-                </div>
+<path
+d="M16 17h16M16 24h16M16 31h10"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+/>
+</svg>
 
-                <span class="stat-number" id="branchCount">—</span>
+</div>
 
-                <span class="stat-label">
-                    فرعًا قانونيًا
-                </span>
+<span class="stat-number" id="branchCount">
+—
+</span>
 
-            </article>
+<span class="stat-label">
+فرعًا قانونيًا
+</span>
 
-
-            <article class="stat-card">
-
-                <div class="stat-icon">
-
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <path
-                            d="M11 8h22a5 5 0 0 1 5 5v27H16a5 5 0 0 1-5-5V8Z"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                        />
-                        <path
-                            d="M16 8v27"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                        />
-                        <path
-                            d="M22 17h10M22 23h10M22 29h7"
-                            stroke="currentColor"
-                            stroke-width="2.2"
-                            stroke-linecap="round"
-                        />
-                    </svg>
-
-                </div>
-
-                <span class="stat-number" id="referenceCount">—</span>
-
-                <span class="stat-label">
-                    مرجعًا قانونيًا
-                </span>
-
-            </article>
+</article>
 
 
-            <article class="stat-card">
+<article class="stat-card">
 
-                <div class="stat-icon">
+<div class="stat-icon">
 
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <circle
-                            cx="24"
-                            cy="24"
-                            r="17"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                        />
-                        <path
-                            d="M24 14v11l7 5"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                    </svg>
+<svg viewBox="0 0 48 48" fill="none">
 
-                </div>
+<path
+d="M11 8h22a5 5 0 0 1 5 5v27H16a5 5 0 0 1-5-5V8Z"
+stroke="currentColor"
+stroke-width="2.5"
+/>
 
-                <span class="stat-number">
-                    24/7
-                </span>
+<path
+d="M16 8v27"
+stroke="currentColor"
+stroke-width="2.5"
+/>
 
-                <span class="stat-label">
-                    وصول إلى المعرفة القانونية
-                </span>
+<path
+d="M22 17h10M22 23h10M22 29h7"
+stroke="currentColor"
+stroke-width="2.2"
+stroke-linecap="round"
+/>
 
-            </article>
+</svg>
 
-        </div>
+</div>
 
-    </div>
+<span class="stat-number" id="referenceCount">
+—
+</span>
+
+<span class="stat-label">
+مرجعًا قانونيًا
+</span>
+
+</article>
+
+
+<article class="stat-card">
+
+<div class="stat-icon">
+
+<svg viewBox="0 0 48 48" fill="none">
+
+<circle
+cx="24"
+cy="24"
+r="17"
+stroke="currentColor"
+stroke-width="2.5"
+/>
+
+<path
+d="M24 14v11l7 5"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+/>
+
+</svg>
+
+</div>
+
+<span class="stat-number">
+24/7
+</span>
+
+<span class="stat-label">
+وصول إلى المعرفة القانونية
+</span>
+
+</article>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     BRANCHES
-====================================================== -->
+<!-- BRANCHES -->
 
 <section class="section branches-section" id="branches">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-header">
+<div class="section-header">
 
-            <div class="section-kicker">
-                التصنيف الأكاديمي
-            </div>
+<div class="section-kicker">
+التصنيف الأكاديمي
+</div>
 
-            <h2 class="section-title">
-                فروع القانون
-            </h2>
+<h2 class="section-title">
+فروع القانون
+</h2>
 
-            <p class="section-description">
-                تصفح المراجع القانونية حسب التخصص والفرع القانوني.
-            </p>
+<p class="section-description">
+تصفح المراجع القانونية حسب التخصص والفرع القانوني.
+</p>
 
-        </div>
+</div>
 
+<div class="branches-grid" id="branchesGrid">
 
-        <div class="branches-grid" id="branchesGrid">
+<div class="loading">
+جارٍ تحميل فروع القانون...
+</div>
 
-            <div class="loading">
-                جارٍ تحميل فروع القانون...
-            </div>
+</div>
 
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     LATEST REFERENCES
-====================================================== -->
+<!-- LATEST -->
 
 <section class="section latest-section" id="latest">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-header">
+<div class="section-header">
 
-            <div class="section-kicker">
-                المكتبة الرقمية
-            </div>
+<div class="section-kicker">
+المكتبة الرقمية
+</div>
 
-            <h2 class="section-title">
-                أحدث المراجع
-            </h2>
+<h2 class="section-title">
+أحدث المراجع
+</h2>
 
-            <p class="section-description">
-                أحدث الكتب والمراجع والوثائق المضافة إلى الموسوعة.
-            </p>
+<p class="section-description">
+أحدث الكتب والمراجع والوثائق المضافة إلى الموسوعة.
+</p>
 
-        </div>
+</div>
 
+<div class="references-grid" id="latestReferences">
 
-        <div class="references-grid" id="latestReferences">
+<div class="loading">
+جارٍ تحميل أحدث المراجع...
+</div>
 
-            <div class="loading">
-                جارٍ تحميل أحدث المراجع...
-            </div>
+</div>
 
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     ABOUT
-====================================================== -->
+<!-- ABOUT -->
 
 <section class="section about-section" id="about">
 
-    <div class="container about-box">
+<div class="container about-box">
 
-        <div class="about-seal">
+<div class="about-seal">
 
-            <div class="about-seal-inner">
+<div class="about-seal-inner">
 
-                <svg viewBox="0 0 100 100" fill="none">
+<svg viewBox="0 0 100 100" fill="none">
 
-                    <path
-                        d="M17 25h22c8 0 13 4 13 12v40c-4-5-9-7-16-7H17V25Z"
-                        stroke="currentColor"
-                        stroke-width="3"
-                    />
+<path
+d="M17 25h22c8 0 13 4 13 12v40c-4-5-9-7-16-7H17V25Z"
+stroke="currentColor"
+stroke-width="3"
+/>
 
-                    <path
-                        d="M83 25H61c-8 0-13 4-13 12v40c4-5 9-7 16-7h19V25Z"
-                        stroke="currentColor"
-                        stroke-width="3"
-                    />
+<path
+d="M83 25H61c-8 0-13 4-13 12v40c4-5 9-7 16-7h19V25Z"
+stroke="currentColor"
+stroke-width="3"
+/>
 
-                    <path
-                        d="M50 37v40"
-                        stroke="currentColor"
-                        stroke-width="3"
-                    />
+<path
+d="M50 37v40"
+stroke="currentColor"
+stroke-width="3"
+/>
 
-                    <path
-                        d="M31 38h11M31 46h11"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
+<path
+d="M31 38h11M31 46h11"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+/>
 
-                    <path
-                        d="M58 38h11M58 46h11"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
+<path
+d="M58 38h11M58 46h11"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+/>
 
-                </svg>
+</svg>
 
-            </div>
+</div>
 
-        </div>
-
-
-        <div class="about-content">
-
-            <div class="section-kicker">
-                حول المشروع
-            </div>
-
-            <h2>
-                المعرفة القانونية في متناول الجميع
-            </h2>
-
-            <p>
-                الموسوعة القانونية مشروع رقمي يهدف إلى تنظيم
-                المراجع القانونية وتسهيل الوصول إليها في فضاء
-                إلكتروني حديث يخدم الطلبة والباحثين والمختصين
-                في المجال القانوني.
-            </p>
-
-            <p>
-                نعمل على بناء مكتبة قانونية عربية متخصصة تجمع
-                مختلف فروع القانون في واجهة واحدة، مع تصنيف
-                واضح وإمكانية البحث والوصول السريع إلى المراجع.
-            </p>
+</div>
 
 
-            <div class="about-points">
+<div class="about-content">
 
-                <div class="about-point">
-                    ✓ تنظيم أكاديمي للمراجع
-                </div>
+<div class="section-kicker">
+حول المشروع
+</div>
 
-                <div class="about-point">
-                    ✓ بحث سريع ومتقدم
-                </div>
+<h2>
+المعرفة القانونية في متناول الجميع
+</h2>
 
-                <div class="about-point">
-                    ✓ تصنيف حسب فروع القانون
-                </div>
+<p>
+الموسوعة القانونية مشروع رقمي يهدف إلى تنظيم
+المراجع القانونية وتسهيل الوصول إليها في فضاء
+إلكتروني حديث يخدم الطلبة والباحثين والمختصين
+في المجال القانوني.
+</p>
 
-                <div class="about-point">
-                    ✓ وصول رقمي مستمر
-                </div>
+<p>
+نعمل على بناء مكتبة قانونية عربية متخصصة تجمع
+مختلف فروع القانون في واجهة واحدة، مع تصنيف
+واضح وإمكانية البحث والوصول السريع إلى المراجع.
+</p>
 
-            </div>
+<div class="about-points">
 
-        </div>
+<div class="about-point">
+✓ تنظيم أكاديمي للمراجع
+</div>
 
-    </div>
+<div class="about-point">
+✓ بحث سريع ومتقدم
+</div>
+
+<div class="about-point">
+✓ تصنيف حسب فروع القانون
+</div>
+
+<div class="about-point">
+✓ وصول رقمي مستمر
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     CTA
-====================================================== -->
+<!-- CTA -->
 
 <section class="cta-section">
 
-    <div class="container">
+<div class="container">
 
-        <div class="cta-box">
+<div class="cta-box">
 
-            <div>
+<div>
 
-                <h2>
-                    ابدأ رحلتك في البحث القانوني
-                </h2>
+<h2>
+ابدأ رحلتك في البحث القانوني
+</h2>
 
-                <p>
-                    اكتشف المراجع والكتب والبحوث القانونية في الموسوعة.
-                </p>
+<p>
+اكتشف المراجع والكتب والبحوث القانونية في الموسوعة.
+</p>
 
-            </div>
+</div>
 
-            <a href="search.html" class="cta-button">
-                استكشف المكتبة
-            </a>
+<a href="search.html" class="cta-button">
+استكشف المكتبة
+</a>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </section>
 
 </main>
 
 
-<!-- ======================================================
+<!-- =====================================================
      FOOTER
-====================================================== -->
+===================================================== -->
 
 <footer class="footer">
 
-    <div class="container">
+<div class="container">
 
-        <div class="footer-top">
+<div class="footer-top">
 
-            <div>
+<div>
 
-                <div class="footer-brand">
-                    الموسوعة القانونية
-                </div>
+<div class="footer-brand">
+الموسوعة القانونية
+</div>
 
-                <p class="footer-text">
-                    منصة رقمية أكاديمية لتنظيم وإتاحة المعرفة
-                    والمراجع القانونية في مختلف فروع القانون.
-                </p>
+<p class="footer-text">
+منصة رقمية أكاديمية لتنظيم وإتاحة المعرفة
+والمراجع القانونية في مختلف فروع القانون.
+</p>
 
-            </div>
+</div>
 
-            <div class="footer-text">
-                فراس بسر — مدير الموسوعة القانونية
-            </div>
+<div class="footer-text">
+فراس بسر — مدير الموسوعة القانونية
+</div>
 
-        </div>
+</div>
 
-        <div class="footer-bottom">
-            © 2026 الموسوعة القانونية — جميع الحقوق محفوظة
-        </div>
+<div class="footer-bottom">
+© 2026 الموسوعة القانونية — جميع الحقوق محفوظة
+</div>
 
-    </div>
+</div>
 
 </footer>
 
 
-<!-- ======================================================
+<!-- =====================================================
      SUPABASE
-====================================================== -->
+===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-/* =========================================================
-   SUPABASE CONFIGURATION
-========================================================= */
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
-    "https://yksrckzomkowjzmsafvm.supabase.co";
+"https://yksrckzomkowjzmsafvm.supabase.co";
 
 const SUPABASE_KEY =
-    "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
+"sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
 
 const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
 
-/* =========================================================
-   SECURITY / HTML ESCAPING
-========================================================= */
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
 function escapeHTML(value) {
 
-    if (value === null || value === undefined) {
-        return "";
-    }
+if (value === null || value === undefined) {
+return "";
+}
 
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 }
 
 
-/* =========================================================
-   BRANCH ICONS
-========================================================= */
+/* =====================================================
+   ICONS
+===================================================== */
 
 function branchIcon(slug) {
 
-    const icons = {
+const icons = {
 
-        civil: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <path d="M8 12h32v25H8z"
-                      stroke="currentColor"
-                      stroke-width="2.5"/>
-                <path d="M14 18h20M14 24h20M14 30h12"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"/>
-            </svg>
-        `,
+civil: `
+<svg viewBox="0 0 48 48" fill="none">
+<path d="M8 12h32v25H8z"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M14 18h20M14 24h20M14 30h12"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"/>
+</svg>
+`,
 
-        commercial: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <rect x="7" y="11" width="34" height="27"
-                      rx="4"
-                      stroke="currentColor"
-                      stroke-width="2.5"/>
-                <path d="M15 11V8h18v3M13 20h22M17 27h14"
-                      stroke="currentColor"
-                      stroke-width="2.2"
-                      stroke-linecap="round"/>
-            </svg>
-        `,
+commercial: `
+<svg viewBox="0 0 48 48" fill="none">
+<rect x="7" y="11" width="34" height="27"
+rx="4"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M15 11V8h18v3M13 20h22M17 27h14"
+stroke="currentColor"
+stroke-width="2.2"
+stroke-linecap="round"/>
+</svg>
+`,
 
-        administrative: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <path d="M8 38h32M12 38V18h24v20M8 18h32M16 18l8-9 8 9"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linejoin="round"/>
-                <path d="M19 24v8M24 24v8M29 24v8"
-                      stroke="currentColor"
-                      stroke-width="2.2"/>
-            </svg>
-        `,
+administrative: `
+<svg viewBox="0 0 48 48" fill="none">
+<path d="M8 38h32M12 38V18h24v20M8 18h32M16 18l8-9 8 9"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linejoin="round"/>
+<path d="M19 24v8M24 24v8M29 24v8"
+stroke="currentColor"
+stroke-width="2.2"/>
+</svg>
+`,
 
-        constitutional: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <path d="M24 7v34M9 14l15-7 15 7M13 16h22"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"/>
-                <path d="M11 16l-6 12h12l-6-12ZM37 16l-6 12h12l-6-12Z"
-                      stroke="currentColor"
-                      stroke-width="2.2"
-                      stroke-linejoin="round"/>
-                <path d="M14 38h20"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"/>
-            </svg>
-        `,
+constitutional: `
+<svg viewBox="0 0 48 48" fill="none">
+<path d="M24 7v34M9 14l15-7 15 7M13 16h22"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"/>
+<path d="M11 16l-6 12h12l-6-12ZM37 16l-6 12h12l-6-12Z"
+stroke="currentColor"
+stroke-width="2.2"
+stroke-linejoin="round"/>
+<path d="M14 38h20"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"/>
+</svg>
+`,
 
-        criminal: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <path d="M24 7l15 6v10c0 9-6 15-15 18C15 38 9 32 9 23V13l15-6Z"
-                      stroke="currentColor"
-                      stroke-width="2.5"/>
-                <path d="M17 24l5 5 10-11"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-            </svg>
-        `,
+criminal: `
+<svg viewBox="0 0 48 48" fill="none">
+<path d="M24 7l15 6v10c0 9-6 15-15 18C15 38 9 32 9 23V13l15-6Z"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M17 24l5 5 10-11"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+</svg>
+`,
 
-        "private-international": `
-            <svg viewBox="0 0 48 48" fill="none">
-                <circle cx="24" cy="24" r="16"
-                        stroke="currentColor"
-                        stroke-width="2.5"/>
-                <path d="M8 24h32M24 8c5 5 7 10 7 16s-2 11-7 16M24 8c-5 5-7 10-7 16s2 11 7 16"
-                      stroke="currentColor"
-                      stroke-width="2"/>
-            </svg>
-        `,
+"private-international": `
+<svg viewBox="0 0 48 48" fill="none">
+<circle cx="24" cy="24" r="16"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M8 24h32M24 8c5 5 7 10 7 16s-2 11-7 16M24 8c-5 5-7 10-7 16s2 11 7 16"
+stroke="currentColor"
+stroke-width="2"/>
+</svg>
+`,
 
-        "public-international": `
-            <svg viewBox="0 0 48 48" fill="none">
-                <circle cx="24" cy="24" r="16"
-                        stroke="currentColor"
-                        stroke-width="2.5"/>
-                <path d="M24 8v32M8 24h32"
-                      stroke="currentColor"
-                      stroke-width="2"/>
-                <path d="M13 14c4 3 7 4 11 4s7-1 11-4M13 34c4-3 7-4 11-4s7 1 11 4"
-                      stroke="currentColor"
-                      stroke-width="2"/>
-            </svg>
-        `,
+"public-international": `
+<svg viewBox="0 0 48 48" fill="none">
+<circle cx="24" cy="24" r="16"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M24 8v32M8 24h32"
+stroke="currentColor"
+stroke-width="2"/>
+<path d="M13 14c4 3 7 4 11 4s7-1 11-4M13 34c4-3 7-4 11-4s7 1 11 4"
+stroke="currentColor"
+stroke-width="2"/>
+</svg>
+`,
 
-        labor: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <path d="M9 34h30M13 34V17h22v17M18 17v-5h12v5"
-                      stroke="currentColor"
-                      stroke-width="2.5"/>
-                <path d="M19 23h10M19 28h10"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"/>
-            </svg>
-        `,
+labor: `
+<svg viewBox="0 0 48 48" fill="none">
+<path d="M9 34h30M13 34V17h22v17M18 17v-5h12v5"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M19 23h10M19 28h10"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"/>
+</svg>
+`,
 
-        tax: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <rect x="9" y="7" width="30" height="34"
-                      rx="4"
-                      stroke="currentColor"
-                      stroke-width="2.5"/>
-                <path d="M16 16h16M16 23h16M16 30h6M29 30h3"
-                      stroke="currentColor"
-                      stroke-width="2.2"
-                      stroke-linecap="round"/>
-            </svg>
-        `,
+tax: `
+<svg viewBox="0 0 48 48" fill="none">
+<rect x="9" y="7" width="30" height="34"
+rx="4"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M16 16h16M16 23h16M16 30h6M29 30h3"
+stroke="currentColor"
+stroke-width="2.2"
+stroke-linecap="round"/>
+</svg>
+`,
 
-        arbitration: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <path d="M24 7l15 7v9c0 9-6 15-15 18C15 38 9 32 9 23v-9l15-7Z"
-                      stroke="currentColor"
-                      stroke-width="2.5"/>
-                <path d="M17 25h14M20 20h8M20 30h8"
-                      stroke="currentColor"
-                      stroke-width="2.2"
-                      stroke-linecap="round"/>
-            </svg>
-        `,
+arbitration: `
+<svg viewBox="0 0 48 48" fill="none">
+<path d="M24 7l15 7v9c0 9-6 15-15 18C15 38 9 32 9 23v-9l15-7Z"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M17 25h14M20 20h8M20 30h8"
+stroke="currentColor"
+stroke-width="2.2"
+stroke-linecap="round"/>
+</svg>
+`,
 
-        books: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <path d="M8 11h11c5 0 8 3 8 8v20c-2-3-5-4-9-4H8V11Z"
-                      stroke="currentColor"
-                      stroke-width="2.5"/>
-                <path d="M40 11H29c-5 0-8 3-8 8v20c2-3 5-4 9-4h10V11Z"
-                      stroke="currentColor"
-                      stroke-width="2.5"/>
-            </svg>
-        `,
+books: `
+<svg viewBox="0 0 48 48" fill="none">
+<path d="M8 11h11c5 0 8 3 8 8v20c-2-3-5-4-9-4H8V11Z"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M40 11H29c-5 0-8 3-8 8v20c2-3 5-4 9-4h10V11Z"
+stroke="currentColor"
+stroke-width="2.5"/>
+</svg>
+`,
 
-        research: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <path d="M10 8h28v32H10z"
-                      stroke="currentColor"
-                      stroke-width="2.5"/>
-                <path d="M16 16h16M16 22h16M16 28h11"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"/>
-                <path d="M31 31l7 7"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"/>
-                <circle cx="27" cy="27" r="6"
-                        stroke="currentColor"
-                        stroke-width="2"/>
-            </svg>
-        `,
+research: `
+<svg viewBox="0 0 48 48" fill="none">
+<path d="M10 8h28v32H10z"
+stroke="currentColor"
+stroke-width="2.5"/>
+<path d="M16 16h16M16 22h16M16 28h11"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"/>
+<circle cx="27" cy="27" r="6"
+stroke="currentColor"
+stroke-width="2"/>
+<path d="M31 31l7 7"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"/>
+</svg>
+`,
 
-        maritime: `
-            <svg viewBox="0 0 48 48" fill="none">
-                <path d="M9 31h30l-5 7H14l-5-7Z"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linejoin="round"/>
-                <path d="M24 31V10M24 10l10 7H24"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"/>
-                <path d="M7 40c4-3 8 3 12 0 4-3 8 3 12 0 4-3 7 2 10 0"
-                      stroke="currentColor"
-                      stroke-width="2.2"
-                      stroke-linecap="round"/>
-            </svg>
-        `
-    };
+maritime: `
+<svg viewBox="0 0 48 48" fill="none">
+<path d="M9 31h30l-5 7H14l-5-7Z"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linejoin="round"/>
+<path d="M24 31V10M24 10l10 7H24"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"/>
+<path d="M7 40c4-3 8 3 12 0 4-3 8 3 12 0 4-3 7 2 10 0"
+stroke="currentColor"
+stroke-width="2.2"
+stroke-linecap="round"/>
+</svg>
+`
 
-    return icons[slug] || icons.books;
+};
+
+return icons[slug] || icons.books;
+
 }
 
 
-/* =========================================================
-   BRANCH DESCRIPTIONS
-========================================================= */
+/* =====================================================
+   DESCRIPTIONS
+===================================================== */
 
 function branchDescription(slug) {
 
-    const descriptions = {
+const descriptions = {
 
-        civil:
-            "الالتزامات والعقود والمسؤولية المدنية",
+civil:
+"الالتزامات والعقود والمسؤولية المدنية",
 
-        commercial:
-            "التجار والشركات والأعمال التجارية",
+commercial:
+"التجار والشركات والأعمال التجارية",
 
-        administrative:
-            "الإدارة والقرارات والمنازعات الإدارية",
+administrative:
+"الإدارة والقرارات والمنازعات الإدارية",
 
-        constitutional:
-            "الدستور والسلطات والحقوق والحريات",
+constitutional:
+"الدستور والسلطات والحقوق والحريات",
 
-        criminal:
-            "الجرائم والعقوبات والإجراءات الجزائية",
+criminal:
+"الجرائم والعقوبات والإجراءات الجزائية",
 
-        "private-international":
-            "العلاقات الخاصة ذات العنصر الأجنبي",
+"private-international":
+"العلاقات الخاصة ذات العنصر الأجنبي",
 
-        "public-international":
-            "العلاقات الدولية والقواعد الدولية",
+"public-international":
+"العلاقات الدولية والقواعد الدولية",
 
-        labor:
-            "علاقات الشغل والحقوق الاجتماعية",
+labor:
+"علاقات الشغل والحقوق الاجتماعية",
 
-        tax:
-            "الجباية والضرائب والمنازعات الجبائية",
+tax:
+"الجباية والضرائب والمنازعات الجبائية",
 
-        arbitration:
-            "التحكيم الوطني والدولي",
+arbitration:
+"التحكيم الوطني والدولي",
 
-        books:
-            "كتب ومراجع قانونية متخصصة",
+books:
+"كتب ومراجع قانونية متخصصة",
 
-        research:
-            "بحوث ومذكرات ودراسات قانونية",
+research:
+"بحوث ومذكرات ودراسات قانونية",
 
-        maritime:
-            "السفن والنقل والعلاقات البحرية"
-    };
+maritime:
+"السفن والنقل والعلاقات البحرية"
 
-    return descriptions[slug] || "مراجع قانونية متخصصة";
+};
+
+return descriptions[slug] ||
+"مراجع قانونية متخصصة";
+
 }
 
 
-/* =========================================================
+/* =====================================================
    LOAD BRANCHES
-========================================================= */
+===================================================== */
 
 async function loadBranches() {
 
-    const container =
-        document.getElementById("branchesGrid");
+const container =
+document.getElementById("branchesGrid");
 
-    try {
+try {
 
-        const { data, error } =
-            await supabaseClient
-                .from("branches")
-                .select("id,name,slug")
-                .order("name");
+const { data, error } =
+await supabaseClient
+.from("branches")
+.select("id,name,slug")
+.order("name");
 
-        if (error) throw error;
+if (error) {
+throw error;
+}
 
-        if (!data || data.length === 0) {
+if (!data || data.length === 0) {
 
-            container.innerHTML = `
-                <div class="loading">
-                    لا توجد فروع قانونية مضافة حاليًا.
-                </div>
-            `;
+container.innerHTML = `
+<div class="loading">
+لا توجد فروع قانونية مضافة حاليًا.
+</div>
+`;
 
-            document.getElementById("branchCount").textContent = "0";
+document.getElementById(
+"branchCount"
+).textContent = "0";
 
-            return;
-        }
+return;
+}
 
-        document.getElementById("branchCount").textContent =
-            data.length;
+document.getElementById(
+"branchCount"
+).textContent = data.length;
 
-        container.innerHTML =
-            data.map(branch => {
+container.innerHTML =
+data.map(branch => {
 
-                const slug =
-                    branch.slug || "";
+const slug =
+branch.slug || "";
 
-                return `
-                    <a
-                        class="branch-card"
-                        href="branch.html?branch=${encodeURIComponent(slug)}"
-                    >
+return `
 
-                        <div class="branch-icon">
-                            ${branchIcon(slug)}
-                        </div>
+<a
+class="branch-card"
+href="branch.html?branch=${encodeURIComponent(slug)}"
+>
 
-                        <h3 class="branch-name">
-                            ${escapeHTML(branch.name)}
-                        </h3>
+<div class="branch-icon">
+${branchIcon(slug)}
+</div>
 
-                        <p class="branch-description">
-                            ${escapeHTML(
-                                branchDescription(slug)
-                            )}
-                        </p>
+<h3 class="branch-name">
+${escapeHTML(branch.name)}
+</h3>
 
-                        <div class="branch-count">
-                            استعراض المراجع ←
-                        </div>
+<p class="branch-description">
+${escapeHTML(
+branchDescription(slug)
+)}
+</p>
 
-                    </a>
-                `;
+<div class="branch-count">
+استعراض المراجع ←
+</div>
 
-            }).join("");
+</a>
 
-    } catch (error) {
+`;
 
-        console.error(error);
+}).join("");
 
-        container.innerHTML = `
-            <div class="loading">
-                تعذر تحميل فروع القانون حاليًا.
-            </div>
-        `;
+} catch (error) {
 
-    }
+console.error(error);
+
+container.innerHTML = `
+<div class="loading">
+تعذر تحميل فروع القانون حاليًا.
+</div>
+`;
+
+}
+
 }
 
 
-/* =========================================================
-   LOAD LATEST REFERENCES
-========================================================= */
+/* =====================================================
+   LOAD REFERENCES
+===================================================== */
 
 async function loadLatestReferences() {
 
-    const container =
-        document.getElementById("latestReferences");
+const container =
+document.getElementById("latestReferences");
 
-    try {
+try {
 
-        const { data, error } =
-            await supabaseClient
-                .from("references")
-                .select(`
-                    id,
-                    title,
-                    author,
-                    description,
-                    file_path,
-                    created_at,
-                    branches (
-                        name,
-                        slug
-                    ),
-                    reference_categories (
-                        name
-                    )
-                `)
-                .order("created_at", {
-                    ascending: false
-                })
-                .limit(6);
+const { data, error } =
+await supabaseClient
+.from("references")
+.select(`
+id,
+title,
+author,
+description,
+file_path,
+created_at,
+branches (
+name,
+slug
+),
+reference_categories (
+name
+)
+`)
+.order("created_at", {
+ascending: false
+})
+.limit(6);
 
-        if (error) throw error;
+if (error) {
+throw error;
+}
 
-        const totalResult =
-            await supabaseClient
-                .from("references")
-                .select("id", {
-                    count: "exact",
-                    head: true
-                });
+const totalResult =
+await supabaseClient
+.from("references")
+.select("id", {
+count: "exact",
+head: true
+});
 
-        if (!totalResult.error) {
+if (!totalResult.error) {
 
-            document.getElementById(
-                "referenceCount"
-            ).textContent =
-                totalResult.count ?? 0;
-        }
+document.getElementById(
+"referenceCount"
+).textContent =
+totalResult.count ?? 0;
 
-        if (!data || data.length === 0) {
+}
 
-            container.innerHTML = `
-                <div class="loading">
-                    لا توجد مراجع مضافة حاليًا.
-                </div>
-            `;
+if (!data || data.length === 0) {
 
-            return;
-        }
+container.innerHTML = `
+<div class="loading">
+لا توجد مراجع مضافة حاليًا.
+</div>
+`;
 
-        container.innerHTML =
-            data.map(reference => {
+return;
+}
 
-                const branch =
-                    reference.branches;
+container.innerHTML =
+data.map(reference => {
 
-                const category =
-                    reference.reference_categories;
+const branch =
+reference.branches;
 
-                return `
-                    <article class="reference-card">
+const category =
+reference.reference_categories;
 
-                        <div class="reference-meta">
+return `
 
-                            ${
-                                branch?.name
-                                ? `
-                                    <span class="reference-tag">
-                                        ${escapeHTML(branch.name)}
-                                    </span>
-                                  `
-                                : ""
-                            }
+<article class="reference-card">
 
-                            ${
-                                category?.name
-                                ? `
-                                    <span class="reference-tag">
-                                        ${escapeHTML(category.name)}
-                                    </span>
-                                  `
-                                : ""
-                            }
+<div class="reference-meta">
 
-                        </div>
+${
+branch?.name
+?
+`
+<span class="reference-tag">
+${escapeHTML(branch.name)}
+</span>
+`
+:
+""
+}
 
-                        <h3 class="reference-title">
-                            ${escapeHTML(reference.title)}
-                        </h3>
+${
+category?.name
+?
+`
+<span class="reference-tag">
+${escapeHTML(category.name)}
+</span>
+`
+:
+""
+}
 
-                        ${
-                            reference.author
-                            ? `
-                                <p class="reference-author">
-                                    ${escapeHTML(reference.author)}
-                                </p>
-                              `
-                            : ""
-                        }
+</div>
 
-                        ${
-                            reference.description
-                            ? `
-                                <p class="reference-description">
-                                    ${escapeHTML(
-                                        reference.description
-                                    )}
-                                </p>
-                              `
-                            : ""
-                        }
+<h3 class="reference-title">
+${escapeHTML(reference.title)}
+</h3>
 
-                        ${
-                            branch?.slug
-                            ? `
-                                <a
-                                    class="reference-action"
-                                    href="branch.html?branch=${encodeURIComponent(branch.slug)}"
-                                >
-                                    استعراض الفرع
-                                    ←
-                                </a>
-                              `
-                            : ""
-                        }
+${
+reference.author
+?
+`
+<p class="reference-author">
+${escapeHTML(reference.author)}
+</p>
+`
+:
+""
+}
 
-                    </article>
-                `;
+${
+reference.description
+?
+`
+<p class="reference-description">
+${escapeHTML(reference.description)}
+</p>
+`
+:
+""
+}
 
-            }).join("");
+${
+branch?.slug
+?
+`
+<a
+class="reference-action"
+href="branch.html?branch=${encodeURIComponent(branch.slug)}"
+>
+استعراض الفرع ←
+</a>
+`
+:
+""
+}
 
-    } catch (error) {
+</article>
 
-        console.error(error);
+`;
 
-        container.innerHTML = `
-            <div class="loading">
-                تعذر تحميل أحدث المراجع حاليًا.
-            </div>
-        `;
+}).join("");
 
-    }
+} catch (error) {
+
+console.error(error);
+
+container.innerHTML = `
+<div class="loading">
+تعذر تحميل أحدث المراجع حاليًا.
+</div>
+`;
+
+}
+
 }
 
 
-/* =========================================================
+/* =====================================================
    SEARCH
-========================================================= */
+===================================================== */
 
 document
-    .getElementById("homeSearch")
-    .addEventListener("submit", function(event) {
+.getElementById("homeSearch")
+.addEventListener("submit", function(event) {
 
-        event.preventDefault();
+event.preventDefault();
 
-        const query =
-            document
-                .getElementById("searchInput")
-                .value
-                .trim();
+const query =
+document
+.getElementById("searchInput")
+.value
+.trim();
 
-        if (query) {
+if (query) {
 
-            window.location.href =
-                "search.html?q=" +
-                encodeURIComponent(query);
+window.location.href =
+"search.html?q=" +
+encodeURIComponent(query);
 
-        } else {
+} else {
 
-            window.location.href =
-                "search.html";
-        }
+window.location.href =
+"search.html";
 
-    });
+}
+
+});
 
 
-/* =========================================================
+/* =====================================================
    START
-========================================================= */
+===================================================== */
 
 loadBranches();
 loadLatestReferences();
