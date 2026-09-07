@@ -1399,7 +1399,371 @@ svg {
 ::selection {
     background: rgba(201,164,92,.28);
 }
+/* =========================================================
+   FINAL MOBILE WIDTH / HORIZONTAL OVERFLOW FIX
+   الموسوعة القانونية
+========================================================= */
 
+/* 1. اجعل الصفحة لا تتجاوز عرض الجهاز */
+html {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
+}
+
+/* دعم المتصفحات التي لا تعتمد clip */
+@supports not (overflow-x: clip) {
+    body {
+        overflow-x: hidden;
+    }
+}
+
+/* 2. لا تسمح لأي عنصر رئيسي بفرض عرض أكبر */
+header,
+main,
+footer,
+section,
+.container,
+.hero,
+.hero-content,
+.stats-section,
+.stats-grid,
+.branches-section,
+.branches-grid,
+.latest-section,
+.references-grid,
+.about-section,
+.about-box,
+.cta-section,
+.cta-box {
+    max-width: 100%;
+    min-width: 0;
+}
+
+/* 3. الـ Grid يجب أن يكون قابلًا للانكماش */
+.hero-content {
+    grid-template-columns:
+        minmax(0, 1.2fr)
+        minmax(0, .8fr);
+}
+
+.stats-grid {
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+}
+
+.branches-grid {
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+}
+
+.references-grid {
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+}
+
+/* 4. عناصر الـGrid لا تتمسك بعرض المحتوى الداخلي */
+.hero-content > *,
+.stats-grid > *,
+.branches-grid > *,
+.references-grid > *,
+.about-box > * {
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* 5. الحاوية نفسها */
+.container {
+    width: min(
+        calc(100% - 40px),
+        var(--container)
+    );
+
+    max-width: var(--container);
+
+    min-width: 0;
+}
+
+/* 6. النصوص الطويلة لا تدفع الصفحة إلى الخارج */
+.hero h1,
+.hero-description,
+.section-title,
+.section-description,
+.branch-name,
+.branch-description,
+.reference-title,
+.reference-author,
+.reference-description,
+.about-content,
+.cta-box,
+.footer-text {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+/* 7. الـSVG لا يستطيع توسيع الصفحة */
+svg {
+    max-width: 100%;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 820px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .container {
+        width: calc(100% - 28px);
+        max-width: none;
+        margin-inline: auto;
+    }
+
+    /* Hero يصبح عمودًا واحدًا */
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 35px;
+    }
+
+    .hero-content > * {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    /* الإحصائيات */
+    .stats-grid {
+        width: 100%;
+        max-width: 100%;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+    .stat-card {
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* الفروع */
+    .branches-grid {
+        width: 100%;
+        max-width: 100%;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+    .branch-card {
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* المراجع */
+    .references-grid {
+        width: 100%;
+        max-width: 100%;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+    .reference-card {
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* صندوق البحث */
+    .hero-search {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .hero-search input {
+        min-width: 0;
+        width: 100%;
+    }
+
+    /* الـ CTA */
+    .cta-box {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    /* الـ About */
+    .about-box {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .container {
+        width: calc(100% - 24px);
+        max-width: none;
+    }
+
+    .hero {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* الإحصائيات تصبح عمودية */
+    .stats-grid {
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        width: 100%;
+    }
+
+    .stat-card {
+        width: 100%;
+        max-width: 100%;
+
+        min-height: 120px;
+    }
+
+    /* فرع واحد في كل صف */
+    .branches-grid {
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        width: 100%;
+    }
+
+    .branch-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* مرجع واحد في كل صف */
+    .references-grid {
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        width: 100%;
+    }
+
+    .reference-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* منع البحث من دفع الصفحة */
+    .hero-search {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+
+        overflow: hidden;
+    }
+
+    .hero-search input {
+        flex: 1 1 auto;
+        width: 1px;
+        min-width: 0;
+    }
+
+    .hero-search button {
+        flex: 0 0 92px;
+        width: 92px;
+        min-width: 92px;
+    }
+
+    /* الشعار الدائري */
+    .library-emblem {
+        max-width: 245px;
+        width: min(245px, 72vw);
+    }
+
+    /* CTA */
+    .cta-box {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .container {
+        width: calc(100% - 20px);
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero-search button {
+        flex-basis: 82px;
+        width: 82px;
+        min-width: 82px;
+
+        font-size: 10px;
+    }
+
+    .hero-search input {
+        font-size: 10px;
+    }
+
+    .branch-card,
+    .reference-card {
+        padding: 20px 17px;
+    }
+}
 </style>
 </head>
 
