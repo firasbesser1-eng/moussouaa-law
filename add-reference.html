@@ -577,39 +577,30 @@ async function loadCategories() {
 
 async function uploadPDF(file) {
 
-    const fileName =
-    Date.now()
-    + "-"
-    + file.name;
+    const extension = "pdf";
 
+    const fileName =
+        crypto.randomUUID() + "." + extension;
 
     const filePath =
-    "references/"
-    + fileName;
-
+        "references/" + fileName;
 
     const { error } =
-    await supabaseClient
-    .storage
-    .from("legal-pdfs")
-    .upload(
-        filePath,
-        file,
-        {
-            contentType:
-            "application/pdf",
-
-            upsert: false
-        }
-    );
-
+        await supabaseClient
+        .storage
+        .from("legal-pdfs")
+        .upload(
+            filePath,
+            file,
+            {
+                contentType: "application/pdf",
+                upsert: false
+            }
+        );
 
     if (error) {
-
         throw error;
-
     }
-
 
     return filePath;
 }
