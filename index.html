@@ -3,565 +3,484 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>الموسوعة القانونية | المكتبة القانونية الرقمية</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 :root{
-    --navy:#0b1f3a;
-    --navy2:#102d50;
-    --gold:#c9a227;
-    --gold2:#e4c65b;
-    --ivory:#f8f5ec;
-    --white:#ffffff;
-    --text:#17202a;
-    --muted:#6b7280;
-    --border:#e5e7eb;
-    --shadow:0 15px 40px rgba(11,31,58,.10);
+--navy:#0b1f3a;
+--navy2:#102d50;
+--gold:#c9a227;
+--gold2:#e4c65b;
+--ivory:#f8f5ec;
+--white:#fff;
+--text:#17202a;
+--muted:#6b7280;
+--border:#e5e7eb;
+--shadow:0 15px 40px rgba(11,31,58,.10);
 }
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-    font-family:"Cairo",sans-serif;
-    background:var(--ivory);
-    color:var(--text);
-    line-height:1.8;
+font-family:"Cairo",sans-serif;
+background:var(--ivory);
+color:var(--text);
+line-height:1.8;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-/* HEADER */
+a{text-decoration:none;color:inherit}
 
 .header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:rgba(11,31,58,.97);
-    color:white;
-    box-shadow:0 5px 25px rgba(0,0,0,.15);
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(11,31,58,.98);
+color:white;
+box-shadow:0 5px 25px rgba(0,0,0,.15);
 }
 
 .header-inner{
-    max-width:1250px;
-    margin:auto;
-    min-height:75px;
-    padding:12px 5%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:25px;
+max-width:1250px;
+margin:auto;
+min-height:75px;
+padding:12px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:25px;
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
 .logo{
-    width:48px;
-    height:48px;
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(255,255,255,.06);
+width:48px;
+height:48px;
+border:1px solid rgba(255,255,255,.25);
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(255,255,255,.06);
 }
 
 .logo svg{
-    width:28px;
-    height:28px;
-    fill:none;
-    stroke:var(--gold2);
-    stroke-width:1.6;
+width:28px;
+height:28px;
+fill:none;
+stroke:var(--gold2);
+stroke-width:1.6;
 }
 
 .brand-title{
-    font-family:"Amiri",serif;
-    font-size:25px;
-    font-weight:700;
+font-family:"Amiri",serif;
+font-size:25px;
+font-weight:700;
 }
 
 .brand-sub{
-    font-size:11px;
-    opacity:.7;
+font-size:11px;
+opacity:.7;
 }
 
 .nav{
-    display:flex;
-    align-items:center;
-    gap:5px;
+display:flex;
+align-items:center;
+gap:5px;
 }
 
 .nav a{
-    padding:8px 11px;
-    border-radius:8px;
-    font-size:13px;
-    transition:.2s;
+padding:8px 11px;
+border-radius:8px;
+font-size:13px;
+transition:.2s;
 }
 
 .nav a:hover{
-    background:rgba(255,255,255,.09);
-    color:var(--gold2);
+background:rgba(255,255,255,.09);
+color:var(--gold2);
 }
-
-/* HERO */
 
 .hero{
-    background:
-        radial-gradient(circle at 85% 25%,rgba(201,162,39,.18),transparent 30%),
-        linear-gradient(135deg,var(--navy),var(--navy2));
-
-    color:white;
-    min-height:470px;
-    display:flex;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-}
-
-.hero:before{
-    content:"";
-    position:absolute;
-    width:450px;
-    height:450px;
-    border:1px solid rgba(201,162,39,.15);
-    border-radius:50%;
-    left:-180px;
-    bottom:-240px;
+background:
+radial-gradient(circle at 85% 25%,rgba(201,162,39,.18),transparent 30%),
+linear-gradient(135deg,var(--navy),var(--navy2));
+color:white;
+min-height:470px;
+display:flex;
+align-items:center;
+position:relative;
+overflow:hidden;
 }
 
 .hero-inner{
-    max-width:1250px;
-    width:90%;
-    margin:auto;
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:50px;
-    align-items:center;
+max-width:1250px;
+width:90%;
+margin:auto;
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:50px;
+align-items:center;
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
-}
+.hero-content{position:relative;z-index:2}
 
 .eyebrow{
-    color:var(--gold2);
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:10px;
+color:var(--gold2);
+font-size:13px;
+font-weight:700;
+margin-bottom:10px;
 }
 
 .hero h1{
-    font-family:"Amiri",serif;
-    font-size:58px;
-    line-height:1.25;
-    margin-bottom:15px;
+font-family:"Amiri",serif;
+font-size:58px;
+line-height:1.25;
+margin-bottom:15px;
 }
 
 .hero p{
-    max-width:650px;
-    color:rgba(255,255,255,.8);
-    font-size:16px;
+max-width:650px;
+color:rgba(255,255,255,.8);
+font-size:16px;
 }
 
 .search-box{
-    margin-top:28px;
-    display:flex;
-    max-width:650px;
-    background:white;
-    padding:6px;
-    border-radius:13px;
-    box-shadow:0 15px 40px rgba(0,0,0,.2);
+margin-top:28px;
+display:flex;
+max-width:650px;
+background:white;
+padding:6px;
+border-radius:13px;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
 }
 
 .search-box input{
-    flex:1;
-    border:0;
-    outline:0;
-    padding:12px;
-    font-family:inherit;
-    font-size:14px;
+flex:1;
+border:0;
+outline:0;
+padding:12px;
+font-family:inherit;
+font-size:14px;
 }
 
 .search-box button{
-    border:0;
-    background:var(--gold);
-    color:white;
-    padding:11px 22px;
-    border-radius:9px;
-    font-family:inherit;
-    font-weight:700;
-    cursor:pointer;
+border:0;
+background:var(--gold);
+color:white;
+padding:11px 22px;
+border-radius:9px;
+font-family:inherit;
+font-weight:700;
+cursor:pointer;
 }
 
-/* EMBLEM */
-
 .hero-emblem{
-    display:flex;
-    justify-content:center;
-    align-items:center;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
 .emblem{
-    width:260px;
-    height:260px;
-    border:1px solid rgba(201,162,39,.45);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
+width:260px;
+height:260px;
+border:1px solid rgba(201,162,39,.45);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
 }
 
 .emblem:before{
-    content:"";
-    position:absolute;
-    inset:15px;
-    border:1px solid rgba(201,162,39,.3);
-    border-radius:50%;
+content:"";
+position:absolute;
+inset:15px;
+border:1px solid rgba(201,162,39,.3);
+border-radius:50%;
 }
 
 .emblem svg{
-    width:110px;
-    height:110px;
-    fill:none;
-    stroke:var(--gold2);
-    stroke-width:1.3;
+width:110px;
+height:110px;
+fill:none;
+stroke:var(--gold2);
+stroke-width:1.3;
 }
 
-/* STATS */
-
 .stats{
-    max-width:1150px;
-    margin:-45px auto 0;
-    position:relative;
-    z-index:5;
-    width:90%;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+max-width:1150px;
+margin:-45px auto 0;
+position:relative;
+z-index:5;
+width:90%;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
 }
 
 .stat{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:22px;
-    text-align:center;
-    box-shadow:var(--shadow);
+background:white;
+border:1px solid var(--border);
+border-radius:16px;
+padding:22px;
+text-align:center;
+box-shadow:var(--shadow);
 }
 
 .stat-number{
-    font-size:30px;
-    font-weight:800;
-    color:var(--navy);
+font-size:30px;
+font-weight:800;
+color:var(--navy);
 }
 
 .stat-label{
-    font-size:12px;
-    color:var(--muted);
+font-size:12px;
+color:var(--muted);
 }
-
-/* SECTIONS */
 
 .section{
-    max-width:1250px;
-    width:90%;
-    margin:75px auto;
+max-width:1250px;
+width:90%;
+margin:75px auto;
 }
 
-.section-head{
-    margin-bottom:28px;
-}
+.section-head{margin-bottom:28px}
 
 .section-title{
-    font-family:"Amiri",serif;
-    font-size:36px;
-    color:var(--navy);
+font-family:"Amiri",serif;
+font-size:36px;
+color:var(--navy);
 }
 
 .section-sub{
-    color:var(--muted);
-    font-size:14px;
+color:var(--muted);
+font-size:14px;
 }
 
-/* BRANCHES */
-
 .branches-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
 }
 
 .branch-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:25px;
-    box-shadow:var(--shadow);
-    transition:.25s;
-    cursor:pointer;
+background:white;
+border:1px solid var(--border);
+border-radius:18px;
+padding:25px;
+box-shadow:var(--shadow);
+transition:.25s;
+cursor:pointer;
 }
 
 .branch-card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(201,162,39,.6);
+transform:translateY(-5px);
+border-color:rgba(201,162,39,.6);
 }
 
 .branch-icon{
-    width:54px;
-    height:54px;
-    border-radius:13px;
-    background:#f7f1dc;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:17px;
+width:54px;
+height:54px;
+border-radius:13px;
+background:#f7f1dc;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:17px;
 }
 
 .branch-icon svg{
-    width:28px;
-    height:28px;
-    fill:none;
-    stroke:var(--gold);
-    stroke-width:1.5;
+width:28px;
+height:28px;
+fill:none;
+stroke:var(--gold);
+stroke-width:1.5;
 }
 
 .branch-card h3{
-    font-family:"Amiri",serif;
-    font-size:24px;
-    color:var(--navy);
-    margin-bottom:5px;
+font-family:"Amiri",serif;
+font-size:24px;
+color:var(--navy);
+margin-bottom:5px;
 }
 
 .branch-card p{
-    color:var(--muted);
-    font-size:12px;
+color:var(--muted);
+font-size:12px;
 }
 
-/* LATEST */
-
 .references-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
 }
 
 .reference-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:20px;
+background:white;
+border:1px solid var(--border);
+border-radius:16px;
+padding:20px;
 }
 
 .reference-type{
-    display:inline-block;
-    background:#f7f1dc;
-    color:#816915;
-    border-radius:7px;
-    padding:3px 8px;
-    font-size:10px;
-    font-weight:700;
-    margin-bottom:10px;
+display:inline-block;
+background:#f7f1dc;
+color:#816915;
+border-radius:7px;
+padding:3px 8px;
+font-size:10px;
+font-weight:700;
+margin-bottom:10px;
 }
 
 .reference-card h3{
-    color:var(--navy);
-    font-size:16px;
-    margin-bottom:7px;
+color:var(--navy);
+font-size:16px;
+margin-bottom:7px;
 }
 
 .reference-card p{
-    color:var(--muted);
-    font-size:12px;
+color:var(--muted);
+font-size:12px;
 }
 
 .reference-card a{
-    display:inline-block;
-    margin-top:12px;
-    color:var(--gold);
-    font-size:12px;
-    font-weight:700;
+display:inline-block;
+margin-top:12px;
+color:var(--gold);
+font-size:12px;
+font-weight:700;
 }
 
-/* ABOUT */
-
 .about{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:40px;
-    box-shadow:var(--shadow);
+background:white;
+border:1px solid var(--border);
+border-radius:22px;
+padding:40px;
+box-shadow:var(--shadow);
 }
 
 .about h2{
-    font-family:"Amiri",serif;
-    color:var(--navy);
-    font-size:32px;
-    margin-bottom:12px;
+font-family:"Amiri",serif;
+color:var(--navy);
+font-size:32px;
+margin-bottom:12px;
 }
 
 .about p{
-    color:var(--muted);
-    font-size:14px;
+color:var(--muted);
+font-size:14px;
 }
 
-/* CTA */
-
 .cta{
-    background:linear-gradient(135deg,var(--navy),var(--navy2));
-    color:white;
-    border-radius:22px;
-    padding:45px;
-    text-align:center;
+background:linear-gradient(135deg,var(--navy),var(--navy2));
+color:white;
+border-radius:22px;
+padding:45px;
+text-align:center;
 }
 
 .cta h2{
-    font-family:"Amiri",serif;
-    font-size:34px;
-    margin-bottom:10px;
+font-family:"Amiri",serif;
+font-size:34px;
+margin-bottom:10px;
 }
 
 .cta p{
-    opacity:.75;
-    font-size:13px;
+opacity:.75;
+font-size:13px;
 }
-
-/* FOOTER */
 
 .footer{
-    background:var(--navy);
-    color:white;
-    margin-top:80px;
-    padding:35px 5%;
-    text-align:center;
+background:var(--navy);
+color:white;
+margin-top:80px;
+padding:35px 5%;
+text-align:center;
 }
 
-.footer strong{
-    color:var(--gold2);
-}
+.footer strong{color:var(--gold2)}
 
 .footer p{
-    font-size:11px;
-    opacity:.6;
-    margin-top:5px;
+font-size:11px;
+opacity:.6;
+margin-top:5px;
 }
-
-/* MOBILE */
 
 @media(max-width:900px){
 
-    .nav{
-        display:none;
-    }
+.nav{display:none}
 
-    .hero-inner{
-        grid-template-columns:1fr;
-        padding:60px 0;
-    }
+.hero-inner{
+grid-template-columns:1fr;
+padding:60px 0;
+}
 
-    .hero-emblem{
-        display:none;
-    }
+.hero-emblem{display:none}
 
-    .hero h1{
-        font-size:44px;
-    }
+.hero h1{font-size:44px}
 
-    .branches-grid,
-    .references-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+.branches-grid,
+.references-grid{
+grid-template-columns:repeat(2,1fr);
+}
 }
 
 @media(max-width:600px){
 
-    .header-inner{
-        min-height:68px;
-    }
+.brand-title{font-size:21px}
 
-    .brand-title{
-        font-size:21px;
-    }
+.hero{min-height:500px}
 
-    .hero{
-        min-height:500px;
-    }
+.hero h1{font-size:38px}
 
-    .hero h1{
-        font-size:38px;
-    }
+.hero p{font-size:14px}
 
-    .hero p{
-        font-size:14px;
-    }
-
-    .search-box{
-        flex-direction:column;
-        background:transparent;
-        padding:0;
-        gap:8px;
-        box-shadow:none;
-    }
-
-    .search-box input{
-        border-radius:9px;
-    }
-
-    .search-box button{
-        width:100%;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-        margin-top:-25px;
-    }
-
-    .branches-grid,
-    .references-grid{
-        grid-template-columns:1fr;
-    }
-
-    .section{
-        margin:55px auto;
-    }
-
-    .section-title{
-        font-size:30px;
-    }
-
-    .about,
-    .cta{
-        padding:27px 20px;
-    }
+.search-box{
+flex-direction:column;
+background:transparent;
+padding:0;
+gap:8px;
+box-shadow:none;
 }
 
+.search-box input{border-radius:9px}
+
+.search-box button{width:100%}
+
+.stats{
+grid-template-columns:1fr;
+margin-top:-25px;
+}
+
+.branches-grid,
+.references-grid{
+grid-template-columns:1fr;
+}
+
+.section{margin:55px auto}
+
+.section-title{font-size:30px}
+
+.about,
+.cta{
+padding:27px 20px;
+}
+}
 </style>
 </head>
 
 <body>
-
-
-<!-- HEADER -->
 
 <header class="header">
 
@@ -570,51 +489,31 @@ a{
 <a href="index.html" class="brand">
 
 <div class="logo">
-
 <svg viewBox="0 0 24 24">
 <path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 0-4 4V4Z"/>
 <path d="M9 20h10"/>
 </svg>
-
 </div>
 
 <div>
-
-<div class="brand-title">
-الموسوعة القانونية
-</div>
-
-<div class="brand-sub">
-المكتبة القانونية الرقمية
-</div>
-
+<div class="brand-title">الموسوعة القانونية</div>
+<div class="brand-sub">المكتبة القانونية الرقمية</div>
 </div>
 
 </a>
 
-
 <nav class="nav">
-
 <a href="index.html">الرئيسية</a>
-
 <a href="#branches">فروع القانون</a>
-
 <a href="#latest">أحدث المراجع</a>
-
 <a href="search.html">البحث المتقدم</a>
-
 <a href="#about">عن الموسوعة</a>
-
 <a href="admin.html">لوحة الإدارة</a>
-
 </nav>
 
 </div>
-
 </header>
 
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -626,9 +525,7 @@ a{
 منصة قانونية أكاديمية رقمية
 </div>
 
-<h1>
-الموسوعة القانونية
-</h1>
+<h1>الموسوعة القانونية</h1>
 
 <p>
 مرجع رقمي متكامل يجمع التشريعات والمراجع والكتب
@@ -636,11 +533,7 @@ a{
 والمجلات والدوريات القانونية في مكان واحد.
 </p>
 
-
-<form
-class="search-box"
-onsubmit="goSearch(event)"
->
+<form class="search-box" onsubmit="goSearch(event)">
 
 <input
 id="homeSearch"
@@ -648,27 +541,22 @@ type="search"
 placeholder="ابحث عن كتاب، تشريع، بحث، حكم أو مرجع..."
 >
 
-<button type="submit">
-بحث
-</button>
+<button type="submit">بحث</button>
 
 </form>
 
 </div>
-
 
 <div class="hero-emblem">
 
 <div class="emblem">
 
 <svg viewBox="0 0 100 100">
-
 <path d="M20 25h25v50H20z"/>
 <path d="M55 25h25v50H55z"/>
 <path d="M45 25h10v50H45z"/>
 <path d="M15 78h70"/>
 <path d="M50 15v10"/>
-
 </svg>
 
 </div>
@@ -676,67 +564,30 @@ placeholder="ابحث عن كتاب، تشريع، بحث، حكم أو مرجع
 </div>
 
 </div>
-
 </section>
 
-
-<!-- STATS -->
 
 <div class="stats">
 
 <div class="stat">
-
-<div
-class="stat-number"
-id="branchCount"
->
-—
+<div class="stat-number" id="branchCount">—</div>
+<div class="stat-label">فرعًا قانونيًا</div>
 </div>
-
-<div class="stat-label">
-فرعًا قانونيًا
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div
-class="stat-number"
-id="referenceCount"
->
-—
+<div class="stat-number" id="referenceCount">—</div>
+<div class="stat-label">مرجعًا قانونيًا</div>
 </div>
-
-<div class="stat-label">
-مرجعًا قانونيًا
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div class="stat-number">
-24/7
-</div>
-
-<div class="stat-label">
-متاحة على مدار الساعة
-</div>
-
+<div class="stat-number">24/7</div>
+<div class="stat-label">متاحة على مدار الساعة</div>
 </div>
 
 </div>
 
 
-<!-- BRANCHES -->
-
-<section
-class="section"
-id="branches"
->
+<section class="section" id="branches">
 
 <div class="section-head">
 
@@ -750,11 +601,7 @@ id="branches"
 
 </div>
 
-
-<div
-id="branchesGrid"
-class="branches-grid"
->
+<div id="branchesGrid" class="branches-grid">
 
 <div class="branch-card">
 جاري تحميل الفروع...
@@ -765,12 +612,7 @@ class="branches-grid"
 </section>
 
 
-<!-- LATEST -->
-
-<section
-class="section"
-id="latest"
->
+<section class="section" id="latest">
 
 <div class="section-head">
 
@@ -784,11 +626,7 @@ id="latest"
 
 </div>
 
-
-<div
-id="latestGrid"
-class="references-grid"
->
+<div id="latestGrid" class="references-grid">
 
 <div class="reference-card">
 جاري تحميل المراجع...
@@ -799,18 +637,11 @@ class="references-grid"
 </section>
 
 
-<!-- ABOUT -->
-
-<section
-class="section"
-id="about"
->
+<section class="section" id="about">
 
 <div class="about">
 
-<h2>
-عن الموسوعة القانونية
-</h2>
+<h2>عن الموسوعة القانونية</h2>
 
 <p>
 الموسوعة القانونية منصة رقمية تهدف إلى تسهيل الوصول
@@ -825,15 +656,11 @@ id="about"
 </section>
 
 
-<!-- CTA -->
-
 <section class="section">
 
 <div class="cta">
 
-<h2>
-ابدأ البحث في الموسوعة
-</h2>
+<h2>ابدأ البحث في الموسوعة</h2>
 
 <p>
 استكشف فروع القانون والوصول إلى مختلف المصادر القانونية.
@@ -844,17 +671,11 @@ id="about"
 </section>
 
 
-<!-- FOOTER -->
-
 <footer class="footer">
 
-<strong>
-الموسوعة القانونية
-</strong>
+<strong>الموسوعة القانونية</strong>
 
-<p>
-فراس بسر — مدير الموسوعة القانونية
-</p>
+<p>فراس بسر — مدير الموسوعة القانونية</p>
 
 <p>
 منصة أكاديمية رقمية للمراجع والمصادر القانونية
@@ -878,145 +699,130 @@ SUPABASE_KEY
 );
 
 
-/* =========================
-   BRANCH ICONS
-========================= */
+/* الفروع القانونية التي تظهر في الرئيسية فقط */
+
+const LEGAL_BRANCHES = [
+"القانون المدني",
+"القانون التجاري",
+"القانون الإداري",
+"القانون الدستوري",
+"القانون الجزائي",
+"القانون الدولي الخاص",
+"القانون الدولي العام",
+"قانون الشغل",
+"القانون الجبائي",
+"قانون التحكيم",
+"القانون البحري"
+];
+
+
+/* الأيقونات */
 
 const branchIcons = {
 
-"القانون المدني": `
+"القانون المدني":`
 <svg viewBox="0 0 24 24">
 <path d="M12 3l8 4-8 4-8-4 8-4Z"/>
 <path d="M6 9v5c0 2 3 4 6 4s6-2 6-4V9"/>
 <path d="M20 8v7"/>
-</svg>
-`,
+</svg>`,
 
-"القانون التجاري": `
+"القانون التجاري":`
 <svg viewBox="0 0 24 24">
 <rect x="4" y="5" width="16" height="14" rx="2"/>
 <path d="M8 9h8M8 13h8M8 16h5"/>
-</svg>
-`,
+</svg>`,
 
-"القانون الإداري": `
+"القانون الإداري":`
 <svg viewBox="0 0 24 24">
 <path d="M4 20h16"/>
 <path d="M6 20V9h12v11"/>
 <path d="M4 9l8-5 8 5"/>
 <path d="M9 13h6M9 16h6"/>
-</svg>
-`,
+</svg>`,
 
-"القانون الدستوري": `
+"القانون الدستوري":`
 <svg viewBox="0 0 24 24">
 <path d="M5 20h14"/>
 <path d="M7 20V9h10v11"/>
 <path d="M4 9l8-5 8 5"/>
 <path d="M9 13h6"/>
-</svg>
-`,
+</svg>`,
 
-"القانون الجزائي": `
+"القانون الجزائي":`
 <svg viewBox="0 0 24 24">
 <path d="M12 3l8 4v5c0 5-3 8-8 10-5-2-8-5-8-10V7l8-4Z"/>
 <path d="M9 12l2 2 4-4"/>
-</svg>
-`,
+</svg>`,
 
-"القانون الدولي الخاص": `
+"القانون الدولي الخاص":`
 <svg viewBox="0 0 24 24">
 <circle cx="12" cy="12" r="8"/>
-<path d="M4 12h16M12 4c2 2 3 5 3 8s-1 6-3 8c-2-2-3-5-3-8s1-6 3-8Z"/>
-</svg>
-`,
+<path d="M4 12h16"/>
+<path d="M12 4c2 2 3 5 3 8s-1 6-3 8c-2-2-3-5-3-8s1-6 3-8Z"/>
+</svg>`,
 
-"القانون الدولي العام": `
+"القانون الدولي العام":`
 <svg viewBox="0 0 24 24">
 <circle cx="12" cy="12" r="8"/>
 <path d="M4 12h16M12 4v16"/>
-</svg>
-`,
+</svg>`,
 
-"قانون الشغل": `
+"قانون الشغل":`
 <svg viewBox="0 0 24 24">
 <path d="M5 7h14v12H5z"/>
 <path d="M9 7V5h6v2"/>
 <path d="M5 11h14"/>
-</svg>
-`,
+</svg>`,
 
-"القانون الجبائي": `
+"القانون الجبائي":`
 <svg viewBox="0 0 24 24">
 <path d="M12 3v18"/>
 <path d="M17 7c-1-2-3-3-5-3s-4 1-4 3c0 5 9 2 9 7 0 2-2 3-5 3-2 0-4-1-5-3"/>
-</svg>
-`,
+</svg>`,
 
-"قانون التحكيم": `
+"قانون التحكيم":`
 <svg viewBox="0 0 24 24">
 <path d="M5 5h14v14H5z"/>
 <path d="M8 9h8M8 13h6"/>
-</svg>
-`,
+</svg>`,
 
-"القانون البحري": `
+"القانون البحري":`
 <svg viewBox="0 0 24 24">
 <path d="M4 15h16l-2 4H6l-2-4Z"/>
 <path d="M12 15V5"/>
 <path d="M12 5l5 4H12"/>
 <path d="M3 20c2 1 4 1 6 0 2 1 4 1 6 0 2 1 4 1 6 0"/>
-</svg>
-`
-
+</svg>`
 };
 
 
-/* =========================
-   BRANCH DESCRIPTIONS
-========================= */
+const descriptions = {
 
-const branchDescriptions = {
+"القانون المدني":"مصادر ومراجع القانون المدني والتشريعات والأحكام القضائية.",
 
-"القانون المدني":
-"مصادر ومراجع القانون المدني والتشريعات والأحكام القضائية.",
+"القانون التجاري":"المصادر والمراجع المتعلقة بالقانون التجاري والمعاملات التجارية.",
 
-"القانون التجاري":
-"المصادر والمراجع المتعلقة بالقانون التجاري والمعاملات التجارية.",
+"القانون الإداري":"مصادر القانون الإداري والتشريعات والأحكام والبحوث المتخصصة.",
 
-"القانون الإداري":
-"مصادر القانون الإداري والتشريعات والأحكام والبحوث المتخصصة.",
+"القانون الدستوري":"المصادر الدستورية والتشريعات والبحوث والأحكام ذات الصلة.",
 
-"القانون الدستوري":
-"المصادر الدستورية والتشريعات والبحوث والأحكام ذات الصلة.",
+"القانون الجزائي":"المراجع والتشريعات والأحكام والبحوث في المجال الجزائي.",
 
-"القانون الجزائي":
-"المراجع والتشريعات والأحكام والبحوث في المجال الجزائي.",
+"القانون الدولي الخاص":"مصادر ومراجع القانون الدولي الخاص وتنازع القوانين والاختصاص.",
 
-"القانون الدولي الخاص":
-"مصادر ومراجع القانون الدولي الخاص وتنازع القوانين والاختصاص.",
+"القانون الدولي العام":"المعاهدات والمراجع والبحوث والأحكام في القانون الدولي العام.",
 
-"القانون الدولي العام":
-"المعاهدات والمراجع والبحوث والأحكام في القانون الدولي العام.",
+"قانون الشغل":"مصادر ومراجع وتشريعات وأحكام قانون الشغل.",
 
-"قانون الشغل":
-"مصادر ومراجع وتشريعات وأحكام قانون الشغل.",
+"القانون الجبائي":"المراجع والتشريعات والبحوث والأحكام في القانون الجبائي.",
 
-"القانون الجبائي":
-"المراجع والتشريعات والبحوث والأحكام في القانون الجبائي.",
+"قانون التحكيم":"مصادر ومراجع التحكيم الوطني والدولي والبحوث والأحكام.",
 
-"قانون التحكيم":
-"مصادر ومراجع التحكيم الوطني والدولي والبحوث والأحكام.",
-
-"القانون البحري":
-"المراجع والتشريعات والأحكام والبحوث المتعلقة بالقانون البحري."
+"القانون البحري":"المراجع والتشريعات والأحكام والبحوث المتعلقة بالقانون البحري."
 
 };
 
-
-/* =========================
-   ESCAPE
-========================= */
 
 function escapeHTML(value){
 
@@ -1030,9 +836,7 @@ return String(value ?? "")
 }
 
 
-/* =========================
-   LOAD BRANCHES
-========================= */
+/* تحميل الفروع */
 
 async function loadBranches(){
 
@@ -1042,22 +846,21 @@ await supabaseClient
 .select("id,name,slug")
 .order("id");
 
-
 if(error){
 
 document.getElementById("branchesGrid").innerHTML =
-`
-<div class="branch-card">
-تعذر تحميل فروع القانون.
-</div>
-`;
+`<div class="branch-card">تعذر تحميل فروع القانون.</div>`;
 
 return;
-
 }
 
 
-const branches = data || [];
+/* هنا يتم إخفاء المراجع والكتب والبحوث والمذكرات */
+
+const branches =
+(data || []).filter(branch =>
+LEGAL_BRANCHES.includes(branch.name)
+);
 
 
 document.getElementById("branchCount").textContent =
@@ -1071,14 +874,9 @@ document.getElementById("branchesGrid");
 if(!branches.length){
 
 grid.innerHTML =
-`
-<div class="branch-card">
-لا توجد فروع قانونية مضافة حاليًا.
-</div>
-`;
+`<div class="branch-card">لا توجد فروع قانونية مضافة حاليًا.</div>`;
 
 return;
-
 }
 
 
@@ -1087,16 +885,14 @@ branches.map(branch => {
 
 const icon =
 branchIcons[branch.name] ||
-`
-<svg viewBox="0 0 24 24">
+`<svg viewBox="0 0 24 24">
 <path d="M4 5h16v14H4z"/>
 <path d="M8 9h8M8 13h6"/>
-</svg>
-`;
+</svg>`;
 
 
 const description =
-branchDescriptions[branch.name] ||
+descriptions[branch.name] ||
 "مصادر ومراجع قانونية متخصصة في هذا الفرع.";
 
 
@@ -1111,13 +907,9 @@ class="branch-card"
 ${icon}
 </div>
 
-<h3>
-${escapeHTML(branch.name)}
-</h3>
+<h3>${escapeHTML(branch.name)}</h3>
 
-<p>
-${escapeHTML(description)}
-</p>
+<p>${escapeHTML(description)}</p>
 
 </a>
 
@@ -1128,9 +920,7 @@ ${escapeHTML(description)}
 }
 
 
-/* =========================
-   LATEST REFERENCES
-========================= */
+/* أحدث المراجع */
 
 async function loadLatestReferences(){
 
@@ -1160,8 +950,8 @@ slug
 
 if(count !== null){
 
-document.getElementById("referenceCount")
-.textContent = count;
+document.getElementById("referenceCount").textContent =
+count;
 
 }
 
@@ -1173,28 +963,18 @@ document.getElementById("latestGrid");
 if(error){
 
 grid.innerHTML =
-`
-<div class="reference-card">
-تعذر تحميل أحدث المراجع.
-</div>
-`;
+`<div class="reference-card">تعذر تحميل أحدث المراجع.</div>`;
 
 return;
-
 }
 
 
 if(!data || !data.length){
 
 grid.innerHTML =
-`
-<div class="reference-card">
-لا توجد مراجع مضافة بعد.
-</div>
-`;
+`<div class="reference-card">لا توجد مراجع مضافة بعد.</div>`;
 
 return;
-
 }
 
 
@@ -1206,7 +986,6 @@ ref.branches?.name || "غير مصنف";
 
 const categoryName =
 ref.reference_categories?.name || "غير مصنف";
-
 
 const pdfURL =
 getPDFURL(ref.file_path);
@@ -1220,9 +999,7 @@ return `
 ${escapeHTML(categoryName)}
 </span>
 
-<h3>
-${escapeHTML(ref.title)}
-</h3>
+<h3>${escapeHTML(ref.title)}</h3>
 
 <p>
 ${escapeHTML(
@@ -1249,15 +1026,11 @@ rel="noopener"
 }
 
 
-/* =========================
-   PDF URL
-========================= */
+/* رابط PDF */
 
 function getPDFURL(filePath){
 
-if(!filePath)
-return "#";
-
+if(!filePath) return "#";
 
 if(
 filePath.startsWith("http://") ||
@@ -1268,36 +1041,28 @@ return filePath;
 
 }
 
-
 return `${SUPABASE_URL}/storage/v1/object/public/legal-pdfs/${filePath}`;
 
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+/* البحث */
 
 function goSearch(event){
 
 event.preventDefault();
-
 
 const value =
 document.getElementById("homeSearch")
 .value
 .trim();
 
-
 if(!value){
 
-window.location.href =
-"search.html";
-
+window.location.href="search.html";
 return;
 
 }
-
 
 window.location.href =
 "search.html?q=" +
@@ -1306,12 +1071,9 @@ encodeURIComponent(value);
 }
 
 
-/* =========================
-   INIT
-========================= */
+/* تشغيل */
 
 loadBranches();
-
 loadLatestReferences();
 
 </script>
