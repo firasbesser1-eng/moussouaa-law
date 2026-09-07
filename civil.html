@@ -1,786 +1,1170 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>القانون المدني | الموسوعة القانونية</title>
-
-<meta name="description"
-content="قسم القانون المدني في الموسوعة القانونية - التشريعات والكتب والمراجع والبحوث والأحكام والدروس.">
-
-<style>
-
-/* =========================
-   الإعدادات العامة
-========================= */
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Tahoma,Arial,sans-serif;
-    background:#f4f7fb;
-    color:#172033;
-    line-height:1.8;
-}
-
-a{
-    text-decoration:none;
-}
-
-
-/* =========================
-   الرأس
-========================= */
-
-header{
-    background:linear-gradient(135deg,#071a33,#123d6b,#1d5689);
-    color:white;
-    text-align:center;
-    padding:38px 18px 45px;
-}
-
-.logo{
-    font-size:30px;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.logo-gold{
-    color:#d8b45a;
-}
-
-.subtitle{
-    font-size:15px;
-    opacity:.9;
-    margin-bottom:25px;
-}
-
-.page-title{
-    font-size:35px;
-    margin-bottom:8px;
-}
-
-.page-description{
-    max-width:700px;
-    margin:auto;
-    font-size:15px;
-    opacity:.9;
-}
-
-
-/* =========================
-   القائمة
-========================= */
-
-.navbar{
-    background:white;
-    padding:12px 15px;
-    box-shadow:0 3px 15px rgba(0,0,0,.08);
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.nav-content{
-    max-width:1100px;
-    margin:auto;
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    flex-wrap:wrap;
-}
-
-.navbar a{
-    color:#163d68;
-    font-weight:bold;
-    padding:7px 12px;
-    border-radius:8px;
-    font-size:14px;
-}
-
-.navbar a:hover{
-    background:#eef3f8;
-}
-
-
-/* =========================
-   المحتوى
-========================= */
-
-.container{
-    max-width:1100px;
-    margin:35px auto;
-    padding:0 15px;
-}
-
-
-/* =========================
-   زر العودة
-========================= */
-
-.back{
-    display:inline-block;
-    background:#0b1f3a;
-    color:white;
-    padding:10px 18px;
-    border-radius:10px;
-    margin-bottom:30px;
-    transition:.2s;
-}
-
-.back:hover{
-    transform:translateY(-2px);
-}
-
-
-/* =========================
-   البحث
-========================= */
-
-.search-box{
-    background:white;
-    padding:23px;
-    border-radius:16px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
-    margin-bottom:40px;
-}
-
-.search-title{
-    font-size:20px;
-    color:#163d68;
-    margin-bottom:12px;
-}
-
-.search-input{
-    width:100%;
-    padding:15px 18px;
-    border:1px solid #d8dee8;
-    border-radius:11px;
-    font-size:16px;
-    outline:none;
-}
-
-.search-input:focus{
-    border-color:#163d68;
-}
-
-
-/* =========================
-   عناوين الأقسام
-========================= */
-
-.section{
-    margin-bottom:50px;
-}
-
-.section-title{
-    text-align:center;
-    color:#0b1f3a;
-    font-size:28px;
-    margin-bottom:25px;
-}
-
-.section-line{
-    display:block;
-    width:55px;
-    height:3px;
-    background:#d8b45a;
-    margin:8px auto 0;
-    border-radius:5px;
-}
-
-
-/* =========================
-   البطاقات
-========================= */
-
-.cards{
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(230px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:white;
-    padding:25px 18px;
-    border-radius:17px;
-    text-align:center;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
-    border:1px solid #edf0f5;
-    transition:.25s;
-}
-
-.card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-.icon{
-    width:65px;
-    height:65px;
-    margin:0 auto 15px;
-    border-radius:50%;
-    background:#eef3f8;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:31px;
-}
-
-.card h3{
-    font-size:19px;
-    color:#163d68;
-    margin-bottom:8px;
-}
-
-.card p{
-    color:#687386;
-    font-size:14px;
-    margin-bottom:18px;
-}
-
-
-/* =========================
-   الأزرار
-========================= */
-
-.button{
-    display:inline-block;
-    background:#163d68;
-    color:white;
-    padding:9px 15px;
-    border-radius:9px;
-    font-size:13px;
-    margin:3px;
-    transition:.2s;
-}
-
-.button:hover{
-    background:#0b1f3a;
-}
-
-.button.download{
-    background:#667085;
-}
-
-
-/* =========================
-   المرجع الأساسي
-========================= */
-
-.featured{
-    background:white;
-    padding:28px;
-    border-radius:17px;
-    border-right:5px solid #d8b45a;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
-    margin-bottom:50px;
-}
-
-.featured h3{
-    color:#163d68;
-    font-size:21px;
-    margin-bottom:10px;
-}
-
-.featured p{
-    color:#5d6879;
-    margin-bottom:15px;
-}
-
-
-/* =========================
-   المعلومات
-========================= */
-
-.info{
-    background:white;
-    padding:30px 25px;
-    border-radius:17px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
-    margin-bottom:30px;
-}
-
-.info h2{
-    color:#0b1f3a;
-    margin-bottom:12px;
-}
-
-.info p{
-    color:#596577;
-}
-
-
-/* =========================
-   رسالة عدم وجود نتائج
-========================= */
-
-.no-results{
-    display:none;
-    text-align:center;
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    color:#687386;
-    margin-top:20px;
-}
-
-
-/* =========================
-   التذييل
-========================= */
-
-footer{
-    margin-top:55px;
-    background:#071a33;
-    color:white;
-    text-align:center;
-    padding:35px 15px;
-    line-height:2;
-}
-
-footer strong{
-    font-size:19px;
-}
-
-.footer-gold{
-    color:#d8b45a;
-}
-
-
-/* =========================
-   الهاتف
-========================= */
-
-@media(max-width:600px){
-
-    header{
-        padding:30px 15px 38px;
-    }
-
-    .logo{
-        font-size:25px;
-    }
-
-    .page-title{
-        font-size:27px;
-    }
-
-    .page-description{
-        font-size:14px;
-    }
-
-    .navbar a{
-        font-size:12px;
-        padding:6px 8px;
-    }
-
-    .container{
-        margin-top:25px;
-    }
-
-    .section-title{
-        font-size:24px;
-    }
-
-    .cards{
-        grid-template-columns:1fr;
-    }
-
-    .card{
-        padding:23px 15px;
-    }
-
-    .featured{
-        padding:22px 18px;
-    }
-
-}
-
-</style>
+    <title>القانون المدني | الموسوعة القانونية</title>
 
+    <meta name="description"
+          content="الموسوعة القانونية - مراجع وتشريعات وبحوث وأحكام القانون المدني">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background:
+                #f4f7fb;
+
+            color:
+                #1f2937;
+
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background:
+                linear-gradient(
+                    135deg,
+                    #071a2d,
+                    #123b5d,
+                    #0b2944
+                );
+
+            color: white;
+
+            padding:
+                35px 20px 45px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 38px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            opacity: 0.9;
+        }
+
+        .manager {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            background: white;
+
+            padding: 14px 20px;
+
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            box-shadow:
+                0 2px 12px rgba(0,0,0,0.08);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #123b5d;
+
+            padding:
+                7px 14px;
+
+            border-radius: 20px;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            background: #123b5d;
+            color: white;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            max-width: 1150px;
+
+            margin:
+                35px auto;
+
+            padding:
+                0 18px;
+        }
+
+
+        /* =========================
+           PAGE TITLE
+        ========================= */
+
+        .page-title {
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #eef4f9
+                );
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .page-title .icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .page-title h1 {
+            color: #0b2944;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #64748b;
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-box {
+            background: white;
+
+            padding: 18px;
+
+            border-radius: 16px;
+
+            margin-bottom: 35px;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .search-box input {
+            width: 100%;
+
+            padding:
+                15px 18px;
+
+            border:
+                1px solid #d7dee7;
+
+            border-radius:
+                12px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color:
+                #123b5d;
+
+            box-shadow:
+                0 0 0 3px rgba(18,59,93,0.1);
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 18px;
+
+            color: #0b2944;
+
+            font-size: 24px;
+
+            border-right:
+                5px solid #c69b4b;
+
+            padding-right: 12px;
+        }
+
+
+        /* =========================
+           STATIC CARDS
+        ========================= */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 5px 18px rgba(0,0,0,0.06);
+
+            border:
+                1px solid #e5eaf0;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.10);
+        }
+
+        .card-icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            color: #123b5d;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           DYNAMIC REFERENCES
+        ========================= */
+
+        #dynamicReferences {
+            display: grid;
+
+            gap: 20px;
+
+            margin-top: 20px;
+        }
+
+        .dynamic-reference-card {
+            display: flex;
+
+            gap: 18px;
+
+            align-items: flex-start;
+
+            background:
+                white;
+
+            border-radius:
+                20px;
+
+            padding:
+                24px;
+
+            box-shadow:
+                0 6px 22px rgba(0,0,0,0.07);
+
+            border:
+                1px solid #e4e9ef;
+
+            transition:
+                0.2s;
+        }
+
+        .dynamic-reference-card:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.10);
+        }
+
+        .reference-icon {
+            font-size: 42px;
+
+            min-width:
+                55px;
+
+            text-align:
+                center;
+        }
+
+        .reference-content {
+            flex: 1;
+        }
+
+        .reference-content h3 {
+            color:
+                #0b2944;
+
+            font-size:
+                20px;
+
+            margin-bottom:
+                6px;
+        }
+
+        .author {
+            color:
+                #64748b;
+
+            margin:
+                4px 0;
+
+            font-size:
+                14px;
+        }
+
+        .category {
+            display:
+                inline-block;
+
+            margin:
+                8px 0;
+
+            padding:
+                4px 13px;
+
+            border-radius:
+                20px;
+
+            background:
+                #eef4f9;
+
+            color:
+                #123b5d;
+
+            font-size:
+                13px;
+        }
+
+        .description {
+            color:
+                #64748b;
+
+            font-size:
+                14px;
+
+            margin-top:
+                5px;
+        }
+
+        .reference-buttons {
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            flex-wrap:
+                wrap;
+
+            margin-top:
+                16px;
+        }
+
+        .reference-buttons .button {
+            display:
+                inline-block;
+
+            padding:
+                9px 16px;
+
+            border-radius:
+                10px;
+
+            background:
+                #123b5d;
+
+            color:
+                white;
+
+            font-size:
+                14px;
+
+            transition:
+                0.2s;
+        }
+
+        .reference-buttons .button:hover {
+            opacity:
+                0.85;
+        }
+
+        .reference-buttons .download {
+            background:
+                #198754;
+        }
+
+
+        /* =========================
+           LOADING / EMPTY / ERROR
+        ========================= */
+
+        .loading,
+        .empty,
+        .error {
+            background:
+                white;
+
+            padding:
+                30px;
+
+            text-align:
+                center;
+
+            border-radius:
+                16px;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .loading {
+            color:
+                #123b5d;
+        }
+
+        .empty {
+            color:
+                #64748b;
+        }
+
+        .error {
+            color:
+                #b42318;
+
+            border:
+                1px solid #f1c0c0;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b2944,
+                    #123b5d
+                );
+
+            color:
+                white;
+
+            padding:
+                30px;
+
+            border-radius:
+                22px;
+
+            box-shadow:
+                0 7px 25px rgba(0,0,0,0.12);
+        }
+
+        .about h2 {
+            margin-bottom:
+                12px;
+        }
+
+        .about p {
+            opacity:
+                0.9;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top:
+                50px;
+
+            background:
+                #071a2d;
+
+            color:
+                white;
+
+            text-align:
+                center;
+
+            padding:
+                30px 20px;
+        }
+
+        footer p {
+            font-size:
+                14px;
+
+            opacity:
+                0.8;
+
+            margin:
+                5px 0;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .logo {
+                font-size:
+                    29px;
+            }
+
+            .subtitle {
+                font-size:
+                    14px;
+            }
+
+            .page-title {
+                padding:
+                    25px 18px;
+            }
+
+            .page-title h1 {
+                font-size:
+                    25px;
+            }
+
+            .section-title {
+                font-size:
+                    20px;
+            }
+
+            .dynamic-reference-card {
+                flex-direction:
+                    column;
+
+                padding:
+                    20px;
+            }
+
+            .reference-icon {
+                text-align:
+                    right;
+            }
+
+            .reference-buttons {
+                flex-direction:
+                    column;
+            }
+
+            .reference-buttons .button {
+                text-align:
+                    center;
+
+                width:
+                    100%;
+            }
+
+            nav {
+                position:
+                    static;
+            }
+        }
+
+    </style>
 </head>
 
 
 <body>
 
 
-<!-- =========================
-     الرأس
-========================= -->
+    <!-- =========================
+         HEADER
+    ========================= -->
 
-<header>
+    <header>
 
-<div class="logo">
+        <div class="logo">
+            ⚖️ الموسوعة القانونية
+        </div>
 
-⚖️ <span class="logo-gold">
-الموسوعة القانونية
-</span>
+        <div class="subtitle">
+            المكتبة القانونية الرقمية للمراجع والتشريعات والبحوث
+        </div>
 
-</div>
+        <div class="manager">
+            فراس بسر — مدير الموسوعة القانونية
+        </div>
 
-<div class="subtitle">
+    </header>
 
-المكتبة القانونية الرقمية للمراجع والتشريعات والبحوث
 
-</div>
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
 
-<h1 class="page-title">
+    <nav>
 
-القانون المدني
+        <a href="index.html">
+            🏠 الرئيسية
+        </a>
 
-</h1>
+        <a href="#legislation">
+            📜 التشريعات
+        </a>
 
-<p class="page-description">
+        <a href="#books">
+            📚 الكتب والمراجع
+        </a>
 
-بوابة متخصصة لجمع وتنظيم مصادر ومراجع القانون المدني
+        <a href="#research">
+            🎓 البحوث والمذكرات
+        </a>
 
-</p>
+        <a href="#judgments">
+            ⚖️ الأحكام
+        </a>
 
-</header>
+        <a href="#lessons">
+            🎓 الدروس
+        </a>
 
+        <a href="#articles">
+            📝 المقالات
+        </a>
 
-<!-- =========================
-     القائمة
-========================= -->
+    </nav>
 
-<nav class="navbar">
 
-<div class="nav-content">
+    <!-- =========================
+         MAIN
+    ========================= -->
 
-<a href="index.html">
-🏠 الرئيسية
-</a>
+    <main>
 
-<a href="#legislation">
-📜 التشريعات
-</a>
 
-<a href="#books">
-📚 الكتب والمراجع
-</a>
+        <!-- PAGE TITLE -->
 
-<a href="#research">
-📝 البحوث والمذكرات
-</a>
+        <div class="page-title">
 
-<a href="#judgments">
-⚖️ الأحكام والقرارات
-</a>
+            <div class="icon">
+                ⚖️
+            </div>
 
-<a href="#lessons">
-📖 الدروس والمحاضرات
-</a>
+            <h1>
+                القانون المدني
+            </h1>
 
-</div>
+            <p>
+                التشريعات والمراجع والبحوث والأحكام والدروس المتعلقة بالقانون المدني
+            </p>
 
-</nav>
+        </div>
 
 
-<main class="container">
+        <!-- SEARCH -->
 
+        <div class="search-box">
 
-<a class="back" href="index.html">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="🔎 ابحث داخل مراجع القانون المدني..."
+                oninput="searchReferences()"
+            >
 
-← العودة إلى الموسوعة القانونية
+        </div>
 
-</a>
 
+        <!-- =========================
+             DYNAMIC REFERENCES
+        ========================= -->
 
-<!-- =========================
-     البحث
-========================= -->
+        <section id="references">
 
-<div class="search-box">
+            <h2 class="section-title">
+                📚 مراجع القانون المدني
+            </h2>
 
-<h2 class="search-title">
+            <div id="dynamicReferences">
 
-🔎 البحث في قسم القانون المدني
+                <div class="loading">
+                    ⏳ جاري تحميل المراجع...
+                </div>
 
-</h2>
+            </div>
 
-<input
-type="text"
-id="searchInput"
-class="search-input"
-placeholder="ابحث عن تشريع، كتاب، بحث، حكم أو درس..."
-onkeyup="searchCards()">
+        </section>
 
-</div>
 
+        <!-- =========================
+             LEGISLATION
+        ========================= -->
 
-<!-- =========================
-     التشريعات
-========================= -->
+        <section id="legislation">
 
-<section id="legislation" class="section">
+            <h2 class="section-title">
+                📜 التشريعات
+            </h2>
 
-<h2 class="section-title">
+            <div class="cards">
 
-📜 التشريعات
+                <div class="card">
 
-<span class="section-line"></span>
+                    <div class="card-icon">
+                        📜
+                    </div>
 
-</h2>
+                    <h3>
+                        مجلة الالتزامات والعقود
+                    </h3>
 
+                    <p>
+                        النص القانوني الأساسي في مجال الالتزامات والعقود.
+                    </p>
 
-<div class="cards searchable">
+                </div>
 
+                <div class="card">
 
-<div class="card">
+                    <div class="card-icon">
+                        ⚖️
+                    </div>
 
-<div class="icon">
-📜
-</div>
+                    <h3>
+                        النصوص القانونية المدنية
+                    </h3>
 
-<h3>
-مجلّة الالتزامات والعقود
-</h3>
+                    <p>
+                        مجموعة من النصوص والتشريعات ذات الصلة بالقانون المدني.
+                    </p>
 
-<p>
-النص التشريعي الأساسي المنظم للالتزامات والعقود.
-</p>
+                </div>
 
-<a
-class="button"
-href="مجلّة الالتزامات والعقود.pdf"
-target="_blank">
+            </div>
 
-📄 قراءة PDF
+        </section>
 
-</a>
 
-<a
-class="button download"
-href="مجلّة الالتزامات والعقود.pdf"
-download>
+        <!-- =========================
+             BOOKS
+        ========================= -->
 
-⬇️ تحميل PDF
+        <section id="books">
 
-</a>
+            <h2 class="section-title">
+                📚 الكتب والمراجع
+            </h2>
 
-</div>
+            <div class="cards">
 
+                <div class="card">
 
-<div class="card">
+                    <div class="card-icon">
+                        📖
+                    </div>
 
-<div class="icon">
-📜
-</div>
+                    <h3>
+                        مراجع القانون المدني
+                    </h3>
 
-<h3>
-النصوص المدنية
-</h3>
+                    <p>
+                        مؤلفات ومراجع علمية متخصصة في القانون المدني.
+                    </p>
 
-<p>
-مجموعة النصوص والتشريعات ذات الصلة بالقانون المدني.
-</p>
+                </div>
 
-<a class="button" href="#">
-📄 قريبًا
-</a>
+                <div class="card">
 
-</div>
+                    <div class="card-icon">
+                        📚
+                    </div>
 
+                    <h3>
+                        الفقه المدني
+                    </h3>
 
-</div>
+                    <p>
+                        مراجع فقهية ودراسات متخصصة في مسائل القانون المدني.
+                    </p>
 
-</section>
+                </div>
 
+            </div>
 
-<!-- =========================
-     الكتب والمراجع
-========================= -->
+        </section>
 
-<section id="books" class="section">
 
-<h2 class="section-title">
+        <!-- =========================
+             RESEARCH
+        ========================= -->
 
-📚 الكتب والمراجع
+        <section id="research">
 
-<span class="section-line"></span>
+            <h2 class="section-title">
+                🎓 البحوث والمذكرات
+            </h2>
 
-</h2>
+            <div class="cards">
 
+                <div class="card">
 
-<div class="cards searchable">
+                    <div class="card-icon">
+                        🎓
+                    </div>
 
+                    <h3>
+                        بحوث القانون المدني
+                    </h3>
 
-<div class="card">
+                    <p>
+                        بحوث ودراسات أكاديمية متعلقة بالقانون المدني.
+                    </p>
 
-<div class="icon">
-📚
-</div>
+                </div>
 
-<h3>
-كتب القانون المدني
-</h3>
+                <div class="card">
 
-<p>
-كتب ومؤلفات أكاديمية متخصصة في القانون المدني.
-</p>
+                    <div class="card-icon">
+                        📑
+                    </div>
 
-<a class="button" href="#">
-📖 استعراض
-</a>
+                    <h3>
+                        مذكرات التخرج
+                    </h3>
 
-</div>
+                    <p>
+                        مذكرات وأعمال أكاديمية في مختلف مسائل القانون المدني.
+                    </p>
 
+                </div>
 
-<div class="card">
+            </div>
 
-<div class="icon">
-📖
-</div>
+        </section>
 
-<h3>
-المراجع الجامعية
-</h3>
 
-<p>
-مراجع مفيدة للطلبة والباحثين في القانون المدني.
-</p>
+        <!-- =========================
+             JUDGMENTS
+        ========================= -->
 
-<a class="button" href="#">
-📖 استعراض
-</a>
+        <section id="judgments">
 
-</div>
+            <h2 class="section-title">
+                ⚖️ الأحكام والقرارات
+            </h2>
 
+            <div class="cards">
 
-<div class="card">
+                <div class="card">
 
-<div class="icon">
-🔎
-</div>
+                    <div class="card-icon">
+                        ⚖️
+                    </div>
 
-<h3>
-المراجع المتخصصة
-</h3>
+                    <h3>
+                        الأحكام القضائية
+                    </h3>
 
-<p>
-دراسات ومراجع متخصصة في المسائل المدنية.
-</p>
+                    <p>
+                        أحكام وقرارات قضائية مرتبطة بالقانون المدني.
+                    </p>
 
-<a class="button" href="#">
-📖 استعراض
-</a>
+                </div>
 
-</div>
+                <div class="card">
 
+                    <div class="card-icon">
+                        🏛️
+                    </div>
 
-</div>
+                    <h3>
+                        فقه القضاء
+                    </h3>
 
-</section>
+                    <p>
+                        اجتهادات وقرارات قضائية للمساعدة في البحث القانوني.
+                    </p>
 
+                </div>
 
-<!-- =========================
-     البحوث والمذكرات
-========================= -->
+            </div>
 
-<section id="research" class="section">
+        </section>
 
-<h2 class="section-title">
 
-📝 البحوث والمذكرات
+        <!-- =========================
+             LESSONS
+        ========================= -->
 
-<span class="section-line"></span>
+        <section id="lessons">
 
-</h2>
+            <h2 class="section-title">
+                🎓 الدروس والمحاضرات
+            </h2>
 
+            <div class="cards">
 
-<div class="cards searchable">
+                <div class="card">
 
+                    <div class="card-icon">
+                        🎓
+                    </div>
 
-<div class="card">
+                    <h3>
+                        دروس القانون المدني
+                    </h3>
 
-<div class="icon">
-🎓
-</div>
+                    <p>
+                        محاضرات ودروس مبسطة في مختلف فروع القانون المدني.
+                    </p>
 
-<h3>
-مذكرات الماجستير
-</h3>
+                </div>
 
-<p>
-مذكرات وبحوث أكاديمية في القانون المدني.
-</p>
+                <div class="card">
 
-<a class="button" href="#">
-📄 استعراض
-</a>
+                    <div class="card-icon">
+                        📝
+                    </div>
 
-</div>
+                    <h3>
+                        ملخصات للمراجعة
+                    </h3>
 
+                    <p>
+                        ملخصات ومذكرات تساعد الطلبة والباحثين على المراجعة.
+                    </p>
 
-<div class="card">
+                </div>
 
-<div class="icon">
-🎓
-</div>
+            </div>
 
-<h3>
-بحوث الإجازة
-</h3>
+        </section>
 
-<p>
-بحوث جامعية في مختلف مسائل القانون المدني.
-</p>
 
-<a class="button" href="#">
-📄 استعراض
-</a>
+        <!-- =========================
+             ARTICLES
+        ========================= -->
 
-</div>
+        <section id="articles">
 
+            <h2 class="section-title">
+                📝 المقالات القانونية
+            </h2>
 
-<div class="card">
+            <div class="cards">
 
-<div class="icon">
-📝
-</div>
+                <div class="card">
 
-<h3>
-الدراسات القانونية
-</h3>
+                    <div class="card-icon">
+                        📝
+                    </div>
 
-<p>
-دراسات وتحليلات قانونية متخصصة.
-</p>
+                    <h3>
+                        مقالات القانون المدني
+                    </h3>
 
-<a class="button" href="#">
-📄 استعراض
-</a>
+                    <p>
+                        مقالات وتحليلات قانونية في المسائل المدنية المعاصرة.
+                    </p>
 
-</div>
+                </div>
 
+            </div>
 
-</div>
+        </section>
 
-</section>
 
+        <!-- =========================
+             ABOUT
+        ========================= -->
 
-<!-- =========================
-     الأحكام والقرارات
-========================= -->
+        <section>
 
-<section id="judgments" class="section">
+            <div class="about">
 
-<h2 class="section-title">
+                <h2>
+                    ⚖️ عن الموسوعة القانونية
+                </h2>
 
-⚖️ الأحكام والقرارات
+                <p>
+                    الموسوعة القانونية هي مكتبة قانونية رقمية تهدف إلى
+                    جمع وتنظيم المراجع والتشريعات والبحوث والأحكام
+                    والدروس القانونية في مكان واحد، بطريقة سهلة وسريعة
+                    ومناسبة للطلبة والباحثين والمختصين في القانون.
+                </p>
 
-<span class="section-line"></
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            ⚖️ الموسوعة القانونية
+        </p>
+
+        <p>
+            فراس بسر — مدير الموسوعة القانونية
+        </p>
+
+        <p>
+            جميع الحقوق محفوظة © 2026
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         SUPABASE
+    ========================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="references.js"></script>
+
+
+    <!-- =========================
+         LOAD CIVIL REFERENCES
+    ========================= -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                loadReferences("civil");
+
+            }
+        );
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        function searchReferences() {
+
+            const input =
+                document.getElementById(
+                    "searchInput"
+                );
+
+            const search =
+                input.value
+                    .toLowerCase()
+                    .trim();
+
+            const cards =
+                document.querySelectorAll(
+                    ".dynamic-reference-card"
+                );
+
+            cards.forEach(
+                function (card) {
+
+                    const text =
+                        card.innerText
+                            .toLowerCase();
+
+                    if (
+                        text.includes(search)
+                    ) {
+
+                        card.style.display =
+                            "";
+
+                    } else {
+
+                        card.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+</html>
