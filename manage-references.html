@@ -3,231 +3,388 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<title>إدارة المراجع | الموسوعة القانونية</title>
+    <title>إدارة المراجع | الموسوعة القانونية</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<style>
+    <style>
 
-* {
-    box-sizing: border-box;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-body {
-    margin: 0;
-    font-family: Tahoma, Arial, sans-serif;
-    background: #f4f7fb;
-    color: #1f2937;
-}
+        body {
+            font-family: Arial, sans-serif;
 
-header {
-    background:
-        linear-gradient(135deg, #071a2d, #123b5d);
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef3f8,
+                    #f8fafc
+                );
 
-    color: white;
-    padding: 25px 18px;
-    text-align: center;
-}
+            color: #172033;
 
-header h1 {
-    margin: 0 0 8px;
-    font-size: 27px;
-}
+            min-height: 100vh;
+        }
 
-header p {
-    margin: 0;
-    opacity: .85;
-}
+        header {
+            background:
+                linear-gradient(
+                    135deg,
+                    #071a35,
+                    #0d315c,
+                    #164d7c
+                );
 
-.container {
-    max-width: 1100px;
-    margin: 25px auto;
-    padding: 0 15px;
-}
+            color: white;
 
-/* أزرار */
+            padding: 28px 18px;
 
-.top-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.15);
+        }
 
-.btn {
-    display: inline-block;
-    border: none;
-    border-radius: 10px;
-    padding: 11px 16px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 14px;
-}
+        .header-container {
+            max-width: 1100px;
 
-.btn-primary {
-    background: #123b5d;
-    color: white;
-}
+            margin: auto;
 
-.btn-success {
-    background: #198754;
-    color: white;
-}
+            display: flex;
 
-.btn-danger {
-    background: #b42318;
-    color: white;
-}
+            align-items: center;
 
-.btn-secondary {
-    background: #64748b;
-    color: white;
-}
+            justify-content: space-between;
 
-/* البحث */
+            gap: 15px;
+        }
 
-.search-box {
-    background: white;
-    padding: 18px;
-    border-radius: 16px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
-}
+        .logo {
+            display: flex;
 
-.search-box input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #d5dce5;
-    border-radius: 10px;
-    font-size: 15px;
-    outline: none;
-}
+            align-items: center;
 
-.search-box input:focus {
-    border-color: #123b5d;
-}
+            gap: 12px;
+        }
 
-/* الإحصائيات */
+        .logo-icon {
+            width: 52px;
+            height: 52px;
 
-.stats {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(180px, 1fr));
+            border-radius: 14px;
 
-    gap: 15px;
-    margin-bottom: 25px;
-}
+            background:
+                rgba(255,255,255,.12);
 
-.stat {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
-}
+            display: flex;
 
-.stat-number {
-    font-size: 30px;
-    font-weight: bold;
-    color: #123b5d;
-}
+            align-items: center;
+            justify-content: center;
 
-.stat-title {
-    color: #64748b;
-    font-size: 14px;
-}
+            font-size: 28px;
+        }
 
-/* المراجع */
+        .logo h1 {
+            font-size: 23px;
 
-.references {
-    display: grid;
-    gap: 18px;
-}
+            margin-bottom: 5px;
+        }
 
-.reference-card {
-    background: white;
-    border-radius: 18px;
-    padding: 20px;
+        .logo p {
+            font-size: 13px;
 
-    box-shadow:
-        0 5px 18px rgba(0,0,0,.07);
+            opacity: .8;
+        }
 
-    border: 1px solid #e5eaf0;
-}
+        main {
+            max-width: 1100px;
 
-.reference-title {
-    color: #0b2944;
-    font-size: 19px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
+            margin: 30px auto;
 
-.reference-info {
-    color: #64748b;
-    font-size: 14px;
-    margin: 5px 0;
-}
+            padding: 0 18px;
+        }
 
-.badge {
-    display: inline-block;
+        .top-bar {
+            display: flex;
 
-    background: #eef4f9;
-    color: #123b5d;
+            justify-content: space-between;
 
-    padding: 5px 11px;
+            align-items: center;
 
-    border-radius: 20px;
+            gap: 15px;
 
-    font-size: 12px;
+            margin-bottom: 20px;
 
-    margin-top: 8px;
-}
+            flex-wrap: wrap;
+        }
 
-.card-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 15px;
-}
+        .back {
+            text-decoration: none;
 
-.loading,
-.empty,
-.error {
-    background: white;
-    padding: 30px;
-    text-align: center;
-    border-radius: 16px;
-}
+            color: white;
 
-.error {
-    color: #b42318;
-}
+            background: #0d315c;
 
-/* الهاتف */
+            padding: 11px 18px;
 
-@media (max-width: 600px) {
+            border-radius: 10px;
 
-    header h1 {
-        font-size: 23px;
-    }
+            font-weight: bold;
+        }
 
-    .card-actions {
-        flex-direction: column;
-    }
+        .add {
+            text-decoration: none;
 
-    .card-actions .btn {
-        width: 100%;
-        text-align: center;
-    }
+            color: white;
 
-}
+            background: #15803d;
 
-</style>
+            padding: 11px 18px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+        }
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+        .stat {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.06);
+        }
+
+        .stat-number {
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #0d315c;
+
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+        .search-box {
+            background: white;
+
+            padding: 18px;
+
+            border-radius: 16px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.06);
+        }
+
+        .search-box input {
+            width: 100%;
+
+            padding: 14px 16px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #164d7c;
+        }
+
+        #referencesContainer {
+            display: grid;
+
+            gap: 18px;
+        }
+
+        .reference-card {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.06);
+
+            border:
+                1px solid #e5e7eb;
+        }
+
+        .reference-title {
+            color: #0d315c;
+
+            font-size: 20px;
+
+            margin-bottom: 12px;
+        }
+
+        .reference-info {
+            display: grid;
+
+            gap: 7px;
+
+            margin-bottom: 15px;
+
+            color: #475569;
+
+            font-size: 14px;
+        }
+
+        .description {
+            background: #f8fafc;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            color: #475569;
+
+            line-height: 1.7;
+
+            margin-bottom: 16px;
+        }
+
+        .card-actions {
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+
+            border: none;
+
+            cursor: pointer;
+
+            padding: 10px 15px;
+
+            border-radius: 9px;
+
+            color: white;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #164d7c;
+        }
+
+        .btn-success {
+            background: #15803d;
+        }
+
+        .btn-danger {
+            background: #b91c1c;
+        }
+
+        .loading,
+        .empty,
+        .error {
+            background: white;
+
+            padding: 35px;
+
+            text-align: center;
+
+            border-radius: 16px;
+
+            color: #64748b;
+        }
+
+        .error {
+            color: #b91c1c;
+        }
+
+        footer {
+            text-align: center;
+
+            color: #64748b;
+
+            padding: 30px 15px;
+
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+
+            .header-container {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+            .logo {
+                justify-content: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .top-bar {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .back,
+            .add {
+                text-align: center;
+            }
+
+            .card-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+
+                width: 100%;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -237,66 +394,74 @@ header p {
 
 <header>
 
-    <h1>
-        ⚖️ إدارة المراجع
-    </h1>
+    <div class="header-container">
 
-    <p>
-        الموسوعة القانونية
-    </p>
+        <div class="logo">
+
+            <div class="logo-icon">
+                ⚖️
+            </div>
+
+            <div>
+
+                <h1>
+                    إدارة المراجع
+                </h1>
+
+                <p>
+                    الموسوعة القانونية
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </header>
 
 
-<div class="container">
+<main>
 
 
-    <div class="top-actions">
+    <div class="top-bar">
 
         <a
             href="dashboard.html"
-            class="btn btn-secondary">
+            class="back">
 
             ← لوحة التحكم
 
         </a>
 
+
         <a
             href="add-reference.html"
-            class="btn btn-success">
+            class="add">
 
             ➕ إضافة مرجع
 
         </a>
 
-        <a
-            href="index.html"
-            target="_blank"
-            class="btn btn-primary">
-
-            🌐 فتح الموقع
-
-        </a>
-
     </div>
 
-
-    <!-- الإحصائيات -->
 
     <div class="stats">
 
         <div class="stat">
 
             <div
-                class="stat-number"
-                id="totalReferences">
+                id="referencesCount"
+                class="stat-number">
 
-                0
+                ...
 
             </div>
 
-            <div class="stat-title">
+            <div class="stat-label">
+
                 إجمالي المراجع
+
             </div>
 
         </div>
@@ -305,60 +470,70 @@ header p {
         <div class="stat">
 
             <div
-                class="stat-number"
-                id="totalBranches">
+                id="branchesCount"
+                class="stat-number">
 
-                0
+                ...
 
             </div>
 
-            <div class="stat-title">
+            <div class="stat-label">
+
                 الفروع
+
             </div>
 
         </div>
 
     </div>
 
-
-    <!-- البحث -->
 
     <div class="search-box">
 
         <input
-            type="search"
+            type="text"
             id="searchInput"
-            placeholder="🔎 ابحث عن عنوان المرجع أو المؤلف..."
-            oninput="filterReferences()">
+            placeholder="🔎 ابحث عن عنوان المرجع أو المؤلف...">
 
     </div>
 
 
-    <!-- القائمة -->
-
-    <div
-        id="references"
-        class="references">
+    <div id="referencesContainer">
 
         <div class="loading">
+
             ⏳ جاري تحميل المراجع...
+
         </div>
 
     </div>
 
 
-</div>
+</main>
+
+
+<footer>
+
+    ⚖️ الموسوعة القانونية
+
+    <br><br>
+
+    إدارة الموقع: فراس بسر
+
+</footer>
 
 
 <script>
 
 
-/* =====================================
-   إعداد Supabase
-===================================== */
+/* =========================================
+   SUPABASE
+========================================= */
+
 
 const SUPABASE_URL =
     "https://yksrckzomkowjzmsafvm.supabase.co";
+
 
 const SUPABASE_KEY =
     "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
@@ -374,35 +549,32 @@ const supabaseClient =
 let allReferences = [];
 
 
-/* =====================================
-   حماية HTML
-===================================== */
-
-function escapeHTML(value) {
-
-    if (!value) {
-        return "";
-    }
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-
-/* =====================================
+/* =========================================
    التحقق من تسجيل الدخول
-===================================== */
+========================================= */
+
 
 async function checkSession() {
 
     const {
-        data
+        data,
+        error
     } =
-        await supabaseClient.auth.getSession();
+        await supabaseClient
+        .auth
+        .getSession();
+
+
+    if (error) {
+
+        console.error(error);
+
+        window.location.href =
+            "admin.html";
+
+        return;
+
+    }
 
 
     if (!data.session) {
@@ -410,955 +582,35 @@ async function checkSession() {
         window.location.href =
             "admin.html";
 
-        return false;
+        return;
+
     }
 
-    return true;
+
+    loadReferences();
+
 }
 
 
-/* =====================================
+/* =========================================
    تحميل المراجع
-===================================== */
+========================================= */
+
 
 async function loadReferences() {
 
     const container =
         document.getElementById(
-            "references"
+            "referencesContainer"
         );
 
 
     container.innerHTML =
-        '<div class="loading">⏳ جاري تحميل المراجع...</div>';
-
-
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-        .from("references")
-        .select(`
-            id,
-            title,
-            author,
-            description,
-            file_path,
-            created_at,
-            branch_id,
-            category_id
-        `)
-        .order(
-            "created_at",
-            {
-                ascending: false
-            }
-        );
-
-
-    if (error) {
-
-        console.error(error);
-
-        container.innerHTML =
-            `
-            <div class="error">
-                ❌ تعذر تحميل المراجع.
-                <br><br>
-                ${escapeHTML(error.message)}
-            </div>
-            `;
-
-        return;
-    }
-
-
-    allReferences =
-        data || [];
-
-
-    document.getElementById(
-        "totalReferences"
-    ).textContent =
-        allReferences.length;
-
-
-    await loadNames();
-
-
-    displayReferences(
-        allReferences
-    );
-}
-
-
-/* =====================================
-   تحميل أسماء الفروع والتصنيفات
-===================================== */
-
-async function loadNames() {
-
-    const {
-        data: branches
-    } =
-        await supabaseClient
-        .from("branches")
-        .select("id,name");
-
-
-    const {
-        data: categories
-    } =
-        await supabaseClient
-        .from("reference_categories")
-        .select("id,name");
-
-
-    const branchMap = {};
-    const categoryMap = {};
-
-
-    (branches || []).forEach(
-        branch => {
-
-            branchMap[branch.id] =
-                branch.name;
-
-        }
-    );
-
-
-    (categories || []).forEach(
-        category => {
-
-            categoryMap[category.id] =
-                category.name;
-
-        }
-    );
-
-
-    allReferences.forEach(
-        reference => {
-
-            reference.branchName =
-                branchMap[
-                    reference.branch_id
-                ] || "غير محدد";
-
-
-            reference.categoryName =
-                categoryMap[
-                    reference.category_id
-                ] || "غير محدد";
-
-        }
-    );
-
-
-    document.getElementById(
-        "totalBranches"
-    ).textContent =
-        (branches || []).length;
-}
-
-
-/* =====================================
-   عرض المراجع
-===================================== */
-
-function displayReferences(
-    references
-) {
-
-    const container =
-        document.getElementById(
-            "references"
-        );
-
-
-    if (
-        !references ||
-        references.length === 0
-    ) {
-
-        container.innerHTML =
-            `
-            <div class="empty">
-                📚 لا توجد مراجع.
-            </div>
-            `;
-
-        return;
-    }
-
-
-    container.innerHTML = "";
-
-
-    references.forEach(
-        reference => {
-
-
-            let pdfUrl = "#";
-
-
-            if (reference.file_path) {
-
-                const {
-                    data
-                } =
-                    supabaseClient
-                    .storage
-                    .from("legal-pdfs")
-                    .getPublicUrl(
-                        reference.file_path
-                    );
-
-                pdfUrl =
-                    data.publicUrl;
-            }
-
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "reference-card";
-
-
-            card.dataset.id =
-                reference.id;
-
-
-            card.innerHTML =
-                `
-
-                <div class="reference-title">
-
-                    📚
-                    ${escapeHTML(
-                        reference.title
-                    )}
-
-                </div>
-
-
-                ${
-                    reference.author
-                    ?
-                    `
-                    <div class="reference-info">
-                        ✍️ المؤلف:
-                        ${escapeHTML(
-                            reference.author
-                        )}
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-
-                <div class="reference-info">
-
-                    📂 الفرع:
-                    ${escapeHTML(
-                        reference.branchName
-                    )}
-
-                </div>
-
-
-                <span class="badge">
-
-                    ${escapeHTML(
-                        reference.categoryName
-                    )}
-
-                </span>
-
-
-                ${
-                    reference.description
-                    ?
-                    `
-                    <div class="reference-info">
-
-                        📝
-                        ${escapeHTML(
-                            reference.description
-                        )}
-
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-
-                <div class="card-actions">
-
-    ${
-        reference.file_path
-        ?
         `
-        <a
-            href="${pdfUrl}"
-            target="_blank"
-            class="btn btn-primary">
-
-            📄 فتح PDF
-
-        </a>
-        `
-        :
-        ""
-    }
-
-
-    <a
-        href="edit-reference.html?id=${reference.id}"
-        class="btn btn-success">
-
-        ✏️ تعديل
-
-    </a>
-
-
-    <button
-        class="btn btn-danger"
-        onclick="deleteReference(${reference.id})">
-
-        🗑️ حذف
-
-    </button>
-
-</div>
-
-
-            container.appendChild(
-                card
-            );
-
-        }
-    );
-}
-
-
-/* =====================================
-   البحث
-===================================== */
-
-function filterReferences() {
-
-    const search =
-        document
-        .getElementById(
-            "searchInput"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    if (!search) {
-
-        displayReferences(
-            allReferences
-        );
-
-        return;
-    }
-
-
-    const filtered =
-        allReferences.filter(
-            reference => {
-
-                const text =
-                    `
-                    ${reference.title || ""}
-                    ${reference.author || ""}
-                    ${reference.description || ""}
-                    ${reference.branchName || ""}
-                    ${reference.categoryName || ""}
-                    `
-                    .toLowerCase();
-
-
-                return text.includes(
-                    search
-                );
-
-            }
-        );
-
-
-    displayReferences(
-        filtered
-    );
-}
-
-
-/* =====================================
-   حذف المرجع
-===================================== */
-
-async function deleteReference(
-    id
-) {
-
-    const reference =
-        allReferences.find(
-            item =>
-                item.id === id
-        );
-
-
-    if (!reference) {
-        return;
-    }
-
-
-    const confirmed =
-        confirm(
-            "هل أنت متأكد من حذف هذا المرجع؟"
-        );
-
-
-    if (!confirmed) {
-        return;
-    }
-
-
-    /* حذف الملف من Storage */
-
-    if (
-        reference.file_path
-    ) {
-
-        const {
-            error:
-            storageError
-        } =
-            await supabaseClient
-            .storage
-            .from("legal-pdfs")
-            .remove([
-                reference.file_path
-            ]);
-
-
-        if (storageError) {
-
-            alert(
-                "تعذر حذف ملف PDF: " +
-                storageError.message
-            );
-
-            return;
-        }
-    }
-
-
-    /* حذف بيانات المرجع */
-
-    const {
-        error
-    } =
-        await supabaseClient
-        .from("references")
-        .delete()
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
-
-        alert(
-            "تعذر حذف المرجع: " +
-            error.message
-        );
-
-        return;
-    }
-
-
-    alert(
-        "تم حذف المرجع بنجاح ✅"
-    );
-
-
-    await loadReferences();
-}
-
-
-/* =====================================
-   تشغيل الصفحة
-===================================== */
-
-async function init() {
-
-    const loggedIn =
-        await checkSession();
-
-
-    if (!loggedIn) {
-        return;
-    }
-
-
-    await loadReferences();
-}
-
-
-init();
-
-</script>
-
-
-</body>
-
-</html><!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>إدارة المراجع | الموسوعة القانونية</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Tahoma, Arial, sans-serif;
-    background: #f4f7fb;
-    color: #1f2937;
-}
-
-header {
-    background:
-        linear-gradient(135deg, #071a2d, #123b5d);
-
-    color: white;
-    padding: 25px 18px;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0 0 8px;
-    font-size: 27px;
-}
-
-header p {
-    margin: 0;
-    opacity: .85;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 25px auto;
-    padding: 0 15px;
-}
-
-/* أزرار */
-
-.top-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.btn {
-    display: inline-block;
-    border: none;
-    border-radius: 10px;
-    padding: 11px 16px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.btn-primary {
-    background: #123b5d;
-    color: white;
-}
-
-.btn-success {
-    background: #198754;
-    color: white;
-}
-
-.btn-danger {
-    background: #b42318;
-    color: white;
-}
-
-.btn-secondary {
-    background: #64748b;
-    color: white;
-}
-
-/* البحث */
-
-.search-box {
-    background: white;
-    padding: 18px;
-    border-radius: 16px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
-}
-
-.search-box input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #d5dce5;
-    border-radius: 10px;
-    font-size: 15px;
-    outline: none;
-}
-
-.search-box input:focus {
-    border-color: #123b5d;
-}
-
-/* الإحصائيات */
-
-.stats {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(180px, 1fr));
-
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.stat {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
-}
-
-.stat-number {
-    font-size: 30px;
-    font-weight: bold;
-    color: #123b5d;
-}
-
-.stat-title {
-    color: #64748b;
-    font-size: 14px;
-}
-
-/* المراجع */
-
-.references {
-    display: grid;
-    gap: 18px;
-}
-
-.reference-card {
-    background: white;
-    border-radius: 18px;
-    padding: 20px;
-
-    box-shadow:
-        0 5px 18px rgba(0,0,0,.07);
-
-    border: 1px solid #e5eaf0;
-}
-
-.reference-title {
-    color: #0b2944;
-    font-size: 19px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.reference-info {
-    color: #64748b;
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-.badge {
-    display: inline-block;
-
-    background: #eef4f9;
-    color: #123b5d;
-
-    padding: 5px 11px;
-
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    margin-top: 8px;
-}
-
-.card-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.loading,
-.empty,
-.error {
-    background: white;
-    padding: 30px;
-    text-align: center;
-    border-radius: 16px;
-}
-
-.error {
-    color: #b42318;
-}
-
-/* الهاتف */
-
-@media (max-width: 600px) {
-
-    header h1 {
-        font-size: 23px;
-    }
-
-    .card-actions {
-        flex-direction: column;
-    }
-
-    .card-actions .btn {
-        width: 100%;
-        text-align: center;
-    }
-
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<header>
-
-    <h1>
-        ⚖️ إدارة المراجع
-    </h1>
-
-    <p>
-        الموسوعة القانونية
-    </p>
-
-</header>
-
-
-<div class="container">
-
-
-    <div class="top-actions">
-
-        <a
-            href="dashboard.html"
-            class="btn btn-secondary">
-
-            ← لوحة التحكم
-
-        </a>
-
-        <a
-            href="add-reference.html"
-            class="btn btn-success">
-
-            ➕ إضافة مرجع
-
-        </a>
-
-        <a
-            href="index.html"
-            target="_blank"
-            class="btn btn-primary">
-
-            🌐 فتح الموقع
-
-        </a>
-
-    </div>
-
-
-    <!-- الإحصائيات -->
-
-    <div class="stats">
-
-        <div class="stat">
-
-            <div
-                class="stat-number"
-                id="totalReferences">
-
-                0
-
-            </div>
-
-            <div class="stat-title">
-                إجمالي المراجع
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div
-                class="stat-number"
-                id="totalBranches">
-
-                0
-
-            </div>
-
-            <div class="stat-title">
-                الفروع
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- البحث -->
-
-    <div class="search-box">
-
-        <input
-            type="search"
-            id="searchInput"
-            placeholder="🔎 ابحث عن عنوان المرجع أو المؤلف..."
-            oninput="filterReferences()">
-
-    </div>
-
-
-    <!-- القائمة -->
-
-    <div
-        id="references"
-        class="references">
-
         <div class="loading">
             ⏳ جاري تحميل المراجع...
         </div>
-
-    </div>
-
-
-</div>
-
-
-<script>
-
-
-/* =====================================
-   إعداد Supabase
-===================================== */
-
-const SUPABASE_URL =
-    "ضع_API_URL_هنا";
-
-const SUPABASE_KEY =
-    "ضع_Publishable_Key_هنا";
-
-
-const supabaseClient =
-    supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-let allReferences = [];
-
-
-/* =====================================
-   حماية HTML
-===================================== */
-
-function escapeHTML(value) {
-
-    if (!value) {
-        return "";
-    }
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-
-/* =====================================
-   التحقق من تسجيل الدخول
-===================================== */
-
-async function checkSession() {
-
-    const {
-        data
-    } =
-        await supabaseClient.auth.getSession();
-
-
-    if (!data.session) {
-
-        window.location.href =
-            "admin.html";
-
-        return false;
-    }
-
-    return true;
-}
-
-
-/* =====================================
-   تحميل المراجع
-===================================== */
-
-async function loadReferences() {
-
-    const container =
-        document.getElementById(
-            "references"
-        );
-
-
-    container.innerHTML =
-        '<div class="loading">⏳ جاري تحميل المراجع...</div>';
+        `;
 
 
     const {
@@ -1399,6 +651,7 @@ async function loadReferences() {
             `;
 
         return;
+
     }
 
 
@@ -1406,120 +659,149 @@ async function loadReferences() {
         data || [];
 
 
-    document.getElementById(
-        "totalReferences"
-    ).textContent =
+    document
+        .getElementById(
+            "referencesCount"
+        )
+        .textContent =
         allReferences.length;
 
 
-    await loadNames();
+    await loadBranchesCount();
 
 
     displayReferences(
         allReferences
     );
+
 }
 
 
-/* =====================================
-   تحميل أسماء الفروع والتصنيفات
-===================================== */
+/* =========================================
+   عدد الفروع
+========================================= */
 
-async function loadNames() {
+
+async function loadBranchesCount() {
+
+    const {
+        count,
+        error
+    } =
+        await supabaseClient
+        .from("branches")
+        .select(
+            "*",
+            {
+                count: "exact",
+                head: true
+            }
+        );
+
+
+    if (!error) {
+
+        document
+            .getElementById(
+                "branchesCount"
+            )
+            .textContent =
+            count ?? 0;
+
+    }
+
+}
+
+
+/* =========================================
+   عرض المراجع
+========================================= */
+
+
+async function displayReferences(
+    references
+) {
+
+    const container =
+        document.getElementById(
+            "referencesContainer"
+        );
+
+
+    if (!references.length) {
+
+        container.innerHTML =
+            `
+            <div class="empty">
+
+                📚 لا توجد مراجع.
+
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        `
+        <div class="loading">
+            ⏳ جاري تجهيز القائمة...
+        </div>
+        `;
+
+
+    /* الفروع */
 
     const {
         data: branches
     } =
         await supabaseClient
         .from("branches")
-        .select("id,name");
+        .select(
+            "id,name"
+        );
 
+
+    /* التصنيفات */
 
     const {
         data: categories
     } =
         await supabaseClient
         .from("reference_categories")
-        .select("id,name");
+        .select(
+            "id,name"
+        );
 
 
     const branchMap = {};
-    const categoryMap = {};
-
 
     (branches || []).forEach(
         branch => {
 
-            branchMap[branch.id] =
-                branch.name;
+            branchMap[
+                branch.id
+            ] =
+            branch.name;
 
         }
     );
 
+
+    const categoryMap = {};
 
     (categories || []).forEach(
         category => {
 
-            categoryMap[category.id] =
-                category.name;
+            categoryMap[
+                category.id
+            ] =
+            category.name;
 
         }
     );
-
-
-    allReferences.forEach(
-        reference => {
-
-            reference.branchName =
-                branchMap[
-                    reference.branch_id
-                ] || "غير محدد";
-
-
-            reference.categoryName =
-                categoryMap[
-                    reference.category_id
-                ] || "غير محدد";
-
-        }
-    );
-
-
-    document.getElementById(
-        "totalBranches"
-    ).textContent =
-        (branches || []).length;
-}
-
-
-/* =====================================
-   عرض المراجع
-===================================== */
-
-function displayReferences(
-    references
-) {
-
-    const container =
-        document.getElementById(
-            "references"
-        );
-
-
-    if (
-        !references ||
-        references.length === 0
-    ) {
-
-        container.innerHTML =
-            `
-            <div class="empty">
-                📚 لا توجد مراجع.
-            </div>
-            `;
-
-        return;
-    }
 
 
     container.innerHTML = "";
@@ -1529,23 +811,29 @@ function displayReferences(
         reference => {
 
 
-            let pdfUrl = "#";
+            let pdfUrl = "";
 
 
-            if (reference.file_path) {
+            if (
+                reference.file_path
+            ) {
 
                 const {
                     data
                 } =
                     supabaseClient
                     .storage
-                    .from("legal-pdfs")
+                    .from(
+                        "legal-pdfs"
+                    )
                     .getPublicUrl(
                         reference.file_path
                     );
 
+
                 pdfUrl =
                     data.publicUrl;
+
             }
 
 
@@ -1559,65 +847,85 @@ function displayReferences(
                 "reference-card";
 
 
-            card.dataset.id =
-                reference.id;
-
-
             card.innerHTML =
                 `
 
-                <div class="reference-title">
+                <h2 class="reference-title">
 
                     📚
                     ${escapeHTML(
                         reference.title
                     )}
 
-                </div>
-
-
-                ${
-                    reference.author
-                    ?
-                    `
-                    <div class="reference-info">
-                        ✍️ المؤلف:
-                        ${escapeHTML(
-                            reference.author
-                        )}
-                    </div>
-                    `
-                    :
-                    ""
-                }
+                </h2>
 
 
                 <div class="reference-info">
 
-                    📂 الفرع:
-                    ${escapeHTML(
-                        reference.branchName
-                    )}
+                    ${
+                        reference.author
+                        ?
+                        `
+                        <div>
+                            ✍️ المؤلف:
+                            <strong>
+                                ${escapeHTML(
+                                    reference.author
+                                )}
+                            </strong>
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    <div>
+
+                        ⚖️ الفرع:
+
+                        <strong>
+
+                            ${
+                                branchMap[
+                                    reference.branch_id
+                                ]
+                                ||
+                                "غير محدد"
+                            }
+
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        🗂️ التصنيف:
+
+                        <strong>
+
+                            ${
+                                categoryMap[
+                                    reference.category_id
+                                ]
+                                ||
+                                "غير محدد"
+                            }
+
+                        </strong>
+
+                    </div>
 
                 </div>
-
-
-                <span class="badge">
-
-                    ${escapeHTML(
-                        reference.categoryName
-                    )}
-
-                </span>
 
 
                 ${
                     reference.description
                     ?
                     `
-                    <div class="reference-info">
+                    <div class="description">
 
-                        📝
                         ${escapeHTML(
                             reference.description
                         )}
@@ -1633,7 +941,7 @@ function displayReferences(
 
 
                     ${
-                        reference.file_path
+                        pdfUrl
                         ?
                         `
                         <a
@@ -1648,6 +956,15 @@ function displayReferences(
                         :
                         ""
                     }
+
+
+                    <a
+                        href="edit-reference.html?id=${reference.id}"
+                        class="btn btn-success">
+
+                        ✏️ تعديل
+
+                    </a>
 
 
                     <button
@@ -1670,67 +987,77 @@ function displayReferences(
 
         }
     );
+
 }
 
 
-/* =====================================
+/* =========================================
    البحث
-===================================== */
-
-function filterReferences() {
-
-    const search =
-        document
-        .getElementById(
-            "searchInput"
-        )
-        .value
-        .toLowerCase()
-        .trim();
+========================================= */
 
 
-    if (!search) {
+document
+    .getElementById(
+        "searchInput"
+    )
+    .addEventListener(
+        "input",
+        function () {
 
-        displayReferences(
-            allReferences
-        );
-
-        return;
-    }
-
-
-    const filtered =
-        allReferences.filter(
-            reference => {
-
-                const text =
-                    `
-                    ${reference.title || ""}
-                    ${reference.author || ""}
-                    ${reference.description || ""}
-                    ${reference.branchName || ""}
-                    ${reference.categoryName || ""}
-                    `
-                    .toLowerCase();
+            const search =
+                this.value
+                .trim()
+                .toLowerCase();
 
 
-                return text.includes(
-                    search
+            const filtered =
+                allReferences.filter(
+                    reference => {
+
+                        const title =
+                            (
+                                reference.title
+                                ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const author =
+                            (
+                                reference.author
+                                ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        return (
+                            title.includes(
+                                search
+                            )
+                            ||
+                            author.includes(
+                                search
+                            )
+                        );
+
+                    }
                 );
 
-            }
-        );
 
+            displayReferences(
+                filtered
+            );
 
-    displayReferences(
-        filtered
+        }
     );
-}
 
 
-/* =====================================
+/* =========================================
    حذف المرجع
-===================================== */
+========================================= */
+
 
 async function deleteReference(
     id
@@ -1744,105 +1071,160 @@ async function deleteReference(
 
 
     if (!reference) {
+
         return;
+
     }
 
 
     const confirmed =
         confirm(
-            "هل أنت متأكد من حذف هذا المرجع؟"
+            "هل أنت متأكد من حذف هذا المرجع؟\n\nسيتم حذف المرجع وملف PDF المرتبط به."
         );
 
 
     if (!confirmed) {
+
         return;
+
     }
 
 
-    /* حذف الملف من Storage */
+    try {
 
-    if (
-        reference.file_path
-    ) {
+
+        /* حذف الملف */
+
+        if (
+            reference.file_path
+        ) {
+
+            const {
+                error: storageError
+            } =
+                await supabaseClient
+                .storage
+                .from(
+                    "legal-pdfs"
+                )
+                .remove([
+                    reference.file_path
+                ]);
+
+
+            if (storageError) {
+
+                console.error(
+                    storageError
+                );
+
+            }
+
+        }
+
+
+        /* حذف السجل */
 
         const {
-            error:
-            storageError
+            error
         } =
             await supabaseClient
-            .storage
-            .from("legal-pdfs")
-            .remove([
-                reference.file_path
-            ]);
-
-
-        if (storageError) {
-
-            alert(
-                "تعذر حذف ملف PDF: " +
-                storageError.message
+            .from("references")
+            .delete()
+            .eq(
+                "id",
+                id
             );
 
-            return;
+
+        if (error) {
+
+            throw error;
+
         }
-    }
 
-
-    /* حذف بيانات المرجع */
-
-    const {
-        error
-    } =
-        await supabaseClient
-        .from("references")
-        .delete()
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
 
         alert(
-            "تعذر حذف المرجع: " +
-            error.message
+            "تم حذف المرجع بنجاح."
         );
 
-        return;
+
+        loadReferences();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "حدث خطأ أثناء حذف المرجع."
+        );
+
     }
 
-
-    alert(
-        "تم حذف المرجع بنجاح ✅"
-    );
-
-
-    await loadReferences();
 }
 
 
-/* =====================================
-   تشغيل الصفحة
-===================================== */
-
-async function init() {
-
-    const loggedIn =
-        await checkSession();
+/* =========================================
+   حماية HTML
+========================================= */
 
 
-    if (!loggedIn) {
-        return;
+function escapeHTML(
+    value
+) {
+
+    if (!value) {
+
+        return "";
+
     }
 
 
-    await loadReferences();
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
 
 
-init();
+/* =========================================
+   التشغيل
+========================================= */
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        checkSession();
+
+    }
+);
+
 
 </script>
 
