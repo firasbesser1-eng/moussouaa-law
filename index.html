@@ -1,2423 +1,1657 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<title>الموسوعة القانونية | المكتبة القانونية الرقمية</title>
 
 <meta name="description"
-      content="الموسوعة القانونية - مكتبة قانونية رقمية شاملة للقوانين والكتب والبحوث والمراجع القانونية.">
+content="الموسوعة القانونية - مكتبة قانونية رقمية عربية تضم المراجع والكتب والبحوث في مختلف فروع القانون.">
 
-<meta name="theme-color"
-      content="#071a35">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<title>
-    الموسوعة القانونية | فراس بسر
-</title>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* =====================================================
-   01 — VARIABLES
-===================================================== */
+/* =========================================================
+   1. VARIABLES
+========================================================= */
 
-:root{
+:root {
+    --navy-950: #071525;
+    --navy-900: #0b1d33;
+    --navy-850: #102640;
+    --navy-800: #153252;
 
-    --navy:#071a35;
+    --gold-500: #c9a45c;
+    --gold-400: #d8b875;
+    --gold-300: #ead29b;
 
-    --navy-2:#0c2d52;
+    --ivory: #f7f4ed;
+    --white: #ffffff;
 
-    --navy-3:#123e69;
+    --text: #172235;
+    --muted: #687386;
 
-    --gold:#c7a447;
+    --border: #e7e2d7;
+    --shadow: 0 18px 45px rgba(7, 21, 37, .09);
 
-    --gold-light:#e8d28f;
+    --radius-lg: 24px;
+    --radius-md: 16px;
 
-    --gold-soft:#f7f0d9;
-
-    --white:#ffffff;
-
-    --background:#f5f7fa;
-
-    --surface:#ffffff;
-
-    --text:#172033;
-
-    --muted:#687386;
-
-    --border:#e5e9ef;
-
-    --success:#147a55;
-
-    --shadow:
-        0 14px 40px
-        rgba(7,26,53,.09);
-
-    --radius:20px;
-
+    --container: 1180px;
 }
 
+/* =========================================================
+   2. RESET
+========================================================= */
 
-/* =====================================================
-   02 — RESET
-===================================================== */
-
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-
-    margin:0;
-
-    background:
-        linear-gradient(
-            180deg,
-            #f7f9fc 0%,
-            #f4f6f9 100%
-        );
-
-    color:var(--text);
-
-    font-family:
-        "Tahoma",
-        "Arial",
-        sans-serif;
-
-    line-height:1.6;
-
+body {
+    margin: 0;
+    background: var(--ivory);
+    color: var(--text);
+    font-family: "Cairo", sans-serif;
+    line-height: 1.8;
+    overflow-x: hidden;
 }
 
-a{
-    color:inherit;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 button,
-input{
-    font-family:inherit;
+input {
+    font-family: inherit;
 }
 
-
-/* =====================================================
-   03 — SVG ICON SYSTEM
-===================================================== */
-
-.icon{
-
-    width:24px;
-    height:24px;
-
-    display:inline-flex;
-
-    align-items:center;
-    justify-content:center;
-
-    flex-shrink:0;
-
+button {
+    cursor: pointer;
 }
 
-.icon svg{
-
-    width:100%;
-    height:100%;
-
-    display:block;
-
+.container {
+    width: min(calc(100% - 40px), var(--container));
+    margin-inline: auto;
 }
 
-.icon-gold{
-    color:var(--gold);
+/* =========================================================
+   3. HEADER
+========================================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(7, 21, 37, .96);
+    border-bottom: 1px solid rgba(201, 164, 92, .22);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
-.icon-white{
-    color:white;
+.header-inner {
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
 }
 
-.icon-navy{
-    color:var(--navy-3);
+/* Brand */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    flex-shrink: 0;
 }
 
-
-/* =====================================================
-   04 — TOP HEADER
-===================================================== */
-
-.site-header{
-
-    background:
-
-        radial-gradient(
-            circle at 10% 10%,
-            rgba(199,164,71,.16),
-            transparent 28%
-        ),
-
-        radial-gradient(
-            circle at 90% 90%,
-            rgba(18,62,105,.35),
-            transparent 35%
-        ),
-
-        linear-gradient(
-            135deg,
-            #06172d,
-            #0b3157
-        );
-
-    color:white;
-
-    overflow:hidden;
-
-    position:relative;
-
-}
-
-
-/* decorative lines */
-
-.site-header::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:380px;
-    height:380px;
-
-    border:1px solid
-        rgba(199,164,71,.13);
-
-    border-radius:50%;
-
-    top:-240px;
-    left:-120px;
-
-}
-
-.site-header::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:450px;
-    height:450px;
-
-    border:1px solid
-        rgba(255,255,255,.05);
-
-    border-radius:50%;
-
-    bottom:-300px;
-    right:-150px;
-
-}
-
-
-/* =====================================================
-   05 — TOP BAR
-===================================================== */
-
-.topbar{
-
-    width:min(1180px,94%);
-
-    margin:auto;
-
-    padding:22px 0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    position:relative;
-
-    z-index:2;
-
-}
-
-
-.brand{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:13px;
-
-}
-
-
-.brand-mark{
-
-    width:55px;
-    height:55px;
-
-    border:1px solid
-        rgba(199,164,71,.7);
-
-    border-radius:16px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:var(--gold-light);
-
-    background:
-        rgba(255,255,255,.055);
-
-    box-shadow:
-        inset 0 0 0 5px
-        rgba(199,164,71,.035);
-
-}
-
-
-.brand-mark svg{
-
-    width:31px;
-    height:31px;
-
-}
-
-
-.brand-name{
-
-    margin:0;
-
-    font-size:21px;
-
-    font-weight:800;
-
-}
-
-
-.brand-subtitle{
-
-    display:block;
-
-    color:#b9c9da;
-
-    font-size:11px;
-
-    margin-top:3px;
-
-}
-
-
-.admin-button{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:white;
-
-    text-decoration:none;
-
-    border:1px solid
-        rgba(255,255,255,.22);
-
-    background:
-        rgba(255,255,255,.05);
-
-    padding:10px 15px;
-
-    border-radius:11px;
-
-    font-size:13px;
-
-    transition:.2s;
-
-}
-
-
-.admin-button:hover{
-
-    background:
-        rgba(255,255,255,.10);
-
-    border-color:
-        rgba(199,164,71,.6);
-
-}
-
-
-/* =====================================================
-   06 — HERO
-===================================================== */
-
-.hero{
-
-    width:min(1180px,94%);
-
-    margin:auto;
-
-    padding:
-        55px 0
-        85px;
-
-    display:grid;
-
-    grid-template-columns:
-        1.3fr .7fr;
-
-    gap:60px;
-
-    align-items:center;
-
-    position:relative;
-
-    z-index:2;
-
-}
-
-
-.hero-content{
-
-    max-width:720px;
-
-}
-
-
-.hero-kicker{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:var(--gold-light);
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    margin-bottom:16px;
-
-}
-
-
-.hero-kicker-line{
-
-    width:35px;
-    height:1px;
-
-    background:var(--gold);
-
-}
-
-
-.hero h1{
-
-    margin:0;
-
-    font-size:
-        clamp(31px,5vw,50px);
-
-    line-height:1.35;
-
-    letter-spacing:-.5px;
-
-}
-
-
-.hero h1 strong{
-
-    color:var(--gold-light);
-
-}
-
-
-.hero-text{
-
-    color:#c8d5e3;
-
-    font-size:16px;
-
-    line-height:2;
-
-    max-width:680px;
-
-    margin:
-        20px 0 0;
-
-}
-
-
-.hero-actions{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:12px;
-
-    margin-top:27px;
-
-}
-
-
-.primary-button,
-.secondary-button{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:9px;
-
-    min-height:48px;
-
-    padding:
-        0 19px;
-
-    border-radius:12px;
-
-    text-decoration:none;
-
-    font-weight:bold;
-
-    font-size:14px;
-
-    transition:
-        transform .2s,
-        box-shadow .2s;
-
-}
-
-
-.primary-button{
-
-    background:var(--gold);
-
-    color:#172033;
-
-    box-shadow:
-        0 8px 22px
-        rgba(199,164,71,.18);
-
-}
-
-
-.primary-button:hover{
-
-    transform:translateY(-2px);
-
-}
-
-
-.secondary-button{
-
-    color:white;
-
-    border:1px solid
-        rgba(255,255,255,.25);
-
-    background:
-        rgba(255,255,255,.05);
-
-}
-
-
-.secondary-button:hover{
-
-    background:
-        rgba(255,255,255,.09);
-
-}
-
-
-/* =====================================================
-   07 — HERO EMBLEM
-===================================================== */
-
-.hero-emblem-card{
-
-    min-height:350px;
-
-    border:1px solid
-        rgba(255,255,255,.15);
-
-    border-radius:28px;
+.brand-mark {
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(216, 184, 117, .55);
+    border-radius: 13px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.09),
-            rgba(255,255,255,.035)
+            rgba(216,184,117,.18),
+            rgba(216,184,117,.04)
         );
 
-    backdrop-filter:blur(8px);
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    padding:30px;
-
-}
-
-
-.emblem{
-
-    width:145px;
-    height:145px;
-
-    border-radius:50%;
-
-    border:
-        2px solid
-        var(--gold);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:var(--gold-light);
-
-    position:relative;
-
-    margin-bottom:25px;
-
-}
-
-
-.emblem::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:9px;
-
-    border:
-        1px solid
-        rgba(199,164,71,.45);
-
-    border-radius:50%;
-
-}
-
-
-.emblem svg{
-
-    width:72px;
-    height:72px;
-
-    position:relative;
-
-}
-
-
-.hero-emblem-card h2{
-
-    margin:0;
-
-    font-size:22px;
-
-}
-
-
-.hero-emblem-card p{
-
-    margin:8px 0 0;
-
-    color:#b9c9da;
-
-    font-size:13px;
-
-}
-
-
-/* =====================================================
-   08 — NAVIGATION
-===================================================== */
-
-.main-nav{
-
-    background:
-        rgba(255,255,255,.97);
-
-    border-bottom:
-        1px solid var(--border);
+    color: var(--gold-400);
 
     box-shadow:
-        0 4px 18px
-        rgba(7,26,53,.06);
-
-    position:sticky;
-
-    top:0;
-
-    z-index:100;
-
+        inset 0 0 20px rgba(216,184,117,.04);
 }
 
+.brand-mark svg {
+    width: 27px;
+    height: 27px;
 
-.nav-inner{
-
-    width:min(1180px,94%);
-
-    margin:auto;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:3px;
-
+    display: block;
+    overflow: visible;
 }
 
-
-.nav-link{
-
-    text-decoration:none;
-
-    color:var(--navy-3);
-
-    padding:
-        15px 14px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    border-bottom:
-        2px solid transparent;
-
-    transition:.2s;
-
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
 }
 
-
-.nav-link:hover{
-
-    color:var(--gold);
-
-    border-bottom-color:
-        var(--gold);
-
+.brand-title {
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 800;
 }
 
-
-/* =====================================================
-   09 — STATISTICS
-===================================================== */
-
-.stats-wrapper{
-
-    width:min(1050px,92%);
-
-    margin:
-        -32px auto
-        60px;
-
-    position:relative;
-
-    z-index:5;
-
+.brand-subtitle {
+    color: rgba(255,255,255,.56);
+    font-size: 10px;
+    letter-spacing: .5px;
 }
 
+/* Navigation */
 
-.stats{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:16px;
-
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
+.main-nav a {
+    position: relative;
 
-.stat-card{
+    min-height: 44px;
+    padding: 8px 13px;
 
-    background:
-        rgba(255,255,255,.98);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border:
-        1px solid var(--border);
+    color: rgba(255,255,255,.78);
 
-    border-radius:18px;
+    font-size: 12px;
+    font-weight: 600;
 
-    padding:23px;
+    white-space: nowrap;
 
-    display:flex;
-
-    align-items:center;
-
-    gap:16px;
-
-    box-shadow:var(--shadow);
-
-}
-
-
-.stat-icon-box{
-
-    width:55px;
-    height:55px;
-
-    flex-shrink:0;
-
-    border-radius:15px;
-
-    background:
-        var(--gold-soft);
-
-    color:var(--gold);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-
-.stat-icon-box svg{
-
-    width:29px;
-    height:29px;
-
-}
-
-
-.stat-number{
-
-    display:block;
-
-    color:var(--navy-2);
-
-    font-size:28px;
-
-    font-weight:800;
-
-    line-height:1.1;
-
-}
-
-
-.stat-label{
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    margin-top:5px;
-
-}
-
-
-/* =====================================================
-   10 — MAIN CONTAINER
-===================================================== */
-
-.container{
-
-    width:min(1180px,94%);
-
-    margin:auto;
-
-}
-
-
-.section{
-
-    margin-bottom:70px;
-
-}
-
-
-.section-heading{
-
-    text-align:center;
-
-    margin-bottom:28px;
-
-}
-
-
-.section-heading .eyebrow{
-
-    color:var(--gold);
-
-    font-size:12px;
-
-    font-weight:bold;
-
-    display:block;
-
-    margin-bottom:5px;
-
-}
-
-
-.section-heading h2{
-
-    color:var(--navy);
-
-    margin:0;
-
-    font-size:28px;
-
-}
-
-
-.section-heading p{
-
-    color:var(--muted);
-
-    font-size:13px;
-
-    margin:
-        7px 0 0;
-
-}
-
-
-/* =====================================================
-   11 — SEARCH
-===================================================== */
-
-.search-card{
-
-    background:white;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:23px;
-
-    padding:27px;
-
-    box-shadow:var(--shadow);
-
-}
-
-
-.search-form{
-
-    display:flex;
-
-    gap:10px;
-
-}
-
-
-.search-input-wrapper{
-
-    flex:1;
-
-    position:relative;
-
-}
-
-
-.search-input-icon{
-
-    position:absolute;
-
-    right:15px;
-
-    top:50%;
-
-    transform:
-        translateY(-50%);
-
-    color:var(--gold);
-
-    width:21px;
-    height:21px;
-
-}
-
-
-.search-input{
-
-    width:100%;
-
-    height:54px;
-
-    border:
-        1px solid #d9dee7;
-
-    border-radius:13px;
-
-    padding:
-        0 48px
-        0 15px;
-
-    font-size:14px;
-
-    outline:none;
-
-    background:#fbfcfe;
-
-}
-
-
-.search-input:focus{
-
-    border-color:var(--gold);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(199,164,71,.10);
-
-}
-
-
-.search-button{
-
-    border:0;
-
-    min-width:125px;
-
-    border-radius:13px;
-
-    background:var(--navy-2);
-
-    color:white;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
-}
-
-
-.search-note{
-
-    margin:
-        12px 0 0;
-
-    color:var(--muted);
-
-    font-size:11px;
-
-}
-
-
-/* =====================================================
-   12 — BRANCHES
-===================================================== */
-
-.branches-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:17px;
-
-}
-
-
-.branch-card{
-
-    display:block;
-
-    text-decoration:none;
-
-    background:white;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:19px;
-
-    padding:22px;
-
-    position:relative;
-
-    overflow:hidden;
+    border-radius: 10px;
 
     transition:
-        transform .22s,
-        box-shadow .22s,
-        border-color .22s;
-
+        color .2s ease,
+        background .2s ease;
 }
 
+.main-nav a:hover {
+    color: var(--gold-300);
+    background: rgba(255,255,255,.06);
+}
 
-.branch-card::after{
+.main-nav a::after {
+    content: "";
 
-    content:"";
+    position: absolute;
 
-    position:absolute;
+    right: 50%;
+    bottom: 3px;
 
-    height:3px;
+    width: 0;
+    height: 2px;
 
-    left:0;
-    right:0;
+    background: var(--gold-400);
 
-    bottom:0;
+    transform: translateX(50%);
+
+    transition: width .2s ease;
+}
+
+.main-nav a:hover::after {
+    width: 25px;
+}
+
+/* =========================================================
+   4. HERO
+========================================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 620px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(201,164,92,.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(30,74,111,.35),
+            transparent 34%
+        ),
+        linear-gradient(
+            135deg,
+            var(--navy-950),
+            var(--navy-900) 48%,
+            var(--navy-850)
+        );
+
+    color: white;
+
+    isolation: isolate;
+
+    overflow: visible;
+}
+
+/* Decorative lines */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 48px 48px;
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 460px;
+    height: 460px;
+
+    left: -180px;
+    bottom: -250px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(201,164,92,.14);
+
+    box-shadow:
+        0 0 0 45px rgba(201,164,92,.025),
+        0 0 0 90px rgba(201,164,92,.018);
+
+    pointer-events: none;
+}
+
+/* Hero content */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+
+    padding: 75px 0 85px;
+
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+
+    gap: 70px;
+}
+
+/* Eyebrow */
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 20px;
+
+    color: var(--gold-300);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: .4px;
+}
+
+.eyebrow-line {
+    width: 35px;
+    height: 1px;
+
+    background: var(--gold-400);
+}
+
+/* Hero title */
+
+.hero h1 {
+    margin: 0 0 20px;
+
+    font-family: "Amiri", serif;
+
+    font-size: clamp(46px, 6vw, 76px);
+
+    font-weight: 700;
+
+    line-height: 1.1;
+
+    letter-spacing: -.8px;
+}
+
+.hero h1 span {
+    color: var(--gold-400);
+}
+
+.hero-description {
+    max-width: 650px;
+
+    margin: 0 0 32px;
+
+    color: rgba(255,255,255,.72);
+
+    font-size: 16px;
+    line-height: 2;
+}
+
+/* Search */
+
+.hero-search {
+    width: min(100%, 650px);
+
+    display: flex;
+    align-items: center;
+
+    padding: 6px;
+
+    background: rgba(255,255,255,.08);
+
+    border: 1px solid rgba(255,255,255,.14);
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.16);
+
+    backdrop-filter: blur(12px);
+}
+
+.hero-search input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 52px;
+
+    padding: 0 16px;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 14px;
+}
+
+.hero-search input::placeholder {
+    color: rgba(255,255,255,.48);
+}
+
+.hero-search button {
+    min-width: 118px;
+    height: 52px;
+
+    border: 0;
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-400),
+            var(--gold-500)
+        );
+
+    color: var(--navy-950);
+
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 20px rgba(201,164,92,.18);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.hero-search button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(201,164,92,.28);
+}
+
+/* =========================================================
+   5. HERO BOOK ILLUSTRATION
+========================================================= */
+
+.hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 330px;
+}
+
+.library-emblem {
+    position: relative;
+
+    width: min(320px, 75vw);
+    aspect-ratio: 1;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(216,184,117,.42);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(216,184,117,.10),
+            rgba(216,184,117,.025) 55%,
+            transparent 70%
+        );
+
+    box-shadow:
+        0 0 0 20px rgba(216,184,117,.025),
+        0 0 0 45px rgba(216,184,117,.015);
+}
+
+.library-emblem::before,
+.library-emblem::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(216,184,117,.18);
+}
+
+.library-emblem::before {
+    inset: 22px;
+}
+
+.library-emblem::after {
+    inset: 45px;
+}
+
+.emblem-content {
+    position: relative;
+    z-index: 2;
+
+    width: 130px;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    color: var(--gold-300);
+}
+
+.emblem-content svg {
+    width: 72px;
+    height: 72px;
+
+    display: block;
+
+    overflow: visible;
+}
+
+.emblem-content strong {
+    font-family: "Amiri", serif;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   6. STATISTICS
+========================================================= */
+
+.stats-section {
+    position: relative;
+
+    margin-top: -45px;
+
+    z-index: 10;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.stat-card {
+    min-width: 0;
+    min-height: 150px;
+
+    padding: 28px 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.98);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow);
+
+    overflow: visible;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 22px 50px rgba(7,21,37,.13);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 10px;
+
+    display: grid;
+    place-items: center;
+
+    flex: 0 0 48px;
+
+    border-radius: 14px;
+
+    background: #f5efe2;
+
+    color: #9b783d;
+
+    overflow: visible;
+}
+
+.stat-icon svg {
+    width: 25px;
+    height: 25px;
+
+    display: block;
+
+    overflow: visible;
+}
+
+.stat-number {
+    display: block;
+
+    margin: 0;
+
+    color: var(--navy-900);
+
+    font-size: 29px;
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+.stat-label {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    line-height: 1.7;
+}
+
+/* =========================================================
+   7. SECTION HEADER
+========================================================= */
+
+.section {
+    padding: 90px 0;
+}
+
+.section-header {
+    margin-bottom: 42px;
+
+    text-align: center;
+}
+
+.section-kicker {
+    margin-bottom: 8px;
+
+    color: #a27c3e;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.section-title {
+    margin: 0;
+
+    color: var(--navy-900);
+
+    font-family: "Amiri", serif;
+
+    font-size: clamp(32px, 4vw, 44px);
+
+    line-height: 1.3;
+}
+
+.section-description {
+    max-width: 650px;
+
+    margin: 10px auto 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+/* =========================================================
+   8. BRANCHES
+========================================================= */
+
+.branches-section {
+    background: var(--ivory);
+}
+
+.branches-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.branch-card {
+    position: relative;
+
+    min-width: 0;
+    min-height: 190px;
+
+    padding: 24px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    overflow: hidden;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.branch-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 3px;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            var(--gold),
+            var(--gold-400),
             transparent
         );
 
-    opacity:0;
+    transform: scaleX(.4);
 
-    transition:.2s;
-
+    transition: transform .25s ease;
 }
 
+.branch-card:hover {
+    transform: translateY(-6px);
 
-.branch-card:hover{
-
-    transform:
-        translateY(-4px);
-
-    border-color:
-        rgba(199,164,71,.45);
-
-    box-shadow:var(--shadow);
-
-}
-
-
-.branch-card:hover::after{
-
-    opacity:1;
-
-}
-
-
-.branch-icon-box{
-
-    width:51px;
-    height:51px;
-
-    border-radius:14px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:var(--navy-3);
-
-    background:
-        #edf3f8;
-
-    margin-bottom:16px;
-
-}
-
-
-.branch-icon-box svg{
-
-    width:27px;
-    height:27px;
-
-}
-
-
-.branch-card h3{
-
-    color:var(--navy-2);
-
-    margin:0 0 7px;
-
-    font-size:16px;
-
-}
-
-
-.branch-card p{
-
-    color:var(--muted);
-
-    margin:0;
-
-    font-size:11px;
-
-    line-height:1.8;
-
-    min-height:40px;
-
-}
-
-
-.branch-footer{
-
-    margin-top:17px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-}
-
-
-.reference-count{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:5px;
-
-    background:
-        var(--gold-soft);
-
-    color:#755f17;
-
-    padding:
-        5px 9px;
-
-    border-radius:20px;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-}
-
-
-.branch-arrow{
-
-    color:var(--gold);
-
-    font-size:18px;
-
-}
-
-
-/* =====================================================
-   13 — LATEST REFERENCES
-===================================================== */
-
-.references-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
-
-}
-
-
-.reference-card{
-
-    background:white;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:19px;
-
-    padding:22px;
+    border-color: rgba(201,164,92,.45);
 
     box-shadow:
-        0 7px 25px
-        rgba(7,26,53,.055);
-
-    display:flex;
-
-    flex-direction:column;
-
+        0 18px 40px rgba(7,21,37,.09);
 }
 
-
-.reference-title{
-
-    color:var(--navy-2);
-
-    font-size:17px;
-
-    line-height:1.65;
-
-    margin:0 0 12px;
-
+.branch-card:hover::before {
+    transform: scaleX(1);
 }
 
+.branch-icon {
+    width: 50px;
+    height: 50px;
 
-.reference-meta{
+    margin-bottom: 17px;
 
-    display:flex;
+    display: grid;
+    place-items: center;
 
-    flex-wrap:wrap;
+    border-radius: 14px;
 
-    gap:6px;
+    background: #f7f1e5;
 
-    margin-bottom:12px;
-
+    color: #9d783c;
 }
 
+.branch-icon svg {
+    width: 27px;
+    height: 27px;
 
-.badge{
+    display: block;
 
-    background:#edf3f8;
-
-    color:var(--navy-3);
-
-    padding:
-        5px 8px;
-
-    border-radius:20px;
-
-    font-size:10px;
-
-    font-weight:bold;
-
+    overflow: visible;
 }
 
+.branch-name {
+    margin: 0 0 5px;
 
-.reference-description{
+    color: var(--navy-900);
 
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.8;
-
-    margin:0;
-
-    flex:1;
-
+    font-size: 15px;
+    font-weight: 800;
 }
 
+.branch-description {
+    margin: 0;
 
-.reference-action{
+    color: var(--muted);
 
-    display:inline-flex;
+    font-size: 11px;
 
-    align-items:center;
-
-    gap:6px;
-
-    margin-top:17px;
-
-    color:var(--gold);
-
-    text-decoration:none;
-
-    font-size:12px;
-
-    font-weight:bold;
-
+    line-height: 1.8;
 }
 
+.branch-count {
+    margin-top: auto;
+    padding-top: 13px;
 
-/* =====================================================
-   14 — ABOUT
-===================================================== */
+    color: #a17c40;
 
-.about-card{
-
-    background:
-
-        radial-gradient(
-            circle at 100% 0,
-            rgba(199,164,71,.14),
-            transparent 35%
-        ),
-
-        linear-gradient(
-            135deg,
-            var(--navy),
-            var(--navy-3)
-        );
-
-    border-radius:27px;
-
-    padding:
-        45px 35px;
-
-    color:white;
-
-    text-align:center;
-
-    box-shadow:var(--shadow);
-
+    font-size: 11px;
+    font-weight: 700;
 }
 
+/* =========================================================
+   9. LATEST REFERENCES
+========================================================= */
 
-.about-icon{
+.latest-section {
+    background: white;
 
-    width:64px;
-    height:64px;
-
-    margin:
-        0 auto 16px;
-
-    border:
-        1px solid
-        rgba(199,164,71,.6);
-
-    border-radius:18px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:var(--gold-light);
-
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
-
-.about-icon svg{
-
-    width:34px;
-    height:34px;
-
-}
-
-
-.about-card h2{
-
-    margin:0 0 10px;
-
-    font-size:27px;
-
-}
-
-
-.about-card p{
-
-    max-width:800px;
-
-    margin:auto;
-
-    color:#c8d5e3;
-
-    line-height:2;
-
-    font-size:13px;
-
-}
-
-
-/* =====================================================
-   15 — MANAGER
-===================================================== */
-
-.manager-card{
-
-    margin-top:20px;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.14);
-
-    background:
-        rgba(255,255,255,.05);
-
-    padding:
-        9px 14px;
-
-    border-radius:12px;
-
-    color:#e3ebf4;
-
-    font-size:12px;
-
-}
-
-
-/* =====================================================
-   16 — FOOTER
-===================================================== */
-
-footer{
-
-    background:#051326;
-
-    color:white;
-
-    margin-top:80px;
-
-    padding:
-        50px 20px
-        25px;
-
-}
-
-
-.footer-grid{
-
-    width:min(1180px,94%);
-
-    margin:auto;
-
-    display:grid;
+.references-grid {
+    display: grid;
 
     grid-template-columns:
-        1.5fr 1fr 1fr;
+        repeat(3, minmax(0, 1fr));
 
-    gap:40px;
-
+    gap: 20px;
 }
 
+.reference-card {
+    padding: 24px;
 
-.footer-column h3{
+    background: #fff;
 
-    color:var(--gold-light);
+    border: 1px solid var(--border);
 
-    font-size:15px;
+    border-radius: var(--radius-md);
 
-    margin:
-        0 0 14px;
-
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
+.reference-card:hover {
+    transform: translateY(-5px);
 
-.footer-column p{
-
-    color:#9fb0c2;
-
-    font-size:12px;
-
-    line-height:1.9;
-
+    box-shadow:
+        0 18px 40px rgba(7,21,37,.09);
 }
 
+.reference-meta {
+    display: flex;
+    flex-wrap: wrap;
 
-.footer-column a{
+    gap: 7px;
 
-    display:block;
-
-    color:#b9c8d7;
-
-    text-decoration:none;
-
-    font-size:12px;
-
-    margin:
-        8px 0;
-
+    margin-bottom: 15px;
 }
 
+.reference-tag {
+    padding: 4px 9px;
 
-.footer-column a:hover{
+    border-radius: 20px;
 
-    color:var(--gold-light);
+    background: #f5efe2;
 
+    color: #98733a;
+
+    font-size: 9px;
+    font-weight: 700;
 }
 
+.reference-title {
+    margin: 0 0 8px;
 
-.footer-bottom{
+    color: var(--navy-900);
 
-    width:min(1180px,94%);
+    font-family: "Amiri", serif;
 
-    margin:
-        35px auto
-        0;
+    font-size: 21px;
 
-    padding-top:20px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.08);
-
-    text-align:center;
-
-    color:#75879b;
-
-    font-size:11px;
-
+    line-height: 1.5;
 }
 
+.reference-author {
+    margin: 0;
 
-/* =====================================================
-   17 — LOADING / EMPTY
-===================================================== */
+    color: var(--muted);
 
-.loading{
-
-    grid-column:
-        1 / -1;
-
-    padding:40px;
-
-    text-align:center;
-
-    color:var(--muted);
-
+    font-size: 11px;
 }
 
+.reference-description {
+    margin: 13px 0 0;
 
-.loading-spinner{
+    color: #788193;
 
-    width:30px;
-    height:30px;
+    font-size: 11px;
 
-    margin:
-        0 auto 12px;
-
-    border:
-        3px solid #e6ebf0;
-
-    border-top-color:
-        var(--gold);
-
-    border-radius:50%;
-
-    animation:
-        spin .8s linear infinite;
-
+    line-height: 1.9;
 }
 
+.reference-action {
+    display: inline-flex;
+    align-items: center;
 
-@keyframes spin{
+    margin-top: 18px;
 
-    to{
-        transform:rotate(360deg);
-    }
+    color: #9b763b;
 
+    font-size: 11px;
+    font-weight: 800;
 }
 
+/* =========================================================
+   10. ABOUT
+========================================================= */
 
-.error-message{
+.about-section {
+    background:
+        linear-gradient(
+            135deg,
+            #f7f4ed,
+            #eee9dd
+        );
+}
 
-    grid-column:
-        1 / -1;
+.about-box {
+    display: grid;
+
+    grid-template-columns: .8fr 1.2fr;
+
+    gap: 55px;
+
+    align-items: center;
+}
+
+.about-seal {
+    min-height: 330px;
+
+    display: grid;
+    place-items: center;
+}
+
+.about-seal-inner {
+    width: 230px;
+    height: 230px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(161,124,64,.35);
+
+    background: rgba(255,255,255,.55);
+
+    box-shadow:
+        0 0 0 14px rgba(161,124,64,.035),
+        0 0 0 28px rgba(161,124,64,.02);
+}
+
+.about-seal-inner svg {
+    width: 85px;
+    height: 85px;
+
+    color: #a17b3d;
+}
+
+.about-content h2 {
+    margin: 0 0 18px;
+
+    color: var(--navy-900);
+
+    font-family: "Amiri", serif;
+
+    font-size: 38px;
+}
+
+.about-content p {
+    margin: 0 0 18px;
+
+    color: #657083;
+
+    font-size: 14px;
+
+    line-height: 2.1;
+}
+
+.about-points {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.about-point {
+    padding: 15px;
+
+    background: rgba(255,255,255,.7);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    color: var(--navy-900);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   11. CTA
+========================================================= */
+
+.cta-section {
+    padding: 70px 0;
+
+    background: var(--navy-900);
+}
+
+.cta-box {
+    padding: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    border: 1px solid rgba(216,184,117,.18);
+
+    border-radius: 22px;
 
     background:
-        #fff4f4;
-
-    color:#a52a2a;
-
-    padding:20px;
-
-    border-radius:14px;
-
-    text-align:center;
-
-    font-size:13px;
-
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(201,164,92,.12),
+            transparent 35%
+        ),
+        rgba(255,255,255,.025);
 }
 
+.cta-box h2 {
+    margin: 0 0 7px;
 
-/* =====================================================
-   18 — MOBILE
-===================================================== */
+    color: white;
 
-@media(max-width:950px){
+    font-family: "Amiri", serif;
 
-    .hero{
-
-        grid-template-columns:1fr;
-
-        gap:35px;
-
-        text-align:center;
-
-    }
-
-    .hero-text{
-
-        margin-left:auto;
-        margin-right:auto;
-
-    }
-
-    .hero-actions{
-
-        justify-content:center;
-
-    }
-
-    .hero-emblem-card{
-
-        max-width:430px;
-
-        width:100%;
-
-        margin:auto;
-
-    }
-
-    .branches-grid{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-    .references-grid{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-    .footer-grid{
-
-        grid-template-columns:
-            1fr 1fr;
-
-    }
-
+    font-size: 32px;
 }
 
+.cta-box p {
+    margin: 0;
 
-@media(max-width:650px){
+    color: rgba(255,255,255,.58);
 
-    .topbar{
-
-        padding:
-            15px 0;
-
-    }
-
-    .brand-name{
-
-        font-size:17px;
-
-    }
-
-    .brand-subtitle{
-
-        font-size:9px;
-
-    }
-
-    .brand-mark{
-
-        width:46px;
-        height:46px;
-
-        border-radius:13px;
-
-    }
-
-    .brand-mark svg{
-
-        width:26px;
-        height:26px;
-
-    }
-
-    .admin-button{
-
-        display:none;
-
-    }
-
-
-    .main-nav{
-
-        overflow-x:auto;
-
-    }
-
-    .nav-inner{
-
-        width:max-content;
-
-        min-width:100%;
-
-        justify-content:flex-start;
-
-        padding:
-            0 8px;
-
-    }
-
-    .nav-link{
-
-        white-space:nowrap;
-
-        font-size:11px;
-
-        padding:
-            13px 10px;
-
-    }
-
-
-    .hero{
-
-        padding:
-            45px 0
-            65px;
-
-    }
-
-    .hero h1{
-
-        font-size:30px;
-
-    }
-
-    .hero-text{
-
-        font-size:13px;
-
-    }
-
-    .hero-emblem-card{
-
-        min-height:290px;
-
-    }
-
-    .emblem{
-
-        width:120px;
-        height:120px;
-
-    }
-
-    .emblem svg{
-
-        width:60px;
-        height:60px;
-
-    }
-
-
-    .stats-wrapper{
-
-        margin:
-            -25px auto
-            50px;
-
-    }
-
-    .stats{
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-    .stat-card{
-
-        padding:18px;
-
-    }
-
-
-    .search-card{
-
-        padding:17px;
-
-    }
-
-    .search-form{
-
-        flex-direction:column;
-
-    }
-
-    .search-button{
-
-        height:50px;
-
-    }
-
-
-    .branches-grid{
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-
-    .references-grid{
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-
-    .section{
-
-        margin-bottom:55px;
-
-    }
-
-    .section-heading h2{
-
-        font-size:23px;
-
-    }
-
-
-    .about-card{
-
-        padding:
-            35px 20px;
-
-    }
-
-
-    .footer-grid{
-
-        grid-template-columns:
-            1fr;
-
-        text-align:center;
-
-    }
-
+    font-size: 12px;
 }
 
+.cta-button {
+    flex-shrink: 0;
 
-/* =====================================================
-   19 — ACCESSIBILITY
-===================================================== */
+    padding: 13px 23px;
 
-:focus-visible{
+    border-radius: 10px;
 
-    outline:
-        3px solid
-        rgba(199,164,71,.45);
+    background: var(--gold-400);
 
-    outline-offset:3px;
+    color: var(--navy-950);
 
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* =========================================================
+   12. FOOTER
+========================================================= */
+
+.footer {
+    padding: 40px 0 25px;
+
+    background: #061321;
+
+    color: rgba(255,255,255,.58);
+}
+
+.footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.footer-brand {
+    color: white;
+
+    font-family: "Amiri", serif;
+
+    font-size: 22px;
+}
+
+.footer-text {
+    max-width: 500px;
+
+    margin: 5px 0 0;
+
+    font-size: 10px;
+
+    line-height: 1.9;
+}
+
+.footer-bottom {
+    padding-top: 20px;
+
+    text-align: center;
+
+    font-size: 9px;
+
+    color: rgba(255,255,255,.35);
+}
+
+/* =========================================================
+   13. LOADING
+========================================================= */
+
+.loading {
+    grid-column: 1 / -1;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   14. MOBILE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .main-nav a {
+        padding-inline: 8px;
+        font-size: 11px;
+    }
+
+    .hero-content {
+        gap: 35px;
+    }
+
+    .branches-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 820px) {
+
+    .header-inner {
+        min-height: 70px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        padding: 60px 0 75px;
+    }
+
+    .hero-description {
+        margin-inline: auto;
+    }
+
+    .hero-search {
+        margin-inline: auto;
+    }
+
+    .hero-visual {
+        min-height: 250px;
+    }
+
+    .library-emblem {
+        width: 245px;
+    }
+
+    .stats-section {
+        margin-top: -25px;
+    }
+
+    .branches-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .references-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .about-box {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .about-seal {
+        min-height: 230px;
+    }
+
+    .cta-box {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .container {
+        width: min(calc(100% - 26px), var(--container));
+    }
+
+    .brand-title {
+        font-size: 15px;
+    }
+
+    .brand-subtitle {
+        font-size: 9px;
+    }
+
+    .brand-mark {
+        width: 42px;
+        height: 42px;
+    }
+
+    .hero-content {
+        padding: 48px 0 65px;
+    }
+
+    .hero h1 {
+        font-size: 49px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-search {
+        padding: 5px;
+    }
+
+    .hero-search input {
+        height: 48px;
+
+        padding-inline: 11px;
+
+        font-size: 11px;
+    }
+
+    .hero-search button {
+        min-width: 92px;
+        height: 48px;
+
+        font-size: 11px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+    .stat-card {
+        min-height: 125px;
+
+        padding: 22px 15px;
+    }
+
+    .stat-icon {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+    }
+
+    .stat-number {
+        font-size: 26px;
+    }
+
+    .branches-grid,
+    .references-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 65px 0;
+    }
+
+    .section-title {
+        font-size: 34px;
+    }
+
+    .about-content h2 {
+        font-size: 32px;
+    }
+
+    .about-points {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-box {
+        padding: 30px 22px;
+    }
+
+    .cta-box h2 {
+        font-size: 27px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+}
+
+/* =========================================================
+   15. ACCESSIBILITY / SAFETY
+========================================================= */
+
+svg {
+    overflow: visible;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+:focus-visible {
+    outline: 3px solid rgba(216,184,117,.65);
+    outline-offset: 3px;
+}
+
+::selection {
+    background: rgba(201,164,92,.28);
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
+<!-- ======================================================
      HEADER
-===================================================== -->
+====================================================== -->
 
 <header class="site-header">
 
+    <div class="container header-inner">
 
-    <div class="topbar">
+        <a href="index.html" class="brand">
 
+            <span class="brand-mark" aria-hidden="true">
 
-        <div class="brand">
-
-
-            <div class="brand-mark"
-                 aria-hidden="true">
-
-                <svg
-                    viewBox="0 0 64 64"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-
-                    <path d="M32 8v45"/>
-
-                    <path d="M20 53h24"/>
-
-                    <path d="M14 16h36"/>
-
-                    <path d="M21 16l-10 20h20z"/>
-
-                    <path d="M43 16L33 36h20z"/>
-
-                </svg>
-
-            </div>
-
-
-            <div>
-
-                <h1 class="brand-name">
-                    الموسوعة القانونية
-                </h1>
-
-                <span class="brand-subtitle">
-                    مكتبة قانونية رقمية شاملة
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <a
-            href="admin.html"
-            class="admin-button">
-
-            <span class="icon icon-white">
-
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-
-                    <rect
-                        x="4"
-                        y="10"
-                        width="16"
-                        height="10"
-                        rx="2"/>
-
+                <svg viewBox="0 0 48 48" fill="none">
                     <path
-                        d="M8 10V7a4 4 0 0 1 8 0v3"/>
-
+                        d="M8 10h13c5 0 8 3 8 8v22c-2-3-5-5-9-5H8V10Z"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M40 10H27c-5 0-8 3-8 8v22c2-3 5-5 9-5h12V10Z"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M24 18h3M24 23h3"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
                 </svg>
 
             </span>
 
-            لوحة الإدارة
+            <span class="brand-text">
+                <span class="brand-title">الموسوعة القانونية</span>
+                <span class="brand-subtitle">المكتبة القانونية الرقمية</span>
+            </span>
 
         </a>
 
+        <nav class="main-nav">
+
+            <a href="index.html">الرئيسية</a>
+
+            <a href="#branches">فروع القانون</a>
+
+            <a href="#latest">أحدث المراجع</a>
+
+            <a href="search.html">البحث المتقدم</a>
+
+            <a href="#about">عن الموسوعة</a>
+
+            <a href="admin.html">لوحة الإدارة</a>
+
+        </nav>
 
     </div>
-
-
-
-    <div class="hero">
-
-
-        <div class="hero-content">
-
-
-            <div class="hero-kicker">
-
-                <span class="hero-kicker-line"></span>
-
-                منصة قانونية رقمية
-
-                <span class="hero-kicker-line"></span>
-
-            </div>
-
-
-            <h1>
-
-                مرجعك القانوني
-
-                <strong>
-                    في مكان واحد
-                </strong>
-
-            </h1>
-
-
-            <p class="hero-text">
-
-                الموسوعة القانونية منصة رقمية تهدف إلى
-                تنظيم المعرفة القانونية وتسهيل الوصول
-                إلى القوانين والكتب والبحوث والمراجع
-                في مختلف فروع القانون.
-
-            </p>
-
-
-            <div class="hero-actions">
-
-
-                <a
-                    href="search.html"
-                    class="primary-button">
-
-                    <span class="icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.2"
-                            stroke-linecap="round">
-
-                            <circle
-                                cx="10.8"
-                                cy="10.8"
-                                r="6.5"/>
-
-                            <path
-                                d="M16 16l5 5"/>
-
-                        </svg>
-
-                    </span>
-
-                    البحث في الموسوعة
-
-                </a>
-
-
-                <a
-                    href="#branches"
-                    class="secondary-button">
-
-                    استكشاف فروع القانون
-
-                </a>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="hero-emblem-card">
-
-
-            <div class="emblem">
-
-                <svg
-                    viewBox="0 0 64 64"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-
-                    <path d="M32 8v44"/>
-
-                    <path d="M20 52h24"/>
-
-                    <path d="M13 16h38"/>
-
-                    <path d="M20 16L10 35h20z"/>
-
-                    <path d="M44 16L34 35h20z"/>
-
-                    <path d="M16 42h32"/>
-
-                </svg>
-
-            </div>
-
-
-            <h2>
-                الموسوعة القانونية
-            </h2>
-
-
-            <p>
-                المعرفة القانونية بين يديك
-            </p>
-
-
-            <div class="manager-card">
-
-                <span class="icon icon-gold">
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round">
-
-                        <circle
-                            cx="12"
-                            cy="8"
-                            r="3"/>
-
-                        <path
-                            d="M5 21c.8-4 3-6 7-6s6.2 2 7 6"/>
-
-                    </svg>
-
-                </span>
-
-                فراس بسر — مدير الموسوعة القانونية
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
 
 </header>
 
 
+<!-- ======================================================
+     HERO
+====================================================== -->
 
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
+<main>
 
-<nav class="main-nav">
+<section class="hero">
 
-    <div class="nav-inner">
+    <div class="container hero-content">
 
+        <div>
 
-        <a
-            href="index.html"
-            class="nav-link">
+            <div class="eyebrow">
+                <span class="eyebrow-line"></span>
+                منصة المعرفة القانونية الرقمية
+            </div>
 
-            الرئيسية
+            <h1>
+                الموسوعة
+                <span>القانونية</span>
+            </h1>
 
-        </a>
+            <p class="hero-description">
+                مكتبة قانونية رقمية تجمع المراجع والكتب والبحوث
+                في مختلف فروع القانون، في فضاء أكاديمي واحد،
+                منظم وسهل الوصول.
+            </p>
 
+            <form class="hero-search" id="homeSearch">
 
-        <a
-            href="#branches"
-            class="nav-link">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="ابحث عن كتاب، مرجع، مؤلف أو موضوع قانوني..."
+                    autocomplete="off"
+                >
 
-            فروع القانون
+                <button type="submit">
+                    بحث متقدم
+                </button>
 
-        </a>
+            </form>
 
-
-        <a
-            href="#latest"
-            class="nav-link">
-
-            أحدث المراجع
-
-        </a>
-
-
-        <a
-            href="search.html"
-            class="nav-link">
-
-            البحث المتقدم
-
-        </a>
-
-
-        <a
-            href="#about"
-            class="nav-link">
-
-            عن الموسوعة
-
-        </a>
+        </div>
 
 
-        <a
-            href="admin.html"
-            class="nav-link">
+        <div class="hero-visual">
 
-            لوحة الإدارة
+            <div class="library-emblem">
 
-        </a>
+                <div class="emblem-content">
 
+                    <svg viewBox="0 0 100 100" fill="none">
 
-    </div>
+                        <path
+                            d="M15 25h27c10 0 18 7 18 17v38c-5-7-11-10-20-10H15V25Z"
+                            stroke="currentColor"
+                            stroke-width="3"
+                        />
 
-</nav>
+                        <path
+                            d="M85 25H58c-10 0-18 7-18 17v38c5-7 11-10 20-10h25V25Z"
+                            stroke="currentColor"
+                            stroke-width="3"
+                        />
 
+                        <path
+                            d="M50 42v39"
+                            stroke="currentColor"
+                            stroke-width="3"
+                        />
 
+                    </svg>
 
-<!-- =====================================================
-     STATISTICS
-===================================================== -->
+                    <strong>المعرفة</strong>
 
-<section class="stats-wrapper">
-
-
-    <div class="stats">
-
-
-        <!-- BRANCHES -->
-
-        <div class="stat-card">
-
-
-            <div class="stat-icon-box">
-
-                <svg
-                    viewBox="0 0 64 64"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-
-                    <path d="M32 8v44"/>
-
-                    <path d="M20 52h24"/>
-
-                    <path d="M13 16h38"/>
-
-                    <path d="M20 16L10 35h20z"/>
-
-                    <path d="M44 16L34 35h20z"/>
-
-                </svg>
+                </div>
 
             </div>
 
+        </div>
 
-            <div>
+    </div>
 
-                <span
-                    id="branchCount"
-                    class="stat-number">
+</section>
 
-                    —
 
-                </span>
+<!-- ======================================================
+     STATISTICS
+====================================================== -->
+
+<section class="stats-section">
+
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <article class="stat-card">
+
+                <div class="stat-icon">
+
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <rect
+                            x="7"
+                            y="8"
+                            width="34"
+                            height="32"
+                            rx="5"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        />
+                        <path
+                            d="M16 17h16M16 24h16M16 31h10"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                        />
+                    </svg>
+
+                </div>
+
+                <span class="stat-number" id="branchCount">—</span>
 
                 <span class="stat-label">
                     فرعًا قانونيًا
                 </span>
 
-            </div>
+            </article>
 
 
-        </div>
+            <article class="stat-card">
 
+                <div class="stat-icon">
 
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path
+                            d="M11 8h22a5 5 0 0 1 5 5v27H16a5 5 0 0 1-5-5V8Z"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        />
+                        <path
+                            d="M16 8v27"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        />
+                        <path
+                            d="M22 17h10M22 23h10M22 29h7"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                        />
+                    </svg>
 
-        <!-- REFERENCES -->
+                </div>
 
-        <div class="stat-card">
-
-
-            <div class="stat-icon-box">
-
-                <svg
-                    viewBox="0 0 64 64"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-
-                    <path
-                        d="M13 9h37a4 4 0 0 1 4 4v42H18a5 5 0 0 1-5-5z"/>
-
-                    <path
-                        d="M18 9v46"/>
-
-                    <path
-                        d="M26 21h19"/>
-
-                    <path
-                        d="M26 31h19"/>
-
-                    <path
-                        d="M26 41h13"/>
-
-                </svg>
-
-            </div>
-
-
-            <div>
-
-                <span
-                    id="referenceCount"
-                    class="stat-number">
-
-                    —
-
-                </span>
+                <span class="stat-number" id="referenceCount">—</span>
 
                 <span class="stat-label">
                     مرجعًا قانونيًا
                 </span>
 
-            </div>
+            </article>
 
 
-        </div>
+            <article class="stat-card">
 
+                <div class="stat-icon">
 
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <circle
+                            cx="24"
+                            cy="24"
+                            r="17"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        />
+                        <path
+                            d="M24 14v11l7 5"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
 
-        <!-- ACCESS -->
-
-        <div class="stat-card">
-
-
-            <div class="stat-icon-box">
-
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-
-                    <circle
-                        cx="10.5"
-                        cy="10.5"
-                        r="6.5"/>
-
-                    <path
-                        d="M16 16l5 5"/>
-
-                </svg>
-
-            </div>
-
-
-            <div>
+                </div>
 
                 <span class="stat-number">
                     24/7
@@ -2427,392 +1661,279 @@ footer{
                     وصول إلى المعرفة القانونية
                 </span>
 
-            </div>
-
+            </article>
 
         </div>
-
 
     </div>
 
 </section>
 
 
+<!-- ======================================================
+     BRANCHES
+====================================================== -->
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<section class="section branches-section" id="branches">
 
-<main class="container">
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-kicker">
+                التصنيف الأكاديمي
+            </div>
+
+            <h2 class="section-title">
+                فروع القانون
+            </h2>
+
+            <p class="section-description">
+                تصفح المراجع القانونية حسب التخصص والفرع القانوني.
+            </p>
+
+        </div>
 
 
+        <div class="branches-grid" id="branchesGrid">
 
-<!-- =====================================================
-     SEARCH SECTION
-===================================================== -->
+            <div class="loading">
+                جارٍ تحميل فروع القانون...
+            </div>
 
-<section class="section">
-
-
-    <div class="section-heading">
-
-        <span class="eyebrow">
-            البحث الذكي
-        </span>
-
-        <h2>
-            ابحث في الموسوعة
-        </h2>
-
-        <p>
-            ابحث عن قانون أو كتاب أو بحث أو مرجع قانوني
-        </p>
+        </div>
 
     </div>
 
-
-    <div class="search-card">
-
-
-        <form
-            id="homeSearch"
-            class="search-form">
+</section>
 
 
-            <div class="search-input-wrapper">
+<!-- ======================================================
+     LATEST REFERENCES
+====================================================== -->
+
+<section class="section latest-section" id="latest">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-kicker">
+                المكتبة الرقمية
+            </div>
+
+            <h2 class="section-title">
+                أحدث المراجع
+            </h2>
+
+            <p class="section-description">
+                أحدث الكتب والمراجع والوثائق المضافة إلى الموسوعة.
+            </p>
+
+        </div>
 
 
-                <span class="search-input-icon">
+        <div class="references-grid" id="latestReferences">
 
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
+            <div class="loading">
+                جارٍ تحميل أحدث المراجع...
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     ABOUT
+====================================================== -->
+
+<section class="section about-section" id="about">
+
+    <div class="container about-box">
+
+        <div class="about-seal">
+
+            <div class="about-seal-inner">
+
+                <svg viewBox="0 0 100 100" fill="none">
+
+                    <path
+                        d="M17 25h22c8 0 13 4 13 12v40c-4-5-9-7-16-7H17V25Z"
                         stroke="currentColor"
-                        stroke-width="2.2"
-                        stroke-linecap="round">
+                        stroke-width="3"
+                    />
 
-                        <circle
-                            cx="10.8"
-                            cy="10.8"
-                            r="6.5"/>
+                    <path
+                        d="M83 25H61c-8 0-13 4-13 12v40c4-5 9-7 16-7h19V25Z"
+                        stroke="currentColor"
+                        stroke-width="3"
+                    />
 
-                        <path
-                            d="M16 16l5 5"/>
+                    <path
+                        d="M50 37v40"
+                        stroke="currentColor"
+                        stroke-width="3"
+                    />
 
-                    </svg>
+                    <path
+                        d="M31 38h11M31 46h11"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
 
-                </span>
+                    <path
+                        d="M58 38h11M58 46h11"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
 
-
-                <input
-                    id="searchInput"
-                    class="search-input"
-                    type="search"
-                    placeholder="مثال: مجلة الالتزامات والعقود"
-                    autocomplete="off">
+                </svg>
 
             </div>
 
-
-            <button
-                type="submit"
-                class="search-button">
-
-                بحث
-
-            </button>
+        </div>
 
 
-        </form>
+        <div class="about-content">
+
+            <div class="section-kicker">
+                حول المشروع
+            </div>
+
+            <h2>
+                المعرفة القانونية في متناول الجميع
+            </h2>
+
+            <p>
+                الموسوعة القانونية مشروع رقمي يهدف إلى تنظيم
+                المراجع القانونية وتسهيل الوصول إليها في فضاء
+                إلكتروني حديث يخدم الطلبة والباحثين والمختصين
+                في المجال القانوني.
+            </p>
+
+            <p>
+                نعمل على بناء مكتبة قانونية عربية متخصصة تجمع
+                مختلف فروع القانون في واجهة واحدة، مع تصنيف
+                واضح وإمكانية البحث والوصول السريع إلى المراجع.
+            </p>
 
 
-        <p class="search-note">
+            <div class="about-points">
 
-            يمكنك أيضًا استخدام
-            <a
-                href="search.html"
-                style="color:#a58427;font-weight:bold">
+                <div class="about-point">
+                    ✓ تنظيم أكاديمي للمراجع
+                </div>
 
-                البحث القانوني المتقدم
+                <div class="about-point">
+                    ✓ بحث سريع ومتقدم
+                </div>
 
+                <div class="about-point">
+                    ✓ تصنيف حسب فروع القانون
+                </div>
+
+                <div class="about-point">
+                    ✓ وصول رقمي مستمر
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     CTA
+====================================================== -->
+
+<section class="cta-section">
+
+    <div class="container">
+
+        <div class="cta-box">
+
+            <div>
+
+                <h2>
+                    ابدأ رحلتك في البحث القانوني
+                </h2>
+
+                <p>
+                    اكتشف المراجع والكتب والبحوث القانونية في الموسوعة.
+                </p>
+
+            </div>
+
+            <a href="search.html" class="cta-button">
+                استكشف المكتبة
             </a>
 
-            للتصفية حسب الفرع والتصنيف.
-
-        </p>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     BRANCHES
-===================================================== -->
-
-<section
-    id="branches"
-    class="section">
-
-
-    <div class="section-heading">
-
-        <span class="eyebrow">
-            المكتبة القانونية
-        </span>
-
-        <h2>
-            فروع القانون
-        </h2>
-
-        <p>
-            اختر المجال القانوني للوصول إلى مراجعه
-        </p>
-
-    </div>
-
-
-    <div
-        id="branchesGrid"
-        class="branches-grid">
-
-
-        <div class="loading">
-
-            <div class="loading-spinner"></div>
-
-            جاري تحميل فروع القانون...
-
         </div>
 
-
     </div>
-
 
 </section>
-
-
-
-<!-- =====================================================
-     LATEST REFERENCES
-===================================================== -->
-
-<section
-    id="latest"
-    class="section">
-
-
-    <div class="section-heading">
-
-        <span class="eyebrow">
-            المكتبة الحديثة
-        </span>
-
-        <h2>
-            أحدث المراجع
-        </h2>
-
-        <p>
-            آخر المراجع التي تمت إضافتها إلى الموسوعة
-        </p>
-
-    </div>
-
-
-    <div
-        id="latestReferences"
-        class="references-grid">
-
-
-        <div class="loading">
-
-            <div class="loading-spinner"></div>
-
-            جاري تحميل أحدث المراجع...
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section
-    id="about"
-    class="section">
-
-
-    <div class="about-card">
-
-
-        <div class="about-icon">
-
-
-            <svg
-                viewBox="0 0 64 64"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round">
-
-                <path d="M32 8v44"/>
-
-                <path d="M20 52h24"/>
-
-                <path d="M13 16h38"/>
-
-                <path d="M20 16L10 35h20z"/>
-
-                <path d="M44 16L34 35h20z"/>
-
-            </svg>
-
-
-        </div>
-
-
-        <h2>
-            عن الموسوعة القانونية
-        </h2>
-
-
-        <p>
-
-            الموسوعة القانونية مشروع رقمي يهدف إلى
-            جمع وتنظيم المعرفة القانونية في منصة واحدة،
-            وتسهيل الوصول إلى القوانين والمراجع والكتب
-            والبحوث في مختلف فروع القانون، لفائدة الطلبة
-            والباحثين وكل المهتمين بالدراسات القانونية.
-
-        </p>
-
-
-    </div>
-
-
-</section>
-
-
 
 </main>
 
 
-
-<!-- =====================================================
+<!-- ======================================================
      FOOTER
-===================================================== -->
+====================================================== -->
 
-<footer>
+<footer class="footer">
 
+    <div class="container">
 
-    <div class="footer-grid">
+        <div class="footer-top">
 
+            <div>
 
-        <div class="footer-column">
+                <div class="footer-brand">
+                    الموسوعة القانونية
+                </div>
 
+                <p class="footer-text">
+                    منصة رقمية أكاديمية لتنظيم وإتاحة المعرفة
+                    والمراجع القانونية في مختلف فروع القانون.
+                </p>
 
-            <h3>
-                الموسوعة القانونية
-            </h3>
+            </div>
 
-
-            <p>
-
-                مكتبة قانونية رقمية تهدف إلى
-                تنظيم المعرفة القانونية وتسهيل
-                الوصول إليها في أي وقت ومن أي مكان.
-
-            </p>
-
-
-        </div>
-
-
-
-        <div class="footer-column">
-
-
-            <h3>
-                روابط سريعة
-            </h3>
-
-
-            <a href="index.html">
-                الرئيسية
-            </a>
-
-            <a href="search.html">
-                البحث القانوني
-            </a>
-
-            <a href="#branches">
-                فروع القانون
-            </a>
-
-            <a href="#latest">
-                أحدث المراجع
-            </a>
-
+            <div class="footer-text">
+                فراس بسر — مدير الموسوعة القانونية
+            </div>
 
         </div>
 
-
-
-        <div class="footer-column">
-
-
-            <h3>
-                الإدارة
-            </h3>
-
-
-            <a href="admin.html">
-                تسجيل دخول المدير
-            </a>
-
-            <a href="dashboard.html">
-                لوحة التحكم
-            </a>
-
-
+        <div class="footer-bottom">
+            © 2026 الموسوعة القانونية — جميع الحقوق محفوظة
         </div>
-
 
     </div>
-
-
-
-    <div class="footer-bottom">
-
-        © 2026 الموسوعة القانونية
-
-        <br>
-
-        فراس بسر — مدير الموسوعة القانونية
-
-    </div>
-
 
 </footer>
 
 
+<!-- ======================================================
+     SUPABASE
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-/* =====================================================
-   SUPABASE CONFIG
-===================================================== */
+/* =========================================================
+   SUPABASE CONFIGURATION
+========================================================= */
 
 const SUPABASE_URL =
     "https://yksrckzomkowjzmsafvm.supabase.co";
@@ -2820,903 +1941,554 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
 
-
 const supabaseClient =
-    supabase.createClient(
+    window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
     );
 
 
-/* =====================================================
-   ELEMENTS
-===================================================== */
+/* =========================================================
+   SECURITY / HTML ESCAPING
+========================================================= */
 
-const branchCount =
-    document.getElementById(
-        "branchCount"
-    );
+function escapeHTML(value) {
 
-const referenceCount =
-    document.getElementById(
-        "referenceCount"
-    );
+    if (value === null || value === undefined) {
+        return "";
+    }
 
-const branchesGrid =
-    document.getElementById(
-        "branchesGrid"
-    );
-
-const latestReferences =
-    document.getElementById(
-        "latestReferences"
-    );
-
-const homeSearch =
-    document.getElementById(
-        "homeSearch"
-    );
-
-const searchInput =
-    document.getElementById(
-        "searchInput"
-    );
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 
-/* =====================================================
+/* =========================================================
    BRANCH ICONS
-===================================================== */
+========================================================= */
 
-function branchIcon(slug){
+function branchIcon(slug) {
 
     const icons = {
 
         civil: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <path d="M32 8v44"/>
-                <path d="M20 52h24"/>
-                <path d="M13 16h38"/>
-                <path d="M20 16L10 35h20z"/>
-                <path d="M44 16L34 35h20z"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M8 12h32v25H8z"
+                      stroke="currentColor"
+                      stroke-width="2.5"/>
+                <path d="M14 18h20M14 24h20M14 30h12"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"/>
             </svg>
         `,
 
         commercial: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <path d="M10 54h44"/>
-                <path d="M14 54V25h36v29"/>
-                <path d="M10 25l22-15 22 15"/>
-                <path d="M23 54V38h18v16"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <rect x="7" y="11" width="34" height="27"
+                      rx="4"
+                      stroke="currentColor"
+                      stroke-width="2.5"/>
+                <path d="M15 11V8h18v3M13 20h22M17 27h14"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"/>
             </svg>
         `,
 
         administrative: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <path d="M8 54h48"/>
-                <path d="M12 54V26h40v28"/>
-                <path d="M8 26h48L32 10z"/>
-                <path d="M20 54V35"/>
-                <path d="M32 54V35"/>
-                <path d="M44 54V35"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M8 38h32M12 38V18h24v20M8 18h32M16 18l8-9 8 9"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linejoin="round"/>
+                <path d="M19 24v8M24 24v8M29 24v8"
+                      stroke="currentColor"
+                      stroke-width="2.2"/>
             </svg>
         `,
 
         constitutional: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <rect
-                    x="15"
-                    y="9"
-                    width="34"
-                    height="46"
-                    rx="3"/>
-
-                <path d="M23 20h18"/>
-                <path d="M23 29h18"/>
-                <path d="M23 38h13"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M24 7v34M9 14l15-7 15 7M13 16h22"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"/>
+                <path d="M11 16l-6 12h12l-6-12ZM37 16l-6 12h12l-6-12Z"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linejoin="round"/>
+                <path d="M14 38h20"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"/>
             </svg>
         `,
 
         criminal: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <path d="M15 49L49 15"/>
-                <path d="M22 42l-7 7"/>
-                <path d="M42 22l7-7"/>
-                <path d="M19 45l-4-4"/>
-                <path d="M45 19l-4-4"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M24 7l15 6v10c0 9-6 15-15 18C15 38 9 32 9 23V13l15-6Z"
+                      stroke="currentColor"
+                      stroke-width="2.5"/>
+                <path d="M17 24l5 5 10-11"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
             </svg>
         `,
 
         "private-international": `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round">
-
-                <circle cx="32" cy="32" r="22"/>
-                <path d="M10 32h44"/>
-                <path d="M32 10c7 7 10 14 10 22s-3 15-10 22"/>
-                <path d="M32 10c-7 7-10 14-10 22s3 15 10 22"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="16"
+                        stroke="currentColor"
+                        stroke-width="2.5"/>
+                <path d="M8 24h32M24 8c5 5 7 10 7 16s-2 11-7 16M24 8c-5 5-7 10-7 16s2 11 7 16"
+                      stroke="currentColor"
+                      stroke-width="2"/>
             </svg>
         `,
 
         "public-international": `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <circle cx="32" cy="32" r="22"/>
-                <path d="M10 32h44"/>
-                <path d="M32 10v44"/>
-                <path d="M18 18c8 6 20 6 28 0"/>
-                <path d="M18 46c8-6 20-6 28 0"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="16"
+                        stroke="currentColor"
+                        stroke-width="2.5"/>
+                <path d="M24 8v32M8 24h32"
+                      stroke="currentColor"
+                      stroke-width="2"/>
+                <path d="M13 14c4 3 7 4 11 4s7-1 11-4M13 34c4-3 7-4 11-4s7 1 11 4"
+                      stroke="currentColor"
+                      stroke-width="2"/>
             </svg>
         `,
 
         labor: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <rect
-                    x="10"
-                    y="18"
-                    width="44"
-                    height="35"
-                    rx="4"/>
-
-                <path d="M24 18v-5h16v5"/>
-                <path d="M10 30h44"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M9 34h30M13 34V17h22v17M18 17v-5h12v5"
+                      stroke="currentColor"
+                      stroke-width="2.5"/>
+                <path d="M19 23h10M19 28h10"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"/>
             </svg>
         `,
 
         tax: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <rect
-                    x="13"
-                    y="9"
-                    width="38"
-                    height="46"
-                    rx="3"/>
-
-                <path d="M22 21h20"/>
-                <path d="M22 31h20"/>
-                <path d="M22 41h12"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <rect x="9" y="7" width="30" height="34"
+                      rx="4"
+                      stroke="currentColor"
+                      stroke-width="2.5"/>
+                <path d="M16 16h16M16 23h16M16 30h6M29 30h3"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"/>
             </svg>
         `,
 
         arbitration: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <path d="M10 32h44"/>
-                <path d="M18 32l-9 15h18z"/>
-                <path d="M46 32l-9 15h18z"/>
-                <path d="M32 10v22"/>
-                <path d="M22 10h20"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M24 7l15 7v9c0 9-6 15-15 18C15 38 9 32 9 23v-9l15-7Z"
+                      stroke="currentColor"
+                      stroke-width="2.5"/>
+                <path d="M17 25h14M20 20h8M20 30h8"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"/>
             </svg>
         `,
 
         books: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <path d="M12 12h18a6 6 0 0 1 6 6v35H18a6 6 0 0 0-6 6z"/>
-                <path d="M52 12H34a6 6 0 0 0-6 6v35h18a6 6 0 0 1 6 6z"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M8 11h11c5 0 8 3 8 8v20c-2-3-5-4-9-4H8V11Z"
+                      stroke="currentColor"
+                      stroke-width="2.5"/>
+                <path d="M40 11H29c-5 0-8 3-8 8v20c2-3 5-4 9-4h10V11Z"
+                      stroke="currentColor"
+                      stroke-width="2.5"/>
             </svg>
         `,
 
         research: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <path d="M16 10h32v44H16z"/>
-                <path d="M23 21h18"/>
-                <path d="M23 30h18"/>
-                <path d="M23 39h12"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M10 8h28v32H10z"
+                      stroke="currentColor"
+                      stroke-width="2.5"/>
+                <path d="M16 16h16M16 22h16M16 28h11"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"/>
+                <path d="M31 31l7 7"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"/>
+                <circle cx="27" cy="27" r="6"
+                        stroke="currentColor"
+                        stroke-width="2"/>
             </svg>
         `,
 
         maritime: `
-            <svg viewBox="0 0 64 64"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="3"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <path d="M32 9v34"/>
-                <path d="M32 16h17"/>
-                <path d="M32 16L15 39h34z"/>
-                <path d="M10 47c7 6 13 6 22 0"/>
-                <path d="M32 47c7 6 13 6 22 0"/>
-
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M9 31h30l-5 7H14l-5-7Z"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linejoin="round"/>
+                <path d="M24 31V10M24 10l10 7H24"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"/>
+                <path d="M7 40c4-3 8 3 12 0 4-3 8 3 12 0 4-3 7 2 10 0"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"/>
             </svg>
         `
-
     };
 
-
-    return icons[slug] || icons.civil;
-
+    return icons[slug] || icons.books;
 }
 
 
-/* =====================================================
+/* =========================================================
    BRANCH DESCRIPTIONS
-===================================================== */
+========================================================= */
 
-function branchDescription(slug){
+function branchDescription(slug) {
 
     const descriptions = {
 
         civil:
-            "الالتزامات والعقود والمسؤولية المدنية.",
+            "الالتزامات والعقود والمسؤولية المدنية",
 
         commercial:
-            "الشركات والأعمال والمعاملات التجارية.",
+            "التجار والشركات والأعمال التجارية",
 
         administrative:
-            "الإدارة والقرارات والمرافق العامة.",
+            "الإدارة والقرارات والمنازعات الإدارية",
 
         constitutional:
-            "الدستور والمؤسسات والحقوق والحريات.",
+            "الدستور والسلطات والحقوق والحريات",
 
         criminal:
-            "الجرائم والعقوبات والإجراءات الجزائية.",
+            "الجرائم والعقوبات والإجراءات الجزائية",
 
         "private-international":
-            "العلاقات الخاصة ذات العنصر الأجنبي.",
+            "العلاقات الخاصة ذات العنصر الأجنبي",
 
         "public-international":
-            "العلاقات الدولية والمعاهدات والمنظمات.",
+            "العلاقات الدولية والقواعد الدولية",
 
         labor:
-            "علاقات الشغل وعقود العمل والنزاعات.",
+            "علاقات الشغل والحقوق الاجتماعية",
 
         tax:
-            "الضرائب والمنازعات والإجراءات الجبائية.",
+            "الجباية والضرائب والمنازعات الجبائية",
 
         arbitration:
-            "التحكيم وتسوية المنازعات القانونية.",
+            "التحكيم الوطني والدولي",
 
         books:
-            "الكتب والمراجع القانونية المتخصصة.",
+            "كتب ومراجع قانونية متخصصة",
 
         research:
-            "البحوث والمذكرات والأعمال الأكاديمية.",
+            "بحوث ومذكرات ودراسات قانونية",
 
         maritime:
-            "السفن والملاحة والعلاقات القانونية البحرية."
-
+            "السفن والنقل والعلاقات البحرية"
     };
 
-
-    return descriptions[slug]
-        ||
-        "المراجع القانونية الخاصة بهذا المجال.";
-
+    return descriptions[slug] || "مراجع قانونية متخصصة";
 }
 
 
-/* =====================================================
+/* =========================================================
    LOAD BRANCHES
-===================================================== */
+========================================================= */
 
-async function loadBranches(){
+async function loadBranches() {
 
-    const result =
-        await supabaseClient
+    const container =
+        document.getElementById("branchesGrid");
 
-            .from("branches")
+    try {
 
-            .select(
-                "id,name,slug"
-            )
+        const { data, error } =
+            await supabaseClient
+                .from("branches")
+                .select("id,name,slug")
+                .order("name");
 
-            .order(
-                "name",
-                {
-                    ascending:true
-                }
-            );
+        if (error) throw error;
 
+        if (!data || data.length === 0) {
 
-    if(result.error){
-
-        console.error(
-            result.error
-        );
-
-        branchesGrid.innerHTML = `
-
-            <div class="error-message">
-                تعذر تحميل فروع القانون.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const branches =
-        result.data || [];
-
-
-    branchCount.textContent =
-        branches.length;
-
-
-    if(!branches.length){
-
-        branchesGrid.innerHTML = `
-
-            <div class="loading">
-                لا توجد فروع قانونية حاليًا.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    /* =================================
-       LOAD REFERENCE COUNTS
-    ================================= */
-
-    const referenceResult =
-        await supabaseClient
-
-            .from("references")
-
-            .select(
-                "branch_id"
-            );
-
-
-    const counts = {};
-
-
-    (
-        referenceResult.data || []
-    ).forEach(
-        reference => {
-
-            const id =
-                reference.branch_id;
-
-            counts[id] =
-                (counts[id] || 0) + 1;
-
-        }
-    );
-
-
-    branchesGrid.innerHTML =
-        "";
-
-
-    branches.forEach(
-        branch => {
-
-            const card =
-                document.createElement(
-                    "a"
-                );
-
-
-            card.className =
-                "branch-card";
-
-
-            card.href =
-                "branch.html?branch="
-                +
-                encodeURIComponent(
-                    branch.slug
-                );
-
-
-            card.innerHTML = `
-
-                <div class="branch-icon-box">
-
-                    ${branchIcon(
-                        branch.slug
-                    )}
-
+            container.innerHTML = `
+                <div class="loading">
+                    لا توجد فروع قانونية مضافة حاليًا.
                 </div>
-
-
-                <h3>
-
-                    ${escapeHTML(
-                        branch.name
-                    )}
-
-                </h3>
-
-
-                <p>
-
-                    ${branchDescription(
-                        branch.slug
-                    )}
-
-                </p>
-
-
-                <div class="branch-footer">
-
-
-                    <span class="reference-count">
-
-                        ${counts[branch.id] || 0}
-
-                        مرجع
-
-                    </span>
-
-
-                    <span
-                        class="branch-arrow"
-                        aria-hidden="true">
-
-                        ←
-
-                    </span>
-
-
-                </div>
-
             `;
 
+            document.getElementById("branchCount").textContent = "0";
 
-            branchesGrid.appendChild(
-                card
-            );
-
+            return;
         }
-    );
 
-}
+        document.getElementById("branchCount").textContent =
+            data.length;
 
+        container.innerHTML =
+            data.map(branch => {
 
-/* =====================================================
-   LOAD LATEST REFERENCES
-===================================================== */
+                const slug =
+                    branch.slug || "";
 
-async function loadLatestReferences(){
-
-    const result =
-        await supabaseClient
-
-            .from("references")
-
-            .select(`
-                id,
-                title,
-                author,
-                description,
-                file_path,
-                created_at,
-                branches (
-                    id,
-                    name,
-                    slug
-                ),
-                reference_categories (
-                    id,
-                    name,
-                    slug
-                )
-            `)
-
-            .order(
-                "created_at",
-                {
-                    ascending:false
-                }
-            )
-
-            .limit(6);
-
-
-    if(result.error){
-
-        console.error(
-            result.error
-        );
-
-        latestReferences.innerHTML = `
-
-            <div class="error-message">
-                تعذر تحميل أحدث المراجع.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const references =
-        result.data || [];
-
-
-    /* =================================
-       EXACT COUNT
-    ================================= */
-
-    const countResult =
-        await supabaseClient
-
-            .from("references")
-
-            .select(
-                "id",
-                {
-                    count:"exact",
-                    head:true
-                }
-            );
-
-
-    referenceCount.textContent =
-        countResult.count ?? 0;
-
-
-    latestReferences.innerHTML =
-        "";
-
-
-    if(!references.length){
-
-        latestReferences.innerHTML = `
-
-            <div class="loading">
-
-                لا توجد مراجع مضافة
-                حتى الآن.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    references.forEach(
-        reference => {
-
-            const card =
-                document.createElement(
-                    "article"
-                );
-
-
-            card.className =
-                "reference-card";
-
-
-            const branch =
-                reference.branches;
-
-
-            const category =
-                reference.reference_categories;
-
-
-            let pdfUrl =
-                "";
-
-
-            if(
-                reference.file_path
-            ){
-
-                pdfUrl =
-                    supabaseClient
-
-                        .storage
-
-                        .from(
-                            "legal-pdfs"
-                        )
-
-                        .getPublicUrl(
-                            reference.file_path
-                        )
-                        .data
-                        .publicUrl;
-
-            }
-
-
-            card.innerHTML = `
-
-                <h3
-                    class="reference-title">
-
-                    ${escapeHTML(
-                        reference.title
-                    )}
-
-                </h3>
-
-
-                <div class="reference-meta">
-
-
-                    ${
-                        branch
-                        ?
-                        `
-                        <span class="badge">
-
-                            ${escapeHTML(
-                                branch.name
-                            )}
-
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        category
-                        ?
-                        `
-                        <span class="badge">
-
-                            ${escapeHTML(
-                                category.name
-                            )}
-
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        reference.author
-                        ?
-                        `
-                        <span class="badge">
-
-                            ${escapeHTML(
-                                reference.author
-                            )}
-
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-
-                </div>
-
-
-                ${
-                    reference.description
-                    ?
-                    `
-                    <p class="reference-description">
-
-                        ${escapeHTML(
-                            reference.description
-                        )}
-
-                    </p>
-                    `
-                    :
-                    ""
-                }
-
-
-                ${
-                    pdfUrl
-                    ?
-                    `
+                return `
                     <a
-                        class="reference-action"
-                        href="${pdfUrl}"
-                        target="_blank"
-                        rel="noopener">
+                        class="branch-card"
+                        href="branch.html?branch=${encodeURIComponent(slug)}"
+                    >
 
-                        فتح المرجع
-                        ←
+                        <div class="branch-icon">
+                            ${branchIcon(slug)}
+                        </div>
+
+                        <h3 class="branch-name">
+                            ${escapeHTML(branch.name)}
+                        </h3>
+
+                        <p class="branch-description">
+                            ${escapeHTML(
+                                branchDescription(slug)
+                            )}
+                        </p>
+
+                        <div class="branch-count">
+                            استعراض المراجع ←
+                        </div>
 
                     </a>
-                    `
-                    :
-                    ""
-                }
+                `;
 
-            `;
+            }).join("");
 
+    } catch (error) {
 
-            latestReferences.appendChild(
-                card
-            );
+        console.error(error);
 
-        }
-    );
+        container.innerHTML = `
+            <div class="loading">
+                تعذر تحميل فروع القانون حاليًا.
+            </div>
+        `;
 
+    }
 }
 
 
-/* =====================================================
-   HOME SEARCH
-===================================================== */
+/* =========================================================
+   LOAD LATEST REFERENCES
+========================================================= */
 
-homeSearch.addEventListener(
-    "submit",
-    function(event){
+async function loadLatestReferences() {
+
+    const container =
+        document.getElementById("latestReferences");
+
+    try {
+
+        const { data, error } =
+            await supabaseClient
+                .from("references")
+                .select(`
+                    id,
+                    title,
+                    author,
+                    description,
+                    file_path,
+                    created_at,
+                    branches (
+                        name,
+                        slug
+                    ),
+                    reference_categories (
+                        name
+                    )
+                `)
+                .order("created_at", {
+                    ascending: false
+                })
+                .limit(6);
+
+        if (error) throw error;
+
+        const totalResult =
+            await supabaseClient
+                .from("references")
+                .select("id", {
+                    count: "exact",
+                    head: true
+                });
+
+        if (!totalResult.error) {
+
+            document.getElementById(
+                "referenceCount"
+            ).textContent =
+                totalResult.count ?? 0;
+        }
+
+        if (!data || data.length === 0) {
+
+            container.innerHTML = `
+                <div class="loading">
+                    لا توجد مراجع مضافة حاليًا.
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML =
+            data.map(reference => {
+
+                const branch =
+                    reference.branches;
+
+                const category =
+                    reference.reference_categories;
+
+                return `
+                    <article class="reference-card">
+
+                        <div class="reference-meta">
+
+                            ${
+                                branch?.name
+                                ? `
+                                    <span class="reference-tag">
+                                        ${escapeHTML(branch.name)}
+                                    </span>
+                                  `
+                                : ""
+                            }
+
+                            ${
+                                category?.name
+                                ? `
+                                    <span class="reference-tag">
+                                        ${escapeHTML(category.name)}
+                                    </span>
+                                  `
+                                : ""
+                            }
+
+                        </div>
+
+                        <h3 class="reference-title">
+                            ${escapeHTML(reference.title)}
+                        </h3>
+
+                        ${
+                            reference.author
+                            ? `
+                                <p class="reference-author">
+                                    ${escapeHTML(reference.author)}
+                                </p>
+                              `
+                            : ""
+                        }
+
+                        ${
+                            reference.description
+                            ? `
+                                <p class="reference-description">
+                                    ${escapeHTML(
+                                        reference.description
+                                    )}
+                                </p>
+                              `
+                            : ""
+                        }
+
+                        ${
+                            branch?.slug
+                            ? `
+                                <a
+                                    class="reference-action"
+                                    href="branch.html?branch=${encodeURIComponent(branch.slug)}"
+                                >
+                                    استعراض الفرع
+                                    ←
+                                </a>
+                              `
+                            : ""
+                        }
+
+                    </article>
+                `;
+
+            }).join("");
+
+    } catch (error) {
+
+        console.error(error);
+
+        container.innerHTML = `
+            <div class="loading">
+                تعذر تحميل أحدث المراجع حاليًا.
+            </div>
+        `;
+
+    }
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+    .getElementById("homeSearch")
+    .addEventListener("submit", function(event) {
 
         event.preventDefault();
 
-
         const query =
-            searchInput.value.trim();
+            document
+                .getElementById("searchInput")
+                .value
+                .trim();
 
-
-        if(query){
+        if (query) {
 
             window.location.href =
-                "search.html?q="
-                +
-                encodeURIComponent(
-                    query
-                );
+                "search.html?q=" +
+                encodeURIComponent(query);
 
-        }
-        else{
+        } else {
 
             window.location.href =
                 "search.html";
-
         }
 
-    }
-);
+    });
 
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "";
-
-    }
-
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =====================================================
+/* =========================================================
    START
-===================================================== */
+========================================================= */
 
 loadBranches();
-
 loadLatestReferences();
 
 </script>
 
-
 </body>
-
 </html>
