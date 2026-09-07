@@ -8,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>الموسوعة القانونية</title>
+<title>الموسوعة القانونية | المكتبة القانونية الرقمية</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -16,6 +16,10 @@
 
 *{
     box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -69,6 +73,8 @@ header{
     font-size:16px;
 
     opacity:.92;
+
+    line-height:1.8;
 }
 
 .manager{
@@ -173,7 +179,7 @@ nav a{
 
     color:#667085;
 
-    line-height:1.8;
+    line-height:1.9;
 
     margin:0;
 }
@@ -210,6 +216,8 @@ nav a{
     font-size:16px;
 
     outline:none;
+
+    direction:rtl;
 }
 
 .search-box input:focus{
@@ -227,6 +235,59 @@ nav a{
             105,
             .1
         );
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:15px;
+
+    margin-top:25px;
+}
+
+.stat{
+
+    background:#f7f9fc;
+
+    border:
+        1px
+        solid
+        #edf0f5;
+
+    border-radius:15px;
+
+    padding:18px;
+}
+
+.stat-number{
+
+    color:#123e69;
+
+    font-size:27px;
+
+    font-weight:bold;
+
+    display:block;
+
+    margin-bottom:5px;
+}
+
+.stat-label{
+
+    color:#667085;
+
+    font-size:13px;
 }
 
 /* =========================
@@ -362,13 +423,43 @@ nav a{
 
 .branch-card p{
 
-    margin:0;
+    margin:
+        0
+        0
+        15px;
 
     color:#667085;
 
     font-size:14px;
 
     line-height:1.7;
+}
+
+/* =========================
+   REFERENCE COUNT
+========================= */
+
+.reference-count{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    background:#eef5fc;
+
+    color:#123e69;
+
+    padding:
+        7px
+        11px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:bold;
 }
 
 /* =========================
@@ -395,6 +486,47 @@ nav a{
     border-radius:12px;
 
     text-align:center;
+}
+
+/* =========================
+   NO RESULTS
+========================= */
+
+.no-results{
+
+    grid-column:1 / -1;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    color:#667085;
+
+    box-shadow:
+        0
+        5px
+        20px
+        rgba(
+            0,
+            0,
+            0,
+            .05
+        );
+}
+
+.no-results strong{
+
+    display:block;
+
+    color:#123e69;
+
+    font-size:20px;
+
+    margin-bottom:8px;
 }
 
 /* =========================
@@ -468,9 +600,16 @@ footer p{
         font-size:26px;
     }
 
+    .subtitle{
+
+        font-size:14px;
+    }
+
     .hero{
 
-        padding:30px 18px;
+        padding:
+            30px
+            18px;
     }
 
     .hero h1{
@@ -490,6 +629,11 @@ footer p{
         margin:
             5px
             7px;
+    }
+
+    .stats{
+
+        grid-template-columns:1fr 1fr;
     }
 
 }
@@ -543,6 +687,14 @@ footer p{
         الرئيسية
     </a>
 
+    <a href="#branches-section">
+        فروع القانون
+    </a>
+
+    <a href="#about">
+        عن الموسوعة
+    </a>
+
     <a href="admin.html">
         لوحة الإدارة
     </a>
@@ -580,7 +732,44 @@ footer p{
                 type="search"
                 id="searchInput"
                 placeholder="🔎 ابحث عن فرع قانوني..."
+                autocomplete="off"
             >
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <span
+                    id="branchCount"
+                    class="stat-number"
+                >
+                    0
+                </span>
+
+                <span class="stat-label">
+                    فروع القانون
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span
+                    id="referenceCount"
+                    class="stat-number"
+                >
+                    0
+                </span>
+
+                <span class="stat-label">
+                    مراجع قانونية
+                </span>
+
+            </div>
 
         </div>
 
@@ -592,7 +781,7 @@ footer p{
          BRANCHES
     ========================= -->
 
-    <section>
+    <section id="branches-section">
 
         <h2 class="section-title">
 
@@ -606,7 +795,7 @@ footer p{
             class="status"
         >
 
-            ⏳ جاري تحميل الفروع...
+            ⏳ جاري تحميل الموسوعة...
 
         </div>
 
@@ -624,7 +813,10 @@ footer p{
          ABOUT
     ========================= -->
 
-    <section class="about">
+    <section
+        id="about"
+        class="about"
+    >
 
         <h2>
             ⚖️ عن الموسوعة القانونية
@@ -724,42 +916,57 @@ document.getElementById(
 );
 
 
+const branchCount =
+document.getElementById(
+    "branchCount"
+);
+
+
+const referenceCount =
+document.getElementById(
+    "referenceCount"
+);
+
+
 /* =====================================
-   ALL BRANCHES
+   DATA
 ===================================== */
 
 let allBranches = [];
 
 
 /* =====================================
-   LOAD BRANCHES
+   LOAD DATA
 ===================================== */
 
-async function loadBranches(){
+async function loadData(){
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
+    status.textContent =
+        "⏳ جاري تحميل الفروع والمراجع...";
 
-        .from("branches")
 
-        .select(
-            "id,name,slug"
-        )
+    const branchesResult =
+        await supabaseClient
 
-        .order(
-            "id",
-            {
-                ascending:true
-            }
+            .from("branches")
+
+            .select(
+                "id,name,slug"
+            )
+
+            .order(
+                "id",
+                {
+                    ascending:true
+                }
+            );
+
+
+    if(branchesResult.error){
+
+        console.error(
+            branchesResult.error
         );
-
-
-    if(error){
-
-        console.error(error);
 
         status.innerHTML = `
 
@@ -780,18 +987,79 @@ async function loadBranches(){
     }
 
 
+    const referencesResult =
+        await supabaseClient
+
+            .from("references")
+
+            .select(
+                "id,branch_id"
+            );
+
+
+    if(referencesResult.error){
+
+        console.error(
+            referencesResult.error
+        );
+
+        status.innerHTML = `
+
+            <div class="error">
+
+                ❌ تم تحميل الفروع،
+                لكن تعذر تحميل عدد المراجع.
+
+                <br><br>
+
+                سيتم عرض الفروع دون
+                إحصائيات المراجع.
+
+            </div>
+
+        `;
+
+        allBranches =
+            branchesResult.data || [];
+
+        branchCount.textContent =
+            allBranches.length;
+
+        referenceCount.textContent =
+            "—";
+
+        renderBranches(
+            allBranches,
+            []
+        );
+
+        return;
+    }
+
+
     allBranches =
-        data || [];
+        branchesResult.data || [];
 
 
-    status.textContent =
-        "📚 عدد الفروع: "
-        +
+    const references =
+        referencesResult.data || [];
+
+
+    branchCount.textContent =
         allBranches.length;
 
 
+    referenceCount.textContent =
+        references.length;
+
+
+    status.textContent =
+        "📚 تم تحميل الموسوعة بنجاح";
+
+
     renderBranches(
-        allBranches
+        allBranches,
+        references
     );
 
 }
@@ -827,7 +1095,9 @@ function getBranchIcon(slug){
 
         books:"📚",
 
-        research:"🎓"
+        research:"🎓",
+
+        maritime:"⚓"
 
     };
 
@@ -880,7 +1150,10 @@ function getBranchDescription(slug){
         "مجموعة من الكتب والمراجع القانونية المتخصصة.",
 
         research:
-        "البحوث والمذكرات والأعمال الأكاديمية القانونية."
+        "البحوث والمذكرات والأعمال الأكاديمية القانونية.",
+
+        maritime:
+        "القانون البحري والسفن والملاحة البحرية والعلاقات القانونية البحرية."
 
     };
 
@@ -893,11 +1166,29 @@ function getBranchDescription(slug){
 
 
 /* =====================================
+   COUNT REFERENCES
+===================================== */
+
+function getReferenceCount(
+    branchId,
+    references
+){
+
+    return references.filter(
+        reference =>
+            reference.branch_id === branchId
+    ).length;
+
+}
+
+
+/* =====================================
    RENDER
 ===================================== */
 
 function renderBranches(
-    branches
+    branches,
+    references
 ){
 
     branchesContainer.innerHTML =
@@ -911,10 +1202,13 @@ function renderBranches(
 
         branchesContainer.innerHTML = `
 
-            <div class="error">
+            <div class="no-results">
 
-                لا توجد فروع قانونية
-                مضافة حاليًا.
+                <strong>
+                    لا توجد فروع قانونية
+                </strong>
+
+                لم تتم إضافة أي فروع حاليًا.
 
             </div>
 
@@ -926,6 +1220,13 @@ function renderBranches(
 
     branches.forEach(
         branch => {
+
+
+            const count =
+                getReferenceCount(
+                    branch.id,
+                    references
+                );
 
 
             const card =
@@ -976,6 +1277,15 @@ function renderBranches(
 
                 </p>
 
+
+                <span class="reference-count">
+
+                    📄
+                    ${count}
+                    ${count === 1 ? "مرجع" : "مراجع"}
+
+                </span>
+
             `;
 
 
@@ -1005,9 +1315,7 @@ searchInput.addEventListener(
 
         if(!query){
 
-            renderBranches(
-                allBranches
-            );
+            loadData();
 
             return;
         }
@@ -1048,9 +1356,28 @@ searchInput.addEventListener(
             );
 
 
-        renderBranches(
-            filtered
-        );
+        supabaseClient
+
+            .from("references")
+
+            .select(
+                "id,branch_id"
+            )
+
+            .then(
+                result => {
+
+                    const references =
+                        result.data || [];
+
+
+                    renderBranches(
+                        filtered,
+                        references
+                    );
+
+                }
+            );
 
     }
 );
@@ -1107,7 +1434,7 @@ function escapeHTML(
 
 document.addEventListener(
     "DOMContentLoaded",
-    loadBranches
+    loadData
 );
 
 </script>
