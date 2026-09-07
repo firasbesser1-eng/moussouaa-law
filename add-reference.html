@@ -19,1336 +19,696 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-
 <style>
 
 :root{
-
     --navy:#0b1f3a;
     --navy-2:#102b4d;
     --navy-3:#16385f;
-
     --gold:#c9a227;
     --gold-light:#e2c45b;
-
     --ivory:#f7f3e8;
-
     --white:#ffffff;
-
     --text:#182536;
     --muted:#687588;
-
     --border:#e1e6ec;
-
     --success:#1f7a4d;
     --danger:#b23a48;
     --info:#175cd3;
-
-    --shadow:
-        0 8px 30px rgba(11,31,58,.07);
+    --shadow:0 8px 30px rgba(11,31,58,.07);
 }
-
 
 *{
-
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
-
 }
-
 
 html{
-
     scroll-behavior:smooth;
-
 }
-
 
 body{
-
-    font-family:
-        "Cairo",
-        Arial,
-        sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f5f7fa,
-            #eef2f6
-        );
-
+    font-family:"Cairo",Arial,sans-serif;
+    background:linear-gradient(135deg,#f5f7fa,#eef2f6);
     color:var(--text);
-
     min-height:100vh;
-
 }
-
-
-/* =====================================
-   HEADER
-===================================== */
 
 header{
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--navy),
-            var(--navy-2),
-            var(--navy-3)
-        );
-
+    background:linear-gradient(135deg,var(--navy),var(--navy-2),var(--navy-3));
     color:white;
-
     position:sticky;
-
     top:0;
-
     z-index:1000;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.14);
-
+    box-shadow:0 8px 25px rgba(0,0,0,.14);
 }
-
 
 .header-inner{
-
     max-width:1100px;
-
     min-height:80px;
-
     margin:auto;
-
     padding:13px 20px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:20px;
-
 }
-
 
 .brand{
-
     display:flex;
-
     align-items:center;
-
     gap:13px;
-
     text-decoration:none;
-
     color:white;
-
 }
-
 
 .brand-icon{
-
     width:50px;
-
     height:50px;
-
     border-radius:14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(201,162,39,.23),
-            rgba(255,255,255,.07)
-        );
-
-    border:
-        1px solid rgba(226,196,91,.35);
-
+    background:linear-gradient(135deg,rgba(201,162,39,.23),rgba(255,255,255,.07));
+    border:1px solid rgba(226,196,91,.35);
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
 }
-
 
 .brand-icon svg{
-
     width:28px;
-
     height:28px;
-
     stroke:var(--gold-light);
-
 }
-
 
 .brand-text h1{
-
     font-family:"Amiri",serif;
-
     font-size:24px;
-
     line-height:1.1;
-
     margin-bottom:3px;
-
 }
-
 
 .brand-text p{
-
     color:#dce4ed;
-
     font-size:10px;
-
 }
-
 
 .back-btn{
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:7px;
-
     color:white;
-
     text-decoration:none;
-
-    background:
-        rgba(255,255,255,.09);
-
-    border:
-        1px solid rgba(255,255,255,.15);
-
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.15);
     padding:10px 15px;
-
     border-radius:10px;
-
     font-size:12px;
-
     font-weight:700;
-
     transition:.2s;
-
 }
-
 
 .back-btn:hover{
-
-    background:
-        rgba(255,255,255,.16);
-
+    background:rgba(255,255,255,.16);
 }
-
 
 .back-btn svg{
-
     width:17px;
-
     height:17px;
-
     stroke:currentColor;
-
 }
-
-
-/* =====================================
-   MAIN
-===================================== */
 
 main{
-
     max-width:900px;
-
     margin:0 auto;
-
     padding:32px 20px 55px;
-
 }
-
-
-/* =====================================
-   PAGE INTRO
-===================================== */
 
 .page-intro{
-
     position:relative;
-
     overflow:hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--navy),
-            var(--navy-2)
-        );
-
+    background:linear-gradient(135deg,var(--navy),var(--navy-2));
     border-radius:22px;
-
     padding:30px;
-
     margin-bottom:22px;
-
     color:white;
-
-    box-shadow:
-        0 12px 35px rgba(11,31,58,.13);
-
+    box-shadow:0 12px 35px rgba(11,31,58,.13);
 }
-
 
 .page-intro::after{
-
     content:"";
-
     position:absolute;
-
     width:190px;
-
     height:190px;
-
     border-radius:50%;
-
-    border:
-        1px solid rgba(226,196,91,.15);
-
+    border:1px solid rgba(226,196,91,.15);
     left:-60px;
-
     bottom:-100px;
-
 }
-
 
 .intro-content{
-
     position:relative;
-
     z-index:2;
-
     display:flex;
-
     align-items:center;
-
     gap:20px;
-
 }
-
 
 .intro-icon{
-
     width:70px;
-
     height:70px;
-
     flex-shrink:0;
-
     border-radius:19px;
-
-    background:
-        rgba(201,162,39,.15);
-
-    border:
-        1px solid rgba(226,196,91,.35);
-
+    background:rgba(201,162,39,.15);
+    border:1px solid rgba(226,196,91,.35);
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
 }
-
 
 .intro-icon svg{
-
     width:35px;
-
     height:35px;
-
     stroke:var(--gold-light);
-
 }
-
 
 .intro-text h2{
-
     font-family:"Amiri",serif;
-
     font-size:31px;
-
     line-height:1.3;
-
     margin-bottom:4px;
-
 }
-
 
 .intro-text p{
-
     color:#dce4ed;
-
     font-size:12px;
-
     line-height:1.8;
-
 }
-
-
-/* =====================================
-   FORM CARD
-===================================== */
 
 .form-card{
-
     background:white;
-
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     border-radius:20px;
-
     padding:30px;
-
     box-shadow:var(--shadow);
-
 }
-
 
 .form-section{
-
     margin-bottom:25px;
-
 }
-
 
 .section-heading{
-
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
     padding-bottom:12px;
-
     margin-bottom:18px;
-
-    border-bottom:
-        1px solid #edf0f3;
-
+    border-bottom:1px solid #edf0f3;
 }
-
 
 .section-heading-icon{
-
     width:34px;
-
     height:34px;
-
     border-radius:10px;
-
     background:#edf2f7;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
 }
-
 
 .section-heading-icon svg{
-
     width:18px;
-
     height:18px;
-
     stroke:var(--navy-3);
-
 }
-
 
 .section-heading h3{
-
     color:var(--navy);
-
     font-size:16px;
-
     font-weight:800;
-
 }
-
 
 .field{
-
     margin-bottom:18px;
-
 }
-
 
 .field:last-child{
-
     margin-bottom:0;
-
 }
-
 
 label{
-
     display:block;
-
     color:var(--navy);
-
     font-size:13px;
-
     font-weight:700;
-
     margin-bottom:7px;
-
 }
-
 
 .required{
-
     color:var(--danger);
-
 }
-
 
 input[type="text"],
 select,
 textarea{
-
     width:100%;
-
-    border:
-        1px solid #d8dee6;
-
+    border:1px solid #d8dee6;
     background:white;
-
     color:var(--text);
-
     border-radius:11px;
-
     padding:12px 14px;
-
     font-family:inherit;
-
     font-size:13px;
-
     outline:none;
-
     transition:.2s;
-
 }
-
 
 input[type="text"]::placeholder,
 textarea::placeholder{
-
     color:#a0a9b5;
-
 }
-
 
 input[type="text"]:focus,
 select:focus,
 textarea:focus{
-
     border-color:var(--gold);
-
-    box-shadow:
-        0 0 0 3px rgba(201,162,39,.10);
-
+    box-shadow:0 0 0 3px rgba(201,162,39,.10);
 }
-
 
 textarea{
-
     min-height:120px;
-
     resize:vertical;
-
     line-height:1.8;
-
 }
-
 
 select{
-
     cursor:pointer;
-
     appearance:auto;
-
 }
 
-
-/* =====================================
-   GRID
-===================================== */
+select:disabled{
+    background:#f2f4f7;
+    color:#98a2b3;
+    cursor:not-allowed;
+}
 
 .form-grid{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:17px;
-
 }
-
-
-/* =====================================
-   PDF UPLOAD
-===================================== */
 
 .file-box{
-
-    border:
-        2px dashed #ccd4de;
-
+    border:2px dashed #ccd4de;
     border-radius:15px;
-
     padding:24px 18px;
-
     background:#fafbfc;
-
     text-align:center;
-
     transition:.2s;
-
 }
-
 
 .file-box:hover{
-
     border-color:var(--gold);
-
     background:#fdfcf8;
-
 }
-
 
 .file-icon{
-
     width:55px;
-
     height:55px;
-
     margin:0 auto 10px;
-
     border-radius:15px;
-
     background:#edf2f7;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
 }
-
 
 .file-icon svg{
-
     width:27px;
-
     height:27px;
-
     stroke:var(--navy-3);
-
 }
-
 
 .file-title{
-
     color:var(--navy);
-
     font-size:14px;
-
     font-weight:800;
-
     margin-bottom:4px;
-
 }
-
 
 .file-description{
-
     color:var(--muted);
-
     font-size:11px;
-
     line-height:1.7;
-
     margin-bottom:13px;
-
 }
-
 
 .file-input-wrap{
-
     position:relative;
-
     display:inline-block;
-
 }
-
 
 .file-input-wrap input{
-
     position:absolute;
-
     width:1px;
-
     height:1px;
-
     opacity:0;
-
 }
-
 
 .file-select-btn{
-
     display:inline-flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:7px;
-
     background:var(--navy);
-
     color:white;
-
     border:none;
-
     border-radius:9px;
-
     padding:10px 16px;
-
     font-family:inherit;
-
     font-size:12px;
-
     font-weight:700;
-
     cursor:pointer;
-
 }
-
 
 .file-select-btn svg{
-
     width:17px;
-
     height:17px;
-
     stroke:currentColor;
-
 }
-
 
 .file-info{
-
     display:none;
-
     margin-top:14px;
-
     padding:11px 13px;
-
     background:#f3f7fb;
-
     border-radius:10px;
-
     text-align:right;
-
 }
-
 
 .file-info.show{
-
     display:block;
-
 }
-
 
 .file-info-name{
-
     color:var(--navy);
-
     font-size:12px;
-
     font-weight:700;
-
     word-break:break-word;
-
 }
-
 
 .file-info-size{
-
     color:var(--muted);
-
     font-size:10px;
-
     margin-top:3px;
-
 }
-
-
-/* =====================================
-   NOTE
-===================================== */
 
 .note{
-
     display:flex;
-
     align-items:flex-start;
-
     gap:10px;
-
     background:#f8fafc;
-
-    border:
-        1px solid #e8edf2;
-
+    border:1px solid #e8edf2;
     padding:14px;
-
     border-radius:12px;
-
     color:var(--muted);
-
     font-size:11px;
-
     line-height:1.9;
-
 }
-
 
 .note-icon{
-
     width:30px;
-
     height:30px;
-
     flex-shrink:0;
-
     border-radius:9px;
-
     background:#eef3f8;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
 }
-
 
 .note-icon svg{
-
     width:16px;
-
     height:16px;
-
     stroke:var(--navy-3);
-
 }
-
-
-/* =====================================
-   SUBMIT AREA
-===================================== */
 
 .submit-area{
-
     margin-top:26px;
-
     padding-top:22px;
-
-    border-top:
-        1px solid #edf0f3;
-
+    border-top:1px solid #edf0f3;
 }
-
 
 .submit-btn{
-
     width:100%;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:9px;
-
     border:none;
-
     border-radius:12px;
-
     padding:14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--navy),
-            var(--navy-3)
-        );
-
+    background:linear-gradient(135deg,var(--navy),var(--navy-3));
     color:white;
-
     font-family:inherit;
-
     font-size:14px;
-
     font-weight:800;
-
     cursor:pointer;
-
     transition:.2s;
-
 }
-
 
 .submit-btn:hover:not(:disabled){
-
     transform:translateY(-1px);
-
-    box-shadow:
-        0 8px 20px rgba(11,31,58,.16);
-
+    box-shadow:0 8px 20px rgba(11,31,58,.16);
 }
-
 
 .submit-btn:disabled{
-
     opacity:.65;
-
     cursor:not-allowed;
-
 }
-
 
 .submit-btn svg{
-
     width:19px;
-
     height:19px;
-
     stroke:currentColor;
-
 }
-
 
 .submit-btn.loading svg{
-
-    animation:
-        spin .8s linear infinite;
-
+    animation:spin .8s linear infinite;
 }
 
-
 @keyframes spin{
-
     to{
         transform:rotate(360deg);
     }
-
 }
-
-
-/* =====================================
-   MESSAGE
-===================================== */
 
 .message{
-
     display:none;
-
     margin-top:15px;
-
     padding:13px 15px;
-
     border-radius:11px;
-
     font-size:12px;
-
     line-height:1.7;
-
     text-align:center;
-
 }
-
 
 .message.show{
-
     display:block;
-
 }
-
 
 .message.info{
-
     background:#eef6ff;
-
     color:var(--info);
-
-    border:
-        1px solid #dbeafe;
-
+    border:1px solid #dbeafe;
 }
-
 
 .message.success{
-
     background:#ecfdf3;
-
     color:var(--success);
-
-    border:
-        1px solid #d1fae5;
-
+    border:1px solid #d1fae5;
 }
-
 
 .message.error{
-
     background:#fef3f2;
-
     color:var(--danger);
-
-    border:
-        1px solid #fee4e2;
-
+    border:1px solid #fee4e2;
 }
-
-
-/* =====================================
-   FOOTER
-===================================== */
 
 footer{
-
     max-width:900px;
-
     margin:0 auto;
-
-    padding:
-        0 20px 30px;
-
+    padding:0 20px 30px;
     text-align:center;
-
     color:#7b8797;
-
     font-size:11px;
-
     line-height:2;
-
 }
-
 
 .footer-line{
-
     height:1px;
-
     width:100%;
-
-    background:
-        linear-gradient(
-            to left,
-            transparent,
-            #d9dee5,
-            transparent
-        );
-
+    background:linear-gradient(to left,transparent,#d9dee5,transparent);
     margin-bottom:16px;
-
 }
-
 
 .footer-brand{
-
     font-family:"Amiri",serif;
-
     color:var(--navy);
-
     font-size:18px;
-
     font-weight:700;
-
 }
-
-
-/* =====================================
-   MOBILE
-===================================== */
 
 @media(max-width:700px){
 
     .header-inner{
-
         flex-direction:column;
-
         padding:12px 15px;
-
         gap:11px;
-
     }
-
 
     .brand{
-
         justify-content:center;
-
     }
-
 
     .brand-text h1{
-
         font-size:21px;
-
     }
-
 
     .brand-text p{
-
         font-size:9px;
-
     }
-
 
     .brand-icon{
-
         width:44px;
-
         height:44px;
-
     }
-
 
     .back-btn{
-
         width:100%;
-
         padding:9px;
-
     }
-
 
     main{
-
-        padding:
-            20px 13px 40px;
-
+        padding:20px 13px 40px;
     }
-
 
     .page-intro{
-
         padding:23px 18px;
-
     }
-
 
     .intro-content{
-
         align-items:flex-start;
-
     }
-
 
     .intro-icon{
-
         width:55px;
-
         height:55px;
-
     }
-
 
     .intro-icon svg{
-
         width:29px;
-
         height:29px;
-
     }
-
 
     .intro-text h2{
-
         font-size:26px;
-
     }
-
 
     .intro-text p{
-
         font-size:11px;
-
     }
-
 
     .form-card{
-
         padding:20px 16px;
-
         border-radius:17px;
-
     }
-
 
     .form-grid{
-
         grid-template-columns:1fr;
-
         gap:0;
-
     }
-
 }
-
 
 @media(max-width:430px){
 
     .intro-content{
-
         flex-direction:column;
-
         text-align:center;
-
         align-items:center;
-
     }
-
 
     .intro-icon{
-
         margin-bottom:2px;
-
     }
-
 
     .form-card{
-
         padding:18px 14px;
-
     }
-
 
     .section-heading h3{
-
         font-size:14px;
-
     }
-
 
     input[type="text"],
     select,
     textarea{
-
         font-size:14px;
-
     }
-
 }
 
 </style>
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================
-     HEADER
-===================================== -->
 
 <header>
 
 <div class="header-inner">
 
-
-<a
-    href="dashboard.html"
-    class="brand">
+<a href="dashboard.html" class="brand">
 
 <div class="brand-icon">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="1.7"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="1.7"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <path d="M12 3v17"></path>
-
-    <path d="M5 6h14"></path>
-
-    <path d="M5 6l-3 6h6L5 6z"></path>
-
-    <path d="M19 6l-3 6h6l-3-6z"></path>
-
-    <path d="M8 21h8"></path>
+<path d="M12 3v17"></path>
+<path d="M5 6h14"></path>
+<path d="M5 6l-3 6h6L5 6z"></path>
+<path d="M19 6l-3 6h6l-3-6z"></path>
+<path d="M8 21h8"></path>
 
 </svg>
 
 </div>
 
-
 <div class="brand-text">
 
-<h1>
-    الموسوعة القانونية
-</h1>
+<h1>الموسوعة القانونية</h1>
 
-<p>
-    فراس بسر — مدير الموسوعة القانونية
-</p>
+<p>فراس بسر — مدير الموسوعة القانونية</p>
 
 </div>
 
 </a>
 
-
-<a
-    href="dashboard.html"
-    class="back-btn">
+<a href="dashboard.html" class="back-btn">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <path d="M19 12H5"></path>
-
-    <path d="M12 19l-7-7 7-7"></path>
+<path d="M19 12H5"></path>
+<path d="M12 19l-7-7 7-7"></path>
 
 </svg>
 
@@ -1356,347 +716,264 @@ footer{
 
 </a>
 
-
 </div>
 
 </header>
 
-
-<!-- =====================================
-     MAIN
-===================================== -->
-
 <main>
-
 
 <section class="page-intro">
 
 <div class="intro-content">
 
-
 <div class="intro-icon">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="1.7"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="1.7"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <path d="M4 4h10a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V4z"></path>
-
-    <path d="M17 8h3a1 1 0 0 1 1 1v11H8"></path>
-
-    <path d="M12 9v6"></path>
-
-    <path d="M9 12h6"></path>
+<path d="M4 4h10a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V4z"></path>
+<path d="M17 8h3a1 1 0 0 1 1 1v11H8"></path>
+<path d="M12 9v6"></path>
+<path d="M9 12h6"></path>
 
 </svg>
 
 </div>
 
-
 <div class="intro-text">
 
-<h2>
-    إضافة مرجع جديد
-</h2>
+<h2>إضافة مرجع جديد</h2>
 
 <p>
-    أضف كتابًا أو تشريعًا أو بحثًا أو حكمًا
-    أو أي مرجع قانوني إلى الموسوعة.
+أضف كتابًا أو تشريعًا أو بحثًا أو حكمًا
+أو أي مرجع قانوني إلى الموسوعة.
 </p>
 
 </div>
 
-
 </div>
 
 </section>
 
-
 <div class="form-card">
-
 
 <form id="referenceForm">
 
-
-<!-- =====================================
-     BASIC INFORMATION
-===================================== -->
-
 <section class="form-section">
-
 
 <div class="section-heading">
 
 <div class="section-heading-icon">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z"></path>
-
-    <path d="M8 8h8"></path>
-
-    <path d="M8 12h8"></path>
-
-    <path d="M8 16h5"></path>
+<path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z"></path>
+<path d="M8 8h8"></path>
+<path d="M8 12h8"></path>
+<path d="M8 16h5"></path>
 
 </svg>
 
 </div>
 
-<h3>
-    بيانات المرجع
-</h3>
+<h3>بيانات المرجع</h3>
 
 </div>
-
 
 <div class="field">
 
 <label for="title">
-
-    عنوان المرجع
-    <span class="required">*</span>
-
+عنوان المرجع
+<span class="required">*</span>
 </label>
 
 <input
-    type="text"
-    id="title"
-    placeholder="مثال: مجلة الالتزامات والعقود"
-    autocomplete="off"
-    required>
+type="text"
+id="title"
+placeholder="مثال: مجلة الالتزامات والعقود"
+autocomplete="off"
+required>
 
 </div>
-
 
 <div class="field">
 
 <label for="author">
-
-    المؤلف / الجهة
-
+المؤلف / الجهة
 </label>
 
 <input
-    type="text"
-    id="author"
-    placeholder="مثال: الجمهورية التونسية"
-    autocomplete="off">
+type="text"
+id="author"
+placeholder="مثال: الجمهورية التونسية"
+autocomplete="off">
 
 </div>
-
 
 <div class="field">
 
 <label for="description">
-
-    وصف المرجع
-
+وصف المرجع
 </label>
 
 <textarea
-    id="description"
-    placeholder="اكتب وصفًا مختصرًا يوضح محتوى المرجع وأهميته..."></textarea>
+id="description"
+placeholder="اكتب وصفًا مختصرًا يوضح محتوى المرجع وأهميته..."></textarea>
 
 </div>
 
-
 </section>
 
-
-<!-- =====================================
-     CLASSIFICATION
-===================================== -->
-
 <section class="form-section">
-
 
 <div class="section-heading">
 
 <div class="section-heading-icon">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <path d="M4 5a2 2 0 0 1 2-2h5l2 3h5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z"></path>
-
-    <path d="M4 9h16"></path>
+<path d="M4 5a2 2 0 0 1 2-2h5l2 3h5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z"></path>
+<path d="M4 9h16"></path>
 
 </svg>
 
 </div>
 
-<h3>
-    تصنيف المرجع
-</h3>
+<h3>تصنيف المرجع</h3>
 
 </div>
 
-
 <div class="form-grid">
-
 
 <div class="field">
 
 <label for="branch">
-
-    الفرع القانوني
-    <span class="required">*</span>
-
+الفرع القانوني
+<span class="required">*</span>
 </label>
 
-<select
-    id="branch"
-    required>
+<select id="branch" required>
 
-    <option value="">
-        جاري تحميل الفروع...
-    </option>
+<option value="">
+جاري تحميل الفروع...
+</option>
 
 </select>
 
 </div>
-
 
 <div class="field">
 
 <label for="category">
-
-    نوع المرجع
-    <span class="required">*</span>
-
+نوع المرجع
+<span class="required">*</span>
 </label>
 
-<select
-    id="category"
-    required>
+<select id="category" required disabled>
 
-    <option value="">
-        جاري تحميل التصنيفات...
-    </option>
+<option value="">
+اختر الفرع أولًا
+</option>
 
 </select>
 
 </div>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================
-     PDF
-===================================== -->
-
 <section class="form-section">
-
 
 <div class="section-heading">
 
 <div class="section-heading-icon">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <path d="M6 2h9l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
-
-    <path d="M14 2v6h6"></path>
-
-    <path d="M8 13h8"></path>
-
-    <path d="M8 17h6"></path>
+<path d="M6 2h9l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+<path d="M14 2v6h6"></path>
+<path d="M8 13h8"></path>
+<path d="M8 17h6"></path>
 
 </svg>
 
 </div>
 
-<h3>
-    ملف المرجع
-</h3>
+<h3>ملف المرجع</h3>
 
 </div>
 
-
 <div class="file-box">
-
 
 <div class="file-icon">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="1.8"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="1.8"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <path d="M6 2h9l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
-
-    <path d="M14 2v6h6"></path>
-
-    <path d="M12 18v-6"></path>
-
-    <path d="M9 15l3-3 3 3"></path>
+<path d="M6 2h9l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+<path d="M14 2v6h6"></path>
+<path d="M12 18v-6"></path>
+<path d="M9 15l3-3 3 3"></path>
 
 </svg>
 
 </div>
 
-
 <div class="file-title">
-    اختر ملف PDF
+اختر ملف PDF
 </div>
-
 
 <div class="file-description">
-
 يمكنك اختيار ملف PDF من هاتفك.
 الحد الأقصى المسموح به هو 50 MB.
-
 </div>
-
 
 <div class="file-input-wrap">
 
 <input
-    type="file"
-    id="pdf"
-    accept=".pdf,application/pdf"
-    required>
-
+type="file"
+id="pdf"
+accept=".pdf,application/pdf"
+required>
 
 <label
-    for="pdf"
-    class="file-select-btn">
+for="pdf"
+class="file-select-btn">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <path d="M12 16V4"></path>
-
-    <path d="M7 9l5-5 5 5"></path>
-
-    <path d="M5 20h14"></path>
+<path d="M12 16V4"></path>
+<path d="M7 9l5-5 5 5"></path>
+<path d="M5 20h14"></path>
 
 </svg>
 
@@ -1706,64 +983,40 @@ footer{
 
 </div>
 
+<div id="fileInfo" class="file-info">
 
-<div
-    id="fileInfo"
-    class="file-info">
+<div id="fileName" class="file-info-name"></div>
 
-<div
-    id="fileName"
-    class="file-info-name">
-</div>
-
-<div
-    id="fileSize"
-    class="file-info-size">
-</div>
+<div id="fileSize" class="file-info-size"></div>
 
 </div>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================
-     NOTE
-===================================== -->
-
 <div class="note">
-
 
 <div class="note-icon">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <circle
-        cx="12"
-        cy="12"
-        r="9"></circle>
-
-    <path d="M12 10v6"></path>
-
-    <path d="M12 7h.01"></path>
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M12 10v6"></path>
+<path d="M12 7h.01"></path>
 
 </svg>
 
 </div>
 
-
 <div>
 
-<strong>
-    ملاحظة مهمة
-</strong>
+<strong>ملاحظة مهمة</strong>
 
 <br>
 
@@ -1776,31 +1029,23 @@ footer{
 
 </div>
 
-
-<!-- =====================================
-     SUBMIT
-===================================== -->
-
 <div class="submit-area">
 
-
 <button
-    type="submit"
-    id="submitBtn"
-    class="submit-btn">
+type="submit"
+id="submitBtn"
+class="submit-btn">
 
 <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round">
+viewBox="0 0 24 24"
+fill="none"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
 
-    <path d="M12 16V4"></path>
-
-    <path d="M7 9l5-5 5 5"></path>
-
-    <path d="M5 20h14"></path>
+<path d="M12 16V4"></path>
+<path d="M7 9l5-5 5 5"></path>
+<path d="M5 20h14"></path>
 
 </svg>
 
@@ -1808,47 +1053,33 @@ footer{
 
 </button>
 
-
-<div
-    id="message"
-    class="message">
-</div>
-
+<div id="message" class="message"></div>
 
 </div>
-
 
 </form>
 
-
 </div>
 
-
 </main>
-
-
-<!-- =====================================
-     FOOTER
-===================================== -->
 
 <footer>
 
 <div class="footer-line"></div>
 
 <div class="footer-brand">
-    الموسوعة القانونية
+الموسوعة القانونية
 </div>
 
 <div>
-    إدارة الموقع: فراس بسر
+إدارة الموقع: فراس بسر
 </div>
 
 <div>
-    جميع الحقوق محفوظة © 2026
+جميع الحقوق محفوظة © 2026
 </div>
 
 </footer>
-
 
 <script>
 
@@ -1859,13 +1090,11 @@ footer{
 const SUPABASE_URL =
     "https://yksrckzomkowjzmsafvm.supabase.co";
 
-
 const SUPABASE_KEY =
     "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
 
-
 const supabaseClient =
-    supabase.createClient(
+    window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
     );
@@ -1878,29 +1107,23 @@ const supabaseClient =
 const MAX_FILE_SIZE =
     50 * 1024 * 1024;
 
+let allBranches = [];
+let allCategories = [];
+
 
 /* =====================================
    MESSAGE
 ===================================== */
 
-function showMessage(
-    text,
-    type
-){
+function showMessage(text, type){
 
     const message =
-        document.getElementById(
-            "message"
-        );
+        document.getElementById("message");
 
-
-    message.textContent =
-        text;
-
+    message.textContent = text;
 
     message.className =
         "message show " + type;
-
 }
 
 
@@ -1910,14 +1133,8 @@ function showMessage(
 
 async function checkUser(){
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .auth
-        .getSession();
-
+    const { data, error } =
+        await supabaseClient.auth.getSession();
 
     if(error){
 
@@ -1927,9 +1144,7 @@ async function checkUser(){
             "admin.html";
 
         return false;
-
     }
-
 
     if(!data.session){
 
@@ -1937,34 +1152,24 @@ async function checkUser(){
             "admin.html";
 
         return false;
-
     }
-
-
-    /*
-       التأكد من أن الحساب
-       موجود في جدول admins
-    */
 
     const {
         data: admin,
         error: adminError
     } =
-    await supabaseClient
-        .from("admins")
-        .select("user_id")
-        .eq(
-            "user_id",
-            data.session.user.id
-        )
-        .maybeSingle();
-
+        await supabaseClient
+            .from("admins")
+            .select("user_id")
+            .eq(
+                "user_id",
+                data.session.user.id
+            )
+            .maybeSingle();
 
     if(adminError){
 
-        console.error(
-            adminError
-        );
+        console.error(adminError);
 
         showMessage(
             "تعذر التحقق من صلاحيات المدير.",
@@ -1972,27 +1177,19 @@ async function checkUser(){
         );
 
         return false;
-
     }
-
 
     if(!admin){
 
-        await supabaseClient
-            .auth
-            .signOut();
-
+        await supabaseClient.auth.signOut();
 
         window.location.href =
             "admin.html";
 
         return false;
-
     }
 
-
     return true;
-
 }
 
 
@@ -2003,37 +1200,25 @@ async function checkUser(){
 async function loadBranches(){
 
     const select =
-        document.getElementById(
-            "branch"
-        );
+        document.getElementById("branch");
 
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("branches")
-        .select(
-            "id, name"
-        )
-        .order(
-            "id",
-            {
-                ascending:true
-            }
-        );
-
+    const { data, error } =
+        await supabaseClient
+            .from("branches")
+            .select("id,name,slug")
+            .order(
+                "id",
+                {
+                    ascending:true
+                }
+            );
 
     if(error){
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         select.innerHTML =
             '<option value="">تعذر تحميل الفروع</option>';
-
 
         showMessage(
             "تعذر تحميل الفروع القانونية.",
@@ -2041,92 +1226,72 @@ async function loadBranches(){
         );
 
         return false;
-
     }
 
+    /*
+       الاحتفاظ بالفروع في الذاكرة
+    */
+
+    allBranches = data || [];
 
     select.innerHTML =
         '<option value="">اختر الفرع القانوني</option>';
 
+    allBranches.forEach(branch => {
 
-    (data || []).forEach(
-        branch => {
+        const option =
+            document.createElement("option");
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+        option.value =
+            branch.id;
 
+        option.textContent =
+            branch.name;
 
-            option.value =
-                branch.id;
+        select.appendChild(option);
 
+    });
 
-            option.textContent =
-                branch.name;
-
-
-            select.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-    if(!data || data.length === 0){
+    if(!allBranches.length){
 
         select.innerHTML =
             '<option value="">لا توجد فروع</option>';
 
         return false;
-
     }
 
-
     return true;
-
 }
 
 
 /* =====================================
-   LOAD CATEGORIES
+   LOAD ALL CATEGORIES
+   ثم نعرض فقط المرتبطة بالفرع
 ===================================== */
 
 async function loadCategories(){
 
-    const select =
-        document.getElementById(
-            "category"
-        );
-
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("reference_categories")
-        .select(
-            "id, name"
-        )
-        .order(
-            "id",
-            {
-                ascending:true
-            }
-        );
-
+    const { data, error } =
+        await supabaseClient
+            .from("reference_categories")
+            .select(
+                "id,name,slug,branch_id"
+            )
+            .not(
+                "branch_id",
+                "is",
+                null
+            )
+            .order(
+                "id",
+                {
+                    ascending:true
+                }
+            );
 
     if(error){
 
-        console.error(
-            error
-        );
-
-        select.innerHTML =
-            '<option value="">تعذر تحميل التصنيفات</option>';
-
+        console.error(error);
 
         showMessage(
             "تعذر تحميل تصنيفات المراجع.",
@@ -2134,68 +1299,150 @@ async function loadCategories(){
         );
 
         return false;
-
     }
 
+    allCategories = data || [];
+
+    return true;
+}
+
+
+/* =====================================
+   LOAD CATEGORIES FOR SELECTED BRANCH
+===================================== */
+
+function loadCategoriesForBranch(branchId){
+
+    const select =
+        document.getElementById("category");
+
+    /*
+       إعادة ضبط القائمة
+    */
 
     select.innerHTML =
         '<option value="">اختر نوع المرجع</option>';
 
+    select.value = "";
 
-    (data || []).forEach(
-        category => {
+    /*
+       لا يوجد فرع
+    */
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+    if(!branchId){
+
+        select.disabled = true;
+
+        select.innerHTML =
+            '<option value="">اختر الفرع أولًا</option>';
+
+        return;
+    }
+
+    /*
+       تصفية الأقسام حسب branch_id
+    */
+
+    const categories =
+        allCategories.filter(
+            category =>
+                String(category.branch_id) ===
+                String(branchId)
+        );
+
+    /*
+       ترتيب الأقسام حسب الهيكل المتفق عليه
+    */
+
+    const order = [
+        "التشريع",
+        "المراجع والكتب",
+        "البحوث والمذكرات",
+        "الأحكام والقرارات القضائية",
+        "المجلات والدوريات"
+    ];
+
+    categories.sort((a,b) => {
+
+        const ai =
+            order.indexOf(a.name);
+
+        const bi =
+            order.indexOf(b.name);
+
+        if(ai === -1) return 1;
+
+        if(bi === -1) return -1;
+
+        return ai - bi;
+    });
+
+    if(!categories.length){
+
+        select.disabled = true;
+
+        select.innerHTML =
+            '<option value="">لا توجد أقسام لهذا الفرع</option>';
+
+        return;
+    }
+
+    /*
+       إنشاء الخيارات
+    */
+
+    categories.forEach(category => {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            category.id;
+
+        option.textContent =
+            category.name;
+
+        select.appendChild(option);
+
+    });
+
+    select.disabled = false;
+}
 
 
-            option.value =
-                category.id;
+/* =====================================
+   BRANCH CHANGE
+===================================== */
 
+document
+    .getElementById("branch")
+    .addEventListener(
+        "change",
+        function(){
 
-            option.textContent =
-                category.name;
+            /*
+               عند تغيير الفرع،
+               يتم تغيير الأقسام مباشرة
+            */
 
-
-            select.appendChild(
-                option
+            loadCategoriesForBranch(
+                this.value
             );
 
         }
     );
 
 
-    if(!data || data.length === 0){
-
-        select.innerHTML =
-            '<option value="">لا توجد تصنيفات</option>';
-
-        return false;
-
-    }
-
-
-    return true;
-
-}
-
-
 /* =====================================
    FILE INFORMATION
 ===================================== */
 
-function formatFileSize(
-    bytes
-){
+function formatFileSize(bytes){
 
     if(bytes < 1024){
 
         return bytes + " B";
-
     }
-
 
     if(bytes < 1024 * 1024){
 
@@ -2203,16 +1450,13 @@ function formatFileSize(
             bytes / 1024
         ).toFixed(1)
         + " KB";
-
     }
-
 
     return (
         bytes /
         (1024 * 1024)
     ).toFixed(2)
     + " MB";
-
 }
 
 
@@ -2229,24 +1473,20 @@ document
             const file =
                 this.files[0];
 
-
             const fileInfo =
                 document.getElementById(
                     "fileInfo"
                 );
-
 
             const fileName =
                 document.getElementById(
                     "fileName"
                 );
 
-
             const fileSize =
                 document.getElementById(
                     "fileSize"
                 );
-
 
             if(!file){
 
@@ -2255,24 +1495,19 @@ document
                 );
 
                 return;
-
             }
-
 
             fileName.textContent =
                 file.name;
-
 
             fileSize.textContent =
                 formatFileSize(
                     file.size
                 );
 
-
             fileInfo.classList.add(
                 "show"
             );
-
         }
     );
 
@@ -2281,52 +1516,69 @@ document
    UPLOAD PDF
 ===================================== */
 
-async function uploadPDF(
-    file
-){
-
-    const extension =
-        "pdf";
-
+async function uploadPDF(file){
 
     const fileName =
-        crypto.randomUUID()
-        + "."
-        + extension;
-
+        crypto.randomUUID() + ".pdf";
 
     const filePath =
-        "references/"
-        + fileName;
+        "references/" + fileName;
 
+    const { error } =
+        await supabaseClient
+            .storage
+            .from("legal-pdfs")
+            .upload(
+                filePath,
+                file,
+                {
+                    contentType:
+                        "application/pdf",
 
-    const {
-        error
-    } =
-    await supabaseClient
-        .storage
-        .from("legal-pdfs")
-        .upload(
-            filePath,
-            file,
-            {
-                contentType:
-                    "application/pdf",
-
-                upsert:false
-            }
-        );
-
+                    upsert:false
+                }
+            );
 
     if(error){
 
         throw error;
-
     }
 
-
     return filePath;
+}
 
+
+/* =====================================
+   VERIFY BRANCH / CATEGORY RELATION
+===================================== */
+
+async function verifyCategoryBelongsToBranch(
+    branchId,
+    categoryId
+){
+
+    const { data, error } =
+        await supabaseClient
+            .from("reference_categories")
+            .select(
+                "id,branch_id"
+            )
+            .eq(
+                "id",
+                Number(categoryId)
+            )
+            .eq(
+                "branch_id",
+                Number(branchId)
+            )
+            .maybeSingle();
+
+    if(error){
+
+        throw error;
+    }
+
+    return !!data;
 }
 
 
@@ -2342,18 +1594,15 @@ document
 
             event.preventDefault();
 
-
             const button =
                 document.getElementById(
                     "submitBtn"
                 );
 
-
             const file =
                 document
                     .getElementById("pdf")
                     .files[0];
-
 
             const title =
                 document
@@ -2361,25 +1610,21 @@ document
                     .value
                     .trim();
 
-
             const author =
                 document
                     .getElementById("author")
                     .value
                     .trim();
 
-
             const branchId =
                 document
                     .getElementById("branch")
                     .value;
 
-
             const categoryId =
                 document
                     .getElementById("category")
                     .value;
-
 
             const description =
                 document
@@ -2387,9 +1632,9 @@ document
                     .value
                     .trim();
 
+            let uploadedFilePath = null;
 
             try{
-
 
                 /* =========================
                    VALIDATION
@@ -2400,36 +1645,46 @@ document
                     throw new Error(
                         "يرجى إدخال عنوان المرجع."
                     );
-
                 }
-
 
                 if(!branchId){
 
                     throw new Error(
                         "يرجى اختيار الفرع القانوني."
                     );
-
                 }
-
 
                 if(!categoryId){
 
                     throw new Error(
                         "يرجى اختيار نوع المرجع."
                     );
-
                 }
 
+                /*
+                   التحقق من أن القسم
+                   تابع للفرع المختار
+                */
+
+                const belongs =
+                    await verifyCategoryBelongsToBranch(
+                        branchId,
+                        categoryId
+                    );
+
+                if(!belongs){
+
+                    throw new Error(
+                        "القسم المختار لا ينتمي إلى الفرع القانوني المحدد."
+                    );
+                }
 
                 if(!file){
 
                     throw new Error(
                         "يرجى اختيار ملف PDF."
                     );
-
                 }
-
 
                 const isPDF =
                     file.type ===
@@ -2439,15 +1694,12 @@ document
                         .toLowerCase()
                         .endsWith(".pdf");
 
-
                 if(!isPDF){
 
                     throw new Error(
                         "الملف المختار ليس ملف PDF."
                     );
-
                 }
-
 
                 if(
                     file.size >
@@ -2457,22 +1709,17 @@ document
                     throw new Error(
                         "حجم الملف يتجاوز 50 MB."
                     );
-
                 }
-
 
                 /* =========================
                    BUTTON STATE
                 ========================= */
 
-                button.disabled =
-                    true;
-
+                button.disabled = true;
 
                 button.classList.add(
                     "loading"
                 );
-
 
                 button.innerHTML = `
 
@@ -2484,15 +1731,10 @@ document
                         stroke-linejoin="round">
 
                         <path d="M12 2v4"></path>
-
                         <path d="M12 18v4"></path>
-
                         <path d="M4.93 4.93l2.83 2.83"></path>
-
                         <path d="M16.24 16.24l2.83 2.83"></path>
-
                         <path d="M2 12h4"></path>
-
                         <path d="M18 12h4"></path>
 
                     </svg>
@@ -2501,80 +1743,63 @@ document
 
                 `;
 
-
                 showMessage(
                     "جاري رفع ملف PDF، يرجى الانتظار...",
                     "info"
                 );
 
-
                 /* =========================
                    UPLOAD
                 ========================= */
 
-                const filePath =
-                    await uploadPDF(
-                        file
-                    );
-
+                uploadedFilePath =
+                    await uploadPDF(file);
 
                 /* =========================
-                   INSERT
+                   INSERT REFERENCE
                 ========================= */
 
-                const {
-                    error
-                } =
-                await supabaseClient
-                    .from("references")
-                    .insert({
+                const { error } =
+                    await supabaseClient
+                        .from("references")
+                        .insert({
 
-                        title:
-                            title,
+                            title:title,
 
-                        author:
-                            author ||
-                            null,
+                            author:
+                                author || null,
 
-                        description:
-                            description ||
-                            null,
+                            description:
+                                description || null,
 
-                        branch_id:
-                            Number(
-                                branchId
-                            ),
+                            branch_id:
+                                Number(branchId),
 
-                        category_id:
-                            Number(
-                                categoryId
-                            ),
+                            category_id:
+                                Number(categoryId),
 
-                        file_path:
-                            filePath
-
-                    });
-
+                            file_path:
+                                uploadedFilePath
+                        });
 
                 if(error){
 
                     /*
-                       إذا فشل إدخال البيانات،
-                       نحذف الملف الذي تم رفعه
+                       حذف الملف إذا فشل
+                       حفظ المرجع
                     */
 
                     await supabaseClient
                         .storage
                         .from("legal-pdfs")
                         .remove([
-                            filePath
+                            uploadedFilePath
                         ]);
 
+                    uploadedFilePath = null;
 
                     throw error;
-
                 }
-
 
                 /* =========================
                    SUCCESS
@@ -2585,13 +1810,11 @@ document
                     "success"
                 );
 
-
                 document
                     .getElementById(
                         "referenceForm"
                     )
                     .reset();
-
 
                 document
                     .getElementById(
@@ -2601,15 +1824,27 @@ document
                         "show"
                     );
 
+                /*
+                   بعد reset
+                   نعيد تعطيل قسم التصنيف
+                */
 
-                button.disabled =
-                    false;
+                const categorySelect =
+                    document.getElementById(
+                        "category"
+                    );
 
+                categorySelect.disabled =
+                    true;
+
+                categorySelect.innerHTML =
+                    '<option value="">اختر الفرع أولًا</option>';
+
+                button.disabled = false;
 
                 button.classList.remove(
                     "loading"
                 );
-
 
                 button.innerHTML = `
 
@@ -2621,9 +1856,7 @@ document
                         stroke-linejoin="round">
 
                         <path d="M12 16V4"></path>
-
                         <path d="M7 9l5-5 5 5"></path>
-
                         <path d="M5 20h14"></path>
 
                     </svg>
@@ -2632,14 +1865,34 @@ document
 
                 `;
 
-
             }
             catch(error){
 
-                console.error(
-                    error
-                );
+                console.error(error);
 
+                /*
+                   في حالة حدوث خطأ بعد الرفع
+                   ولم يكن الملف قد حذف
+                   نحاول تنظيفه
+                */
+
+                if(
+                    uploadedFilePath
+                ){
+
+                    await supabaseClient
+                        .storage
+                        .from("legal-pdfs")
+                        .remove([
+                            uploadedFilePath
+                        ])
+                        .catch(
+                            cleanupError =>
+                                console.error(
+                                    cleanupError
+                                )
+                        );
+                }
 
                 showMessage(
                     error.message ||
@@ -2647,15 +1900,11 @@ document
                     "error"
                 );
 
-
-                button.disabled =
-                    false;
-
+                button.disabled = false;
 
                 button.classList.remove(
                     "loading"
                 );
-
 
                 button.innerHTML = `
 
@@ -2667,9 +1916,7 @@ document
                         stroke-linejoin="round">
 
                         <path d="M12 16V4"></path>
-
                         <path d="M7 9l5-5 5 5"></path>
-
                         <path d="M5 20h14"></path>
 
                     </svg>
@@ -2677,7 +1924,6 @@ document
                     إضافة المرجع
 
                 `;
-
             }
 
         }
@@ -2693,23 +1939,24 @@ document
     const loggedIn =
         await checkUser();
 
-
     if(!loggedIn){
 
         return;
-
     }
 
+    const branchesLoaded =
+        await loadBranches();
 
-    await Promise.all([
-        loadBranches(),
-        loadCategories()
-    ]);
+    if(!branchesLoaded){
+
+        return;
+    }
+
+    await loadCategories();
 
 })();
 
 </script>
-
 
 </body>
 
