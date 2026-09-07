@@ -721,7 +721,13 @@ function displayReferences(
                         ""
                     }
 
+                       <a
+                          href="edit-reference.html?id=${reference.id}"
+                         class="btn btn-success">
 
+                         ✏️ تعديل
+
+                      </a>
                     <button
                         class="btn btn-danger"
                         onclick="deleteReference(${reference.id})">
