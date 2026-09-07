@@ -1,1066 +1,1734 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+  <title>البحث القانوني | الموسوعة القانونية</title>
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="البحث المتقدم في المراجع القانونية والكتب والبحوث والمذكرات في الموسوعة القانونية">
 
-<title>البحث القانوني | الموسوعة القانونية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    font-family:Tahoma,Arial,sans-serif;
-    background:#f4f7fb;
-    color:#172033;
-}
-
-header{
-    background:linear-gradient(135deg,#071a35,#123e69);
-    color:white;
-    padding:38px 20px;
-    text-align:center;
-    box-shadow:0 5px 25px rgba(0,0,0,.18);
-}
-
-.logo{
-    font-size:30px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.subtitle{
-    font-size:14px;
-    opacity:.9;
-}
-
-.manager{
-    margin-top:12px;
-    color:#dbeafe;
-    font-size:13px;
-}
-
-nav{
-    background:white;
-    padding:14px;
-    text-align:center;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-nav a{
-    color:#123e69;
-    text-decoration:none;
-    font-weight:bold;
-    margin:0 10px;
-}
-
-.container{
-    width:min(1100px,94%);
-    margin:30px auto;
-}
-
-.search-panel{
-    background:white;
-    border-radius:20px;
-    padding:30px 22px;
-    box-shadow:0 5px 25px rgba(0,0,0,.07);
-    margin-bottom:30px;
-}
-
-.search-panel h1{
-    text-align:center;
-    color:#123e69;
-    margin-top:0;
-    margin-bottom:10px;
-}
-
-.search-panel p{
-    text-align:center;
-    color:#667085;
-    line-height:1.8;
-}
-
-.search-input{
-    width:100%;
-    padding:17px 20px;
-    border:1px solid #d6dce5;
-    border-radius:13px;
-    font-size:16px;
-    outline:none;
-    margin-top:15px;
-}
-
-.search-input:focus{
-    border-color:#123e69;
-    box-shadow:0 0 0 3px rgba(18,62,105,.1);
-}
-
-.filters{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-    margin-top:15px;
-}
-
-select{
-    width:100%;
-    padding:14px;
-    border:1px solid #d6dce5;
-    border-radius:12px;
-    background:white;
-    font-size:15px;
-    color:#172033;
-}
-
-.buttons{
-    display:flex;
-    gap:10px;
-    margin-top:15px;
-}
-
-button{
-    border:none;
-    border-radius:12px;
-    padding:13px 20px;
-    cursor:pointer;
-    font-size:15px;
-    font-weight:bold;
-}
-
-.search-btn{
-    background:#123e69;
-    color:white;
-    flex:1;
-}
-
-.reset-btn{
-    background:#eef2f6;
-    color:#344054;
-}
-
-.results-info{
-    background:white;
-    padding:16px 20px;
-    border-radius:14px;
-    margin-bottom:20px;
-    color:#667085;
-}
-
-.results-info strong{
-    color:#123e69;
-}
-
-.results{
-    display:grid;
-    gap:18px;
-}
-
-.reference-card{
-    background:white;
-    border-radius:18px;
-    padding:22px;
-    border:1px solid #edf0f5;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
-}
-
-.reference-card h2{
-    color:#123e69;
-    font-size:20px;
-    margin:0 0 12px;
-}
-
-.reference-meta{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:12px;
-}
-
-.badge{
-    background:#eef5fc;
-    color:#123e69;
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.description{
-    color:#667085;
-    line-height:1.8;
-    margin-bottom:18px;
-}
-
-.actions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.action{
-    display:inline-block;
-    text-decoration:none;
-    padding:11px 16px;
-    border-radius:10px;
-    font-weight:bold;
-    font-size:14px;
-}
-
-.open-pdf{
-    background:#123e69;
-    color:white;
-}
-
-.branch-link{
-    background:#eef2f6;
-    color:#123e69;
-}
-
-.status{
-    text-align:center;
-    padding:25px;
-    color:#667085;
-}
-
-.error{
-    background:#fff1f2;
-    color:#b42318;
-    padding:20px;
-    border-radius:12px;
-    text-align:center;
-}
-
-.empty{
-    background:white;
-    padding:40px 20px;
-    text-align:center;
-    border-radius:18px;
-    color:#667085;
-}
-
-.empty strong{
-    display:block;
-    color:#123e69;
-    font-size:20px;
-    margin-bottom:8px;
-}
-
-footer{
-    margin-top:50px;
-    background:#071a35;
-    color:white;
-    text-align:center;
-    padding:30px 20px;
-}
-
-footer p{
-    margin:7px;
-}
-
-@media(max-width:600px){
-
-    .logo{
-        font-size:25px;
+  <style>
+    :root {
+      --navy: #0b1f3a;
+      --navy-2: #102b4d;
+      --navy-3: #16385f;
+      --gold: #c9a227;
+      --gold-light: #e2c45b;
+      --ivory: #f7f3e8;
+      --white: #ffffff;
+      --text: #182536;
+      --muted: #687588;
+      --border: #e3e7ed;
+      --success: #1f7a4d;
+      --danger: #b23a48;
+      --shadow: 0 12px 35px rgba(11, 31, 58, 0.10);
+      --radius: 18px;
     }
 
-    .filters{
-        grid-template-columns:1fr;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .buttons{
-        flex-direction:column;
+    html {
+      scroll-behavior: smooth;
     }
 
-    .search-panel{
-        padding:25px 16px;
+    body {
+      font-family: "Cairo", sans-serif;
+      background: #f5f7fa;
+      color: var(--text);
+      line-height: 1.8;
+      overflow-x: hidden;
     }
 
-    .reference-card{
-        padding:18px;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    nav a{
-        display:inline-block;
-        margin:5px 6px;
+    button,
+    input,
+    select {
+      font-family: inherit;
     }
 
-}
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: auto;
+    }
 
-</style>
+    /* =========================
+       HEADER
+    ========================= */
 
+    header {
+      background:
+        linear-gradient(135deg, rgba(11,31,58,.98), rgba(16,43,77,.98));
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 18px rgba(0,0,0,.15);
+    }
+
+    .header-main {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-emblem {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      border: 1px solid rgba(226,196,91,.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      background: rgba(255,255,255,.04);
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-family: "Amiri", serif;
+      font-size: 27px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: #d5dce7;
+      margin-top: 3px;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      padding: 9px 12px;
+      border-radius: 10px;
+      color: #e9eef5;
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: rgba(201,162,39,.14);
+      color: var(--gold-light);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(201,162,39,.15), transparent 30%),
+        linear-gradient(135deg, var(--navy), var(--navy-2));
+      color: white;
+      padding: 62px 0 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border: 1px solid rgba(201,162,39,.14);
+      border-radius: 50%;
+      left: -150px;
+      bottom: -220px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .hero-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+      border: 1px solid rgba(226,196,91,.65);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      background: rgba(255,255,255,.035);
+    }
+
+    .hero h1 {
+      font-family: "Amiri", serif;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #dce4ee;
+      font-size: 15px;
+      max-width: 680px;
+      margin: auto;
+    }
+
+    /* =========================
+       SEARCH BOX
+    ========================= */
+
+    .search-wrapper {
+      margin-top: -34px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .search-panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .search-main {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-input-wrap svg {
+      position: absolute;
+      right: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      pointer-events: none;
+    }
+
+    #searchInput {
+      width: 100%;
+      height: 58px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 0 52px 0 18px;
+      outline: none;
+      font-size: 15px;
+      color: var(--text);
+      background: #fbfcfd;
+      transition: .2s;
+    }
+
+    #searchInput:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,162,39,.10);
+      background: white;
+    }
+
+    .search-btn {
+      border: none;
+      background: var(--navy);
+      color: white;
+      border-radius: 13px;
+      padding: 0 27px;
+      min-width: 125px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .search-btn:hover {
+      background: var(--navy-3);
+      transform: translateY(-1px);
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .filter-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .filter-group select {
+      width: 100%;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 0 13px;
+      background: white;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .filter-group select:focus {
+      border-color: var(--gold);
+    }
+
+    .clear-btn {
+      margin-top: 13px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 12px;
+      padding: 3px 0;
+    }
+
+    .clear-btn:hover {
+      color: var(--danger);
+    }
+
+    /* =========================
+       RESULTS HEADER
+    ========================= */
+
+    .results-section {
+      padding: 50px 0 80px;
+    }
+
+    .results-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title-mark {
+      width: 5px;
+      height: 29px;
+      background: var(--gold);
+      border-radius: 5px;
+    }
+
+    .section-title h2 {
+      font-family: "Amiri", serif;
+      font-size: 28px;
+      color: var(--navy);
+    }
+
+    .result-count {
+      color: var(--muted);
+      font-size: 13px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 20px;
+    }
+
+    /* =========================
+       RESULTS GRID
+    ========================= */
+
+    #results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+    }
+
+    .reference-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 5px 20px rgba(11,31,58,.05);
+      transition: .25s ease;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .reference-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: rgba(201,162,39,.35);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .reference-icon {
+      width: 45px;
+      height: 45px;
+      flex: 0 0 45px;
+      border-radius: 12px;
+      background: rgba(11,31,58,.06);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .branch-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(201,162,39,.10);
+      border: 1px solid rgba(201,162,39,.18);
+      padding: 4px 9px;
+      border-radius: 20px;
+      max-width: 70%;
+      text-align: center;
+    }
+
+    .reference-card h3 {
+      font-family: "Amiri", serif;
+      color: var(--navy);
+      font-size: 23px;
+      line-height: 1.45;
+      margin-bottom: 7px;
+    }
+
+    .author {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: #596779;
+      font-size: 13px;
+      line-height: 1.9;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .category-name {
+      display: inline-block;
+      font-size: 11px;
+      color: #566273;
+      background: #f4f6f8;
+      padding: 4px 9px;
+      border-radius: 7px;
+      margin-bottom: 17px;
+      width: fit-content;
+    }
+
+    .read-btn {
+      width: 100%;
+      height: 45px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .read-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* =========================
+       STATES
+    ========================= */
+
+    .state-box {
+      grid-column: 1 / -1;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 50px 25px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .state-icon {
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: #f2f4f7;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .state-box h3 {
+      color: var(--navy);
+      font-family: "Amiri", serif;
+      font-size: 23px;
+      margin-bottom: 4px;
+    }
+
+    .state-box p {
+      font-size: 13px;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border: 3px solid #e5e8ed;
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin-bottom: 12px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--navy);
+      color: #d8e0ea;
+      padding: 45px 0 25px;
+      margin-top: 20px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 35px;
+      padding-bottom: 30px;
+    }
+
+    .footer-brand h3 {
+      font-family: "Amiri", serif;
+      color: white;
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .footer-brand p {
+      font-size: 12px;
+      color: #aebaca;
+      max-width: 420px;
+      line-height: 2;
+    }
+
+    .footer-col h4 {
+      color: var(--gold-light);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #c1cbd7;
+      font-size: 12px;
+      margin-bottom: 7px;
+      transition: .2s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top: 20px;
+      text-align: center;
+      color: #9eabba;
+      font-size: 11px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .header-main {
+        min-height: auto;
+        padding: 14px 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .brand {
+        justify-content: center;
+      }
+
+      nav {
+        justify-content: center;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 2px;
+      }
+
+      nav a {
+        white-space: nowrap;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 45px 0 65px;
+      }
+
+      .search-main {
+        flex-direction: column;
+      }
+
+      .search-btn {
+        height: 50px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .brand-title {
+        font-size: 24px;
+      }
+
+      .brand-subtitle {
+        font-size: 10px;
+      }
+
+      .brand-emblem {
+        width: 46px;
+        height: 46px;
+        flex-basis: 46px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 13px;
+      }
+
+      .search-panel {
+        padding: 17px;
+        border-radius: 17px;
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .results-section {
+        padding-top: 35px;
+      }
+
+      .results-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .section-title h2 {
+        font-size: 25px;
+      }
+
+      #results {
+        grid-template-columns: 1fr;
+      }
+
+      .reference-card {
+        padding: 18px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-
-<header>
-
-    <div class="logo">
-        ⚖️ الموسوعة القانونية
-    </div>
-
-    <div class="subtitle">
-        محرك البحث القانوني المتقدم
-    </div>
-
-    <div class="manager">
-        فراس بسر — مدير الموسوعة القانونية
-    </div>
-
-</header>
-
-
-<nav>
-
-    <a href="index.html">
-        الرئيسية
-    </a>
-
-    <a href="search.html">
-        البحث القانوني
-    </a>
-
-    <a href="admin.html">
-        لوحة الإدارة
-    </a>
-
-</nav>
-
-
-<div class="container">
-
-
-<section class="search-panel">
-
-    <h1>
-        🔎 البحث القانوني المتقدم
-    </h1>
-
-    <p>
-        ابحث في المراجع القانونية حسب العنوان
-        أو المؤلف أو الوصف، مع إمكانية تحديد
-        الفرع والتصنيف.
-    </p>
-
-
-    <input
-        id="searchInput"
-        class="search-input"
-        type="search"
-        placeholder="اكتب اسم المرجع أو المؤلف أو كلمة للبحث..."
-        autocomplete="off"
-    >
-
-
-    <div class="filters">
-
-        <select id="branchFilter">
-
-            <option value="">
-                🗂️ جميع فروع القانون
-            </option>
-
-        </select>
-
-
-        <select id="categoryFilter">
-
-            <option value="">
-                📚 جميع التصنيفات
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <div class="buttons">
-
-        <button
-            id="searchBtn"
-            class="search-btn"
-        >
-            🔎 بحث
-        </button>
-
-        <button
-            id="resetBtn"
-            class="reset-btn"
-        >
-            ↩️ إعادة ضبط
-        </button>
-
-    </div>
-
-</section>
-
-
-<div
-    id="resultsInfo"
-    class="results-info"
->
-    جاري تحميل البيانات...
-</div>
-
-
-<div
-    id="results"
-    class="results"
-></div>
-
-
-</div>
-
-
-<footer>
-
-    <p>
-        ⚖️ الموسوعة القانونية
-    </p>
-
-    <p>
-        فراس بسر — مدير الموسوعة القانونية
-    </p>
-
-    <p>
-        جميع الحقوق محفوظة © 2026
-    </p>
-
-</footer>
-
-
-<script>
-
-/* =====================================
-   SUPABASE
-===================================== */
-
-const SUPABASE_URL =
-"https://yksrckzomkowjzmsafvm.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
-
-const supabaseClient =
-supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-
-/* =====================================
-   ELEMENTS
-===================================== */
-
-const searchInput =
-document.getElementById("searchInput");
-
-const branchFilter =
-document.getElementById("branchFilter");
-
-const categoryFilter =
-document.getElementById("categoryFilter");
-
-const searchBtn =
-document.getElementById("searchBtn");
-
-const resetBtn =
-document.getElementById("resetBtn");
-
-const results =
-document.getElementById("results");
-
-const resultsInfo =
-document.getElementById("resultsInfo");
-
-
-/* =====================================
-   LOAD FILTERS
-===================================== */
-
-async function loadFilters(){
-
-    const branchesResult =
-        await supabaseClient
-        .from("branches")
-        .select("id,name")
-        .order("name");
-
-
-    if(branchesResult.error){
-
-        console.error(
-            branchesResult.error
-        );
-
-    }else{
-
-        (branchesResult.data || [])
-        .forEach(branch => {
-
-            const option =
-                document.createElement("option");
-
-            option.value =
-                branch.id;
-
-            option.textContent =
-                branch.name;
-
-            branchFilter.appendChild(
-                option
-            );
-
-        });
-
-    }
-
-
-    const categoriesResult =
-        await supabaseClient
-        .from("reference_categories")
-        .select("id,name")
-        .order("name");
-
-
-    if(categoriesResult.error){
-
-        console.error(
-            categoriesResult.error
-        );
-
-    }else{
-
-        (categoriesResult.data || [])
-        .forEach(category => {
-
-            const option =
-                document.createElement("option");
-
-            option.value =
-                category.id;
-
-            option.textContent =
-                category.name;
-
-            categoryFilter.appendChild(
-                option
-            );
-
-        });
-
-    }
-
-}
-
-
-/* =====================================
-   SEARCH
-===================================== */
-
-async function searchReferences(){
-
-    results.innerHTML = `
-
-        <div class="status">
-            ⏳ جاري البحث...
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+    <div class="container header-main">
+
+      <a href="index.html" class="brand">
+
+        <div class="brand-emblem">
+          <svg width="29" height="29" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5">
+            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+            <path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/>
+            <path d="M8 7h8M8 10h8M8 13h5"/>
+          </svg>
         </div>
 
-    `;
+        <div class="brand-text">
+          <div class="brand-title">الموسوعة القانونية</div>
+          <div class="brand-subtitle">
+            فراس بسر — مدير الموسوعة القانونية
+          </div>
+        </div>
 
-    resultsInfo.textContent =
-        "جاري البحث في المراجع القانونية...";
+      </a>
+
+      <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="index.html#branches">فروع القانون</a>
+        <a href="index.html#latest">أحدث المراجع</a>
+        <a href="search.html" class="active">البحث القانوني</a>
+        <a href="index.html#about">عن الموسوعة</a>
+        <a href="admin.html">لوحة الإدارة</a>
+      </nav>
+
+    </div>
+  </header>
 
 
-    const queryText =
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero">
+
+    <div class="container hero-content">
+
+      <div class="hero-icon">
+        <svg width="38" height="38" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="11" cy="11" r="6.5"/>
+          <path d="m16 16 5 5"/>
+          <path d="M8.5 11h5M11 8.5v5"/>
+        </svg>
+      </div>
+
+      <h1>البحث القانوني</h1>
+
+      <p>
+        ابحث عن الكتب والمراجع والبحوث والمذكرات والوثائق القانونية
+        في مختلف فروع القانون.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SEARCH PANEL
+  ========================= -->
+
+  <div class="container search-wrapper">
+
+    <div class="search-panel">
+
+      <form id="searchForm">
+
+        <div class="search-main">
+
+          <div class="search-input-wrap">
+
+            <svg width="22" height="22" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="11" cy="11" r="6.5"/>
+              <path d="m16 16 5 5"/>
+            </svg>
+
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="ابحث باسم الكتاب، المؤلف، المرجع أو كلمة مفتاحية..."
+              autocomplete="off"
+            >
+
+          </div>
+
+          <button class="search-btn" type="submit">
+            بحث
+          </button>
+
+        </div>
+
+
+        <div class="filters">
+
+          <div class="filter-group">
+            <label for="branchFilter">فرع القانون</label>
+
+            <select id="branchFilter">
+              <option value="">جميع فروع القانون</option>
+            </select>
+          </div>
+
+
+          <div class="filter-group">
+            <label for="categoryFilter">التصنيف</label>
+
+            <select id="categoryFilter">
+              <option value="">جميع التصنيفات</option>
+            </select>
+          </div>
+
+        </div>
+
+        <button
+          type="button"
+          class="clear-btn"
+          id="clearBtn">
+          مسح البحث والفلاتر
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       RESULTS
+  ========================= -->
+
+  <main class="results-section">
+
+    <div class="container">
+
+      <div class="results-header">
+
+        <div class="section-title">
+
+          <div class="section-title-mark"></div>
+
+          <h2>نتائج البحث</h2>
+
+        </div>
+
+        <div class="result-count" id="resultCount">
+          —
+        </div>
+
+      </div>
+
+
+      <div id="results">
+
+        <div class="state-box">
+
+          <div class="state-icon">
+            <svg width="29" height="29" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="6.5"/>
+              <path d="m16 16 5 5"/>
+            </svg>
+          </div>
+
+          <h3>ابدأ البحث</h3>
+
+          <p>
+            أدخل كلمة البحث أو اختر أحد الفروع والتصنيفات.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-content">
+
+        <div class="footer-brand">
+
+          <h3>الموسوعة القانونية</h3>
+
+          <p>
+            مكتبة قانونية رقمية تهدف إلى تسهيل الوصول إلى
+            المراجع والكتب والبحوث القانونية للطلبة والباحثين
+            والمختصين في القانون.
+          </p>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h4>روابط سريعة</h4>
+
+          <a href="index.html">الرئيسية</a>
+          <a href="index.html#branches">فروع القانون</a>
+          <a href="search.html">البحث القانوني</a>
+          <a href="index.html#about">عن الموسوعة</a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h4>الموسوعة</h4>
+
+          <a href="index.html#latest">أحدث المراجع</a>
+          <a href="admin.html">لوحة الإدارة</a>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        © 2026 الموسوعة القانونية — جميع الحقوق محفوظة
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       SUPABASE
+  ========================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    /* =========================================
+       SUPABASE CONFIG
+    ========================================= */
+
+    const SUPABASE_URL =
+      "https://yksrckzomkowjzmsafvm.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =========================================
+       ELEMENTS
+    ========================================= */
+
+    const searchForm =
+      document.getElementById("searchForm");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const branchFilter =
+      document.getElementById("branchFilter");
+
+    const categoryFilter =
+      document.getElementById("categoryFilter");
+
+    const clearBtn =
+      document.getElementById("clearBtn");
+
+    const results =
+      document.getElementById("results");
+
+    const resultCount =
+      document.getElementById("resultCount");
+
+
+    /* =========================================
+       ICONS
+    ========================================= */
+
+    const branchIcons = {
+
+      civil: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 3v18M5 7h14M7 7l-3 5h6L7 7ZM17 7l-3 5h6l-3-5Z"/>
+          <path d="M6 18h12"/>
+        </svg>
+      `,
+
+      commercial: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 8h16v12H4z"/>
+          <path d="M8 8V5h8v3M8 13h8"/>
+        </svg>
+      `,
+
+      administrative: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 21h18M5 21V9l7-5 7 5v12"/>
+          <path d="M9 21v-6h6v6M8 10h8"/>
+        </svg>
+      `,
+
+      constitutional: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 3v18M5 7h14"/>
+          <path d="M7 7 4 13h6L7 7ZM17 7l-3 6h6l-3-6Z"/>
+        </svg>
+      `,
+
+      criminal: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 4h12v16H6z"/>
+          <path d="M9 8h6M9 12h6M9 16h4"/>
+        </svg>
+      `,
+
+      privateInternational: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="8"/>
+          <path d="M4 12h16M12 4a12 12 0 0 1 0 16M12 4a12 12 0 0 0 0 16"/>
+        </svg>
+      `,
+
+      publicInternational: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="8"/>
+          <path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"/>
+        </svg>
+      `,
+
+      labor: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="4" y="7" width="16" height="13" rx="2"/>
+          <path d="M9 7V5h6v2M4 12h16M10 12v2h4v-2"/>
+        </svg>
+      `,
+
+      tax: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 4h14v16H5z"/>
+          <path d="M8 8h8M8 12h8M8 16h5"/>
+        </svg>
+      `,
+
+      arbitration: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 4h14v16H5z"/>
+          <path d="M8 8h8M8 12h8M8 16h5"/>
+        </svg>
+      `,
+
+      maritime: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 15h16l-3 4H7l-3-4Z"/>
+          <path d="M12 4v11M8 8h8M7 15V9l5-3 5 3v6"/>
+          <path d="M3 20c2 1 3 1 5 0 2 1 3 1 5 0 2 1 3 1 5 0"/>
+        </svg>
+      `,
+
+      books: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 5a2 2 0 0 1 2-2h13v17H6a2 2 0 0 0-2 2V5Z"/>
+          <path d="M4 19a2 2 0 0 1 2-2h13"/>
+        </svg>
+      `,
+
+      research: `
+        <svg width="23" height="23" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="10" cy="10" r="6"/>
+          <path d="m15 15 5 5M7 10h6M10 7v6"/>
+        </svg>
+      `
+    };
+
+
+    function getBranchIcon(slug) {
+
+      if (!slug) return branchIcons.books;
+
+      const s = slug.toLowerCase();
+
+      if (s.includes("civil"))
+        return branchIcons.civil;
+
+      if (s.includes("commercial"))
+        return branchIcons.commercial;
+
+      if (s.includes("administr"))
+        return branchIcons.administrative;
+
+      if (s.includes("constitutional"))
+        return branchIcons.constitutional;
+
+      if (s.includes("criminal"))
+        return branchIcons.criminal;
+
+      if (s.includes("private"))
+        return branchIcons.privateInternational;
+
+      if (s.includes("public"))
+        return branchIcons.publicInternational;
+
+      if (s.includes("labor") || s.includes("work"))
+        return branchIcons.labor;
+
+      if (s.includes("tax"))
+        return branchIcons.tax;
+
+      if (s.includes("arbitr"))
+        return branchIcons.arbitration;
+
+      if (s.includes("maritime"))
+        return branchIcons.maritime;
+
+      if (s.includes("research"))
+        return branchIcons.research;
+
+      return branchIcons.books;
+    }
+
+
+    /* =========================================
+       ESCAPE HTML
+    ========================================= */
+
+    function escapeHTML(value) {
+
+      if (value === null || value === undefined)
+        return "";
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+
+    /* =========================================
+       LOAD BRANCHES
+    ========================================= */
+
+    async function loadBranches() {
+
+      const { data, error } =
+        await supabaseClient
+          .from("branches")
+          .select("id,name,slug")
+          .order("name", { ascending: true });
+
+      if (error) {
+        console.error("Branches error:", error);
+        return;
+      }
+
+      branchFilter.innerHTML =
+        `<option value="">جميع فروع القانون</option>`;
+
+      data.forEach(branch => {
+
+        const option =
+          document.createElement("option");
+
+        option.value = branch.id;
+
+        option.textContent = branch.name;
+
+        branchFilter.appendChild(option);
+
+      });
+
+    }
+
+
+    /* =========================================
+       LOAD CATEGORIES
+    ========================================= */
+
+    async function loadCategories() {
+
+      const { data, error } =
+        await supabaseClient
+          .from("reference_categories")
+          .select("id,name,slug")
+          .order("name", { ascending: true });
+
+      if (error) {
+        console.error("Categories error:", error);
+        return;
+      }
+
+      categoryFilter.innerHTML =
+        `<option value="">جميع التصنيفات</option>`;
+
+      data.forEach(category => {
+
+        const option =
+          document.createElement("option");
+
+        option.value = category.id;
+
+        option.textContent = category.name;
+
+        categoryFilter.appendChild(option);
+
+      });
+
+    }
+
+
+    /* =========================================
+       LOAD REFERENCES
+    ========================================= */
+
+    async function searchReferences() {
+
+      const searchTerm =
         searchInput.value.trim();
 
+      const branchId =
+        branchFilter.value;
 
-    let query =
+      const categoryId =
+        categoryFilter.value;
+
+
+      results.innerHTML = `
+        <div class="state-box">
+
+          <div class="loading"></div>
+
+          <h3>جاري البحث</h3>
+
+          <p>يرجى الانتظار...</p>
+
+        </div>
+      `;
+
+      resultCount.textContent = "جارٍ البحث";
+
+
+      let query =
         supabaseClient
-
-        .from("references")
-
-        .select(`
+          .from("references")
+          .select(`
             id,
             title,
             author,
             description,
             file_path,
+            created_at,
             branch_id,
             category_id,
             branches (
-                id,
-                name,
-                slug
+              id,
+              name,
+              slug
             ),
             reference_categories (
-                id,
-                name,
-                slug
+              id,
+              name,
+              slug
             )
-        `);
+          `)
+          .order("created_at", {
+            ascending: false
+          });
 
 
-    /* =========================
-       TEXT SEARCH
-    ========================= */
+      /* =========================
+         FILTER BRANCH
+      ========================= */
 
-    if(queryText){
-
-        const safeText =
-            queryText
-                .replace(/[%_]/g, "\\$&");
-
-        query =
-            query.or(
-                `title.ilike.%${safeText}%,author.ilike.%${safeText}%,description.ilike.%${safeText}%`
-            );
-
-    }
-
-
-    /* =========================
-       BRANCH FILTER
-    ========================= */
-
-    if(branchFilter.value){
+      if (branchId) {
 
         query =
-            query.eq(
-                "branch_id",
-                Number(
-                    branchFilter.value
-                )
-            );
+          query.eq("branch_id", branchId);
 
-    }
+      }
 
 
-    /* =========================
-       CATEGORY FILTER
-    ========================= */
+      /* =========================
+         FILTER CATEGORY
+      ========================= */
 
-    if(categoryFilter.value){
+      if (categoryId) {
 
         query =
-            query.eq(
-                "category_id",
-                Number(
-                    categoryFilter.value
-                )
-            );
+          query.eq("category_id", categoryId);
 
-    }
+      }
 
 
-    query =
-        query.order(
-            "created_at",
-            {
-                ascending:false
-            }
-        );
+      /* =========================
+         FETCH
+      ========================= */
 
-
-    const {
-        data,
-        error
-    } =
+      const { data, error } =
         await query;
 
 
-    if(error){
+      if (error) {
 
-        console.error(error);
-
-        resultsInfo.textContent =
-            "حدث خطأ أثناء البحث.";
+        console.error("Search error:", error);
 
         results.innerHTML = `
+          <div class="state-box">
 
-            <div class="error">
-
-                ❌ تعذر تنفيذ البحث.
-
-                <br><br>
-
-                ${escapeHTML(
-                    error.message
-                )}
-
+            <div class="state-icon">
+              <svg width="29" height="29"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="1.5">
+                <circle cx="12" cy="12" r="8"/>
+                <path d="M12 8v4M12 16h.01"/>
+              </svg>
             </div>
 
+            <h3>تعذّر تحميل النتائج</h3>
+
+            <p>
+              حدث خطأ أثناء الاتصال بقاعدة البيانات.
+            </p>
+
+          </div>
         `;
 
-        return;
-    }
-
-
-    renderResults(
-        data || []
-    );
-
-}
-
-
-/* =====================================
-   RENDER RESULTS
-===================================== */
-
-function renderResults(
-    references
-){
-
-    if(
-        !references ||
-        references.length === 0
-    ){
-
-        resultsInfo.innerHTML =
-            "نتائج البحث: <strong>0</strong>";
-
-        results.innerHTML = `
-
-            <div class="empty">
-
-                <strong>
-                    🔎 لا توجد نتائج
-                </strong>
-
-                جرّب تغيير عبارة البحث
-                أو اختيار فرع أو تصنيف آخر.
-
-            </div>
-
-        `;
+        resultCount.textContent = "خطأ";
 
         return;
-    }
+      }
 
 
-    resultsInfo.innerHTML =
-        "تم العثور على "
-        +
-        "<strong>"
-        +
-        references.length
-        +
-        "</strong>"
-        +
-        " مرجعًا قانونيًا";
+      /* =========================
+         CLIENT-SIDE SEARCH
+      ========================= */
+
+      let filtered =
+        data || [];
 
 
-    results.innerHTML = "";
+      if (searchTerm) {
 
+        const term =
+          searchTerm.toLowerCase();
 
-    references.forEach(
-        reference => {
+        filtered =
+          filtered.filter(item => {
+
+            const title =
+              (item.title || "").toLowerCase();
+
+            const author =
+              (item.author || "").toLowerCase();
+
+            const description =
+              (item.description || "").toLowerCase();
 
             const branch =
-                reference.branches;
-
+              (item.branches?.name || "").toLowerCase();
 
             const category =
-                reference.reference_categories;
+              (item.reference_categories?.name || "").toLowerCase();
+
+            return (
+              title.includes(term) ||
+              author.includes(term) ||
+              description.includes(term) ||
+              branch.includes(term) ||
+              category.includes(term)
+            );
+
+          });
+
+      }
 
 
-            let pdfUrl = "";
+      renderResults(filtered);
+
+    }
 
 
-            if(reference.file_path){
+    /* =========================================
+       RENDER RESULTS
+    ========================================= */
 
-                pdfUrl =
-                    supabaseClient
+    function renderResults(data) {
 
-                    .storage
+      resultCount.textContent =
+        `${data.length} مرجع`;
 
-                    .from("legal-pdfs")
 
-                    .getPublicUrl(
-                        reference.file_path
-                    )
-                    .data
-                    .publicUrl;
+      if (!data.length) {
+
+        results.innerHTML = `
+          <div class="state-box">
+
+            <div class="state-icon">
+              <svg width="29" height="29"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="1.5">
+                <circle cx="11" cy="11" r="6.5"/>
+                <path d="m16 16 5 5"/>
+                <path d="M8.5 8.5l5 5M13.5 8.5l-5 5"/>
+              </svg>
+            </div>
+
+            <h3>لا توجد نتائج</h3>
+
+            <p>
+              لم يتم العثور على مراجع تطابق معايير البحث.
+            </p>
+
+          </div>
+        `;
+
+        return;
+      }
+
+
+      results.innerHTML =
+        data.map(item => {
+
+          const title =
+            escapeHTML(item.title);
+
+          const author =
+            escapeHTML(item.author);
+
+          const description =
+            escapeHTML(item.description);
+
+          const branchName =
+            escapeHTML(
+              item.branches?.name || "مرجع قانوني"
+            );
+
+          const branchSlug =
+            item.branches?.slug || "";
+
+          const categoryName =
+            escapeHTML(
+              item.reference_categories?.name || ""
+            );
+
+          const filePath =
+            item.file_path || "";
+
+
+          const icon =
+            getBranchIcon(branchSlug);
+
+
+          let fileURL = "#";
+
+
+          if (filePath) {
+
+            if (
+              filePath.startsWith("http://") ||
+              filePath.startsWith("https://")
+            ) {
+
+              fileURL = filePath;
+
+            } else {
+
+              fileURL =
+                `${SUPABASE_URL}/storage/v1/object/public/legal-pdfs/${filePath}`;
 
             }
 
-
-            const card =
-                document.createElement(
-                    "article"
-                );
+          }
 
 
-            card.className =
-                "reference-card";
+          return `
 
+            <article class="reference-card">
 
-            card.innerHTML = `
+              <div class="card-top">
 
-                <h2>
-
-                    ${escapeHTML(
-                        reference.title
-                    )}
-
-                </h2>
-
-
-                <div class="reference-meta">
-
-                    ${
-                        reference.author
-                        ?
-                        `
-                        <span class="badge">
-                            ✍️
-                            ${escapeHTML(
-                                reference.author
-                            )}
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        branch
-                        ?
-                        `
-                        <span class="badge">
-                            ⚖️
-                            ${escapeHTML(
-                                branch.name
-                            )}
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        category
-                        ?
-                        `
-                        <span class="badge">
-                            📚
-                            ${escapeHTML(
-                                category.name
-                            )}
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
+                <div class="reference-icon">
+                  ${icon}
                 </div>
 
+                <span class="branch-badge">
+                  ${branchName}
+                </span>
 
-                ${
-                    reference.description
-                    ?
-                    `
-                    <div class="description">
-                        ${escapeHTML(
-                            reference.description
-                        )}
+              </div>
+
+
+              <h3>
+                ${title}
+              </h3>
+
+
+              ${
+                author
+                  ? `<div class="author">
+                       المؤلف: ${author}
+                     </div>`
+                  : ""
+              }
+
+
+              ${
+                description
+                  ? `<div class="description">
+                       ${description}
+                     </div>`
+                  : `<div class="description">
+                       مرجع قانوني متاح ضمن مكتبة الموسوعة القانونية.
+                     </div>`
+              }
+
+
+              ${
+                categoryName
+                  ? `<span class="category-name">
+                       ${categoryName}
+                     </span>`
+                  : ""
+              }
+
+
+              ${
+                filePath
+                  ? `
+                    <a
+                      class="read-btn"
+                      href="${escapeHTML(fileURL)}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+
+                      <svg width="18" height="18"
+                           viewBox="0 0 24 24"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="1.7">
+                        <path d="M5 4h14v16H5z"/>
+                        <path d="M8 8h8M8 12h8M8 16h5"/>
+                      </svg>
+
+                      فتح المرجع PDF
+
+                    </a>
+                  `
+                  : `
+                    <div
+                      class="read-btn"
+                      style="background:#e9edf2;color:#667386;cursor:default;"
+                    >
+                      الملف غير متوفر حاليًا
                     </div>
-                    `
-                    :
-                    ""
-                }
+                  `
+              }
+
+            </article>
+
+          `;
+
+        }).join("");
+
+    }
 
 
-                <div class="actions">
+    /* =========================================
+       SEARCH FORM
+    ========================================= */
 
-                    ${
-                        pdfUrl
-                        ?
-                        `
-                        <a
-                            class="action open-pdf"
-                            href="${pdfUrl}"
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            📄 فتح PDF
-                        </a>
-                        `
-                        :
-                        ""
-                    }
+    searchForm.addEventListener(
+      "submit",
+      function(event) {
 
+        event.preventDefault();
 
-                    ${
-                        branch
-                        ?
-                        `
-                        <a
-                            class="action branch-link"
-                            href="branch.html?branch=${encodeURIComponent(branch.slug)}"
-                        >
-                            ⚖️ فتح الفرع
-                        </a>
-                        `
-                        :
-                        ""
-                    }
+        searchReferences();
 
-                </div>
-
-            `;
-
-
-            results.appendChild(
-                card
-            );
-
-        }
+      }
     );
 
-}
+
+    /* =========================================
+       FILTER EVENTS
+    ========================================= */
+
+    branchFilter.addEventListener(
+      "change",
+      function() {
+
+        searchReferences();
+
+      }
+    );
 
 
-/* =====================================
-   RESET
-===================================== */
+    categoryFilter.addEventListener(
+      "change",
+      function() {
 
-function resetSearch(){
+        searchReferences();
 
-    searchInput.value = "";
-
-    branchFilter.value = "";
-
-    categoryFilter.value = "";
-
-    searchReferences();
-
-}
+      }
+    );
 
 
-/* =====================================
-   ESCAPE HTML
-===================================== */
+    /* =========================================
+       CLEAR
+    ========================================= */
 
-function escapeHTML(
-    value
-){
+    clearBtn.addEventListener(
+      "click",
+      function() {
 
-    if(!value){
+        searchInput.value = "";
 
-        return "";
+        branchFilter.value = "";
 
-    }
+        categoryFilter.value = "";
+
+        searchReferences();
+
+      }
+    );
 
 
-    return String(value)
+    /* =========================================
+       READ QUERY PARAMETER
+       Example:
+       search.html?q=القانون
+    ========================================= */
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+    function readURLSearch() {
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
+      const params =
+        new URLSearchParams(
+          window.location.search
         );
 
-}
+      const q =
+        params.get("q");
 
+      if (q) {
 
-/* =====================================
-   EVENTS
-===================================== */
+        searchInput.value = q;
 
-searchBtn.addEventListener(
-    "click",
-    searchReferences
-);
-
-
-resetBtn.addEventListener(
-    "click",
-    resetSearch
-);
-
-
-searchInput.addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key === "Enter"
-        ){
-
-            searchReferences();
-
-        }
+      }
 
     }
-);
 
 
-branchFilter.addEventListener(
-    "change",
-    searchReferences
-);
+    /* =========================================
+       INITIALIZATION
+    ========================================= */
+
+    async function init() {
+
+      readURLSearch();
+
+      await Promise.all([
+        loadBranches(),
+        loadCategories()
+      ]);
+
+      await searchReferences();
+
+    }
 
 
-categoryFilter.addEventListener(
-    "change",
-    searchReferences
-);
+    init();
 
-
-/* =====================================
-   START
-===================================== */
-
-async function start(){
-
-    await loadFilters();
-
-    await searchReferences();
-
-}
-
-
-start();
-
-</script>
+  </script>
 
 </body>
-
 </html>
