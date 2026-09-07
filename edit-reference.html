@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>تعديل المرجع | الموسوعة القانونية</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Tahoma, Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+header {
+    background:
+        linear-gradient(135deg, #071a2d, #123b5d);
+
+    color: white;
+    padding: 28px 18px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: 27px;
+}
+
+header p {
+    margin: 0;
+    opacity: .85;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+.form-card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+
+    box-shadow:
+        0 6px 25px rgba(0,0,0,.07);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-weight: bold;
+    color: #123b5d;
+}
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border:
+        1px solid #d5dce5;
+
+    border-radius:
+        10px;
+
+    font-size:
+        15px;
+
+    font-family:
+        inherit;
+
+    outline:
+        none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    border-color:
+        #123b5d;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(18,59,93,.1);
+}
+
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.current-file {
+
+    background:
+        #eef4f9;
+
+    padding:
+        15px;
+
+    border-radius:
+        12px;
+
+    margin-top:
+        8px;
+
+    color:
+        #123b5d;
+
+    font-size:
+        14px;
+}
+
+.current-file a {
+
+    display:
+        inline-block;
+
+    margin-top:
+        8px;
+
+    color:
+        #123b5d;
+
+    font-weight:
+        bold;
+}
+
+.file-note {
+
+    margin-top:
+        7px;
+
+    color:
+        #64748b;
+
+    font-size:
+        13px;
+}
+
+.buttons {
+
+    display:
+        flex;
+
+    gap:
+        10px;
+
+    flex-wrap:
+        wrap;
+
+    margin-top:
+        25px;
+}
+
+.btn {
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    padding:
+        12px 18px;
+
+    cursor:
+        pointer;
+
+    font-size:
+        14px;
+
+    text-decoration:
+        none;
+
+    font-family:
+        inherit;
+}
+
+.btn-primary {
+
+    background:
+        #123b5d;
+
+    color:
+        white;
+}
+
+.btn-success {
+
+    background:
+        #198754;
+
+    color:
+        white;
+}
+
+.btn-secondary {
+
+    background:
+        #64748b;
+
+    color:
+        white;
+}
+
+.btn:disabled {
+
+    opacity:
+        .6;
+
+    cursor:
+        not-allowed;
+}
+
+.status {
+
+    margin-top:
+        20px;
+
+    padding:
+        15px;
+
+    border-radius:
+        12px;
+
+    text-align:
+        center;
+
+    display:
+        none;
+}
+
+.status.success {
+
+    display:
+        block;
+
+    background:
+        #e8f7ee;
+
+    color:
+        #176b3a;
+}
+
+.status.error {
+
+    display:
+        block;
+
+    background:
+        #fdecec;
+
+    color:
+        #a61b1b;
+}
+
+.loading {
+
+    text-align:
+        center;
+
+    padding:
+        40px;
+
+    color:
+        #64748b;
+}
+
+@media (max-width: 600px) {
+
+    .form-card {
+        padding:
+            18px;
+    }
+
+    .buttons {
+        flex-direction:
+            column;
+    }
+
+    .btn {
+        width:
+            100%;
+
+        text-align:
+            center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        ✏️ تعديل المرجع
+    </h1>
+
+    <p>
+        ⚖️ الموسوعة القانونية
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="form-card"
+         id="formContainer">
+
+        <div class="loading">
+            ⏳ جاري تحميل بيانات المرجع...
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================
+   إعداد Supabase
+===================================== */
+
+const SUPABASE_URL =
+    "ضع_API_URL_هنا";
+
+const SUPABASE_KEY =
+    "ضع_Publishable_Key_هنا";
+
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =====================================
+   متغير المرجع
+===================================== */
+
+let reference = null;
+
+
+/* =====================================
+   حماية HTML
+===================================== */
+
+function escapeHTML(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =====================================
+   الحصول على ID
+===================================== */
+
+function getReferenceId() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    return params.get("id");
+}
+
+
+/* =====================================
+   التحقق من تسجيل الدخول
+===================================== */
+
+async function checkSession() {
+
+    const {
+        data
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (!data.session) {
+
+        window.location.href =
+            "admin.html";
+
+        return false;
+    }
+
+    return true;
+}
+
+
+/* =====================================
+   تحميل الفروع
+===================================== */
+
+async function loadBranches() {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("branches")
+        .select("id,name")
+        .order("name");
+
+
+    if (error) {
+
+        throw error;
+    }
+
+
+    return data || [];
+}
+
+
+/* =====================================
+   تحميل التصنيفات
+===================================== */
+
+async function loadCategories() {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("reference_categories")
+        .select("id,name")
+        .order("name");
+
+
+    if (error) {
+
+        throw error;
+    }
+
+
+    return data || [];
+}
+
+
+/* =====================================
+   تحميل المرجع
+===================================== */
+
+async function loadReference(id) {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("references")
+        .select(`
+            id,
+            title,
+            author,
+            description,
+            file_path,
+            branch_id,
+            category_id
+        `)
+        .eq(
+            "id",
+            id
+        )
+        .single();
+
+
+    if (error) {
+
+        throw error;
+    }
+
+
+    reference = data;
+
+    return data;
+}
+
+
+/* =====================================
+   عرض النموذج
+===================================== */
+
+async function renderForm() {
+
+    const container =
+        document.getElementById(
+            "formContainer"
+        );
+
+
+    const referenceId =
+        getReferenceId();
+
+
+    if (!referenceId) {
+
+        container.innerHTML =
+            `
+            <div class="status error"
+                 style="display:block">
+
+                ❌ لم يتم تحديد المرجع.
+
+                <br><br>
+
+                <a href="manage-references.html">
+                    العودة إلى إدارة المراجع
+                </a>
+
+            </div>
+            `;
+
+        return;
+    }
+
+
+    try {
+
+        await loadReference(
+            referenceId
+        );
+
+
+        const branches =
+            await loadBranches();
+
+
+        const categories =
+            await loadCategories();
+
+
+        let branchOptions = "";
+
+        branches.forEach(
+            branch => {
+
+                branchOptions +=
+                    `
+                    <option
+                        value="${branch.id}"
+                        ${
+                            Number(branch.id)
+                            ===
+                            Number(reference.branch_id)
+                            ?
+                            "selected"
+                            :
+                            ""
+                        }>
+
+                        ${escapeHTML(
+                            branch.name
+                        )}
+
+                    </option>
+                    `;
+
+            }
+        );
+
+
+        let categoryOptions = "";
+
+        categories.forEach(
+            category => {
+
+                categoryOptions +=
+                    `
+                    <option
+                        value="${category.id}"
+                        ${
+                            Number(category.id)
+                            ===
+                            Number(reference.category_id)
+                            ?
+                            "selected"
+                            :
+                            ""
+                        }>
+
+                        ${escapeHTML(
+                            category.name
+                        )}
+
+                    </option>
+                    `;
+
+            }
+        );
+
+
+        let currentFileHTML = "";
+
+
+        if (reference.file_path) {
+
+            const {
+                data
+            } =
+                supabaseClient
+                .storage
+                .from("legal-pdfs")
+                .getPublicUrl(
+                    reference.file_path
+                );
+
+
+            currentFileHTML =
+                `
+                <div class="current-file">
+
+                    📄 الملف الحالي
+
+                    <br>
+
+                    <a
+                        href="${data.publicUrl}"
+                        target="_blank">
+
+                        فتح ملف PDF الحالي
+
+                    </a>
+
+                </div>
+                `;
+        }
+
+
+        container.innerHTML =
+            `
+
+            <form
+                id="editForm"
+                onsubmit="saveReference(event)">
+
+
+                <!-- العنوان -->
+
+                <div class="form-group">
+
+                    <label>
+                        📚 عنوان المرجع *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        value="${escapeHTML(
+                            reference.title
+                        )}"
+                        required>
+
+                </div>
+
+
+                <!-- المؤلف -->
+
+                <div class="form-group">
+
+                    <label>
+                        ✍️ المؤلف
+                    </label>
+
+                    <input
+                        type="text"
+                        id="author"
+                        value="${escapeHTML(
+                            reference.author || ""
+                        )}">
+
+                </div>
+
+
+                <!-- الفرع -->
+
+                <div class="form-group">
+
+                    <label>
+                        ⚖️ الفرع القانوني *
+                    </label>
+
+                    <select
+                        id="branch"
+                        required>
+
+                        <option value="">
+                            اختر الفرع
+                        </option>
+
+                        ${branchOptions}
+
+                    </select>
+
+                </div>
+
+
+                <!-- التصنيف -->
+
+                <div class="form-group">
+
+                    <label>
+                        🏷️ التصنيف *
+                    </label>
+
+                    <select
+                        id="category"
+                        required>
+
+                        <option value="">
+                            اختر التصنيف
+                        </option>
+
+                        ${categoryOptions}
+
+                    </select>
+
+                </div>
+
+
+                <!-- الوصف -->
+
+                <div class="form-group">
+
+                    <label>
+                        📝 الوصف
+                    </label>
+
+                    <textarea
+                        id="description"
+                        placeholder="وصف مختصر للمرجع..."
+                    >${escapeHTML(
+                        reference.description || ""
+                    )}</textarea>
+
+                </div>
+
+
+                <!-- الملف الحالي -->
+
+                ${currentFileHTML}
+
+
+                <!-- ملف جديد -->
+
+                <div class="form-group"
+                     style="margin-top:20px">
+
+                    <label>
+                        📄 استبدال ملف PDF
+                    </label>
+
+                    <input
+                        type="file"
+                        id="pdf"
+                        accept="application/pdf">
+
+                    <div class="file-note">
+
+                        اترك هذا الحقل فارغًا
+                        إذا كنت لا تريد تغيير الملف الحالي.
+
+                    </div>
+
+                </div>
+
+
+                <!-- الأزرار -->
+
+                <div class="buttons">
+
+                    <button
+                        type="submit"
+                        class="btn btn-success"
+                        id="saveButton">
+
+                        💾 حفظ التعديلات
+
+                    </button>
+
+
+                    <a
+                        href="manage-references.html"
+                        class="btn btn-secondary">
+
+                        ↩️ العودة
+
+                    </a>
+
+                </div>
+
+
+                <div
+                    id="status"
+                    class="status">
+                </div>
+
+
+            </form>
+
+            `;
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        container.innerHTML =
+            `
+            <div
+                class="status error"
+                style="display:block">
+
+                ❌ تعذر تحميل بيانات المرجع.
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+                <br><br>
+
+                <a href="manage-references.html">
+                    العودة إلى إدارة المراجع
+                </a>
+
+            </div>
+            `;
+    }
+}
+
+
+/* =====================================
+   رفع PDF جديد
+===================================== */
+
+async function uploadNewPDF(file) {
+
+    const fileName =
+        crypto.randomUUID() +
+        ".pdf";
+
+
+    const filePath =
+        "references/" +
+        fileName;
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .storage
+        .from("legal-pdfs")
+        .upload(
+            filePath,
+            file,
+            {
+                contentType:
+                    "application/pdf",
+
+                upsert:
+                    false
+            }
+        );
+
+
+    if (error) {
+
+        throw error;
+    }
+
+
+    return filePath;
+}
+
+
+/* =====================================
+   حفظ التعديلات
+===================================== */
+
+async function saveReference(event) {
+
+    event.preventDefault();
+
+
+    const button =
+        document.getElementById(
+            "saveButton"
+        );
+
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    const title =
+        document.getElementById(
+            "title"
+        ).value.trim();
+
+
+    const author =
+        document.getElementById(
+            "author"
+        ).value.trim();
+
+
+    const branchId =
+        document.getElementById(
+            "branch"
+        ).value;
+
+
+    const categoryId =
+        document.getElementById(
+            "category"
+        ).value;
+
+
+    const description =
+        document.getElementById(
+            "description"
+        ).value.trim();
+
+
+    const fileInput =
+        document.getElementById(
+            "pdf"
+        );
+
+
+    const newFile =
+        fileInput.files[0];
+
+
+    status.className =
+        "status";
+
+
+    status.style.display =
+        "block";
+
+
+    status.textContent =
+        "⏳ جاري حفظ التعديلات...";
+
+
+    button.disabled =
+        true;
+
+
+    try {
+
+
+        let newFilePath =
+            reference.file_path;
+
+
+        /* =========================
+           رفع الملف الجديد
+        ========================= */
+
+        if (newFile) {
+
+            if (
+                newFile.type !==
+                "application/pdf"
+            ) {
+
+                throw new Error(
+                    "يرجى اختيار ملف PDF فقط."
+                );
+            }
+
+
+            newFilePath =
+                await uploadNewPDF(
+                    newFile
+                );
+        }
+
+
+        /* =========================
+           تحديث البيانات
+        ========================= */
+
+        const {
+            error
+        } =
+            await supabaseClient
+            .from("references")
+            .update({
+
+                title:
+                    title,
+
+                author:
+                    author || null,
+
+                description:
+                    description || null,
+
+                branch_id:
+                    Number(branchId),
+
+                category_id:
+                    Number(categoryId),
+
+                file_path:
+                    newFilePath
+
+            })
+            .eq(
+                "id",
+                reference.id
+            );
+
+
+        if (error) {
+
+            /* إذا فشل التحديث
+               وكان هناك ملف جديد،
+               نحاول حذف الملف الجديد */
+
+            if (
+                newFile &&
+                newFilePath
+            ) {
+
+                await supabaseClient
+                .storage
+                .from("legal-pdfs")
+                .remove([
+                    newFilePath
+                ]);
+            }
+
+
+            throw error;
+        }
+
+
+        /* =========================
+           حذف الملف القديم
+           بعد نجاح التحديث
+        ========================= */
+
+        if (
+            newFile &&
+            reference.file_path &&
+            reference.file_path !==
+            newFilePath
+        ) {
+
+            await supabaseClient
+            .storage
+            .from("legal-pdfs")
+            .remove([
+                reference.file_path
+            ]);
+        }
+
+
+        status.className =
+            "status success";
+
+
+        status.textContent =
+            "✅ تم تحديث المرجع بنجاح";
+
+
+        button.disabled =
+            false;
+
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "manage-references.html";
+
+            },
+            1200
+        );
+
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+
+        status.className =
+            "status error";
+
+
+        status.textContent =
+            "❌ تعذر حفظ التعديلات: " +
+            error.message;
+
+
+        button.disabled =
+            false;
+    }
+}
+
+
+/* =====================================
+   تشغيل الصفحة
+===================================== */
+
+async function init() {
+
+    const loggedIn =
+        await checkSession();
+
+
+    if (!loggedIn) {
+        return;
+    }
+
+
+    await renderForm();
+}
+
+
+init();
+
+</script>
+
+
+</body>
+
+</html>
