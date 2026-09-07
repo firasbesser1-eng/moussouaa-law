@@ -8,11 +8,27 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>الموسوعة القانونية | المكتبة القانونية الرقمية</title>
+<meta name="description"
+      content="الموسوعة القانونية - مكتبة قانونية رقمية شاملة للمراجع والقوانين والبحوث القانونية.">
+
+<title>الموسوعة القانونية | فراس بسر</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
+:root{
+    --navy:#071a35;
+    --navy2:#123e69;
+    --gold:#c9a227;
+    --gold-light:#f3df9b;
+    --white:#ffffff;
+    --bg:#f5f7fb;
+    --text:#172033;
+    --muted:#667085;
+    --border:#e6eaf0;
+    --shadow:0 12px 35px rgba(7,26,53,.10);
+}
 
 *{
     box-sizing:border-box;
@@ -28,612 +44,765 @@ body{
         Tahoma,
         Arial,
         sans-serif;
-
-    background:#f4f7fb;
-    color:#172033;
+    background:var(--bg);
+    color:var(--text);
 }
 
-/* =========================
+
+/* ================================
    HEADER
-========================= */
+================================ */
 
 header{
-
     background:
+        radial-gradient(
+            circle at top left,
+            rgba(201,162,39,.20),
+            transparent 35%
+        ),
         linear-gradient(
             135deg,
-            #071a35,
-            #123e69
+            var(--navy),
+            var(--navy2)
         );
 
     color:white;
+    position:relative;
+    overflow:hidden;
+}
 
-    padding:
-        45px
-        20px;
+.topbar{
+    width:min(1180px,94%);
+    margin:auto;
+    padding:20px 0;
 
-    text-align:center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
 
-    box-shadow:
-        0 5px 25px
-        rgba(0,0,0,.18);
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
 .logo{
+    width:52px;
+    height:52px;
 
-    font-size:34px;
-
-    font-weight:bold;
-
-    margin-bottom:12px;
-}
-
-.subtitle{
-
-    font-size:16px;
-
-    opacity:.92;
-
-    line-height:1.8;
-}
-
-.manager{
-
-    margin-top:15px;
-
-    color:#dbeafe;
-
-    font-size:14px;
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-nav{
-
-    background:white;
-
-    padding:14px;
-
-    text-align:center;
-
-    box-shadow:
-        0 2px 10px
-        rgba(0,0,0,.08);
-
-    position:sticky;
-
-    top:0;
-
-    z-index:100;
-}
-
-nav a{
-
-    text-decoration:none;
-
-    color:#123e69;
-
-    font-weight:bold;
-
-    margin:
-        0
-        12px;
-
-}
-
-/* =========================
-   CONTAINER
-========================= */
-
-.container{
-
-    width:
-        min(
-            1150px,
-            94%
-        );
-
-    margin:
-        35px
-        auto;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:
-        40px
-        25px;
-
-    text-align:center;
-
-    box-shadow:
-        0 5px 25px
-        rgba(0,0,0,.07);
-
-    margin-bottom:35px;
-}
-
-.hero h1{
-
-    color:#123e69;
-
-    font-size:32px;
-
-    margin:
-        0
-        0
-        12px;
-}
-
-.hero p{
-
-    color:#667085;
-
-    line-height:1.9;
-
-    margin:0;
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.search-box{
-
-    max-width:700px;
-
-    margin:
-        25px
-        auto
-        0;
-}
-
-.search-box input{
-
-    width:100%;
-
-    padding:
-        17px
-        20px;
-
-    border:
-        1px
-        solid
-        #d6dce5;
-
-    border-radius:13px;
-
-    font-size:16px;
-
-    outline:none;
-
-    direction:rtl;
-}
-
-.search-box input:focus{
-
-    border-color:#123e69;
-
-    box-shadow:
-        0
-        0
-        0
-        3px
-        rgba(
-            18,
-            62,
-            105,
-            .1
-        );
-}
-
-/* =========================
-   STATS
-========================= */
-
-.stats{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            2,
-            1fr
-        );
-
-    gap:15px;
-
-    margin-top:25px;
-}
-
-.stat{
-
-    background:#f7f9fc;
-
-    border:
-        1px
-        solid
-        #edf0f5;
-
+    border:2px solid var(--gold);
     border-radius:15px;
 
-    padding:18px;
-}
-
-.stat-number{
-
-    color:#123e69;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     font-size:27px;
 
-    font-weight:bold;
-
-    display:block;
-
-    margin-bottom:5px;
+    background:rgba(255,255,255,.06);
 }
 
-.stat-label{
+.brand-text h1{
+    margin:0;
+    font-size:20px;
+}
 
-    color:#667085;
+.brand-text span{
+    display:block;
+    color:#dbe7f5;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.admin-link{
+    color:white;
+    text-decoration:none;
+
+    border:1px solid rgba(255,255,255,.25);
+    padding:10px 15px;
+    border-radius:10px;
 
     font-size:13px;
 }
 
-/* =========================
-   SECTION TITLE
-========================= */
 
-.section-title{
+/* ================================
+   NAVIGATION
+================================ */
+
+nav{
+    background:rgba(255,255,255,.97);
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.nav-inner{
+    width:min(1180px,94%);
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:5px;
+}
+
+.nav-inner a{
+    color:var(--navy2);
+    text-decoration:none;
+    font-weight:bold;
+    font-size:14px;
+
+    padding:15px 13px;
+
+    transition:.2s;
+}
+
+.nav-inner a:hover{
+    color:var(--gold);
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero{
+    width:min(1180px,94%);
+    margin:auto;
+
+    padding:70px 0 85px;
+
+    display:grid;
+    grid-template-columns:1.3fr .7fr;
+    gap:40px;
+
+    align-items:center;
+}
+
+.hero h2{
+    font-size:42px;
+    line-height:1.35;
+    margin:0 0 18px;
+}
+
+.hero h2 span{
+    color:var(--gold-light);
+}
+
+.hero p{
+    color:#dbe7f5;
+    line-height:2;
+    max-width:680px;
+    font-size:16px;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:25px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    padding:14px 21px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.btn-primary{
+    background:var(--gold);
+    color:#172033;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.35);
+    color:white;
+    background:rgba(255,255,255,.06);
+}
+
+
+/* ================================
+   HERO CARD
+================================ */
+
+.hero-card{
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    border-radius:25px;
+
+    padding:30px;
 
     text-align:center;
 
-    margin:
-        0
-        0
-        25px;
+    backdrop-filter:blur(8px);
+}
 
-    color:#123e69;
+.hero-emblem{
+    width:125px;
+    height:125px;
 
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    border:3px solid var(--gold);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:62px;
+
+    background:rgba(255,255,255,.05);
+}
+
+.hero-card h3{
+    margin:0 0 8px;
+}
+
+.hero-card p{
+    font-size:13px;
+    margin:auto;
+}
+
+
+/* ================================
+   STATS
+================================ */
+
+.stats{
+    width:min(1050px,92%);
+    margin:-35px auto 45px;
+
+    position:relative;
+
+    display:grid;
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+}
+
+.stat{
+    background:white;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
+}
+
+.stat-icon{
     font-size:25px;
 }
 
-/* =========================
+.stat strong{
+    display:block;
+
+    color:var(--navy2);
+
+    font-size:28px;
+
+    margin:7px 0;
+}
+
+.stat span{
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+
+/* ================================
+   MAIN
+================================ */
+
+.container{
+    width:min(1180px,94%);
+    margin:auto;
+}
+
+.section{
+    margin-bottom:65px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section-title h2{
+    color:var(--navy);
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.section-title p{
+    color:var(--muted);
+    margin:0;
+}
+
+
+/* ================================
+   SEARCH BOX
+================================ */
+
+.search-box{
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
+}
+
+.search-form{
+    display:flex;
+    gap:10px;
+}
+
+.search-form input{
+    flex:1;
+
+    padding:16px;
+
+    border:1px solid #d7dde6;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    outline:none;
+}
+
+.search-form input:focus{
+    border-color:var(--gold);
+}
+
+.search-form button{
+    border:0;
+
+    background:var(--navy2);
+
+    color:white;
+
+    padding:0 25px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+
+/* ================================
    BRANCHES
-========================= */
+================================ */
 
 .branches{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:16px;
+}
+
+.branch{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
+
+    transition:.25s;
+
+    position:relative;
+}
+
+.branch:hover{
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(201,162,39,.55);
+
+    box-shadow:var(--shadow);
+}
+
+.branch-icon{
+    font-size:30px;
+
+    margin-bottom:14px;
+}
+
+.branch h3{
+    color:var(--navy2);
+
+    margin:0 0 8px;
+
+    font-size:17px;
+}
+
+.branch p{
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:12px;
+
+    margin:0 0 15px;
+}
+
+.count{
+    display:inline-block;
+
+    background:#f4f7fb;
+
+    color:var(--navy2);
+
+    padding:6px 9px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:bold;
+}
+
+
+/* ================================
+   LATEST REFERENCES
+================================ */
+
+.references{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+}
+
+.reference{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.reference h3{
+    color:var(--navy2);
+
+    font-size:17px;
+
+    line-height:1.6;
+
+    margin:0 0 12px;
+}
+
+.reference-meta{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-bottom:12px;
+}
+
+.badge{
+    background:#eef4fa;
+
+    color:var(--navy2);
+
+    border-radius:20px;
+
+    padding:6px 9px;
+
+    font-size:10px;
+
+    font-weight:bold;
+}
+
+.reference p{
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:12px;
+}
+
+.reference a{
+    display:inline-block;
+
+    margin-top:10px;
+
+    color:var(--gold);
+
+    font-weight:bold;
+
+    text-decoration:none;
+
+    font-size:13px;
+}
+
+
+/* ================================
+   ABOUT
+================================ */
+
+.about{
+    background:
+        linear-gradient(
+            135deg,
+            var(--navy),
+            var(--navy2)
+        );
+
+    color:white;
+
+    border-radius:25px;
+
+    padding:45px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+}
+
+.about h2{
+    margin-top:0;
+}
+
+.about p{
+    max-width:800px;
+
+    margin:auto;
+
+    line-height:2;
+
+    color:#dbe7f5;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer{
+    margin-top:70px;
+
+    background:var(--navy);
+
+    color:white;
+
+    padding:45px 20px 25px;
+}
+
+.footer-inner{
+    width:min(1180px,94%);
+    margin:auto;
 
     display:grid;
 
     grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(
-                250px,
-                1fr
-            )
-        );
+        1.5fr 1fr 1fr;
 
-    gap:20px;
+    gap:35px;
 }
 
-/* =========================
-   BRANCH CARD
-========================= */
-
-.branch-card{
-
-    background:white;
-
-    border-radius:18px;
-
-    padding:25px;
-
-    text-decoration:none;
-
-    color:#172033;
-
-    border:
-        1px
-        solid
-        #edf0f5;
-
-    box-shadow:
-        0
-        5px
-        20px
-        rgba(
-            0,
-            0,
-            0,
-            .06
-        );
-
-    transition:
-        transform
-        .2s,
-        box-shadow
-        .2s;
-
-    display:block;
+footer h3{
+    color:var(--gold-light);
 }
 
-.branch-card:hover{
+footer p,
+footer a{
+    color:#c9d5e4;
 
-    transform:
-        translateY(
-            -5px
-        );
-
-    box-shadow:
-        0
-        10px
-        30px
-        rgba(
-            0,
-            0,
-            0,
-            .12
-        );
-}
-
-.branch-icon{
-
-    width:60px;
-
-    height:60px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:#eaf2fb;
-
-    border-radius:15px;
-
-    font-size:30px;
-
-    margin-bottom:17px;
-}
-
-.branch-card h3{
-
-    margin:
-        0
-        0
-        10px;
-
-    color:#123e69;
-
-    font-size:19px;
-}
-
-.branch-card p{
-
-    margin:
-        0
-        0
-        15px;
-
-    color:#667085;
-
-    font-size:14px;
-
-    line-height:1.7;
-}
-
-/* =========================
-   REFERENCE COUNT
-========================= */
-
-.reference-count{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:6px;
-
-    background:#eef5fc;
-
-    color:#123e69;
-
-    padding:
-        7px
-        11px;
-
-    border-radius:20px;
+    line-height:1.9;
 
     font-size:13px;
-
-    font-weight:bold;
 }
 
-/* =========================
-   STATUS
-========================= */
-
-.status{
-
-    text-align:center;
-
-    padding:25px;
-
-    color:#667085;
-}
-
-.error{
-
-    background:#fff1f2;
-
-    color:#b42318;
-
-    padding:20px;
-
-    border-radius:12px;
-
-    text-align:center;
-}
-
-/* =========================
-   NO RESULTS
-========================= */
-
-.no-results{
-
-    grid-column:1 / -1;
-
-    background:white;
-
-    padding:35px;
-
-    border-radius:18px;
-
-    text-align:center;
-
-    color:#667085;
-
-    box-shadow:
-        0
-        5px
-        20px
-        rgba(
-            0,
-            0,
-            0,
-            .05
-        );
-}
-
-.no-results strong{
-
+footer a{
     display:block;
-
-    color:#123e69;
-
-    font-size:20px;
-
-    margin-bottom:8px;
+    text-decoration:none;
 }
 
-/* =========================
-   ABOUT
-========================= */
+.copyright{
+    text-align:center;
 
-.about{
+    border-top:1px solid rgba(255,255,255,.12);
 
-    background:white;
+    margin-top:30px;
 
-    margin-top:40px;
+    padding-top:20px;
+
+    color:#9eb0c5;
+
+    font-size:12px;
+}
+
+
+/* ================================
+   LOADING
+================================ */
+
+.loading{
+    text-align:center;
+
+    color:var(--muted);
 
     padding:30px;
 
-    border-radius:18px;
-
-    box-shadow:
-        0
-        5px
-        20px
-        rgba(
-            0,
-            0,
-            0,
-            .06
-        );
-
-    line-height:2;
-
-    text-align:center;
+    grid-column:1/-1;
 }
 
-.about h2{
 
-    color:#123e69;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-
-    margin-top:50px;
-
-    background:#071a35;
-
-    color:white;
-
-    text-align:center;
-
-    padding:
-        35px
-        20px;
-}
-
-footer p{
-
-    margin:
-        7px;
-}
-
-/* =========================
+/* ================================
    MOBILE
-========================= */
+================================ */
 
-@media(max-width:600px){
-
-    .logo{
-
-        font-size:26px;
-    }
-
-    .subtitle{
-
-        font-size:14px;
-    }
+@media(max-width:900px){
 
     .hero{
-
-        padding:
-            30px
-            18px;
+        grid-template-columns:1fr;
+        text-align:center;
     }
 
-    .hero h1{
+    .hero p{
+        margin:auto;
+    }
 
-        font-size:25px;
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-card{
+        max-width:420px;
+        margin:auto;
     }
 
     .branches{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
 
+    .references{
         grid-template-columns:1fr;
     }
 
-    nav a{
+    .footer-inner{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
 
-        display:inline-block;
+}
 
-        margin:
-            5px
-            7px;
+
+@media(max-width:600px){
+
+    .topbar{
+        padding:14px 0;
+    }
+
+    .admin-link{
+        display:none;
+    }
+
+    .brand-text h1{
+        font-size:16px;
+    }
+
+    .logo{
+        width:44px;
+        height:44px;
+        font-size:23px;
+    }
+
+    .nav-inner{
+        justify-content:flex-start;
+        overflow-x:auto;
+        flex-wrap:nowrap;
+    }
+
+    .nav-inner a{
+        white-space:nowrap;
+        font-size:12px;
+    }
+
+    .hero{
+        padding:50px 0 70px;
+    }
+
+    .hero h2{
+        font-size:29px;
+    }
+
+    .hero p{
+        font-size:14px;
     }
 
     .stats{
+        grid-template-columns:1fr;
 
-        grid-template-columns:1fr 1fr;
+        margin-top:-25px;
+    }
+
+    .search-form{
+        flex-direction:column;
+    }
+
+    .search-form button{
+        padding:14px;
+    }
+
+    .branches{
+        grid-template-columns:1fr;
+    }
+
+    .about{
+        padding:30px 20px;
     }
 
 }
@@ -646,242 +815,441 @@ footer p{
 <body>
 
 
-<!-- =========================
+<!-- ================================
      HEADER
-========================= -->
+================================ -->
 
 <header>
 
-    <div class="logo">
+    <div class="topbar">
 
-        ⚖️ الموسوعة القانونية
+        <div class="brand">
+
+            <div class="logo">
+                ⚖️
+            </div>
+
+            <div class="brand-text">
+
+                <h1>
+                    الموسوعة القانونية
+                </h1>
+
+                <span>
+                    مكتبة قانونية رقمية شاملة
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="admin.html"
+            class="admin-link"
+        >
+            🔐 لوحة الإدارة
+        </a>
 
     </div>
 
 
-    <div class="subtitle">
+    <div class="hero">
 
-        المكتبة القانونية الرقمية
-        للمراجع والتشريعات والبحوث
+        <div>
 
-    </div>
+            <h2>
+                مرجعك القانوني
+                <span>
+                    في مكان واحد
+                </span>
+            </h2>
 
 
-    <div class="manager">
+            <p>
+                منصة قانونية رقمية تجمع القوانين
+                والمراجع والكتب والبحوث والمصادر
+                القانونية في واجهة واحدة سهلة وسريعة.
+            </p>
 
-        إعداد وإشراف:
-        فراس بسر — مدير الموسوعة القانونية
+
+            <div class="hero-buttons">
+
+                <a
+                    href="search.html"
+                    class="btn btn-primary"
+                >
+                    🔎 البحث في الموسوعة
+                </a>
+
+
+                <a
+                    href="#branches"
+                    class="btn btn-secondary"
+                >
+                    ⚖️ استكشاف فروع القانون
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="hero-emblem">
+                ⚖️
+            </div>
+
+            <h3>
+                الموسوعة القانونية
+            </h3>
+
+            <p>
+                المعرفة القانونية بين يديك
+                أينما كنت.
+            </p>
+
+        </div>
 
     </div>
 
 </header>
 
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- ================================
+     NAV
+================================ -->
 
 <nav>
 
-    <a href="index.html">
-        الرئيسية
-    </a>
+    <div class="nav-inner">
 
-    <a href="#branches-section">
-        فروع القانون
-    </a>
+        <a href="index.html">
+            الرئيسية
+        </a>
 
-    <a href="#about">
-        عن الموسوعة
-    </a>
+        <a href="#branches">
+            فروع القانون
+        </a>
 
-    <a href="admin.html">
-        لوحة الإدارة
-    </a>
+        <a href="#latest">
+            أحدث المراجع
+        </a>
+
+        <a href="search.html">
+            🔎 البحث المتقدم
+        </a>
+
+        <a href="#about">
+            عن الموسوعة
+        </a>
+
+        <a href="admin.html">
+            لوحة الإدارة
+        </a>
+
+    </div>
 
 </nav>
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- ================================
+     STATS
+================================ -->
 
-<div class="container">
+<div class="stats">
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ⚖️
+        </div>
+
+        <strong id="branchCount">
+            —
+        </strong>
+
+        <span>
+            فرعًا قانونيًا
+        </span>
+
+    </div>
 
 
-    <section class="hero">
+    <div class="stat">
 
-        <h1>
-            مرحبًا بكم في الموسوعة القانونية
-        </h1>
+        <div class="stat-icon">
+            📚
+        </div>
 
+        <strong id="referenceCount">
+            —
+        </strong>
+
+        <span>
+            مرجعًا قانونيًا
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🔎
+        </div>
+
+        <strong>
+            24/7
+        </strong>
+
+        <span>
+            وصول إلى المعرفة القانونية
+        </span>
+
+    </div>
+
+</div>
+
+
+<main class="container">
+
+
+<!-- ================================
+     SEARCH
+================================ -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🔎 ابحث في الموسوعة
+        </h2>
 
         <p>
-
-            منصة قانونية رقمية تجمع
-            التشريعات والمراجع والكتب
-            والبحوث والأحكام والدروس
-            في مكان واحد.
-
+            ابحث عن القوانين والمراجع والكتب والبحوث
         </p>
 
+    </div>
 
-        <div class="search-box">
+
+    <div class="search-box">
+
+        <form
+            class="search-form"
+            id="homeSearch"
+        >
 
             <input
-                type="search"
                 id="searchInput"
-                placeholder="🔎 ابحث عن فرع قانوني..."
+                type="search"
+                placeholder="مثال: مجلة الالتزامات والعقود..."
                 autocomplete="off"
             >
 
-        </div>
+            <button type="submit">
+                بحث
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
 
 
-        <div class="stats">
+<!-- ================================
+     BRANCHES
+================================ -->
 
-            <div class="stat">
+<section
+    class="section"
+    id="branches"
+>
 
-                <span
-                    id="branchCount"
-                    class="stat-number"
-                >
-                    0
-                </span>
+    <div class="section-title">
 
-                <span class="stat-label">
-                    فروع القانون
-                </span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <span
-                    id="referenceCount"
-                    class="stat-number"
-                >
-                    0
-                </span>
-
-                <span class="stat-label">
-                    مراجع قانونية
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         BRANCHES
-    ========================= -->
-
-    <section id="branches-section">
-
-        <h2 class="section-title">
-
-            📚 فروع القانون
-
+        <h2>
+            ⚖️ فروع القانون
         </h2>
 
+        <p>
+            تصفح المكتبة حسب المجال القانوني
+        </p>
 
-        <div
-            id="status"
-            class="status"
-        >
+    </div>
 
-            ⏳ جاري تحميل الموسوعة...
 
+    <div
+        id="branchesGrid"
+        class="branches"
+    >
+
+        <div class="loading">
+            ⏳ جاري تحميل فروع القانون...
         </div>
 
+    </div>
 
-        <div
-            id="branches"
-            class="branches"
-        ></div>
-
-    </section>
+</section>
 
 
+<!-- ================================
+     LATEST
+================================ -->
 
-    <!-- =========================
-         ABOUT
-    ========================= -->
+<section
+    class="section"
+    id="latest"
+>
 
-    <section
-        id="about"
-        class="about"
+    <div class="section-title">
+
+        <h2>
+            📚 أحدث المراجع
+        </h2>
+
+        <p>
+            آخر المراجع التي تمت إضافتها إلى الموسوعة
+        </p>
+
+    </div>
+
+
+    <div
+        id="latestReferences"
+        class="references"
     >
+
+        <div class="loading">
+            ⏳ جاري تحميل أحدث المراجع...
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     ABOUT
+================================ -->
+
+<section
+    class="section"
+    id="about"
+>
+
+    <div class="about">
 
         <h2>
             ⚖️ عن الموسوعة القانونية
         </h2>
 
-
         <p>
-
-            الموسوعة القانونية هي مكتبة
-            قانونية رقمية تهدف إلى تسهيل
-            الوصول إلى المراجع والتشريعات
-            والبحوث القانونية للطلبة
-            والباحثين والمختصين في القانون.
-
+            الموسوعة القانونية مشروع رقمي يهدف إلى
+            تسهيل الوصول إلى المعرفة والمراجع القانونية،
+            وتجميع مختلف فروع القانون في منصة واحدة
+            منظمة وسهلة الاستخدام، لفائدة الطلبة
+            والباحثين وكل المهتمين بالشأن القانوني.
         </p>
 
+    </div>
 
-        <p>
-
-            يتم تحديث المحتوى وإضافة
-            المراجع تدريجيًا من خلال
-            لوحة الإدارة.
-
-        </p>
-
-    </section>
+</section>
 
 
-</div>
+</main>
 
 
-
-<!-- =========================
+<!-- ================================
      FOOTER
-========================= -->
+================================ -->
 
 <footer>
 
-    <p>
-        ⚖️ الموسوعة القانونية
-    </p>
+    <div class="footer-inner">
 
 
-    <p>
-        فراس بسر — مدير الموسوعة القانونية
-    </p>
+        <div>
+
+            <h3>
+                ⚖️ الموسوعة القانونية
+            </h3>
+
+            <p>
+                مكتبة قانونية رقمية تهدف إلى
+                تنظيم المعرفة القانونية وتسهيل
+                الوصول إليها.
+            </p>
+
+        </div>
 
 
-    <p>
-        جميع الحقوق محفوظة © 2026
-    </p>
+        <div>
+
+            <h3>
+                روابط سريعة
+            </h3>
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="search.html">
+                البحث القانوني
+            </a>
+
+            <a href="#branches">
+                فروع القانون
+            </a>
+
+            <a href="#latest">
+                أحدث المراجع
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                الإدارة
+            </h3>
+
+            <a href="admin.html">
+                دخول المدير
+            </a>
+
+            <a href="dashboard.html">
+                لوحة التحكم
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 الموسوعة القانونية —
+        فراس بسر، مدير الموسوعة القانونية
+
+    </div>
 
 </footer>
 
 
-
 <script>
 
-/* =====================================
+/* =================================
    SUPABASE
-===================================== */
+================================= */
 
 const SUPABASE_URL =
 "https://yksrckzomkowjzmsafvm.supabase.co";
-
 
 const SUPABASE_KEY =
 "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
@@ -894,21 +1262,34 @@ supabase.createClient(
 );
 
 
-/* =====================================
+/* =================================
    ELEMENTS
-===================================== */
+================================= */
 
-const branchesContainer =
+const branchesGrid =
 document.getElementById(
-    "branches"
+    "branchesGrid"
 );
 
-
-const status =
+const latestReferences =
 document.getElementById(
-    "status"
+    "latestReferences"
 );
 
+const branchCount =
+document.getElementById(
+    "branchCount"
+);
+
+const referenceCount =
+document.getElementById(
+    "referenceCount"
+);
+
+const homeSearch =
+document.getElementById(
+    "homeSearch"
+);
 
 const searchInput =
 document.getElementById(
@@ -916,160 +1297,11 @@ document.getElementById(
 );
 
 
-const branchCount =
-document.getElementById(
-    "branchCount"
-);
+/* =================================
+   BRANCH ICONS
+================================= */
 
-
-const referenceCount =
-document.getElementById(
-    "referenceCount"
-);
-
-
-/* =====================================
-   DATA
-===================================== */
-
-let allBranches = [];
-
-
-/* =====================================
-   LOAD DATA
-===================================== */
-
-async function loadData(){
-
-    status.textContent =
-        "⏳ جاري تحميل الفروع والمراجع...";
-
-
-    const branchesResult =
-        await supabaseClient
-
-            .from("branches")
-
-            .select(
-                "id,name,slug"
-            )
-
-            .order(
-                "id",
-                {
-                    ascending:true
-                }
-            );
-
-
-    if(branchesResult.error){
-
-        console.error(
-            branchesResult.error
-        );
-
-        status.innerHTML = `
-
-            <div class="error">
-
-                ❌ تعذر تحميل فروع القانون.
-
-                <br><br>
-
-                يرجى التحقق من اتصال
-                الموقع بقاعدة البيانات.
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-
-    const referencesResult =
-        await supabaseClient
-
-            .from("references")
-
-            .select(
-                "id,branch_id"
-            );
-
-
-    if(referencesResult.error){
-
-        console.error(
-            referencesResult.error
-        );
-
-        status.innerHTML = `
-
-            <div class="error">
-
-                ❌ تم تحميل الفروع،
-                لكن تعذر تحميل عدد المراجع.
-
-                <br><br>
-
-                سيتم عرض الفروع دون
-                إحصائيات المراجع.
-
-            </div>
-
-        `;
-
-        allBranches =
-            branchesResult.data || [];
-
-        branchCount.textContent =
-            allBranches.length;
-
-        referenceCount.textContent =
-            "—";
-
-        renderBranches(
-            allBranches,
-            []
-        );
-
-        return;
-    }
-
-
-    allBranches =
-        branchesResult.data || [];
-
-
-    const references =
-        referencesResult.data || [];
-
-
-    branchCount.textContent =
-        allBranches.length;
-
-
-    referenceCount.textContent =
-        references.length;
-
-
-    status.textContent =
-        "📚 تم تحميل الموسوعة بنجاح";
-
-
-    renderBranches(
-        allBranches,
-        references
-    );
-
-}
-
-
-/* =====================================
-   ICONS
-===================================== */
-
-function getBranchIcon(slug){
+function getIcon(slug){
 
     const icons = {
 
@@ -1101,142 +1333,172 @@ function getBranchIcon(slug){
 
     };
 
-
-    return icons[slug]
-        || "⚖️";
+    return icons[slug] || "⚖️";
 
 }
 
 
-/* =====================================
-   DESCRIPTION
-===================================== */
+/* =================================
+   BRANCH DESCRIPTIONS
+================================= */
 
-function getBranchDescription(slug){
+function getDescription(slug){
 
     const descriptions = {
 
         civil:
-        "المعاملات المدنية والالتزامات والعقود والمسؤولية المدنية.",
+        "الالتزامات والعقود والمسؤولية المدنية.",
 
         commercial:
-        "القانون التجاري والشركات والأعمال والمعاملات التجارية.",
+        "الشركات والأعمال والمعاملات التجارية.",
 
         administrative:
-        "القانون الإداري والمرفق العام والقرارات الإدارية.",
+        "الإدارة والقرارات والمرافق العامة.",
 
         constitutional:
-        "الدستور والمؤسسات والحقوق والحريات والنظام السياسي.",
+        "الدستور والمؤسسات والحقوق والحريات.",
 
         criminal:
-        "القانون الجزائي والجرائم والعقوبات والإجراءات الجزائية.",
+        "الجرائم والعقوبات والإجراءات الجزائية.",
 
         "private-international":
-        "العلاقات الخاصة ذات العنصر الأجنبي وتنازع القوانين والاختصاص.",
+        "العلاقات الخاصة ذات العنصر الأجنبي.",
 
         "public-international":
-        "العلاقات الدولية والمعاهدات والمنظمات والقانون الدولي.",
+        "العلاقات الدولية والمعاهدات والمنظمات.",
 
         labor:
-        "علاقات الشغل وعقود العمل والنزاعات والضمانات الاجتماعية.",
+        "علاقات الشغل وعقود العمل والنزاعات.",
 
         tax:
-        "القانون الجبائي والضرائب والإجراءات والمنازعات الجبائية.",
+        "الضرائب والمنازعات والإجراءات الجبائية.",
 
         arbitration:
-        "التحكيم الوطني والدولي وتسوية المنازعات التجارية.",
+        "التحكيم وتسوية المنازعات.",
 
         books:
-        "مجموعة من الكتب والمراجع القانونية المتخصصة.",
+        "الكتب والمراجع القانونية المتخصصة.",
 
         research:
-        "البحوث والمذكرات والأعمال الأكاديمية القانونية.",
+        "البحوث والمذكرات والأعمال الأكاديمية.",
 
         maritime:
-        "القانون البحري والسفن والملاحة البحرية والعلاقات القانونية البحرية."
+        "السفن والملاحة والعلاقات القانونية البحرية."
 
     };
 
-
     return descriptions[slug]
         ||
-        "المراجع والمواد القانونية الخاصة بهذا المجال.";
+        "المراجع القانونية الخاصة بهذا المجال.";
 
 }
 
 
-/* =====================================
-   COUNT REFERENCES
-===================================== */
+/* =================================
+   LOAD BRANCHES
+================================= */
 
-function getReferenceCount(
-    branchId,
-    references
-){
+async function loadBranches(){
 
-    return references.filter(
-        reference =>
-            reference.branch_id === branchId
-    ).length;
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
 
-}
+        .from("branches")
 
+        .select(
+            "id,name,slug"
+        )
 
-/* =====================================
-   RENDER
-===================================== */
-
-function renderBranches(
-    branches,
-    references
-){
-
-    branchesContainer.innerHTML =
-        "";
+        .order(
+            "name",
+            {
+                ascending:true
+            }
+        );
 
 
-    if(
-        !branches ||
-        branches.length === 0
-    ){
+    if(error){
 
-        branchesContainer.innerHTML = `
+        console.error(error);
 
-            <div class="no-results">
+        branchesGrid.innerHTML = `
 
-                <strong>
-                    لا توجد فروع قانونية
-                </strong>
-
-                لم تتم إضافة أي فروع حاليًا.
-
+            <div class="loading">
+                ❌ تعذر تحميل فروع القانون.
             </div>
 
         `;
 
         return;
+
     }
 
 
-    branches.forEach(
+    branchCount.textContent =
+        data.length;
+
+
+    if(!data.length){
+
+        branchesGrid.innerHTML = `
+
+            <div class="loading">
+                لا توجد فروع مضافة حاليًا.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* تحميل عدد المراجع لكل فرع */
+
+    const {
+        data: references
+    } =
+    await supabaseClient
+
+        .from("references")
+
+        .select(
+            "branch_id"
+        );
+
+
+    const counts = {};
+
+
+    (references || []).forEach(
+        reference => {
+
+            const id =
+                reference.branch_id;
+
+            counts[id] =
+                (counts[id] || 0) + 1;
+
+        }
+    );
+
+
+    branchesGrid.innerHTML = "";
+
+
+    data.forEach(
         branch => {
-
-
-            const count =
-                getReferenceCount(
-                    branch.id,
-                    references
-                );
-
 
             const card =
                 document.createElement(
                     "a"
                 );
 
-
             card.className =
-                "branch-card";
+                "branch";
 
 
             card.href =
@@ -1250,46 +1512,31 @@ function renderBranches(
             card.innerHTML = `
 
                 <div class="branch-icon">
-
-                    ${getBranchIcon(
-                        branch.slug
-                    )}
-
+                    ${getIcon(branch.slug)}
                 </div>
 
-
                 <h3>
-
                     ${escapeHTML(
                         branch.name
                     )}
-
                 </h3>
 
-
                 <p>
-
-                    ${escapeHTML(
-                        getBranchDescription(
-                            branch.slug
-                        )
+                    ${getDescription(
+                        branch.slug
                     )}
-
                 </p>
 
-
-                <span class="reference-count">
-
-                    📄
-                    ${count}
-                    ${count === 1 ? "مرجع" : "مراجع"}
-
+                <span class="count">
+                    📚
+                    ${counts[branch.id] || 0}
+                    مرجع
                 </span>
 
             `;
 
 
-            branchesContainer.appendChild(
+            branchesGrid.appendChild(
                 card
             );
 
@@ -1299,99 +1546,310 @@ function renderBranches(
 }
 
 
-/* =====================================
-   SEARCH
-===================================== */
+/* =================================
+   LOAD LATEST REFERENCES
+================================= */
 
-searchInput.addEventListener(
-    "input",
-    function(){
+async function loadLatestReferences(){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+
+        .from("references")
+
+        .select(`
+            id,
+            title,
+            author,
+            description,
+            file_path,
+            created_at,
+            branch_id,
+            category_id,
+            branches (
+                id,
+                name,
+                slug
+            ),
+            reference_categories (
+                id,
+                name,
+                slug
+            )
+        `)
+
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        )
+
+        .limit(6);
+
+
+    if(error){
+
+        console.error(error);
+
+        latestReferences.innerHTML = `
+
+            <div class="loading">
+                ❌ تعذر تحميل المراجع.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    referenceCount.textContent =
+        "—";
+
+
+    /* العدد الحقيقي */
+
+    const {
+        count
+    } =
+    await supabaseClient
+
+        .from("references")
+
+        .select(
+            "id",
+            {
+                count:"exact",
+                head:true
+            }
+        );
+
+
+    referenceCount.textContent =
+        count ?? 0;
+
+
+    latestReferences.innerHTML = "";
+
+
+    if(!data || !data.length){
+
+        latestReferences.innerHTML = `
+
+            <div class="loading">
+
+                📚 لم تتم إضافة مراجع
+                حتى الآن.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    data.forEach(
+        reference => {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+            card.className =
+                "reference";
+
+
+            const branch =
+                reference.branches;
+
+            const category =
+                reference.reference_categories;
+
+
+            let pdfUrl = "";
+
+
+            if(
+                reference.file_path
+            ){
+
+                pdfUrl =
+                    supabaseClient
+
+                        .storage
+
+                        .from(
+                            "legal-pdfs"
+                        )
+
+                        .getPublicUrl(
+                            reference.file_path
+                        )
+                        .data
+                        .publicUrl;
+
+            }
+
+
+            card.innerHTML = `
+
+                <h3>
+                    ${escapeHTML(
+                        reference.title
+                    )}
+                </h3>
+
+
+                <div class="reference-meta">
+
+                    ${
+                        branch
+                        ?
+                        `
+                        <span class="badge">
+                            ⚖️
+                            ${escapeHTML(
+                                branch.name
+                            )}
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        category
+                        ?
+                        `
+                        <span class="badge">
+                            📚
+                            ${escapeHTML(
+                                category.name
+                            )}
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        reference.author
+                        ?
+                        `
+                        <span class="badge">
+                            ✍️
+                            ${escapeHTML(
+                                reference.author
+                            )}
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+
+                ${
+                    reference.description
+                    ?
+                    `
+                    <p>
+                        ${escapeHTML(
+                            reference.description
+                        )}
+                    </p>
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    pdfUrl
+                    ?
+                    `
+                    <a
+                        href="${pdfUrl}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        📄 فتح المرجع
+                    </a>
+                    `
+                    :
+                    ""
+                }
+
+            `;
+
+
+            latestReferences.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =================================
+   SEARCH
+================================= */
+
+homeSearch.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
 
         const query =
-            this.value
-                .trim()
-                .toLowerCase();
+            searchInput.value.trim();
 
 
-        if(!query){
+        if(query){
 
-            loadData();
+            window.location.href =
+                "search.html?q="
+                +
+                encodeURIComponent(
+                    query
+                );
 
-            return;
         }
+        else{
 
+            window.location.href =
+                "search.html";
 
-        const filtered =
-            allBranches.filter(
-                branch => {
-
-                    const name =
-                        branch.name
-                        || "";
-
-                    const slug =
-                        branch.slug
-                        || "";
-
-
-                    return (
-
-                        name
-                            .toLowerCase()
-                            .includes(
-                                query
-                            )
-
-                        ||
-
-                        slug
-                            .toLowerCase()
-                            .includes(
-                                query
-                            )
-
-                    );
-
-                }
-            );
-
-
-        supabaseClient
-
-            .from("references")
-
-            .select(
-                "id,branch_id"
-            )
-
-            .then(
-                result => {
-
-                    const references =
-                        result.data || [];
-
-
-                    renderBranches(
-                        filtered,
-                        references
-                    );
-
-                }
-            );
+        }
 
     }
 );
 
 
-/* =====================================
+/* =================================
    ESCAPE HTML
-===================================== */
+================================= */
 
-function escapeHTML(
-    value
-){
+function escapeHTML(value){
 
-    if(!value){
+    if(
+        value === null ||
+        value === undefined
+    ){
 
         return "";
 
@@ -1428,14 +1886,13 @@ function escapeHTML(
 }
 
 
-/* =====================================
+/* =================================
    START
-===================================== */
+================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    loadData
-);
+loadBranches();
+
+loadLatestReferences();
 
 </script>
 
