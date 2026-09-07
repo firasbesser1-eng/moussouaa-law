@@ -1,1304 +1,987 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة الأقسام — الموسوعة القانونية</title>
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>إدارة الفروع والتصنيفات | الموسوعة القانونية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+:root{
+    --navy:#0b1f3a;
+    --navy2:#102b4d;
+    --gold:#c9a227;
+    --gold2:#e2c35a;
+    --ivory:#f8f5ec;
+    --white:#fff;
+    --text:#17202a;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --danger:#b42318;
+    --success:#087443;
+    --shadow:0 12px 35px rgba(11,31,58,.10);
+}
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-    margin:0;
-    font-family:Tahoma,Arial,sans-serif;
-    background:#f4f7fb;
-    color:#172033;
+    font-family:"Cairo",sans-serif;
+    background:var(--ivory);
+    color:var(--text);
 }
 
-/* =========================
-   HEADER
-========================= */
-
-header{
-
-    background:
-    linear-gradient(
-        135deg,
-        #071a35,
-        #123e69
-    );
-
-    color:white;
-
-    padding:30px 20px;
-
-    text-align:center;
-
-    box-shadow:
-    0 4px 20px
-    rgba(0,0,0,.15);
-}
-
-header h1{
-    margin:0 0 10px;
-    font-size:27px;
-}
-
-header p{
-    margin:5px;
-    color:#dbeafe;
-}
-
-/* =========================
-   CONTAINER
-========================= */
-
-.container{
-
-    width:min(1100px,94%);
-
-    margin:30px auto;
-}
-
-/* =========================
-   TOP BUTTONS
-========================= */
-
-.top-actions{
-
-    display:flex;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:25px;
-}
-
-.top-actions a{
-
+a{
     text-decoration:none;
+    color:inherit;
+}
 
-    background:#123e69;
-
+.header{
+    background:linear-gradient(135deg,var(--navy),var(--navy2));
     color:white;
-
-    padding:12px 18px;
-
-    border-radius:10px;
-
-    font-weight:bold;
+    padding:18px 5%;
+    box-shadow:0 4px 20px rgba(0,0,0,.12);
 }
 
-/* =========================
-   PANELS
-========================= */
-
-.panel{
-
-    background:white;
-
-    border-radius:18px;
-
-    padding:25px;
-
-    margin-bottom:25px;
-
-    box-shadow:
-    0 5px 20px
-    rgba(0,0,0,.07);
-}
-
-.panel h2{
-
-    margin-top:0;
-
-    color:#123e69;
-
-    border-bottom:
-    1px solid #edf0f5;
-
-    padding-bottom:15px;
-}
-
-/* =========================
-   FORM
-========================= */
-
-.form-row{
-
-    display:grid;
-
-    grid-template-columns:
-    1fr 1fr auto;
-
-    gap:10px;
-
-    align-items:end;
-}
-
-.form-group{
-
+.header-inner{
+    max-width:1200px;
+    margin:auto;
     display:flex;
-
-    flex-direction:column;
-
-    gap:7px;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
 }
 
-.form-group label{
-
-    font-weight:bold;
-
-    color:#344054;
-
-    font-size:14px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-input{
-
-    width:100%;
-
-    padding:13px;
-
-    border:
-    1px solid #d6dce5;
-
-    border-radius:10px;
-
-    font-size:15px;
-
-    outline:none;
+.logo{
+    width:48px;
+    height:48px;
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.08);
 }
 
-input:focus{
-
-    border-color:#123e69;
-
-    box-shadow:
-    0 0 0 3px
-    rgba(18,62,105,.1);
+.logo svg{
+    width:27px;
+    height:27px;
+    fill:none;
+    stroke:var(--gold2);
+    stroke-width:1.7;
 }
 
-button{
+.brand-title{
+    font-family:"Amiri",serif;
+    font-size:24px;
+    font-weight:700;
+}
 
+.brand-sub{
+    font-size:12px;
+    opacity:.75;
+}
+
+.header-actions{
+    display:flex;
+    gap:8px;
+}
+
+.btn{
     border:0;
-
-    cursor:pointer;
-
-    padding:13px 18px;
-
     border-radius:10px;
-
-    font-size:15px;
-
-    font-weight:bold;
+    padding:10px 16px;
+    font-family:inherit;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.btn-primary{
+.btn:hover{
+    transform:translateY(-1px);
+}
 
-    background:#123e69;
-
+.btn-gold{
+    background:var(--gold);
     color:white;
+}
+
+.btn-light{
+    background:white;
+    color:var(--navy);
 }
 
 .btn-danger{
+    background:#fff0ef;
+    color:var(--danger);
+}
 
-    background:#b42318;
+.container{
+    width:min(1200px,92%);
+    margin:35px auto;
+}
 
+.hero{
+    background:linear-gradient(135deg,var(--navy),#173b67);
     color:white;
+    border-radius:22px;
+    padding:35px;
+    margin-bottom:25px;
+    position:relative;
+    overflow:hidden;
 }
 
-.btn-secondary{
-
-    background:#edf4fb;
-
-    color:#123e69;
+.hero:after{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    border:1px solid rgba(201,162,39,.25);
+    border-radius:50%;
+    left:-80px;
+    top:-80px;
 }
 
-/* =========================
-   LIST
-========================= */
+.hero h1{
+    font-family:"Amiri",serif;
+    font-size:34px;
+    margin-bottom:7px;
+}
 
-.list{
+.hero p{
+    opacity:.8;
+    font-size:14px;
+}
 
+.stats{
     display:grid;
-
-    gap:12px;
-
-    margin-top:20px;
-}
-
-.item{
-
-    border:
-    1px solid #e4e7ec;
-
-    border-radius:13px;
-
-    padding:16px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
+    grid-template-columns:repeat(3,1fr);
     gap:15px;
-
-    background:#fafbfc;
+    margin-bottom:25px;
 }
 
-.item-info{
-
-    flex:1;
+.stat{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+    box-shadow:var(--shadow);
 }
 
-.item-name{
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    color:#123e69;
-
-    margin-bottom:6px;
-}
-
-.item-slug{
-
-    color:#667085;
-
+.stat-label{
+    color:var(--muted);
     font-size:13px;
-
-    direction:ltr;
-
-    text-align:right;
 }
 
-.item-actions{
+.stat-number{
+    color:var(--navy);
+    font-size:28px;
+    font-weight:800;
+    margin-top:5px;
+}
 
+.panel{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:var(--shadow);
+}
+
+.panel-title{
+    color:var(--navy);
+    font-size:19px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.field{
     display:flex;
-
+    flex-direction:column;
     gap:7px;
+}
 
+.field.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-size:13px;
+    font-weight:700;
+    color:var(--navy);
+}
+
+input,
+select{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px 13px;
+    font-family:inherit;
+    font-size:14px;
+    background:white;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(201,162,39,.12);
+}
+
+.form-actions{
+    margin-top:18px;
+    display:flex;
+    gap:10px;
     flex-wrap:wrap;
 }
 
-/* =========================
-   MESSAGE
-========================= */
-
 .message{
-
     display:none;
-
-    padding:14px;
-
-    border-radius:10px;
-
     margin-top:15px;
-
-    line-height:1.7;
+    padding:12px 15px;
+    border-radius:10px;
+    font-size:13px;
 }
 
 .message.success{
-
     display:block;
-
     background:#ecfdf3;
-
-    color:#027a48;
+    color:var(--success);
 }
 
 .message.error{
-
     display:block;
-
-    background:#fff1f2;
-
-    color:#b42318;
+    background:#fff1f0;
+    color:var(--danger);
 }
 
-.loading{
+.toolbar{
+    display:flex;
+    gap:10px;
+    margin-bottom:18px;
+}
 
-    text-align:center;
+.toolbar input{
+    flex:1;
+}
 
-    padding:20px;
+.category-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
 
-    color:#667085;
+.category-card{
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:18px;
+    background:#fff;
+    transition:.2s;
+}
+
+.category-card:hover{
+    border-color:var(--gold);
+    transform:translateY(-2px);
+}
+
+.category-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:flex-start;
+}
+
+.category-name{
+    font-size:17px;
+    font-weight:800;
+    color:var(--navy);
+}
+
+.branch-name{
+    display:inline-block;
+    margin-top:6px;
+    color:#8a6d13;
+    background:#fbf5dc;
+    border-radius:7px;
+    padding:4px 8px;
+    font-size:11px;
+    font-weight:700;
+}
+
+.slug{
+    margin-top:8px;
+    direction:ltr;
+    text-align:left;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.card-actions{
+    display:flex;
+    gap:7px;
+    margin-top:15px;
+}
+
+.small-btn{
+    border:0;
+    border-radius:8px;
+    padding:8px 12px;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.edit{
+    background:#eef4ff;
+    color:#2454a6;
+}
+
+.delete{
+    background:#fff0ef;
+    color:var(--danger);
 }
 
 .empty{
-
     text-align:center;
-
-    padding:25px;
-
-    color:#667085;
-
-    background:#f8fafc;
-
-    border-radius:10px;
+    padding:35px;
+    color:var(--muted);
+    border:1px dashed var(--border);
+    border-radius:14px;
+    grid-column:1/-1;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:1000;
+    padding:20px;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(520px,100%);
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(0,0,0,.2);
+}
+
+.modal-title{
+    font-size:20px;
+    font-weight:800;
+    color:var(--navy);
+    margin-bottom:20px;
+}
 
 footer{
-
-    margin-top:40px;
-
-    background:#071a35;
-
+    margin-top:45px;
+    background:var(--navy);
     color:white;
-
     text-align:center;
-
-    padding:25px;
+    padding:25px 15px;
+    font-size:12px;
 }
 
-footer p{
-    margin:6px;
+footer strong{
+    color:var(--gold2);
 }
-
-/* =========================
-   MOBILE
-========================= */
 
 @media(max-width:700px){
-
-    .form-row{
-
-        grid-template-columns:1fr;
-    }
-
-    .item{
-
-        align-items:stretch;
-
+    .header-inner{
+        align-items:flex-start;
         flex-direction:column;
     }
 
-    .item-actions{
-
+    .header-actions{
         width:100%;
     }
 
-    .item-actions button{
-
+    .header-actions .btn{
         flex:1;
     }
 
-    .top-actions a{
-
-        flex:1;
-
-        text-align:center;
+    .hero{
+        padding:27px 20px;
     }
 
+    .hero h1{
+        font-size:28px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .category-list{
+        grid-template-columns:1fr;
+    }
+
+    .panel{
+        padding:18px;
+    }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
+<header class="header">
+    <div class="header-inner">
 
-<header>
+        <div class="brand">
+            <div class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 0-4 4V4Z"/>
+                    <path d="M9 20h10"/>
+                </svg>
+            </div>
 
-    <h1>
-        ⚙️ إدارة الفروع والتصنيفات
-    </h1>
+            <div>
+                <div class="brand-title">الموسوعة القانونية</div>
+                <div class="brand-sub">فراس بسر — مدير الموسوعة القانونية</div>
+            </div>
+        </div>
 
-    <p>
-        الموسوعة القانونية
-    </p>
+        <div class="header-actions">
+            <a href="dashboard.html" class="btn btn-light">لوحة الإدارة</a>
+            <button class="btn btn-gold" onclick="logout()">تسجيل الخروج</button>
+        </div>
 
-    <p>
-        لوحة المدير
-    </p>
-
+    </div>
 </header>
 
 
-<div class="container">
+<main class="container">
+
+    <section class="hero">
+        <h1>إدارة أقسام الفروع القانونية</h1>
+        <p>
+            أضف وأدر أقسام كل فرع قانوني بصورة مستقلة.
+        </p>
+    </section>
 
 
-    <!-- =========================
-         ACTIONS
-    ========================= -->
+    <section class="stats">
 
-    <div class="top-actions">
-
-        <a href="dashboard.html">
-            ← لوحة التحكم
-        </a>
-
-        <a href="add-reference.html">
-            ➕ إضافة مرجع
-        </a>
-
-        <a href="manage-references.html">
-            📚 إدارة المراجع
-        </a>
-
-        <a href="index.html">
-            🏠 الموقع
-        </a>
-
-    </div>
-
-
-
-    <!-- =========================
-         BRANCHES
-    ========================= -->
-
-    <section class="panel">
-
-        <h2>
-            ⚖️ فروع القانون
-        </h2>
-
-
-        <div class="form-row">
-
-            <div class="form-group">
-
-                <label>
-                    اسم الفرع
-                </label>
-
-                <input
-                    type="text"
-                    id="branchName"
-                    placeholder="مثال: القانون البحري"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Slug
-                </label>
-
-                <input
-                    type="text"
-                    id="branchSlug"
-                    placeholder="مثال: maritime"
-                    dir="ltr"
-                >
-
-            </div>
-
-
-            <button
-                class="btn-primary"
-                onclick="addBranch()"
-            >
-
-                ➕ إضافة الفرع
-
-            </button>
-
+        <div class="stat">
+            <div class="stat-label">إجمالي الأقسام</div>
+            <div class="stat-number" id="totalCategories">—</div>
         </div>
 
+        <div class="stat">
+            <div class="stat-label">الفروع القانونية</div>
+            <div class="stat-number" id="totalBranches">—</div>
+        </div>
 
-        <div
-            id="branchMessage"
-            class="message"
-        ></div>
-
-
-        <div
-            id="branchesList"
-            class="list"
-        >
-
-            <div class="loading">
-                ⏳ جاري تحميل الفروع...
-            </div>
-
+        <div class="stat">
+            <div class="stat-label">الأقسام المعروضة</div>
+            <div class="stat-number" id="shownCategories">—</div>
         </div>
 
     </section>
 
 
-
-    <!-- =========================
-         CATEGORIES
-    ========================= -->
-
     <section class="panel">
 
-        <h2>
-            🗂️ تصنيفات المراجع
-        </h2>
+        <div class="panel-title">إضافة قسم جديد</div>
 
+        <div class="form-grid">
 
-        <div class="form-row">
+            <div class="field">
+                <label for="branchSelect">الفرع القانوني</label>
 
-            <div class="form-group">
-
-                <label>
-                    اسم التصنيف
-                </label>
-
-                <input
-                    type="text"
-                    id="categoryName"
-                    placeholder="مثال: القوانين"
-                >
-
+                <select id="branchSelect">
+                    <option value="">اختر الفرع القانوني</option>
+                </select>
             </div>
 
 
-            <div class="form-group">
-
-                <label>
-                    Slug
-                </label>
+            <div class="field">
+                <label for="categoryName">اسم القسم</label>
 
                 <input
+                    id="categoryName"
                     type="text"
+                    placeholder="مثال: التشريع"
+                >
+            </div>
+
+
+            <div class="field full">
+                <label for="categorySlug">الرابط المختصر للقسم</label>
+
+                <input
                     id="categorySlug"
-                    placeholder="مثال: laws"
+                    type="text"
+                    placeholder="مثال: legislation"
                     dir="ltr"
                 >
-
             </div>
 
+        </div>
+
+
+        <div class="form-actions">
 
             <button
-                class="btn-primary"
+                class="btn btn-gold"
+                id="addBtn"
                 onclick="addCategory()"
             >
+                إضافة القسم
+            </button>
 
-                ➕ إضافة التصنيف
-
+            <button
+                class="btn btn-light"
+                onclick="resetForm()"
+            >
+                مسح
             </button>
 
         </div>
 
+        <div id="message" class="message"></div>
 
-        <div
-            id="categoryMessage"
-            class="message"
-        ></div>
+    </section>
 
 
-        <div
-            id="categoriesList"
-            class="list"
-        >
+    <section class="panel">
 
-            <div class="loading">
-                ⏳ جاري تحميل التصنيفات...
-            </div>
+        <div class="panel-title">الأقسام الموجودة</div>
+
+        <div class="toolbar">
+
+            <select id="filterBranch" onchange="renderCategories()">
+                <option value="">كل الفروع القانونية</option>
+            </select>
+
+            <input
+                id="searchInput"
+                type="search"
+                placeholder="البحث عن قسم..."
+                oninput="renderCategories()"
+            >
 
         </div>
 
+        <div id="categoryList" class="category-list"></div>
+
     </section>
+
+</main>
+
+
+<footer>
+    <strong>الموسوعة القانونية</strong>
+    <br>
+    منصة أكاديمية رقمية للمراجع والمصادر القانونية
+</footer>
+
+
+<!-- EDIT MODAL -->
+
+<div class="modal" id="editModal">
+
+    <div class="modal-box">
+
+        <div class="modal-title">
+            تعديل القسم
+        </div>
+
+        <div class="field">
+            <label>الفرع القانوني</label>
+
+            <select id="editBranch"></select>
+        </div>
+
+        <br>
+
+        <div class="field">
+            <label>اسم القسم</label>
+
+            <input id="editName" type="text">
+        </div>
+
+        <br>
+
+        <div class="field">
+            <label>Slug</label>
+
+            <input id="editSlug" type="text" dir="ltr">
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                class="btn btn-gold"
+                onclick="saveEdit()"
+            >
+                حفظ التعديل
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="closeModal()"
+            >
+                إلغاء
+            </button>
+
+        </div>
+
+        <div id="editMessage" class="message"></div>
+
+    </div>
 
 </div>
 
 
-
-<footer>
-
-    <p>
-        ⚖️ الموسوعة القانونية
-    </p>
-
-    <p>
-        فراس بسر — مدير الموسوعة القانونية
-    </p>
-
-</footer>
-
-
-
 <script>
 
-/* =========================================
-   SUPABASE
-========================================= */
-
 const SUPABASE_URL =
-"https://yksrckzomkowjzmsafvm.supabase.co";
+    "https://yksrckzomkowjzmsafvm.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
-
+    "sb_publishable_VEa1cABilAnrnclvOTv-IA_yFcn7aIV";
 
 const supabaseClient =
-supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
-/* =========================================
-   CHECK LOGIN
-========================================= */
-
-async function checkSession(){
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient.auth.getSession();
+let branches = [];
+let categories = [];
+let editingId = null;
 
 
-    if(
-        error ||
-        !data.session
-    ){
+/* =========================
+   AUTH
+========================= */
 
-        window.location.href =
-            "admin.html";
+async function checkAdmin(){
 
+    const { data } =
+        await supabaseClient.auth.getSession();
+
+    if(!data.session){
+
+        window.location.href = "admin.html";
         return false;
     }
 
+    const userId = data.session.user.id;
+
+    const { data: admin, error } =
+        await supabaseClient
+        .from("admins")
+        .select("user_id")
+        .eq("user_id", userId)
+        .maybeSingle();
+
+    if(error || !admin){
+
+        await supabaseClient.auth.signOut();
+
+        window.location.href = "admin.html";
+        return false;
+    }
 
     return true;
 }
 
 
-/* =========================================
-   MESSAGE
-========================================= */
-
-function showMessage(
-    elementId,
-    text,
-    type
-){
-
-    const element =
-        document.getElementById(
-            elementId
-        );
-
-
-    element.textContent =
-        text;
-
-
-    element.className =
-        "message " + type;
-
-
-    setTimeout(
-        () => {
-
-            element.className =
-                "message";
-
-        },
-        5000
-    );
-}
-
-
-/* =========================================
+/* =========================
    LOAD BRANCHES
-========================================= */
+========================= */
 
 async function loadBranches(){
 
-    const container =
-        document.getElementById(
-            "branchesList"
-        );
-
-
-    container.innerHTML =
-        `
-        <div class="loading">
-            ⏳ جاري تحميل الفروع...
-        </div>
-        `;
-
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-
+    const { data, error } =
+        await supabaseClient
         .from("branches")
-
-        .select(
-            "id,name,slug"
-        )
-
-        .order(
-            "id",
-            {
-                ascending:true
-            }
-        );
-
+        .select("id,name,slug")
+        .order("id");
 
     if(error){
 
-        console.error(error);
+        showMessage(
+            "تعذر تحميل الفروع القانونية.",
+            "error"
+        );
 
-        container.innerHTML =
-        `
-        <div class="message error">
+        return;
+    }
 
-            ❌ تعذر تحميل الفروع.
+    branches = data || [];
 
-            <br>
+    const branchSelect =
+        document.getElementById("branchSelect");
 
-            ${escapeHTML(error.message)}
+    const filterBranch =
+        document.getElementById("filterBranch");
 
-        </div>
+    const editBranch =
+        document.getElementById("editBranch");
+
+    branchSelect.innerHTML =
+        '<option value="">اختر الفرع القانوني</option>';
+
+    filterBranch.innerHTML =
+        '<option value="">كل الفروع القانونية</option>';
+
+    editBranch.innerHTML = "";
+
+    branches.forEach(branch => {
+
+        branchSelect.innerHTML += `
+            <option value="${branch.id}">
+                ${escapeHTML(branch.name)}
+            </option>
         `;
 
-        return;
-    }
-
-
-    if(
-        !data ||
-        data.length === 0
-    ){
-
-        container.innerHTML =
-        `
-        <div class="empty">
-
-            لا توجد فروع.
-
-        </div>
+        filterBranch.innerHTML += `
+            <option value="${branch.id}">
+                ${escapeHTML(branch.name)}
+            </option>
         `;
 
-        return;
-    }
+        editBranch.innerHTML += `
+            <option value="${branch.id}">
+                ${escapeHTML(branch.name)}
+            </option>
+        `;
+    });
 
-
-    container.innerHTML =
-        "";
-
-
-    data.forEach(
-        branch => {
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "item";
-
-
-            item.innerHTML = `
-
-                <div class="item-info">
-
-                    <div class="item-name">
-
-                        ⚖️
-                        ${escapeHTML(
-                            branch.name
-                        )}
-
-                    </div>
-
-                    <div class="item-slug">
-
-                        ${escapeHTML(
-                            branch.slug
-                        )}
-
-                    </div>
-
-                </div>
-
-
-                <div class="item-actions">
-
-                    <button
-                        class="btn-secondary"
-                        onclick="copyBranchLink('${escapeJS(branch.slug)}')"
-                    >
-
-                        🔗 الرابط
-
-                    </button>
-
-
-                    <button
-                        class="btn-danger"
-                        onclick="deleteBranch(${branch.id})"
-                    >
-
-                        🗑️ حذف
-
-                    </button>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                item
-            );
-
-        }
-    );
-
+    document.getElementById("totalBranches").textContent =
+        branches.length;
 }
 
 
-/* =========================================
-   ADD BRANCH
-========================================= */
-
-async function addBranch(){
-
-    const nameInput =
-        document.getElementById(
-            "branchName"
-        );
-
-
-    const slugInput =
-        document.getElementById(
-            "branchSlug"
-        );
-
-
-    const name =
-        nameInput.value.trim();
-
-
-    const slug =
-        slugInput.value
-            .trim()
-            .toLowerCase();
-
-
-    if(!name){
-
-        showMessage(
-            "branchMessage",
-            "⚠️ اكتب اسم الفرع.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    if(!slug){
-
-        showMessage(
-            "branchMessage",
-            "⚠️ اكتب Slug للفرع.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    if(
-        !/^[a-z0-9-]+$/.test(slug)
-    ){
-
-        showMessage(
-            "branchMessage",
-            "⚠️ الـ Slug يجب أن يحتوي على حروف إنجليزية صغيرة وأرقام وشرطة فقط.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const {
-        error
-    } =
-    await supabaseClient
-
-        .from("branches")
-
-        .insert({
-
-            name:name,
-
-            slug:slug
-
-        });
-
-
-    if(error){
-
-        console.error(error);
-
-
-        if(
-            error.code === "23505"
-        ){
-
-            showMessage(
-                "branchMessage",
-                "❌ يوجد فرع بنفس الاسم أو الـ Slug.",
-                "error"
-            );
-
-        }else{
-
-            showMessage(
-                "branchMessage",
-                "❌ تعذر إضافة الفرع: "
-                +
-                error.message,
-                "error"
-            );
-
-        }
-
-        return;
-    }
-
-
-    nameInput.value =
-        "";
-
-    slugInput.value =
-        "";
-
-
-    showMessage(
-        "branchMessage",
-        "✅ تمت إضافة الفرع بنجاح.",
-        "success"
-    );
-
-
-    await loadBranches();
-
-}
-
-
-/* =========================================
-   DELETE BRANCH
-========================================= */
-
-async function deleteBranch(
-    id
-){
-
-    const confirmed =
-        confirm(
-            "هل أنت متأكد من حذف هذا الفرع؟\n\nإذا كانت هناك مراجع مرتبطة به فلن يسمح النظام بالحذف."
-        );
-
-
-    if(!confirmed){
-
-        return;
-    }
-
-
-    const {
-        error
-    } =
-    await supabaseClient
-
-        .from("branches")
-
-        .delete()
-
-        .eq(
-            "id",
-            id
-        );
-
-
-    if(error){
-
-        console.error(error);
-
-
-        showMessage(
-            "branchMessage",
-            "❌ تعذر حذف الفرع. قد تكون هناك مراجع مرتبطة به.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    showMessage(
-        "branchMessage",
-        "✅ تم حذف الفرع.",
-        "success"
-    );
-
-
-    await loadBranches();
-
-}
-
-
-/* =========================================
-   COPY BRANCH LINK
-========================================= */
-
-async function copyBranchLink(
-    slug
-){
-
-    const link =
-        window.location.origin
-        +
-        window.location.pathname
-            .replace(
-                "manage-categories.html",
-                "branch.html"
-            )
-        +
-        "?branch="
-        +
-        encodeURIComponent(
-            slug
-        );
-
-
-    try{
-
-        await navigator.clipboard.writeText(
-            link
-        );
-
-
-        showMessage(
-            "branchMessage",
-            "✅ تم نسخ رابط الفرع.",
-            "success"
-        );
-
-    }catch(error){
-
-        prompt(
-            "انسخ الرابط:",
-            link
-        );
-
-    }
-
-}
-
-
-/* =========================================
+/* =========================
    LOAD CATEGORIES
-========================================= */
+========================= */
 
 async function loadCategories(){
 
-    const container =
-        document.getElementById(
-            "categoriesList"
-        );
-
-
-    container.innerHTML =
-        `
-        <div class="loading">
-            ⏳ جاري تحميل التصنيفات...
-        </div>
-        `;
-
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-
-        .from(
-            "reference_categories"
-        )
-
-        .select(
-            "id,name,slug"
-        )
-
-        .order(
-            "id",
-            {
-                ascending:true
-            }
-        );
-
+    const { data, error } =
+        await supabaseClient
+        .from("reference_categories")
+        .select(`
+            id,
+            name,
+            slug,
+            branch_id,
+            branches (
+                id,
+                name,
+                slug
+            )
+        `)
+        .not("branch_id", "is", null)
+        .order("id");
 
     if(error){
 
-        console.error(error);
-
-        container.innerHTML =
-        `
-        <div class="message error">
-
-            ❌ تعذر تحميل التصنيفات.
-
-            <br>
-
-            ${escapeHTML(error.message)}
-
-        </div>
-        `;
+        showMessage(
+            "تعذر تحميل الأقسام: " + error.message,
+            "error"
+        );
 
         return;
     }
 
+    categories = data || [];
 
-    if(
-        !data ||
-        data.length === 0
-    ){
+    document.getElementById("totalCategories").textContent =
+        categories.length;
 
-        container.innerHTML =
-        `
-        <div class="empty">
-
-            لا توجد تصنيفات.
-
-        </div>
-        `;
-
-        return;
-    }
-
-
-    container.innerHTML =
-        "";
-
-
-    data.forEach(
-        category => {
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "item";
-
-
-            item.innerHTML = `
-
-                <div class="item-info">
-
-                    <div class="item-name">
-
-                        🗂️
-                        ${escapeHTML(
-                            category.name
-                        )}
-
-                    </div>
-
-                    <div class="item-slug">
-
-                        ${escapeHTML(
-                            category.slug
-                        )}
-
-                    </div>
-
-                </div>
-
-
-                <div class="item-actions">
-
-                    <button
-                        class="btn-danger"
-                        onclick="deleteCategory(${category.id})"
-                    >
-
-                        🗑️ حذف
-
-                    </button>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                item
-            );
-
-        }
-    );
-
+    renderCategories();
 }
 
 
-/* =========================================
-   ADD CATEGORY
-========================================= */
+/* =========================
+   RENDER
+========================= */
+
+function renderCategories(){
+
+    const list =
+        document.getElementById("categoryList");
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const branchId =
+        document.getElementById("filterBranch").value;
+
+
+    let filtered = categories.filter(category => {
+
+        const matchesBranch =
+            !branchId ||
+            String(category.branch_id) === String(branchId);
+
+        const branchName =
+            category.branches?.name || "";
+
+        const matchesSearch =
+            !search ||
+            category.name.toLowerCase().includes(search) ||
+            category.slug.toLowerCase().includes(search) ||
+            branchName.toLowerCase().includes(search);
+
+        return matchesBranch && matchesSearch;
+    });
+
+
+    document.getElementById("shownCategories").textContent =
+        filtered.length;
+
+
+    if(!filtered.length){
+
+        list.innerHTML = `
+            <div class="empty">
+                لا توجد أقسام مطابقة للبحث.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        filtered.map(category => {
+
+            const branchName =
+                category.branches?.name || "غير محدد";
+
+            return `
+                <div class="category-card">
+
+                    <div class="category-top">
+
+                        <div>
+
+                            <div class="category-name">
+                                ${escapeHTML(category.name)}
+                            </div>
+
+                            <span class="branch-name">
+                                ${escapeHTML(branchName)}
+                            </span>
+
+                            <div class="slug">
+                                ${escapeHTML(category.slug)}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <button
+                            class="small-btn edit"
+                            onclick="openEdit(${category.id})"
+                        >
+                            تعديل
+                        </button>
+
+                        <button
+                            class="small-btn delete"
+                            onclick="deleteCategory(${category.id})"
+                        >
+                            حذف
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+        }).join("");
+}
+
+
+/* =========================
+   ADD
+========================= */
 
 async function addCategory(){
 
-    const nameInput =
-        document.getElementById(
-            "categoryName"
-        );
-
-
-    const slugInput =
-        document.getElementById(
-            "categorySlug"
-        );
-
+    const branchId =
+        document.getElementById("branchSelect").value;
 
     const name =
-        nameInput.value.trim();
-
+        document.getElementById("categoryName")
+        .value
+        .trim();
 
     const slug =
-        slugInput.value
-            .trim()
-            .toLowerCase();
+        document.getElementById("categorySlug")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if(!branchId){
+
+        showMessage(
+            "اختر الفرع القانوني أولًا.",
+            "error"
+        );
+
+        return;
+    }
 
 
     if(!name){
 
         showMessage(
-            "categoryMessage",
-            "⚠️ اكتب اسم التصنيف.",
+            "أدخل اسم القسم.",
             "error"
         );
 
@@ -1309,8 +992,7 @@ async function addCategory(){
     if(!slug){
 
         showMessage(
-            "categoryMessage",
-            "⚠️ اكتب Slug للتصنيف.",
+            "أدخل الرابط المختصر للقسم.",
             "error"
         );
 
@@ -1318,133 +1000,116 @@ async function addCategory(){
     }
 
 
-    if(
-        !/^[a-z0-9-]+$/.test(slug)
-    ){
+    const addBtn =
+        document.getElementById("addBtn");
 
-        showMessage(
-            "categoryMessage",
-            "⚠️ الـ Slug يجب أن يحتوي على حروف إنجليزية صغيرة وأرقام وشرطة فقط.",
-            "error"
-        );
-
-        return;
-    }
+    addBtn.disabled = true;
+    addBtn.textContent = "جارٍ الإضافة...";
 
 
-    const {
-        error
-    } =
-    await supabaseClient
-
-        .from(
-            "reference_categories"
-        )
-
+    const { error } =
+        await supabaseClient
+        .from("reference_categories")
         .insert({
-
-            name:name,
-
-            slug:slug
-
+            name: name,
+            slug: slug,
+            branch_id: Number(branchId)
         });
+
+
+    addBtn.disabled = false;
+    addBtn.textContent = "إضافة القسم";
 
 
     if(error){
 
-        console.error(error);
-
-
-        if(
-            error.code === "23505"
-        ){
+        if(error.code === "23505"){
 
             showMessage(
-                "categoryMessage",
-                "❌ يوجد تصنيف بنفس الاسم أو الـ Slug.",
+                "هذا القسم موجود مسبقًا داخل هذا الفرع.",
                 "error"
             );
 
         }else{
 
             showMessage(
-                "categoryMessage",
-                "❌ تعذر إضافة التصنيف: "
-                +
-                error.message,
+                "حدث خطأ: " + error.message,
                 "error"
             );
-
         }
 
         return;
     }
 
 
-    nameInput.value =
-        "";
-
-    slugInput.value =
-        "";
-
-
     showMessage(
-        "categoryMessage",
-        "✅ تمت إضافة التصنيف بنجاح.",
+        "تمت إضافة القسم بنجاح.",
         "success"
     );
 
+    resetForm();
 
     await loadCategories();
-
 }
 
 
-/* =========================================
-   DELETE CATEGORY
-========================================= */
+/* =========================
+   EDIT
+========================= */
 
-async function deleteCategory(
-    id
-){
+function openEdit(id){
 
-    const confirmed =
-        confirm(
-            "هل أنت متأكد من حذف هذا التصنيف؟\n\nإذا كانت هناك مراجع مرتبطة به فلن يسمح النظام بالحذف."
-        );
+    const category =
+        categories.find(c => c.id === id);
 
+    if(!category) return;
 
-    if(!confirmed){
+    editingId = id;
 
-        return;
-    }
+    document.getElementById("editBranch").value =
+        category.branch_id;
 
+    document.getElementById("editName").value =
+        category.name;
 
-    const {
-        error
-    } =
-    await supabaseClient
+    document.getElementById("editSlug").value =
+        category.slug;
 
-        .from(
-            "reference_categories"
-        )
+    document.getElementById("editMessage").className =
+        "message";
 
-        .delete()
+    document.getElementById("editMessage").textContent =
+        "";
 
-        .eq(
-            "id",
-            id
-        );
+    document.getElementById("editModal")
+        .classList.add("show");
+}
 
 
-    if(error){
+async function saveEdit(){
 
-        console.error(error);
+    if(!editingId) return;
 
 
-        showMessage(
-            "categoryMessage",
-            "❌ تعذر حذف التصنيف. قد تكون هناك مراجع مرتبطة به.",
+    const branchId =
+        document.getElementById("editBranch").value;
+
+    const name =
+        document.getElementById("editName")
+        .value
+        .trim();
+
+    const slug =
+        document.getElementById("editSlug")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if(!branchId || !name || !slug){
+
+        showEditMessage(
+            "يرجى إكمال جميع البيانات.",
             "error"
         );
 
@@ -1452,117 +1117,218 @@ async function deleteCategory(
     }
 
 
-    showMessage(
-        "categoryMessage",
-        "✅ تم حذف التصنيف.",
-        "success"
-    );
+    const { error } =
+        await supabaseClient
+        .from("reference_categories")
+        .update({
+            branch_id: Number(branchId),
+            name: name,
+            slug: slug
+        })
+        .eq("id", editingId);
 
 
-    await loadCategories();
+    if(error){
 
-}
+        if(error.code === "23505"){
 
+            showEditMessage(
+                "هذا القسم موجود مسبقًا داخل الفرع المختار.",
+                "error"
+            );
 
-/* =========================================
-   ESCAPE HTML
-========================================= */
+        }else{
 
-function escapeHTML(
-    value
-){
-
-    if(!value){
-
-        return "";
-    }
-
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =========================================
-   ESCAPE JAVASCRIPT
-========================================= */
-
-function escapeJS(
-    value
-){
-
-    return String(value)
-        .replace(
-            /\\/g,
-            "\\\\"
-        )
-        .replace(
-            /'/g,
-            "\\'"
-        );
-
-}
-
-
-/* =========================================
-   START
-========================================= */
-
-async function start(){
-
-    const loggedIn =
-        await checkSession();
-
-
-    if(!loggedIn){
+            showEditMessage(
+                error.message,
+                "error"
+            );
+        }
 
         return;
     }
 
 
-    await Promise.all([
+    closeModal();
 
-        loadBranches(),
+    await loadCategories();
 
-        loadCategories()
-
-    ]);
-
+    showMessage(
+        "تم تعديل القسم بنجاح.",
+        "success"
+    );
 }
 
 
-document.addEventListener(
-    "DOMContentLoaded",
-    start
-);
+/* =========================
+   DELETE
+========================= */
+
+async function deleteCategory(id){
+
+    const category =
+        categories.find(c => c.id === id);
+
+    if(!category) return;
+
+
+    const confirmed =
+        confirm(
+            `هل أنت متأكد من حذف قسم "${category.name}"؟`
+        );
+
+    if(!confirmed) return;
+
+
+    const { error } =
+        await supabaseClient
+        .from("reference_categories")
+        .delete()
+        .eq("id", id);
+
+
+    if(error){
+
+        if(error.code === "23503"){
+
+            showMessage(
+                "لا يمكن حذف هذا القسم لأنه مرتبط بمراجع موجودة.",
+                "error"
+            );
+
+        }else{
+
+            showMessage(
+                "تعذر حذف القسم: " + error.message,
+                "error"
+            );
+        }
+
+        return;
+    }
+
+
+    await loadCategories();
+
+    showMessage(
+        "تم حذف القسم بنجاح.",
+        "success"
+    );
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function resetForm(){
+
+    document.getElementById("branchSelect").value = "";
+
+    document.getElementById("categoryName").value = "";
+
+    document.getElementById("categorySlug").value = "";
+}
+
+
+function showMessage(text,type){
+
+    const box =
+        document.getElementById("message");
+
+    box.textContent = text;
+
+    box.className =
+        "message " + type;
+
+    setTimeout(() => {
+
+        box.className = "message";
+
+    },5000);
+}
+
+
+function showEditMessage(text,type){
+
+    const box =
+        document.getElementById("editMessage");
+
+    box.textContent = text;
+
+    box.className =
+        "message " + type;
+}
+
+
+function closeModal(){
+
+    document.getElementById("editModal")
+        .classList.remove("show");
+
+    editingId = null;
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+async function logout(){
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href = "admin.html";
+}
+
+
+/* =========================
+   MODAL EVENTS
+========================= */
+
+document.getElementById("editModal")
+.addEventListener("click", function(e){
+
+    if(e.target === this){
+
+        closeModal();
+    }
+});
+
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Escape"){
+
+        closeModal();
+    }
+});
+
+
+/* =========================
+   INIT
+========================= */
+
+(async function(){
+
+    const isAdmin = await checkAdmin();
+
+    if(!isAdmin) return;
+
+    await loadBranches();
+
+    await loadCategories();
+
+})();
 
 </script>
 
 </body>
-
 </html>
