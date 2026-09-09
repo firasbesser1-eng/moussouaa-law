@@ -10,7 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+.footer-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
 
+.footer-author img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 <style>
 :root{
 --navy:#0b1f3a;
@@ -675,8 +687,10 @@ placeholder="ابحث عن كتاب، تشريع، بحث، حكم أو مرجع
 
 <strong>الموسوعة القانونية</strong>
 
-<p>فراس بسر — مدير الموسوعة القانونية</p>
-
+<p class="footer-author">
+  <img src="firas-besser.jpg" alt="فراس بسر">
+  <span>فراس بسر — مدير الموسوعة القانونية</span>
+</p>
 <p>
 منصة أكاديمية رقمية للمراجع والمصادر القانونية
 </p>
